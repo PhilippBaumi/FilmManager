@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="FilmManager.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:FilmManager"
+    Title="FilmManager"
+    BackgroundColor="{StaticResource Primary}"
+    xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
+
+    <TabBar>
+        <ShellContent x:Name="startNav" Title="{x:Static strings:AppResources.home}" Route="Home" ContentTemplate="{DataTemplate local:MainPage}"/>
+        <ShellContent x:Name="overviewNAV" Title="{x:Static strings:AppResources.overview}" Route="Overview" ContentTemplate="{DataTemplate local:OverviewPage}"/>
+        <ShellContent x:Name="detailNav" Title="{x:Static strings:AppResources.details}" Route="Detail" ContentTemplate="{DataTemplate local:DetailPage}"/>
+        <ShellContent x:Name="saveLoadNav" Title="{x:Static strings:AppResources.saveLoad}" Route="SaveLoad" ContentTemplate="{DataTemplate local:SaveLoadPage}"/>
+        <ShellContent x:Name="watchlistWatchedNav"  Title="{x:Static strings:AppResources.watchedWatchlist}" Route="Watchlist" ContentTemplate="{DataTemplate local:WatchlistWatchedPage}"/>
+        <ShellContent x:Name="settingsNav" Title="{x:Static strings:AppResources.settings}" Route="Settings" ContentTemplate="{DataTemplate local:SettingPage}"/>
+    </TabBar>
+</Shell>

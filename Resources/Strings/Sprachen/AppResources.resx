@@ -1,0 +1,405 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="addToWatched" xml:space="preserve">
+    <value>Zu gesehen hinzufügen</value>
+  </data>
+  <data name="addToWatchlist" xml:space="preserve">
+    <value>Zu Merkliste hinzufügen</value>
+  </data>
+  <data name="askForNavigation" xml:space="preserve">
+    <value>Willst zu Gesehen/Merkliste wechseln?</value>
+  </data>
+  <data name="averageVote" xml:space="preserve">
+    <value>Durchschnittsbewertung</value>
+  </data>
+  <data name="background" xml:space="preserve">
+    <value>Hintergrund</value>
+  </data>
+  <data name="cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="cantNavigateToCollection" xml:space="preserve">
+    <value>Kann nicht zu Sammlung navigieren</value>
+  </data>
+  <data name="cantNavigateToDetails" xml:space="preserve">
+    <value>Kann nicht zu Details navigieren</value>
+  </data>
+  <data name="chooseLanguage" xml:space="preserve">
+    <value>Wähle Sprache</value>
+  </data>
+  <data name="chooseTheme" xml:space="preserve">
+    <value>Wähle Theme</value>
+  </data>
+  <data name="clearList" xml:space="preserve">
+    <value>Liste löschen</value>
+  </data>
+  <data name="close" xml:space="preserve">
+    <value>Schließen</value>
+  </data>
+  <data name="collection" xml:space="preserve">
+    <value>Sammlung</value>
+  </data>
+  <data name="countVote" xml:space="preserve">
+    <value>Anzahl Bewertungen</value>
+  </data>
+  <data name="dark" xml:space="preserve">
+    <value>Dunkles Theme</value>
+  </data>
+  <data name="description" xml:space="preserve">
+    <value>Beschreibung</value>
+  </data>
+  <data name="details" xml:space="preserve">
+    <value>Detail</value>
+  </data>
+  <data name="doesNotExists" xml:space="preserve">
+    <value>existiert nicht</value>
+  </data>
+  <data name="english" xml:space="preserve">
+    <value>Englisch</value>
+  </data>
+  <data name="enter" xml:space="preserve">
+    <value>Bestätigen</value>
+  </data>
+  <data name="enterActor" xml:space="preserve">
+    <value>Gib einen Schauspieler ein</value>
+  </data>
+  <data name="enterCompany" xml:space="preserve">
+    <value>Gib das Produzent Unternehmen ein</value>
+  </data>
+  <data name="enthaltenMovie" xml:space="preserve">
+    <value>Der Film ist bereits in der Liste enthalten</value>
+  </data>
+  <data name="enthaltenSerie" xml:space="preserve">
+    <value>Die Serie ist bereits in der Liste enthalten</value>
+  </data>
+  <data name="error" xml:space="preserve">
+    <value>Fehler</value>
+  </data>
+  <data name="file" xml:space="preserve">
+    <value>Die Datei</value>
+  </data>
+  <data name="filesOptions" xml:space="preserve">
+    <value>Speichern/Laden</value>
+  </data>
+  <data name="filterLanguage" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="forAdults" xml:space="preserve">
+    <value>Für Erwachsene</value>
+  </data>
+  <data name="generalData" xml:space="preserve">
+    <value>Allgemeine Daten</value>
+  </data>
+  <data name="german" xml:space="preserve">
+    <value>Deutsch</value>
+  </data>
+  <data name="home" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="info" xml:space="preserve">
+    <value>Hinweis</value>
+  </data>
+  <data name="insertSuccess" xml:space="preserve">
+    <value>Erfolgreich hinzugefügt</value>
+  </data>
+  <data name="language" xml:space="preserve">
+    <value>Sprache</value>
+  </data>
+  <data name="languageChanged" xml:space="preserve">
+    <value>Sprache hat sich geändert und alles wurde neu geladen</value>
+  </data>
+  <data name="light" xml:space="preserve">
+    <value>Helles Theme</value>
+  </data>
+  <data name="load" xml:space="preserve">
+    <value>Laden</value>
+  </data>
+  <data name="loadData" xml:space="preserve">
+    <value>Daten laden</value>
+  </data>
+  <data name="loadDatabase" xml:space="preserve">
+    <value>Datenbank laden</value>
+  </data>
+  <data name="loaded" xml:space="preserve">
+    <value>Geladen</value>
+  </data>
+  <data name="loading" xml:space="preserve">
+    <value>wird geladen</value>
+  </data>
+  <data name="media" xml:space="preserve">
+    <value>Medien</value>
+  </data>
+  <data name="messageFiles" xml:space="preserve">
+    <value>Willst du Speichern oder Laden?</value>
+  </data>
+  <data name="movie" xml:space="preserve">
+    <value>Film</value>
+  </data>
+  <data name="movies" xml:space="preserve">
+    <value>Filme</value>
+  </data>
+  <data name="newGeneratedLists" xml:space="preserve">
+    <value>Listen wurden erfolgreich geleert bzw. neu erstellt</value>
+  </data>
+  <data name="newLoad" xml:space="preserve">
+    <value>Neu laden</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>Nein</value>
+  </data>
+  <data name="noAllowedType" xml:space="preserve">
+    <value>Kein erlaubter Typ </value>
+  </data>
+  <data name="noChoosenMovie" xml:space="preserve">
+    <value>Du hast keinen gültigen Film gewählt!</value>
+  </data>
+  <data name="noChoosenMovieAndSerie" xml:space="preserve">
+    <value>Du hast keinen gültigen Film oder Serie gewählt!</value>
+  </data>
+  <data name="noChoosenSerie" xml:space="preserve">
+    <value>Du hast keinen gültigen Serie gewählt!</value>
+  </data>
+  <data name="noCollection" xml:space="preserve">
+    <value>Keine Sammlung vorhanden</value>
+  </data>
+  <data name="noObject" xml:space="preserve">
+    <value>Object ist null oder kein Object gewählt</value>
+  </data>
+  <data name="notIncludedObject" xml:space="preserve">
+    <value>Object (Film oder Serie) ist nicht in der Liste enthalten</value>
+  </data>
+  <data name="originalLanguage" xml:space="preserve">
+    <value>Originalsprache</value>
+  </data>
+  <data name="originalTitle" xml:space="preserve">
+    <value>Originaltitel</value>
+  </data>
+  <data name="origionCountry" xml:space="preserve">
+    <value>Produzierland</value>
+  </data>
+  <data name="overview" xml:space="preserve">
+    <value>Übersicht</value>
+  </data>
+  <data name="popularity" xml:space="preserve">
+    <value>Berühmtheit</value>
+  </data>
+  <data name="question" xml:space="preserve">
+    <value>Frage</value>
+  </data>
+  <data name="releaseDate" xml:space="preserve">
+    <value>Erscheinungsdatum</value>
+  </data>
+  <data name="removed" xml:space="preserve">
+    <value>Gelöscht</value>
+  </data>
+  <data name="removedMessage" xml:space="preserve">
+    <value>wurde gelöscht!</value>
+  </data>
+  <data name="removeFromList" xml:space="preserve">
+    <value>Von Liste entfernen</value>
+  </data>
+  <data name="resetDatabase" xml:space="preserve">
+    <value>Datenbank zurücksetzen</value>
+  </data>
+  <data name="retrieve" xml:space="preserve">
+    <value>Abrufen</value>
+  </data>
+  <data name="retrieved" xml:space="preserve">
+    <value>Abgerufen</value>
+  </data>
+  <data name="save" xml:space="preserve">
+    <value>Speichern</value>
+  </data>
+  <data name="saved" xml:space="preserve">
+    <value>Gespeichert</value>
+  </data>
+  <data name="saveLoad" xml:space="preserve">
+    <value>Speichern/Laden</value>
+  </data>
+  <data name="search" xml:space="preserve">
+    <value>Suche</value>
+  </data>
+  <data name="searchCollectionPlaceholder" xml:space="preserve">
+    <value>Gib eine Collection ein</value>
+  </data>
+  <data name="series" xml:space="preserve">
+    <value>Serien</value>
+  </data>
+  <data name="settings" xml:space="preserve">
+    <value>Einstellungen</value>
+  </data>
+  <data name="success" xml:space="preserve">
+    <value>Erfolg</value>
+  </data>
+  <data name="successAddedMovie" xml:space="preserve">
+    <value>Die Serie wurde erfolgreich hinzugefügt</value>
+  </data>
+  <data name="successAddedSerie" xml:space="preserve">
+    <value>Der Film wurde erfolgreich hinzugefügt</value>
+  </data>
+  <data name="successfully" xml:space="preserve">
+    <value>Erfolgreich</value>
+  </data>
+  <data name="successfullyCreatedTable" xml:space="preserve">
+    <value>Tabelle erfolgreich erstellt </value>
+  </data>
+  <data name="successRemovedFromWatched" xml:space="preserve">
+    <value>Erfolgreich aus Gesehen entfernt</value>
+  </data>
+  <data name="successRemovedFromWatchlist" xml:space="preserve">
+    <value>Erfolgreich aus Merkliste entfernt</value>
+  </data>
+  <data name="system" xml:space="preserve">
+    <value>System Theme</value>
+  </data>
+  <data name="title" xml:space="preserve">
+    <value>Titel</value>
+  </data>
+  <data name="toCollection" xml:space="preserve">
+    <value>Zu der Sammlung des Films</value>
+  </data>
+  <data name="toDetails" xml:space="preserve">
+    <value>Zu den Details</value>
+  </data>
+  <data name="type" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="vote" xml:space="preserve">
+    <value>Bewertung</value>
+  </data>
+  <data name="watched" xml:space="preserve">
+    <value>Gesehen</value>
+  </data>
+  <data name="watchedWatchlist" xml:space="preserve">
+    <value>Gesehen/Merkliste</value>
+  </data>
+  <data name="watchlist" xml:space="preserve">
+    <value>Merkliste</value>
+  </data>
+  <data name="watchlistOrAndWatched" xml:space="preserve">
+    <value>Merkliste und/oder Gesehen</value>
+  </data>
+  <data name="whatDoYouWantToSee" xml:space="preserve">
+    <value>Willst du Merkliste oder Gesehen anzeigen?</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Ja</value>
+  </data>
+</root>

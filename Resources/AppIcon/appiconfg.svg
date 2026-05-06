@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="456" height="456" viewBox="0 0 456 456" version="1.1" xmlns="http://www.w3.org/2000/svg" xml:space="preserve">
+  <defs>
+    <linearGradient id="folderGrad" x1="96" y1="170" x2="352" y2="330" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#EF4444"/>
+    </linearGradient>
+    <linearGradient id="boardGrad" x1="114" y1="108" x2="114" y2="236" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#1F2937"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="topGrad" x1="112" y1="78" x2="316" y2="124" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#CBD5E1"/>
+    </linearGradient>
+    <linearGradient id="reelGrad" x1="200" y1="190" x2="368" y2="356" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#94A3B8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- folder -->
+  <path d="M88 166c0-13 11-24 24-24h74l24 25h134c13 0 24 11 24 24v109c0 13-11 24-24 24H112c-13 0-24-11-24-24V166z" fill="url(#folderGrad)"/>
+  <path d="M112 142h74l24 25H112c-13 0-24 11-24 24v-25c0-13 11-24 24-24z" fill="#FBBF24" fill-opacity="0.85"/>
+  <rect x="102" y="184" width="252" height="6" rx="3" fill="#FFFFFF" fill-opacity="0.18"/>
+
+  <!-- clapperboard -->
+  <rect x="114" y="108" width="202" height="128" rx="22" fill="url(#boardGrad)"/>
+  <g transform="translate(112 78) rotate(-8 101 23)">
+    <rect x="0" y="0" width="204" height="46" rx="16" fill="#0F172A"/>
+    <path d="M16 0h28l20 46H36L16 0zm64 0h28l20 46h-28L80 0zm64 0h28l20 46h-28L144 0z" fill="url(#topGrad)"/>
+  </g>
+  <rect x="138" y="154" width="154" height="7" rx="3.5" fill="#FFFFFF" fill-opacity="0.24"/>
+  <rect x="138" y="185" width="106" height="7" rx="3.5" fill="#FFFFFF" fill-opacity="0.16"/>
+
+  <!-- film reel -->
+  <circle cx="284" cy="273" r="84" fill="url(#reelGrad)"/>
+  <circle cx="284" cy="273" r="56" fill="#1E293B" fill-opacity="0.14"/>
+  <circle cx="284" cy="273" r="13" fill="#64748B"/>
+  <circle cx="284" cy="273" r="6" fill="#E2E8F0"/>
+  <circle cx="250" cy="239" r="18" fill="#111827" fill-opacity="0.72"/>
+  <circle cx="318" cy="239" r="18" fill="#111827" fill-opacity="0.72"/>
+  <circle cx="250" cy="307" r="18" fill="#111827" fill-opacity="0.72"/>
+  <circle cx="318" cy="307" r="18" fill="#111827" fill-opacity="0.72"/>
+
+  <!-- play badge -->
+  <circle cx="164" cy="286" r="38" fill="#2563EB"/>
+  <path d="M154 267l27 19-27 19z" fill="#FFFFFF"/>
+</svg>

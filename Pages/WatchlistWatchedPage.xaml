@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FilmManager.WatchlistWatchedPage"
+             xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
+    <ScrollView>
+        <VerticalStackLayout
+        Padding="30,0"
+        Spacing="25">
+            <toolkit:Expander  Direction="Down" Margin="10" Padding="10" IsExpanded="False">
+                <toolkit:Expander.Header>
+                    <Button Text="{x:Static strings:AppResources.watched}" Clicked="LoadWatched"/>
+                </toolkit:Expander.Header>
+                <toolkit:Expander.Content>
+                    <StackLayout Margin="10">
+                        <CollectionView ItemsSource="{Binding Watched}"
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnSelectionItem">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="{Binding .}" Padding="10" Margin="10" FontSize="16"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </toolkit:Expander.Content>
+            </toolkit:Expander>
+            <toolkit:Expander Direction="Down" Margin="10" Padding="10" IsExpanded="False">
+                <toolkit:Expander.Header>
+                    <Button Text="{x:Static strings:AppResources.watchlist}" Clicked="LoadWatchlist"/>
+                </toolkit:Expander.Header>
+                <toolkit:Expander.Content>
+                    <StackLayout Margin="10">
+                        <CollectionView ItemsSource="{Binding Watchlist}"
+                            SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                            SelectionMode="Single"
+                            SelectionChanged="OnSelectionItem">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout>
+                                        <Label Text="{Binding .}" Padding="10" Margin="10" FontSize="16"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </toolkit:Expander.Content>
+            </toolkit:Expander>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
