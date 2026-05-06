@@ -1,6 +1,7 @@
 using CommunityToolkit.Maui.Extensions;
 using FilmManager.Interfaces;
 using FilmManager.Models;
+using FilmManager.Resources.Strings.Sprachen;
 using FilmManager.Views;
 using System.Collections.ObjectModel;
 
@@ -32,16 +33,30 @@ public partial class WatchlistWatchedPage : ContentPage
         ((CollectionView)sender).SelectedItem = null;
     }
 
-    private void LoadWatchlist(object sender, EventArgs e)
+    private async void LoadWatchlist(object sender, EventArgs e)
     {
-        this.watchlist = this.database.SelectAllEntries("Watchlist");
+        try
+        {
+            this.watchlist = this.database.SelectAllEntries("Watchlist");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+        }
         this.watchlistWatchedViewModel = new(watchlist, watched);
         BindingContext = this.watchlistWatchedViewModel;
     }
 
-    private void LoadWatched(object sender, EventArgs e)
+    private async void LoadWatched(object sender, EventArgs e)
     {
-        this.watched = this.database.SelectAllEntries("Watched");
+        try
+        {
+            this.watched = this.database.SelectAllEntries("Watched");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+        }
         this.watchlistWatchedViewModel = new(watchlist, watched);
         BindingContext = this.watchlistWatchedViewModel;
     }

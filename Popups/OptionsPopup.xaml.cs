@@ -19,6 +19,7 @@ public partial class OptionsPopup : Popup
     private OptionPopupViewModel optionPopupViewModel = new();
     private const string apiKey = "c7108e21486edb11a641d92aa539f3e2";
     private IDatabase database;
+    private TMDBService tMDBService;
 
     public OptionsPopup(string? selectedItem, INavigationService navigation, object o, IDatabase database)
     {
@@ -26,6 +27,7 @@ public partial class OptionsPopup : Popup
         this.selectedItem = selectedItem;
         this.database = database;
         this.navigation = navigation;
+        this.tMDBService= new(new TMDbClient(apiKey));
         this.o = o;
     }
 
@@ -96,17 +98,16 @@ public partial class OptionsPopup : Popup
         if (selectedItem != null)
         {
             object? obj = optionPopupViewModel.Get(selectedItem, o);
-            TMDBService tMDBService = new(new TMDbClient(apiKey));
             if (obj != null)
             {
                 if (obj is SearchTv serie)
                 {
-                    TvShow tvShow = await tMDBService.GetTvShowAsync(serie.Id);
+                    TvShow tvShow = await this.tMDBService.GetTvShowAsync(serie.Id);
                     await navigation.NavigateToAsync("//Detail", new Dictionary<string, object> { { "content", tvShow } });
                 }
                 if (obj is SearchMovie movie)
                 {
-                    Movie tMovie = await tMDBService.GetMovieAsync(movie.Id);
+                    Movie tMovie = await this.tMDBService.GetMovieAsync(movie.Id);
                     await navigation.NavigateToAsync("//Detail", new Dictionary<string, object> { { "content", tMovie } });
                 }
             }
@@ -120,5 +121,30 @@ public partial class OptionsPopup : Popup
     private async void HandleClose(object sender, EventArgs e)
     {
         await CloseAsync();
+    }
+
+    private async void NavigateToCollection(object sender, EventArgs e)
+    {
+        if (selectedItem != null)
+        {
+            object? obj = optionPopupViewModel.Get(selectedItem, o);
+            if (obj != null)
+            {
+                if (obj is SearchTv serie)
+                {
+                    TvShow tvShow = await this.tMDBService.GetTvShowAsync(serie.Id);
+                    await navigation.NavigateToAsync("//Collection", new Dictionary<string, object> { { "content", tvShow } });
+                }
+                if (obj is SearchMovie movie)
+                {
+                    Movie tMovie = await this.tMDBService.GetMovieAsync(movie.Id);
+                    await navigation.NavigateToAsync("//Collection", new Dictionary<string, object> { { "content", tMovie } });
+                }
+            }
+            if (obj == null)
+            {
+                await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.cantNavigateToCollection, "OK");
+            }
+        }
     }
 }

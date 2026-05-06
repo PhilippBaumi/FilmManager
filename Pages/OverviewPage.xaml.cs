@@ -62,10 +62,10 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
     private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         string? selectedItem = overviewViewModel.ImageUrl;
-        if (selectedItem != null)
+        if (!string.IsNullOrEmpty(selectedItem))
         {
             selectedItem = selectedItem.Replace(ImageBaseUrl, string.Empty);
-            OptionsPopup popup = new OptionsPopup(selectedItem, navigationService, o, database);
+            OptionsPopup popup = new(selectedItem, navigationService, o, database);
             Application.Current.MainPage.ShowPopup(popup);
         }
         ((CollectionView)sender).SelectedItem = null;

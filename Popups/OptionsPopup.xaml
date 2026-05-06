@@ -20,6 +20,7 @@
             <Button Grid.Column="0" Grid.Row="0" Text="{x:Static strings:AppResources.addToWatched}" Clicked="AddToWatched" />
             <Button Grid.Column="1" Grid.Row="0" Text="{x:Static strings:AppResources.addToWatchlist}" Clicked="AddToWatchlist" />
             <Button Grid.Column="0" Grid.Row="1" Text="{x:Static strings:AppResources.toDetails}" Clicked="NavigateToDetails" />
+            <Button Grid.Column="1" Grid.Row="1" Text="{x:Static strings:AppResources.collection}" Clicked="NavigateToCollection"/>
         </Grid>
         <Button Grid.Column="0" Grid.Row="2" Text="{x:Static strings:AppResources.close}" Clicked="HandleClose" BackgroundColor="#FF0000"/>
     </VerticalStackLayout>

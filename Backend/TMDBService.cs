@@ -1,4 +1,5 @@
 ﻿using TMDbLib.Client;
+using TMDbLib.Objects.Collections;
 using TMDbLib.Objects.Discover;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
@@ -40,6 +41,8 @@ namespace FilmManager.Backend
             }
         }
 
+        
+
         public async Task<SearchContainer<SearchMovie>> DiscoverMoviesByGenre(int genreId, int page)
         {
             DiscoverMovie discover = client.DiscoverMoviesAsync();
@@ -54,6 +57,11 @@ namespace FilmManager.Backend
             IEnumerable<int> enumerable = new int[] { genreId };
             discover = discover.WhereGenresInclude(enumerable);
             return await discover.Query(page);
+        }
+
+        public async Task<SearchContainer<SearchCollection>> SearchCollectionAsync(string search)
+        {
+            return await client.SearchCollectionAsync(search);
         }
 
         public async Task<SearchContainer<SearchMovie>> SearchMovieAsync(string search)
@@ -74,6 +82,11 @@ namespace FilmManager.Backend
         public async Task<TvShow> GetTvShowAsync(int id)
         {
             return await client.GetTvShowAsync(id);
+        }
+
+        public async Task<Collection> GetCollectionAsync(int id)
+        {
+            return await this.client.GetCollectionAsync(id);
         }
 
         public int GetIdToName(string selected, MediaType type)

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FilmManager.CollectionPage"
+             Title="CollectionPage"
+              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
+    <Grid RowDefinitions="Auto,Auto,*">
+
+        <Entry Grid.Row="0"
+               x:Name="entrySearch"
+               Placeholder="{x:Static strings:AppResources.searchCollectionPlaceholder}" />
+
+        <Button Grid.Row="1"
+                Text="{x:Static strings:AppResources.search}"
+                Clicked="Search" />
+
+        <CollectionView Grid.Row="2"
+                        ItemsSource="{Binding Images}">
+
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="3"
+                                 HorizontalItemSpacing="10"
+                                 VerticalItemSpacing="10" />
+            </CollectionView.ItemsLayout>
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border Stroke="Transparent"
+                            HeightRequest="200"
+                            WidthRequest="150"
+                            HorizontalOptions="Center">
+
+                        <Image Source="{Binding .}"
+                               Aspect="AspectFill"
+                               BackgroundColor="LightGray" />
+
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </Grid>
+
+</ContentPage>
