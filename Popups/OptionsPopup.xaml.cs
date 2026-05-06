@@ -8,7 +8,7 @@ using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
 using TMDbLib.Objects.TvShows;
 
-namespace FilmManager;
+namespace FilmManager.Popups;
 
 public partial class OptionsPopup : Popup
 {

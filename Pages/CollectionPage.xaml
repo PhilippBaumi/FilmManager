@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FilmManager.CollectionPage"
              Title="CollectionPage"
-              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
+             xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
     <Grid RowDefinitions="Auto,Auto,*">
 
         <Entry Grid.Row="0"
@@ -15,7 +15,10 @@
                 Clicked="Search" />
 
         <CollectionView Grid.Row="2"
-                        ItemsSource="{Binding Images}">
+                        ItemsSource="{Binding Images}"
+                        SelectedItem="{Binding ImageUrl}"
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectionChanged">
 
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical"

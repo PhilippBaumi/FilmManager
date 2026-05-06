@@ -2,8 +2,9 @@ using CommunityToolkit.Maui.Extensions;
 using FilmManager.Backend;
 using FilmManager.Interfaces;
 using FilmManager.Models;
+using FilmManager.Popups;
 using FilmManager.Resources.Strings.Sprachen;
-using FilmManager.Views;
+using System.Collections.ObjectModel;
 using TMDbLib.Client;
 using TMDbLib.Objects.Collections;
 using TMDbLib.Objects.General;
@@ -57,5 +58,17 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
 			}
 		}
         query.Clear();
+    }
+
+    private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        string? selectedString = this.collectionPageViewModel.ImageUrl;
+        if (!string.IsNullOrEmpty(selectedString))
+        {
+            selectedString = selectedString.Replace(ImageBaseUrl, string.Empty);
+			CollectionPopup popup = new();
+            Application.Current.MainPage.ShowPopup(popup);
+        }
+        ((CollectionView)sender).SelectedItem = null;
     }
 }

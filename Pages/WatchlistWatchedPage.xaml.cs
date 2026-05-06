@@ -1,8 +1,8 @@
 using CommunityToolkit.Maui.Extensions;
 using FilmManager.Interfaces;
 using FilmManager.Models;
+using FilmManager.Popups;
 using FilmManager.Resources.Strings.Sprachen;
-using FilmManager.Views;
 using System.Collections.ObjectModel;
 
 namespace FilmManager;
