@@ -189,5 +189,72 @@ namespace FilmManager.Helpers
             }
             return list;
         }
+
+        public SearchTv GetSerieFromDOCX(List<string> lines)
+        {
+            SearchTv tv = new();
+            tv.Id = Int32.Parse(GetValueFromString(lines[0]));
+            tv.Name = GetValueFromString(lines[2]);
+            tv.OriginalName = GetValueFromString(lines[3]);
+            tv.Overview = GetValueFromString(lines[4]);
+            tv.OriginalLanguage = GetValueFromString(lines[5]);
+            tv.OriginCountry = GetStringListFromString(GetValueFromString(lines[6]));
+            tv.GenreIds = GetIntegerListFromString(GetValueFromString(lines[7]));
+            tv.FirstAirDate = StringToDataTime(GetValueFromString(lines[8]));
+            tv.PosterPath = GetValueFromString(lines[9]);
+            tv.BackdropPath = GetValueFromString(lines[10]);
+            tv.Popularity = Double.Parse(GetValueFromString(lines[11]));
+            tv.VoteAverage = Double.Parse(GetValueFromString(lines[12]));
+            tv.VoteCount = Int32.Parse(GetValueFromString(lines[13]));
+            return tv;
+        }
+
+        private List<string>? GetStringListFromString(string s)
+        {
+            string[] st = s.Split(",");
+            List<string> list = new();
+            foreach(string s2 in st)
+            {
+                list.Add(s2);
+            }
+            return list;
+        }
+
+        public object GetMovieFromDOCX(List<string> lines)
+        {
+            SearchMovie movie = new();
+            movie.Id = Int32.Parse(GetValueFromString(lines[0]));
+            movie.Title = GetValueFromString(lines[2]);
+            movie.OriginalTitle = GetValueFromString(lines[3]);
+            movie.Overview = GetValueFromString(lines[4]);
+            movie.OriginalLanguage = GetValueFromString(lines[5]);
+            movie.GenreIds = GetIntegerListFromString(GetValueFromString(lines[6]));
+            movie.ReleaseDate = StringToDataTime(GetValueFromString(lines[7]));
+            movie.PosterPath = GetValueFromString(lines[8]);
+            movie.BackdropPath = GetValueFromString(lines[9]);
+            movie.Adult = Boolean.Parse(GetValueFromString(lines[10]));
+            movie.Video = Boolean.Parse(GetValueFromString(lines[11]));
+            movie.Popularity = Double.Parse(GetValueFromString(lines[12]));
+            movie.VoteAverage = Double.Parse(GetValueFromString(lines[13]));
+            movie.VoteCount = Int32.Parse(GetValueFromString(lines[14]));
+            return movie;
+        }
+
+        private List<int>? GetIntegerListFromString(string s)
+        {
+            List<int> list = new();
+            string[] st = s.Split(",");
+            foreach(string str in st)
+            {
+                list.Add(Int32.Parse(str));
+            }
+            return list;
+        }
+
+        private string GetValueFromString(string s)
+        {
+            string[] st = s.Split(":");
+            return st[1].Trim();
+        }
     }
 }

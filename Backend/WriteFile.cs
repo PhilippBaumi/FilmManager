@@ -1,8 +1,8 @@
 ﻿using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Resources.Strings.Sprachen;
+using OfficeIMO.Word;
 using QuestPDF.Fluent;
-using QuestPDF.Infrastructure;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using TMDbLib.Objects.Search;
@@ -154,14 +154,57 @@ namespace FilmManager.Backend
 
         public void WriteToDOCX()
         {
-            WriteDOCX(this.fileHelper.GetFilePath($"{watchedPath}.docx"), this.database.SelectAllEntries("Watched"));
-            WriteDOCX(this.fileHelper.GetFilePath($"{watchlistPath}.docx"), this.database.SelectAllEntries("Watchlist"));
+            WriteDOCX(this.fileHelper.GetFilePath($"{watchedPath}.docx"), this.database.SelectAllEntries("Watched"), watchedPath);
+            WriteDOCX(this.fileHelper.GetFilePath($"{watchlistPath}.docx"), this.database.SelectAllEntries("Watchlist"), watchlistPath);
         }
 
-        private void WriteDOCX(string path, ObservableCollection<object> collection)
+        private void WriteDOCX(string path, ObservableCollection<object> collection, string basePath)
         {
             fileHelper.DeleteIfExits(path);
-            throw new NotImplementedException();
+            using (WordDocument wordDocument = WordDocument.Create(path))
+            {
+                foreach (object obj in collection)
+                {
+                    if (obj is SearchTv tv)
+                    {
+                        wordDocument.AddParagraph($"ID: {tv.Id}");
+                        wordDocument.AddParagraph($"MediaType: {tv.MediaType}");
+                        wordDocument.AddParagraph($"Title: {tv.Name}");
+                        wordDocument.AddParagraph($"OriginalTitle: {tv.OriginalName}");
+                        wordDocument.AddParagraph($"Overview: {tv.Overview}");
+                        wordDocument.AddParagraph($"OriginalLanguage: {tv.OriginalLanguage}");
+                        wordDocument.AddParagraph($"OriginCountry: {string.Join(",", tv.OriginCountry)}");
+                        wordDocument.AddParagraph($"GenreIds: {string.Join(",", tv.GenreIds)}");
+                        wordDocument.AddParagraph($"ReleaseDate: {tv.FirstAirDate}");
+                        wordDocument.AddParagraph($"PosterPath: {tv.PosterPath}");
+                        wordDocument.AddParagraph($"BackdropPath: {tv.BackdropPath}");
+                        wordDocument.AddParagraph($"Popularity: {tv.Popularity}");
+                        wordDocument.AddParagraph($"VoteAverage: {tv.VoteAverage}");
+                        wordDocument.AddParagraph($"VoteCount: {tv.VoteCount}");
+
+                    }
+                    if (obj is SearchMovie movie)
+                    {
+                        wordDocument.AddParagraph($"ID: {movie.Id}");
+                        wordDocument.AddParagraph($"MediaType: {movie.MediaType}");
+                        wordDocument.AddParagraph($"Title: {movie.Title}");
+                        wordDocument.AddParagraph($"OriginalTitle: {movie.OriginalTitle}");
+                        wordDocument.AddParagraph($"Overview: {movie.Overview}");
+                        wordDocument.AddParagraph($"OriginalLanguage: {movie.OriginalLanguage}");
+                        wordDocument.AddParagraph($"GenreIds: {string.Join(",", movie.GenreIds)}");
+                        wordDocument.AddParagraph($"ReleaseDate: {movie.ReleaseDate}");
+                        wordDocument.AddParagraph($"PosterPath: {movie.PosterPath}");
+                        wordDocument.AddParagraph($"BackdropPath: {movie.BackdropPath}");
+                        wordDocument.AddParagraph($"Adult: {movie.Adult}");
+                        wordDocument.AddParagraph($"Video: {movie.Video}");
+                        wordDocument.AddParagraph($"Popularity: {movie.Popularity}");
+                        wordDocument.AddParagraph($"VoteAverage: {movie.VoteAverage}");
+                        wordDocument.AddParagraph($"VoteCount: {movie.VoteCount}");
+                    }
+                    wordDocument.AddPageBreak();
+                }
+                wordDocument.Save();
+            }
         }
     }
 }

@@ -1,13 +1,13 @@
 ﻿using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Resources.Strings.Sprachen;
+using OfficeIMO.Word;
 using Sylvan.Data.Csv;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using TMDbLib.Client;
 using TMDbLib.Objects.Search;
 using UglyToad.PdfPig;
-using Page = UglyToad.PdfPig.Content.Page;
 
 namespace FilmManager.Backend
 {
@@ -17,8 +17,6 @@ namespace FilmManager.Backend
         private const string watchedPath = "FilmManager-Watched";
         private const string watchlistPath = "FilmManager-Watchlist";
         private const string apiKey = "c7108e21486edb11a641d92aa539f3e2";
-        private TMDbClient client = new(apiKey);
-        private TMDbHelper tMDbHelper = new();
         private IDatabase database;
 
         public LoadFile(IDatabase database)
@@ -107,7 +105,43 @@ namespace FilmManager.Backend
 
         private ObservableCollection<object> LoadDOCX(string path)
         {
-            throw new NotImplementedException();
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException($"{AppResources.file} {path} {AppResources.doesNotExists}!");
+            }
+            List<string> lines = new();
+            ObservableCollection<object> list = new();
+            using (WordDocument wordDocument = WordDocument.Load(path))
+            {
+                List<WordParagraph> paragraphs = wordDocument.Paragraphs;
+                foreach (WordParagraph paragraph in paragraphs)
+                {
+                    string text=paragraph.Text?.Trim()??"";
+                    if(string.IsNullOrEmpty(text))
+                    {
+                        continue;
+                    }
+                    lines.Add(text);
+                    if(text.StartsWith("VoteCount"))
+                    {
+                        if (lines[1].StartsWith("MediaType"))
+                        {
+                            string[] st = lines[1].Split(":");
+                            string s = st[1].Trim();
+                            if(s.Equals("tv"))
+                            {
+                                list.Add(fileHelper.GetSerieFromDOCX(lines));
+                            }
+                            if(s.Equals("Movie"))
+                            {
+                                list.Add(fileHelper.GetMovieFromDOCX(lines));
+                            }
+                            lines.Clear();
+                        }
+                    }
+                }
+            }
+            return list;
         }
 
         public void LoadFromCSV()
