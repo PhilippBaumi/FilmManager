@@ -41,8 +41,6 @@ namespace FilmManager.Backend
             }
         }
 
-        
-
         public async Task<SearchContainer<SearchMovie>> DiscoverMoviesByGenre(int genreId, int page)
         {
             DiscoverMovie discover = client.DiscoverMoviesAsync();

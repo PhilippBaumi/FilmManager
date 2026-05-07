@@ -6,28 +6,34 @@
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
              Padding="0,60,0,0">
     <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Button Text="{x:Static strings:AppResources.resetDatabase}" Clicked="ResetDatabase" Margin="10" Padding="10" WidthRequest="250"/>
-            <toolkit:Expander x:Name="expanderSerien" Direction="Down" Margin="10" Padding="10" IsExpanded="False">
+        <VerticalStackLayout Padding="30,0" 
+                             Spacing="25">
+            <Button Text="{x:Static strings:AppResources.resetDatabase}" 
+                    Clicked="ResetDatabase" 
+                    Margin="10" 
+                    Padding="10" 
+                    WidthRequest="250"/>
+            <toolkit:Expander x:Name="expanderSerien" 
+                              Direction="Down" 
+                              Margin="10" 
+                              Padding="10" 
+                              IsExpanded="False">
                 <toolkit:Expander.Header>
                     <Button Text="{x:Static strings:AppResources.series}" />
                 </toolkit:Expander.Header>
                 <toolkit:Expander.Content>
                     <StackLayout Margin="10">
-                        <CollectionView 
-                            x:Name="SeriesCollectionView"
-                            ItemsSource="{Binding Serien}"
-                            SelectedItem="{Binding SelectedSerie, Mode=TwoWay}"
-                            SelectionMode="Single"
-                            SelectionChanged="OnSeriesSelectionChanged">
+                        <CollectionView x:Name="SeriesCollectionView" 
+                                        ItemsSource="{Binding Serien}" 
+                                        SelectedItem="{Binding SelectedSerie, Mode=TwoWay}" 
+                                        SelectionMode="Single" 
+                                        SelectionChanged="OnSeriesSelectionChanged">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
-                                        <Label Text="{Binding .}"
-                                               Padding="10"
-                                               Margin="10"
+                                        <Label Text="{Binding .}" 
+                                               Padding="10" 
+                                               Margin="10" 
                                                FontSize="16"/>
                                     </StackLayout>
                                 </DataTemplate>
@@ -36,22 +42,25 @@
                     </StackLayout>
                 </toolkit:Expander.Content>
             </toolkit:Expander>
-            <toolkit:Expander x:Name="expanderFilme" Direction="Down" Margin="10" Padding="10" IsExpanded="False">
+            <toolkit:Expander x:Name="expanderFilme" 
+                              Direction="Down" 
+                              Margin="10" 
+                              Padding="10" 
+                              IsExpanded="False">
                 <toolkit:Expander.Header>
                     <Button Text="{x:Static strings:AppResources.movies}"/>
                 </toolkit:Expander.Header>
                 <toolkit:Expander.Content>
                     <StackLayout Margin="10">
-                        <CollectionView 
-                            x:Name="MoviesCollectionView"
-                            ItemsSource="{Binding Movies}"
-                            SelectedItem="{Binding SelectedMovie, Mode=TwoWay}"
-                            SelectionMode="Single"
-                            SelectionChanged="OnMoviesSelectionChanged">
+                        <CollectionView x:Name="MoviesCollectionView" 
+                                        ItemsSource="{Binding Movies}" 
+                                        SelectedItem="{Binding SelectedMovie, Mode=TwoWay}" 
+                                        SelectionMode="Single" 
+                                        SelectionChanged="OnMoviesSelectionChanged">
                             <CollectionView.ItemTemplate>
                                 <DataTemplate>
                                     <StackLayout>
-                                        <Label Text="{Binding .}"
+                                        <Label Text="{Binding .}" 
                                                Padding="10"/>
                                     </StackLayout>
                                 </DataTemplate>
@@ -62,5 +71,4 @@
             </toolkit:Expander>
         </VerticalStackLayout>
     </ScrollView>
-
 </ContentPage>

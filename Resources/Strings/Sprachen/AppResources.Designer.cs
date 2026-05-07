@@ -727,6 +727,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Was willst du suchen? ähnelt.
+        /// </summary>
+        internal static string searchPlaceholder {
+            get {
+                return ResourceManager.GetString("searchPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Serien ähnelt.
         /// </summary>
         internal static string series {
@@ -831,6 +840,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string toCollection {
             get {
                 return ResourceManager.GetString("toCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zum Inhalt der Sammlung ähnelt.
+        /// </summary>
+        internal static string toCollectionMembers {
+            get {
+                return ResourceManager.GetString("toCollectionMembers", resourceCulture);
             }
         }
         

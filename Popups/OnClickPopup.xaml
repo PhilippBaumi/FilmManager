@@ -14,9 +14,20 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
-        <Button Grid.Column="0" Grid.Row="0" Text="{x:Static strings:AppResources.removeFromList}" Clicked="RemoveFromList" />
-        <Button Grid.Column="0" Grid.Row="1" Text="{x:Static strings:AppResources.toDetails}" Clicked="NavigateToDetails" />
-        <Button Text="{x:Static strings:AppResources.toCollection}" Clicked="NavigateToCollection"/>
-        <Button Grid.Column="0" Grid.Row="2" Text="{x:Static strings:AppResources.close}" Clicked="HandleClose" BackgroundColor="#FF0000"/>
+        <Button Grid.Column="0" 
+                Grid.Row="0" 
+                Text="{x:Static strings:AppResources.removeFromList}" 
+                Clicked="RemoveFromList" />
+        <Button Grid.Column="0" 
+                Grid.Row="1" 
+                Text="{x:Static strings:AppResources.toDetails}" 
+                Clicked="NavigateToDetails" />
+        <Button Text="{x:Static strings:AppResources.toCollection}" 
+                Clicked="NavigateToCollection"/>
+        <Button Grid.Column="0" 
+                Grid.Row="2" 
+                Text="{x:Static strings:AppResources.close}" 
+                Clicked="HandleClose" 
+                BackgroundColor="#FF0000"/>
     </Grid>
 </toolkit:Popup>

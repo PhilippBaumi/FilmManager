@@ -339,6 +339,9 @@
   <data name="searchCollectionPlaceholder" xml:space="preserve">
     <value>Enter a collection</value>
   </data>
+  <data name="searchPlaceholder" xml:space="preserve">
+    <value>What are looking for?</value>
+  </data>
   <data name="series" xml:space="preserve">
     <value>Series</value>
   </data>
@@ -374,6 +377,9 @@
   </data>
   <data name="toCollection" xml:space="preserve">
     <value>To the collection of the movie</value>
+  </data>
+  <data name="toCollectionMembers" xml:space="preserve">
+    <value>To the members of the collection</value>
   </data>
   <data name="toDetails" xml:space="preserve">
     <value>To the Details</value>

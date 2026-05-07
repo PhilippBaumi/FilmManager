@@ -4,27 +4,43 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FilmManager.SettingPage"
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
-    <VerticalStackLayout Margin="10" Padding="10">
-        <toolkit:Expander Direction="Down" Margin="10" Padding="10">
+    <VerticalStackLayout Margin="10" 
+                         Padding="10">
+        <toolkit:Expander Direction="Down"
+                          Margin="10" 
+                          Padding="10">
             <toolkit:Expander.Header>
                 <Button Text="{x:Static strings:AppResources.chooseLanguage}"/>
             </toolkit:Expander.Header>
             <toolkit:Expander.Content>
-                <StackLayout Margin="10" RadioButtonGroup.GroupName="Language" RadioButtonGroup.SelectedValue="{Binding Language, Mode=TwoWay}">
-                    <RadioButton Content="{x:Static strings:AppResources.german}" Value="{x:Static strings:AppResources.german}" CheckedChanged="HandleChecked"/>
-                    <RadioButton Content="{x:Static strings:AppResources.english}" Value="{x:Static strings:AppResources.english}" CheckedChanged="HandleChecked"/>
+                <StackLayout Margin="10" 
+                             RadioButtonGroup.GroupName="Language" 
+                             RadioButtonGroup.SelectedValue="{Binding Language, Mode=TwoWay}">
+                    <RadioButton Content="{x:Static strings:AppResources.german}" 
+                                 Value="{x:Static strings:AppResources.german}" 
+                                 CheckedChanged="HandleChecked"/>
+                    <RadioButton Content="{x:Static strings:AppResources.english}" 
+                                 Value="{x:Static strings:AppResources.english}" 
+                                 CheckedChanged="HandleChecked"/>
                 </StackLayout>
             </toolkit:Expander.Content>
         </toolkit:Expander>
-        <toolkit:Expander Direction="Down" Margin="10" Padding="10">
+        <toolkit:Expander Direction="Down" 
+                          Margin="10" 
+                          Padding="10">
             <toolkit:Expander.Header>
                 <Button Text="{x:Static strings:AppResources.chooseTheme}"/>
             </toolkit:Expander.Header>
             <toolkit:Expander.Content>
-                <StackLayout Margin="10" RadioButtonGroup.GroupName="Theme" RadioButtonGroup.SelectedValue="{Binding ThemeAsString, Mode=TwoWay}">
-                    <RadioButton Content="{x:Static strings:AppResources.system}" Value="Unspecified"/>
-                    <RadioButton Content="{x:Static strings:AppResources.dark}" Value="Dark"/>
-                    <RadioButton Content="{x:Static strings:AppResources.light}" Value="Light"/>
+                <StackLayout Margin="10" 
+                             RadioButtonGroup.GroupName="Theme" 
+                             RadioButtonGroup.SelectedValue="{Binding ThemeAsString, Mode=TwoWay}">
+                    <RadioButton Content="{x:Static strings:AppResources.system}" 
+                                 Value="Unspecified"/>
+                    <RadioButton Content="{x:Static strings:AppResources.dark}" 
+                                 Value="Dark"/>
+                    <RadioButton Content="{x:Static strings:AppResources.light}" 
+                                 Value="Light"/>
                 </StackLayout>
             </toolkit:Expander.Content>
         </toolkit:Expander>

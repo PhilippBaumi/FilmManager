@@ -15,6 +15,7 @@
         <ShellContent x:Name="saveLoadNav" Title="{x:Static strings:AppResources.saveLoad}" Route="SaveLoad" ContentTemplate="{DataTemplate local:SaveLoadPage}"/>
         <ShellContent x:Name="watchlistWatchedNav"  Title="{x:Static strings:AppResources.watchedWatchlist}" Route="Watchlist" ContentTemplate="{DataTemplate local:WatchlistWatchedPage}"/>
         <ShellContent x:Name="collectionNav" Title="{x:Static strings:AppResources.collection}" Route="Collection" ContentTemplate="{DataTemplate local:CollectionPage}"/>
+        <ShellContent x:Name="searchNav" Title="{x:Static strings:AppResources.search}" Route="Search" ContentTemplate="{DataTemplate local:SearchPage}"/>
         <ShellContent x:Name="settingsNav" Title="{x:Static strings:AppResources.settings}" Route="Settings" ContentTemplate="{DataTemplate local:SettingPage}"/>
     </TabBar>
 </Shell>

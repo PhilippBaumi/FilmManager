@@ -6,28 +6,26 @@
              x:DataType="models:OverviewViewModel"
              x:Class="FilmManager.OverviewPage">
     <Grid RowDefinitions="*">
-        <CollectionView 
-                    Grid.Row="0"
-                    ItemsSource="{Binding Images}"
-                    SelectedItem="{Binding ImageUrl, Mode=TwoWay}"
-                    SelectionMode="Single"
-                    SelectionChanged="OnSelectionChanged">
+        <CollectionView Grid.Row="0" 
+                        ItemsSource="{Binding Images}" 
+                        SelectedItem="{Binding ImageUrl, Mode=TwoWay}" 
+                        SelectionMode="Single" 
+                        SelectionChanged="OnSelectionChanged">
             <CollectionView.ItemsLayout>
-                <GridItemsLayout Orientation="Vertical"
-                             Span="3"
-                             HorizontalItemSpacing="10"
-                             VerticalItemSpacing="10" />
+                <GridItemsLayout Orientation="Vertical" 
+                                 Span="3" 
+                                 HorizontalItemSpacing="10" 
+                                 VerticalItemSpacing="10" />
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="sys:String">
-                    <Border Stroke="Transparent"
-                        HeightRequest="200"
-                        WidthRequest="150"
-                        HorizontalOptions="Center">
-                        <Image 
-                        Source="{Binding .}" 
-                        Aspect="AspectFill"
-                        BackgroundColor="LightGray"/>
+                    <Border Stroke="Transparent" 
+                            HeightRequest="200" 
+                            WidthRequest="150" 
+                            HorizontalOptions="Center">
+                        <Image Source="{Binding .}" 
+                               Aspect="AspectFill" 
+                               BackgroundColor="LightGray"/>
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

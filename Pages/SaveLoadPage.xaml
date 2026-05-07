@@ -4,11 +4,21 @@
              x:Class="FilmManager.SaveLoadPage"
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
     <VerticalStackLayout>
-        <StackLayout x:Name="SaveOrLoadGroup" Margin="10" RadioButtonGroup.GroupName="Save">
-            <RadioButton Content="PDF" Value="PDF" CheckedChanged="SaveOrLoad"/>
-            <RadioButton Content="DOCX" Value="DOCX" CheckedChanged="SaveOrLoad"/>
-            <RadioButton Content="CSV" Value="CSV" CheckedChanged="SaveOrLoad"/>
-            <RadioButton Content="JSON" Value="JSON" CheckedChanged="SaveOrLoad"/>
+        <StackLayout x:Name="SaveOrLoadGroup" 
+                     Margin="10" 
+                     RadioButtonGroup.GroupName="Save">
+            <RadioButton Content="PDF" 
+                         Value="PDF" 
+                         CheckedChanged="SaveOrLoad"/>
+            <RadioButton Content="DOCX" 
+                         Value="DOCX" 
+                         CheckedChanged="SaveOrLoad"/>
+            <RadioButton Content="CSV" 
+                         Value="CSV" 
+                         CheckedChanged="SaveOrLoad"/>
+            <RadioButton Content="JSON" 
+                         Value="JSON" 
+                         CheckedChanged="SaveOrLoad"/>
         </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

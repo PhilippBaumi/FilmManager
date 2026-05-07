@@ -30,16 +30,15 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
 		this.collectionPageViewModel = new();
 		this.database= database;
 		this.tMDBService= new(new TMDbClient(apiKey));
-        BindingContext = this.collectionPageViewModel;
+		BindingContext = this.collectionPageViewModel;
 	}
 
-    private async void Search(object sender, EventArgs e)
+    private async void SearchCollection(object sender, EventArgs e)
     {
-		this.collectionPageViewModel.Images.Clear();
-		string searchString=entrySearch.Text;
+		string searchString=entrySearchCollection.Text;
 		SearchContainer<SearchCollection>result=await this.tMDBService.SearchCollectionAsync(searchString);
 		List<SearchCollection> collection = result.Results;
-		this.collectionPageViewModel.SetList(collection);
+        this.collectionPageViewModel.SetList(collection);
     }
 
     public async void ApplyQueryAttributes(IDictionary<string, object> query)
@@ -60,15 +59,4 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
         query.Clear();
     }
 
-    private void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        string? selectedString = this.collectionPageViewModel.ImageUrl;
-        if (!string.IsNullOrEmpty(selectedString))
-        {
-            selectedString = selectedString.Replace(ImageBaseUrl, string.Empty);
-			CollectionPopup popup = new();
-            Application.Current.MainPage.ShowPopup(popup);
-        }
-        ((CollectionView)sender).SelectedItem = null;
-    }
 }
