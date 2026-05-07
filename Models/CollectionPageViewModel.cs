@@ -11,9 +11,9 @@ namespace FilmManager.Models
     {
         private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
         public ObservableCollection<string> Images { get; set; } = new();
-
         public void SetList(List<SearchCollection> collection)
         {
+            this.Images = new();
             foreach (SearchCollection search in collection)
             {
                 this.Images.Add($"{ImageBaseUrl}{search.PosterPath}");

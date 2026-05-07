@@ -135,6 +135,9 @@
   <data name="cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
+  <data name="cantGetValue" xml:space="preserve">
+    <value>Kann Wert nicht finden</value>
+  </data>
   <data name="cantNavigateToCollection" xml:space="preserve">
     <value>Kann nicht zu Sammlung navigieren</value>
   </data>

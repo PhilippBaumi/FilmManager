@@ -115,6 +115,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kann Wert nicht finden ähnelt.
+        /// </summary>
+        internal static string cantGetValue {
+            get {
+                return ResourceManager.GetString("cantGetValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Kann nicht zu Sammlung navigieren ähnelt.
         /// </summary>
         internal static string cantNavigateToCollection {

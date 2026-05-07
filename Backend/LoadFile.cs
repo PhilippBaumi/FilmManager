@@ -6,6 +6,8 @@ using System.Collections.ObjectModel;
 using System.Text.Json;
 using TMDbLib.Client;
 using TMDbLib.Objects.Search;
+using UglyToad.PdfPig;
+using Page = UglyToad.PdfPig.Content.Page;
 
 namespace FilmManager.Backend
 {
@@ -38,7 +40,57 @@ namespace FilmManager.Backend
 
         private ObservableCollection<object> LoadPDF(string path)
         {
-            throw new NotImplementedException();
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException($"{AppResources.file} {path} {AppResources.doesNotExists}!");
+            }
+            ObservableCollection<object> list = new();
+            using (PdfDocument pdfDocument = PdfDocument.Open(path))
+            {
+                foreach(var page in pdfDocument.GetPages())
+                {
+                    string text=page.Text;
+                    string mediaType = fileHelper.GetValue(text, "MediaType");
+                    if(mediaType.Equals("Movie"))
+                    {
+                        SearchMovie movie = new();
+                        movie.Id = Int32.Parse(fileHelper.GetValue(text, "ID"));
+                        movie.Title = fileHelper.GetValue(text, "Title");
+                        movie.OriginalTitle = fileHelper.GetValue(text, "OriginalTitle");
+                        movie.OriginalLanguage = fileHelper.GetValue(text, "OriginalLanguage");
+                        movie.Overview = fileHelper.GetValue(text, "Overview");
+                        movie.GenreIds = fileHelper.GetIntegerList(text, "GenreIds");
+                        movie.ReleaseDate = fileHelper.StringToDataTime(fileHelper.GetValue(text, "ReleaseDate"));
+                        movie.PosterPath = fileHelper.GetValue(text, "PosterPath");
+                        movie.BackdropPath = fileHelper.GetValue(text, "BackdropPath");
+                        movie.Popularity = Double.Parse(fileHelper.GetValue(text, "Popularity"));
+                        movie.VoteAverage = Double.Parse(fileHelper.GetValue(text, "VoteAverage"));
+                        movie.VoteAverage = Int32.Parse(fileHelper.GetValue(text, "VoteCount"));
+                        movie.Adult = Boolean.Parse(fileHelper.GetValue(text, "Adult"));
+                        movie.Video = Boolean.Parse(fileHelper.GetValue(text, "Video"));
+                        list.Add(movie);
+                    }
+                    if(mediaType.Equals("Tv"))
+                    {
+                        SearchTv tv = new();
+                        tv.Id = Int32.Parse(fileHelper.GetValue(text, "ID"));
+                        tv.Name = fileHelper.GetValue(text, "Title");
+                        tv.OriginalName = fileHelper.GetValue(text, "OriginalTitle");
+                        tv.OriginalLanguage = fileHelper.GetValue(text, "OriginalLanguage");
+                        tv.OriginCountry = fileHelper.GetStringList(text, "OriginCountry");
+                        tv.Overview = fileHelper.GetValue(text, "Overview");
+                        tv.GenreIds = fileHelper.GetIntegerList(text, "GenreIds");
+                        tv.FirstAirDate = fileHelper.StringToDataTime(fileHelper.GetValue(text, "ReleaseDate"));
+                        tv.PosterPath = fileHelper.GetValue(text, "PosterPath");
+                        tv.BackdropPath = fileHelper.GetValue(text, "BackdropPath");
+                        tv.Popularity = Double.Parse(fileHelper.GetValue(text, "Popularity"));
+                        tv.VoteAverage = Double.Parse(fileHelper.GetValue(text, "VoteAverage"));
+                        tv.VoteAverage = Int32.Parse(fileHelper.GetValue(text, "VoteCount"));
+                        list.Add(tv);
+                    }
+                }
+            }
+            return list;
         }
 
         public void LoadFromDOCX()
@@ -72,6 +124,10 @@ namespace FilmManager.Backend
 
         private ObservableCollection<object> LoadCSV(string path)
         {
+            if (!File.Exists(path))
+            {
+                throw new FileNotFoundException($"{AppResources.file} {path} {AppResources.doesNotExists}!");
+            }
             ObservableCollection<object> results = new();
             using (CsvDataReader reader = CsvDataReader.Create(path, new CsvDataReaderOptions
             {
@@ -108,11 +164,11 @@ namespace FilmManager.Backend
 
         public void LoadFromJSON()
         {
-            ObservableCollection<object> watched = LoadJSON(this.fileHelper.GetFilePath($"{watchedPath}.docx"));
+            ObservableCollection<object> watched = LoadJSON(this.fileHelper.GetFilePath($"{watchedPath}.json"));
             this.database.DeleteTable("Watched");
             this.database.CreateTable("Watched");
             Save(watched, "Watched");
-            ObservableCollection<object> watchlist = LoadJSON(this.fileHelper.GetFilePath($"{watchlistPath}.docx"));
+            ObservableCollection<object> watchlist = LoadJSON(this.fileHelper.GetFilePath($"{watchlistPath}.json"));
             this.database.DeleteTable("Watchlist");
             this.database.CreateTable("Watchlist");
             Save(watchlist, "Watchlist");
