@@ -59,10 +59,17 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
 
     private async void ReadEntryAndShow()
     {
-        string searchString = entrySearchCollection.Text;
-        SearchContainer<SearchCollection> result = await this.tMDBService.SearchCollectionAsync(searchString);
-        List<SearchCollection> collection = result.Results;
-        this.collectionPageViewModel.SetList(collection);
-		BindingContext= this.collectionPageViewModel;
+		try
+		{
+			string searchString = entrySearchCollection.Text;
+			SearchContainer<SearchCollection> result = await this.tMDBService.SearchCollectionAsync(searchString);
+			List<SearchCollection> collection = result.Results;
+			this.collectionPageViewModel.SetList(collection);
+			BindingContext = this.collectionPageViewModel;
+		}
+		catch (Exception ex)
+		{
+			await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+		}
     }
 }

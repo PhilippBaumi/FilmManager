@@ -13,7 +13,6 @@ namespace FilmManager.Models
         public ObservableCollection<string> Images { get; set; } = new();
         public void SetList(List<SearchCollection> collection)
         {
-            this.Images = new();
             foreach (SearchCollection search in collection)
             {
                 this.Images.Add($"{ImageBaseUrl}{search.PosterPath}");
