@@ -31,6 +31,7 @@ public partial class SaveLoadPage : ContentPage
                 case "DOCX": SaveOrLoadDOCX(); break;
                 case "JSON": SaveOrLoadJSON(); break;
             }
+            bt.IsChecked = false;
         }
     }
 

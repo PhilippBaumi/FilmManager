@@ -96,9 +96,9 @@ namespace FilmManager
                         await DisplayAlertAsync(AppResources.error, ex.Message + " und/and " + mainViewModel.series.Count + " Einträge. ", "OK");
                     }
                     IDictionary<string, object> parameters = new Dictionary<string, object>
-                        {
-                            { "list", mainViewModel.series },
-                        };
+                    {
+                        { "list", mainViewModel.series }
+                    };
                     await navigationService.NavigateToAsync("//Overview", parameters);
                 }
 

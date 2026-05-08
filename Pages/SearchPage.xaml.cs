@@ -1,4 +1,5 @@
 using FilmManager.Backend;
+using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
 using TMDbLib.Client;
@@ -10,10 +11,13 @@ namespace FilmManager;
 public partial class SearchPage : ContentPage
 {
     private const string apiKey = "c7108e21486edb11a641d92aa539f3e2";
-	private SearchPageViewModel searchPageViewModel = new();
-    public SearchPage()
+    private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
+    private SearchPageViewModel searchPageViewModel = new();
+    private INavigationService navigationService;
+    public SearchPage(INavigationService navigationService)
 	{
 		InitializeComponent();
+        this.navigationService = navigationService;
 		BindingContext = searchPageViewModel;
 	}
 
@@ -33,5 +37,34 @@ public partial class SearchPage : ContentPage
 			List<SearchTv> tv = resultSerien.Results;
 			this.searchPageViewModel.SetList(tv);
 		}
+    }
+
+    private async void GetSearchToImage(object sender, SelectionChangedEventArgs e)
+    {
+        string selectedItem = this.searchPageViewModel.SelectedItem;
+        if (!string.IsNullOrEmpty(selectedItem))
+        {
+            selectedItem = selectedItem.Replace(ImageBaseUrl, string.Empty);
+            List<object> list = this.searchPageViewModel.GetList(selectedItem);
+            if (rbMovie.IsChecked)
+            {
+                List<SearchMovie> movies = this.searchPageViewModel.GetSearchMovieList(list);
+                IDictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                     { "list", movies }
+                };
+                await navigationService.NavigateToAsync("//Overview", parameters);
+            }
+            if (rbTv.IsChecked)
+            {
+                List<SearchTv> tv = this.searchPageViewModel.GetSearchTvList(list);
+                IDictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                     { "list", tv }
+                };
+                await navigationService.NavigateToAsync("//Overview", parameters);
+            }
+            ((CollectionView)sender).SelectedItem = null;
+        }
     }
 }

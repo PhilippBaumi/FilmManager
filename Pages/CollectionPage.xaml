@@ -13,7 +13,10 @@
                 Text="{x:Static strings:AppResources.search}" 
                 Clicked="SearchCollection" />
         <CollectionView Grid.Row="2" 
-                        ItemsSource="{Binding Images}">
+                        ItemsSource="{Binding Images}"
+                        SelectedItem="{Binding SelectedItem}"
+                        SelectionMode="Single"
+                        SelectionChanged="GetCollectionToImage">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" 
                                  Span="3" 

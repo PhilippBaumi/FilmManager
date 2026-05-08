@@ -8,7 +8,7 @@ namespace FilmManager.Models
     public class DetailViewModel
     {
         private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
-        public string? Name { get; set; }
+        public string? OriginalName { get; set; }
         public string? Id { get; set; }
         public string? Language { get; set; }
         public string? Overview { get; set; }
@@ -27,7 +27,7 @@ namespace FilmManager.Models
         {
             if (o is Movie movie)
             {
-                Name = movie.Title;
+                OriginalName = movie.OriginalTitle;
                 Id = "ID: " + movie.Id;
                 Language = $"{AppResources.language}: " + movie.OriginalLanguage;
                 Poster = ImageBaseUrl + movie.PosterPath;
@@ -42,7 +42,7 @@ namespace FilmManager.Models
             }
             if (o is TvShow serie)
             {
-                Name = serie.Name;
+                OriginalName = serie.OriginalName;
                 Id = "ID: " + serie.Id;
                 Language = $"{AppResources.language}: " + serie.OriginalLanguage;
                 Poster = ImageBaseUrl + serie.PosterPath;
@@ -54,7 +54,7 @@ namespace FilmManager.Models
                 Homepage = serie.Homepage;
                 Genres = "Genres: " + GenresToString(serie.Genres);
                 CountVote = $"{AppResources.countVote}: " + serie.VoteCount;
-                OriginCountry = $"{AppResources.origionCountry}: " + serie.OriginCountry;
+                OriginCountry = $"{AppResources.origionCountry}: " + string.Join(",", serie.OriginCountry);
             }
         }
 

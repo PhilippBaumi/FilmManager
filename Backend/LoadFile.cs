@@ -5,7 +5,6 @@ using OfficeIMO.Word;
 using Sylvan.Data.Csv;
 using System.Collections.ObjectModel;
 using System.Text.Json;
-using TMDbLib.Client;
 using TMDbLib.Objects.Search;
 using UglyToad.PdfPig;
 
@@ -16,7 +15,6 @@ namespace FilmManager.Backend
         private FileHelper fileHelper = new();
         private const string watchedPath = "FilmManager-Watched";
         private const string watchlistPath = "FilmManager-Watchlist";
-        private const string apiKey = "c7108e21486edb11a641d92aa539f3e2";
         private IDatabase database;
 
         public LoadFile(IDatabase database)

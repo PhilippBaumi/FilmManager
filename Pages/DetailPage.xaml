@@ -4,7 +4,7 @@
              x:Class="FilmManager.DetailPage">
     <ScrollView>
         <VerticalStackLayout>
-            <Label Text="{Binding Name}" 
+            <Label Text="{Binding OriginalName}" 
                    HorizontalTextAlignment="Center" 
                    FontSize="24" 
                    Padding="20" 

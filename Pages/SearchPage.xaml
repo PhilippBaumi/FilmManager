@@ -4,7 +4,7 @@
              x:Class="FilmManager.SearchPage"
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
              Title="SearchPage">
-    <Grid RowDefinitions="Auto, Auto, *">
+    <Grid RowDefinitions="Auto, Auto, Auto, *">
         <Entry x:Name="entrySearch" 
                Grid.Row="0" 
                Placeholder="{x:Static strings:AppResources.searchPlaceholder}" />
@@ -13,7 +13,7 @@
                      RadioButtonGroup.GroupName="Type">
             <RadioButton x:Name="rbMovie" 
                          Content="{x:Static strings:AppResources.movie}" 
-                         Value="{x:Static strings:AppResources.german}"/>
+                         Value="{x:Static strings:AppResources.movie}"/>
             <RadioButton x:Name="rbTv" 
                          Content="TV" 
                          Value="TV"/>
@@ -22,7 +22,10 @@
                 Text="{x:Static strings:AppResources.search}" 
                 Clicked="Search" />
         <CollectionView Grid.Row="3" 
-                        ItemsSource="{Binding Images}">
+                        ItemsSource="{Binding Images}"
+                        SelectedItem="{Binding SelectedItem}"
+                        SelectionMode="Single"
+                        SelectionChanged="GetSearchToImage">>
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" 
                                  Span="3" 

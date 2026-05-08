@@ -6,14 +6,13 @@
                xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
                BackgroundColor="Grey">
     <VerticalStackLayout>
+        <Label x:Name="lbTitle" HorizontalOptions="Center" FontSize="15" FontAttributes="Bold"/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
@@ -29,14 +28,8 @@
                     Grid.Row="1" 
                     Text="{x:Static strings:AppResources.toDetails}" 
                     Clicked="NavigateToDetails" />
-            <Button Grid.Column="1" 
-                    Grid.Row="1" 
-                    Text="{x:Static strings:AppResources.collection}" 
-                    Clicked="NavigateToCollection"/>
         </Grid>
-        <Button Grid.Column="0" 
-                Grid.Row="2" 
-                Text="{x:Static strings:AppResources.close}" 
+        <Button Text="{x:Static strings:AppResources.close}" 
                 Clicked="HandleClose" 
                 BackgroundColor="#FF0000"/>
     </VerticalStackLayout>
