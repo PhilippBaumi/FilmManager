@@ -2,6 +2,7 @@ using FilmManager.Backend;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
+using QuestPDF.Infrastructure;
 
 namespace FilmManager;
 
@@ -85,6 +86,12 @@ public partial class SaveLoadPage : ContentPage
 
     private async void SaveOrLoadPDF()
     {
+#if WINDOWS
+        QuestPDF.Settings.License = LicenseType.Community;
+#endif
+#if ANDROID
+        throw new Exception($"{AppResources.pdfNotSupported}");
+#endif
         bool result = await DisplayAlertAsync(AppResources.filesOptions, AppResources.messageFiles, AppResources.save, AppResources.load);
         try
         {

@@ -23,7 +23,7 @@ namespace FilmManager.Backend
         }
 
         public void LoadFromPDF()
-        {
+        { 
             ObservableCollection<object> watched = LoadPDF(this.fileHelper.GetFilePath($"{watchedPath}.pdf"));
             this.database.DeleteTable("Watched");
             this.database.CreateTable("Watched");

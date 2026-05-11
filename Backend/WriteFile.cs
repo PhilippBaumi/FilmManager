@@ -24,7 +24,6 @@ namespace FilmManager.Backend
 
         public void WriteToPDF()
         {
-
             WritePDF(this.fileHelper.GetFilePath($"{watchedPath}.pdf"), this.database.SelectAllEntries("Watched"), watchedPath);
             WritePDF(this.fileHelper.GetFilePath($"{watchlistPath}.pdf"), this.database.SelectAllEntries("Watchlist"), watchlistPath);
         }
@@ -54,7 +53,7 @@ namespace FilmManager.Backend
                                     inner.Item().Text($"OriginalLanguage: {movie.OriginalLanguage}");
                                     inner.Item().Text($"Overview: {movie.Overview}");
                                     inner.Item().Text($"GenreIds: {string.Join(",", movie.GenreIds)}");
-                                    inner.Item().Text($"ReleaseDate: {movie.ReleaseDate}");
+                                    inner.Item().Text($"ReleaseDate: {movie.ReleaseDate?.ToString("dd.MM.yyyy")}");
                                     inner.Item().Text($"PosterPath: {movie.PosterPath}");
                                     inner.Item().Text($"BackdropPath: {movie.BackdropPath}");
                                     inner.Item().Text($"Popularity: {movie.Popularity}");
@@ -73,7 +72,7 @@ namespace FilmManager.Backend
                                     inner.Item().Text($"OriginCountry: {string.Join(";", tv.OriginCountry)}");
                                     inner.Item().Text($"Overview: {tv.Overview}");
                                     inner.Item().Text($"GenreIds: {string.Join(",", tv.GenreIds)}");
-                                    inner.Item().Text($"ReleaseDate: {tv.FirstAirDate}");
+                                    inner.Item().Text($"ReleaseDate: {tv.FirstAirDate?.ToString("dd.MM.yyyy")}");
                                     inner.Item().Text($"PosterPath: {tv.PosterPath}");
                                     inner.Item().Text($"BackdropPath: {tv.BackdropPath}");
                                     inner.Item().Text($"Popularity: {tv.Popularity}");
@@ -175,7 +174,7 @@ namespace FilmManager.Backend
                         wordDocument.AddParagraph($"OriginalLanguage: {tv.OriginalLanguage}");
                         wordDocument.AddParagraph($"OriginCountry: {string.Join(",", tv.OriginCountry)}");
                         wordDocument.AddParagraph($"GenreIds: {string.Join(",", tv.GenreIds)}");
-                        wordDocument.AddParagraph($"ReleaseDate: {tv.FirstAirDate}");
+                        wordDocument.AddParagraph($"ReleaseDate: {tv.FirstAirDate?.ToString("dd.MM.yyyy")}");
                         wordDocument.AddParagraph($"PosterPath: {tv.PosterPath}");
                         wordDocument.AddParagraph($"BackdropPath: {tv.BackdropPath}");
                         wordDocument.AddParagraph($"Popularity: {tv.Popularity}");
@@ -192,7 +191,7 @@ namespace FilmManager.Backend
                         wordDocument.AddParagraph($"Overview: {movie.Overview}");
                         wordDocument.AddParagraph($"OriginalLanguage: {movie.OriginalLanguage}");
                         wordDocument.AddParagraph($"GenreIds: {string.Join(",", movie.GenreIds)}");
-                        wordDocument.AddParagraph($"ReleaseDate: {movie.ReleaseDate}");
+                        wordDocument.AddParagraph($"ReleaseDate: {movie.ReleaseDate?.ToString("dd.MM.yyyy")}");
                         wordDocument.AddParagraph($"PosterPath: {movie.PosterPath}");
                         wordDocument.AddParagraph($"BackdropPath: {movie.BackdropPath}");
                         wordDocument.AddParagraph($"Adult: {movie.Adult}");

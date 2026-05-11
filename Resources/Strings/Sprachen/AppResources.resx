@@ -300,6 +300,9 @@
   <data name="overview" xml:space="preserve">
     <value>Übersicht</value>
   </data>
+  <data name="pdfNotSupported" xml:space="preserve">
+    <value>PDF nicht unterstützt</value>
+  </data>
   <data name="popularity" xml:space="preserve">
     <value>Berühmtheit</value>
   </data>

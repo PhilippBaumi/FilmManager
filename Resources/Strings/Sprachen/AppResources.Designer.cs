@@ -610,6 +610,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die PDF nicht unterstützt ähnelt.
+        /// </summary>
+        internal static string pdfNotSupported {
+            get {
+                return ResourceManager.GetString("pdfNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Berühmtheit ähnelt.
         /// </summary>
         internal static string popularity {

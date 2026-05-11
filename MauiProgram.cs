@@ -2,7 +2,6 @@
 using FilmManager.Backend;
 using FilmManager.Helpers;
 using FilmManager.Interfaces;
-using QuestPDF.Infrastructure;
 
 namespace FilmManager
 {
@@ -12,7 +11,6 @@ namespace FilmManager
         public static MauiApp CreateMauiApp()
         {
             SQLitePCL.Batteries.Init();
-            QuestPDF.Settings.License = LicenseType.Community;
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
