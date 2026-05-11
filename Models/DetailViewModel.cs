@@ -22,7 +22,6 @@ namespace FilmManager.Models
         public string? Genres { get; set; }
         public string? CountVote { get; set; }
         public string? OriginCountry { get; set; }
-
         public string? Networks { get; set; }
         public DetailViewModel(object o)
         {

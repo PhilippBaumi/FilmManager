@@ -79,7 +79,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Willst zu Gesehen/Merkliste wechseln? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Willst du navigieren? ähnelt.
         /// </summary>
         internal static string askForNavigation {
             get {

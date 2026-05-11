@@ -124,7 +124,7 @@
     <value>Zu Merkliste hinzufügen</value>
   </data>
   <data name="askForNavigation" xml:space="preserve">
-    <value>Willst zu Gesehen/Merkliste wechseln?</value>
+    <value>Willst du navigieren?</value>
   </data>
   <data name="averageVote" xml:space="preserve">
     <value>Durchschnittsbewertung</value>

@@ -2,7 +2,6 @@
 {
     public interface IWriteFile
     {
-        void WriteToPDF();
         void WriteToCSV();
         void WriteToDOCX();
 

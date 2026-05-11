@@ -124,7 +124,7 @@
     <value>Add to Watchlist</value>
   </data>
   <data name="askForNavigation" xml:space="preserve">
-    <value>Do you want to switch to Watched/Watchlist? </value>
+    <value>Do you want to switch?</value>
   </data>
   <data name="averageVote" xml:space="preserve">
     <value>Average Vote</value>

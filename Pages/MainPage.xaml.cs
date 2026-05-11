@@ -57,9 +57,9 @@ namespace FilmManager
                     }
                 }
                 IDictionary<string, object> parameters = new Dictionary<string, object>
-                        {
-                            { "list", mainViewModel.movies },
-                        };
+                {
+                    { "list", mainViewModel.movies }
+                };
                 await navigationService.NavigateToAsync("//Overview", parameters);
             }
             ((CollectionView)sender).SelectedItem = null;

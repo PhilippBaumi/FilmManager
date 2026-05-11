@@ -2,7 +2,6 @@
 using FilmManager.Interfaces;
 using FilmManager.Resources.Strings.Sprachen;
 using OfficeIMO.Word;
-using QuestPDF.Fluent;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using TMDbLib.Objects.Search;
@@ -19,75 +18,6 @@ namespace FilmManager.Backend
         public WriteFile(IDatabase database)
         {
             this.database = database;
-        }
-
-
-        public void WriteToPDF()
-        {
-            WritePDF(this.fileHelper.GetFilePath($"{watchedPath}.pdf"), this.database.SelectAllEntries("Watched"), watchedPath);
-            WritePDF(this.fileHelper.GetFilePath($"{watchlistPath}.pdf"), this.database.SelectAllEntries("Watchlist"), watchlistPath);
-        }
-
-        private void WritePDF(string path, ObservableCollection<object> collection, string basePath)
-        { 
-            fileHelper.DeleteIfExits(path);
-            Document.Create(container =>
-            {
-                container.Page(page =>
-                {
-                    page.Margin(30);
-                    page.Header().Text(basePath).FontSize(20).Bold();
-                    page.Content().Column(column =>
-                    {
-                        for (int i=0; i<collection.Count;i++)
-                        {
-                            object item=collection[i];
-                            column.Item().Border(1).Padding(10).Column(inner =>
-                            {
-                                if(item is SearchMovie movie)
-                                {
-                                    inner.Item().Text($"ID: { movie.Id}");
-                                    inner.Item().Text($"MediaType: {movie.MediaType}");
-                                    inner.Item().Text($"Title: {movie.Title}");
-                                    inner.Item().Text($"OriginalTitle: {movie.OriginalTitle}");
-                                    inner.Item().Text($"OriginalLanguage: {movie.OriginalLanguage}");
-                                    inner.Item().Text($"Overview: {movie.Overview}");
-                                    inner.Item().Text($"GenreIds: {string.Join(",", movie.GenreIds)}");
-                                    inner.Item().Text($"ReleaseDate: {movie.ReleaseDate?.ToString("dd.MM.yyyy")}");
-                                    inner.Item().Text($"PosterPath: {movie.PosterPath}");
-                                    inner.Item().Text($"BackdropPath: {movie.BackdropPath}");
-                                    inner.Item().Text($"Popularity: {movie.Popularity}");
-                                    inner.Item().Text($"VoteAverage: {movie.VoteAverage}");
-                                    inner.Item().Text($"VoteCount: {movie.VoteCount}");
-                                    inner.Item().Text($"Adult: {movie.Adult}");
-                                    inner.Item().Text($"Video: {movie.Video}");
-                                }
-                                if(item is SearchTv tv)
-                                {
-                                    inner.Item().Text($"ID: {tv.Id}");
-                                    inner.Item().Text($"MediaType: {tv.MediaType}");
-                                    inner.Item().Text($"Title: {tv.Name}");
-                                    inner.Item().Text($"OriginalTitle: {tv.OriginalName}");
-                                    inner.Item().Text($"OriginalLanguage: {tv.OriginalLanguage}");
-                                    inner.Item().Text($"OriginCountry: {string.Join(";", tv.OriginCountry)}");
-                                    inner.Item().Text($"Overview: {tv.Overview}");
-                                    inner.Item().Text($"GenreIds: {string.Join(",", tv.GenreIds)}");
-                                    inner.Item().Text($"ReleaseDate: {tv.FirstAirDate?.ToString("dd.MM.yyyy")}");
-                                    inner.Item().Text($"PosterPath: {tv.PosterPath}");
-                                    inner.Item().Text($"BackdropPath: {tv.BackdropPath}");
-                                    inner.Item().Text($"Popularity: {tv.Popularity}");
-                                    inner.Item().Text($"VoteAverage: {tv.VoteAverage}");
-                                    inner.Item().Text($"VoteCount: {tv.VoteCount}");
-                                }
-                            });
-                            if (i < collection.Count - 1)
-                            {
-                                column.Item().PageBreak();
-                            }
-                        }
-                    });
-                });
-            }).GeneratePdf(path);
         }
 
         public void WriteToCSV()

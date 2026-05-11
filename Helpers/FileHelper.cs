@@ -2,7 +2,6 @@
 using System.Text;
 using System.Text.RegularExpressions;
 using TMDbLib.Objects.Search;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace FilmManager.Helpers
 {
