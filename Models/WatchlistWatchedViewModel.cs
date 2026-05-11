@@ -28,11 +28,11 @@ namespace FilmManager.Models
                 {
                     if (o is SearchMovie movie)
                     {
-                        Watchlist.Add(movie.Title + $" ({AppResources.movie})");
+                        Watchlist.Add(movie.OriginalTitle + $" ({AppResources.movie})");
                     }
                     if (o is SearchTv serie)
                     {
-                        Watchlist.Add(serie.Name + " (Serie)");
+                        Watchlist.Add(serie.OriginalName + " (Serie)");
                     }
                 }
             }
@@ -46,11 +46,11 @@ namespace FilmManager.Models
                 {
                     if (o is SearchMovie movie)
                     {
-                        Watched.Add(movie.Title + $" ({AppResources.movie})");
+                        Watched.Add(movie.OriginalTitle + $" ({AppResources.movie})");
                     }
                     if (o is SearchTv serie)
                     {
-                        Watched.Add(serie.Name + " (Serie)");
+                        Watched.Add(serie.OriginalName + " (Serie)");
                     }
                 }
             }

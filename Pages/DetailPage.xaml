@@ -37,6 +37,8 @@
             </Label>
             <Label Text="{Binding Genres}" 
                    Padding="20"/>
+            <Label Text="{Binding Networks}"
+                   Padding="20"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

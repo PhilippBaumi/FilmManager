@@ -2,6 +2,7 @@ using FilmManager.Backend;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
+using System.Collections.ObjectModel;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;

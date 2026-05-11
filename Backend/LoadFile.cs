@@ -126,7 +126,7 @@ namespace FilmManager.Backend
                         {
                             string[] st = lines[1].Split(":");
                             string s = st[1].Trim();
-                            if(s.Equals("tv"))
+                            if(s.Equals("Tv"))
                             {
                                 list.Add(fileHelper.GetSerieFromDOCX(lines));
                             }

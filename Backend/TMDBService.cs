@@ -23,7 +23,7 @@ namespace FilmManager.Backend
 
         public void AddMoviesGenresToList()
         {
-            List<Genre> taskResult = client.GetMovieGenresAsync().Result;
+            List<Genre>? taskResult = client.GetMovieGenresAsync().Result;
             foreach (Genre genre in taskResult)
             {
                 MovieGenresName.Add(genre.Name);

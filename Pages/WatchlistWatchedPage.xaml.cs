@@ -37,7 +37,6 @@ public partial class WatchlistWatchedPage : ContentPage
     {
         try
         {
-            this.watchlist.Clear();
             this.watchlist = this.database.SelectAllEntries("Watchlist");
         }
         catch (Exception ex)
@@ -52,7 +51,6 @@ public partial class WatchlistWatchedPage : ContentPage
     {
         try
         {
-            this.watched.Clear();
             this.watched = this.database.SelectAllEntries("Watched");
         }
         catch (Exception ex)

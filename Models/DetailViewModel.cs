@@ -1,4 +1,5 @@
 ﻿using FilmManager.Resources.Strings.Sprachen;
+using System.Text;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.TvShows;
@@ -22,7 +23,7 @@ namespace FilmManager.Models
         public string? CountVote { get; set; }
         public string? OriginCountry { get; set; }
 
-
+        public string? Networks { get; set; }
         public DetailViewModel(object o)
         {
             if (o is Movie movie)
@@ -55,7 +56,23 @@ namespace FilmManager.Models
                 Genres = "Genres: " + GenresToString(serie.Genres);
                 CountVote = $"{AppResources.countVote}: " + serie.VoteCount;
                 OriginCountry = $"{AppResources.origionCountry}: " + string.Join(",", serie.OriginCountry);
+                Networks = "Networks: "+GetNetworks(serie.Networks);
             }
+        }
+
+        private string? GetNetworks(List<NetworkWithLogo>? networks)
+        {
+            StringBuilder sb = new();
+            if(networks.Count>=1)
+            {
+                foreach(NetworkWithLogo network in networks)
+                {
+                    sb.Append(network.Name);
+                    sb.Append(", ");
+                }
+            }
+            string s = sb.ToString();
+            return s.Substring(0, s.Length-2);
         }
 
         private string GenresToString(List<Genre>? genres)

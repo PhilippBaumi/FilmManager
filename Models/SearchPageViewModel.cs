@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using System.Text;
 using TMDbLib.Objects.Search;
 
@@ -41,12 +42,11 @@ namespace FilmManager.Models
         public List<object> GetList(string selectedItem)
         {
             List<object> objs = new();
-            foreach(SearchMovie movie in this.m)
+            foreach (SearchMovie movie in this.m)
             {
-                string? poster = movie.PosterPath;
-                if(!string.IsNullOrEmpty(poster))
+                if (!string.IsNullOrEmpty(movie.PosterPath))
                 {
-                    if(movie.PosterPath.Equals(poster))
+                    if(movie.PosterPath.Equals(selectedItem))
                     {
                         objs.Add(movie);
                     }
@@ -54,10 +54,9 @@ namespace FilmManager.Models
             }
             foreach (SearchTv tv in this.t)
             {
-                string? poster = tv.PosterPath;
-                if (!string.IsNullOrEmpty(poster))
+                if (!string.IsNullOrEmpty(tv.PosterPath))
                 {
-                    if (tv.PosterPath.Equals(poster))
+                    if (tv.PosterPath.Equals(selectedItem))
                     {
                         objs.Add(tv);
                     }

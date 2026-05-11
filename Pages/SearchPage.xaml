@@ -23,9 +23,9 @@
                 Clicked="Search" />
         <CollectionView Grid.Row="3" 
                         ItemsSource="{Binding Images}"
-                        SelectedItem="{Binding SelectedItem}"
+                        SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                         SelectionMode="Single"
-                        SelectionChanged="GetSearchToImage">>
+                        SelectionChanged="GetSearchToImage">
             <CollectionView.ItemsLayout>
                 <GridItemsLayout Orientation="Vertical" 
                                  Span="3" 

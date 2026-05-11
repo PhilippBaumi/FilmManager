@@ -50,9 +50,13 @@ namespace FilmManager.Helpers
             List<string> list = new();
             using (StreamReader reader = new(path))
             {
-                string line;
-                while ((line = reader.ReadLine()) != null)
+                while(true)
                 {
+                    string? line = reader.ReadLine();
+                    if(line==null)
+                    {
+                        break;
+                    }
                     list.Add(line);
                 }
             }
@@ -253,7 +257,7 @@ namespace FilmManager.Helpers
 
         private string GetValueFromString(string s)
         {
-            string[] st = s.Split(":");
+            string[] st = s.Split(": ");
             return st[1].Trim();
         }
     }
