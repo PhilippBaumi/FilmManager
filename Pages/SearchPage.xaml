@@ -7,7 +7,7 @@
     <Grid RowDefinitions="Auto, Auto, Auto, *">
         <Entry x:Name="entrySearch" 
                Grid.Row="0" 
-               Placeholder="{x:Static strings:AppResources.searchPlaceholder}" />
+               Placeholder="{x:Static strings:AppResources.search}" />
         <StackLayout Grid.Row="1" 
                      Margin="10" 
                      RadioButtonGroup.GroupName="Type">

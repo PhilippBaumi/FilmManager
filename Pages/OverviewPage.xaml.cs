@@ -1,5 +1,4 @@
 using CommunityToolkit.Maui.Extensions;
-using CommunityToolkit.Mvvm.ComponentModel;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Popups;

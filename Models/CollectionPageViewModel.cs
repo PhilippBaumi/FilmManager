@@ -1,8 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using TMDbLib.Objects.Search;
 
 namespace FilmManager.Models
@@ -29,10 +26,10 @@ namespace FilmManager.Models
         public SearchCollection GetSearchCollection(string selectedItem)
         {
             SearchCollection search = new();
-            foreach(SearchCollection sear in this.collection)
+            foreach (SearchCollection sear in this.collection)
             {
                 string? posterPath = sear.PosterPath;
-                if(!string.IsNullOrEmpty(posterPath))
+                if (!string.IsNullOrEmpty(posterPath))
                 {
                     if (posterPath.Equals(selectedItem))
                     {

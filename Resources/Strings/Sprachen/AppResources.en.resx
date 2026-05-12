@@ -118,40 +118,25 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="addToWatched" xml:space="preserve">
-    <value>Add to Watched</value>
+    <value>Add to watched</value>
   </data>
   <data name="addToWatchlist" xml:space="preserve">
-    <value>Add to Watchlist</value>
-  </data>
-  <data name="askForNavigation" xml:space="preserve">
-    <value>Do you want to switch?</value>
+    <value>Add to watchlist</value>
   </data>
   <data name="averageVote" xml:space="preserve">
     <value>Average Vote</value>
   </data>
-  <data name="background" xml:space="preserve">
-    <value>Background</value>
-  </data>
-  <data name="cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
   <data name="cantGetValue" xml:space="preserve">
     <value>Can't get value</value>
   </data>
-  <data name="cantNavigateToCollection" xml:space="preserve">
-    <value>Cannt switch to collection</value>
-  </data>
   <data name="cantNavigateToDetails" xml:space="preserve">
-    <value>Cannot switch to details</value>
+    <value>Can't navigate to details!</value>
   </data>
   <data name="chooseLanguage" xml:space="preserve">
-    <value>Choose Language</value>
+    <value>Choose language</value>
   </data>
   <data name="chooseTheme" xml:space="preserve">
-    <value>Choose Theme</value>
-  </data>
-  <data name="clearList" xml:space="preserve">
-    <value>Clear List</value>
+    <value>Choose design/theme</value>
   </data>
   <data name="close" xml:space="preserve">
     <value>Close</value>
@@ -163,34 +148,16 @@
     <value>Count vote</value>
   </data>
   <data name="dark" xml:space="preserve">
-    <value>Dark Theme</value>
+    <value>Dark</value>
   </data>
   <data name="description" xml:space="preserve">
     <value>Description</value>
   </data>
-  <data name="details" xml:space="preserve">
-    <value>Detail</value>
-  </data>
   <data name="doesNotExists" xml:space="preserve">
-    <value>does not exits</value>
+    <value>Does not exist!</value>
   </data>
   <data name="english" xml:space="preserve">
     <value>English</value>
-  </data>
-  <data name="enter" xml:space="preserve">
-    <value>Enter</value>
-  </data>
-  <data name="enterActor" xml:space="preserve">
-    <value>Enter a actor</value>
-  </data>
-  <data name="enterCompany" xml:space="preserve">
-    <value>Enter a company</value>
-  </data>
-  <data name="enthaltenMovie" xml:space="preserve">
-    <value>The movie is already in the list</value>
-  </data>
-  <data name="enthaltenSerie" xml:space="preserve">
-    <value>The series is already in the list</value>
   </data>
   <data name="error" xml:space="preserve">
     <value>Error</value>
@@ -199,16 +166,10 @@
     <value>The file</value>
   </data>
   <data name="filesOptions" xml:space="preserve">
-    <value>Save/Load</value>
-  </data>
-  <data name="filterLanguage" xml:space="preserve">
-    <value>Language</value>
+    <value>Write/Load</value>
   </data>
   <data name="forAdults" xml:space="preserve">
-    <value>For adults</value>
-  </data>
-  <data name="generalData" xml:space="preserve">
-    <value>General Data</value>
+    <value>For Adults</value>
   </data>
   <data name="german" xml:space="preserve">
     <value>German</value>
@@ -216,41 +177,35 @@
   <data name="home" xml:space="preserve">
     <value>Home</value>
   </data>
-  <data name="info" xml:space="preserve">
-    <value>Information</value>
-  </data>
   <data name="insertSuccess" xml:space="preserve">
-    <value>Added successfully</value>
+    <value>Successfully insert!</value>
   </data>
   <data name="language" xml:space="preserve">
     <value>Language</value>
   </data>
   <data name="languageChanged" xml:space="preserve">
-    <value>Language changed and everything reloaded</value>
+    <value>Language changed!</value>
   </data>
   <data name="light" xml:space="preserve">
-    <value>Light Theme</value>
+    <value>Light</value>
   </data>
   <data name="load" xml:space="preserve">
     <value>Load</value>
-  </data>
-  <data name="loadData" xml:space="preserve">
-    <value>Load Data</value>
-  </data>
-  <data name="loadDatabase" xml:space="preserve">
-    <value>Load Database</value>
   </data>
   <data name="loaded" xml:space="preserve">
     <value>Loaded</value>
   </data>
   <data name="loading" xml:space="preserve">
-    <value>are loading</value>
+    <value>is loading</value>
   </data>
-  <data name="media" xml:space="preserve">
-    <value>Media</value>
+  <data name="markAsWatched" xml:space="preserve">
+    <value>Mark as watched</value>
+  </data>
+  <data name="markedAsWatched" xml:space="preserve">
+    <value>Marked as watched</value>
   </data>
   <data name="messageFiles" xml:space="preserve">
-    <value>Do you want to save or load?</value>
+    <value>Do you want do write or read?</value>
   </data>
   <data name="movie" xml:space="preserve">
     <value>Movie</value>
@@ -258,41 +213,23 @@
   <data name="movies" xml:space="preserve">
     <value>Movies</value>
   </data>
-  <data name="newGeneratedLists" xml:space="preserve">
-    <value>Lists were successfully cleared or newly created</value>
+  <data name="newGeneratedDatabase" xml:space="preserve">
+    <value>New generated database</value>
   </data>
-  <data name="newLoad" xml:space="preserve">
-    <value>Reload</value>
-  </data>
-  <data name="no" xml:space="preserve">
-    <value>No</value>
-  </data>
-  <data name="noAllowedType" xml:space="preserve">
-    <value>No allowed Type</value>
-  </data>
-  <data name="noChoosenMovie" xml:space="preserve">
-    <value>You have not chosen a valid movie!</value>
-  </data>
-  <data name="noChoosenMovieAndSerie" xml:space="preserve">
-    <value>You have not chosen a valid movie and serie!</value>
-  </data>
-  <data name="noChoosenSerie" xml:space="preserve">
-    <value>You have not chosen a valid serie!</value>
+  <data name="noChoosenMovieOrSerie" xml:space="preserve">
+    <value>No choosen movie or show</value>
   </data>
   <data name="noCollection" xml:space="preserve">
-    <value>No collection </value>
+    <value>No collection</value>
   </data>
-  <data name="noObject" xml:space="preserve">
-    <value>Object is null or no object selected</value>
-  </data>
-  <data name="notIncludedObject" xml:space="preserve">
-    <value>Object (movie or series) is not included in the list</value>
+  <data name="notRemoved" xml:space="preserve">
+    <value>Not removed!</value>
   </data>
   <data name="originalLanguage" xml:space="preserve">
     <value>Original language</value>
   </data>
   <data name="originalTitle" xml:space="preserve">
-    <value>Original title</value>
+    <value>Original Title</value>
   </data>
   <data name="origionCountry" xml:space="preserve">
     <value>Origion country</value>
@@ -300,35 +237,20 @@
   <data name="overview" xml:space="preserve">
     <value>Overview</value>
   </data>
-  <data name="pdfNotSupported" xml:space="preserve">
-    <value>PDF not supported</value>
-  </data>
   <data name="popularity" xml:space="preserve">
     <value>Popularity</value>
-  </data>
-  <data name="question" xml:space="preserve">
-    <value>Question</value>
   </data>
   <data name="releaseDate" xml:space="preserve">
     <value>Releasedate</value>
   </data>
+  <data name="remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
   <data name="removed" xml:space="preserve">
-    <value>Removed</value>
-  </data>
-  <data name="removedMessage" xml:space="preserve">
-    <value>was removed!</value>
-  </data>
-  <data name="removeFromList" xml:space="preserve">
-    <value>Remove from List</value>
+    <value>Removed!</value>
   </data>
   <data name="resetDatabase" xml:space="preserve">
-    <value>Reset Database</value>
-  </data>
-  <data name="retrieve" xml:space="preserve">
-    <value>Retrieve</value>
-  </data>
-  <data name="retrieved" xml:space="preserve">
-    <value>Retrieved</value>
+    <value>Reset database</value>
   </data>
   <data name="save" xml:space="preserve">
     <value>Save</value>
@@ -343,10 +265,7 @@
     <value>Search</value>
   </data>
   <data name="searchCollectionPlaceholder" xml:space="preserve">
-    <value>Enter a collection</value>
-  </data>
-  <data name="searchPlaceholder" xml:space="preserve">
-    <value>What are looking for?</value>
+    <value>Search collection</value>
   </data>
   <data name="series" xml:space="preserve">
     <value>Series</value>
@@ -354,47 +273,20 @@
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="success" xml:space="preserve">
-    <value>Success</value>
-  </data>
-  <data name="successAddedMovie" xml:space="preserve">
-    <value>The series was successfully added</value>
-  </data>
-  <data name="successAddedSerie" xml:space="preserve">
-    <value>The movie was successfully added</value>
-  </data>
   <data name="successfully" xml:space="preserve">
     <value>Successfully</value>
   </data>
   <data name="successfullyCreatedTable" xml:space="preserve">
-    <value>Table created successfully</value>
-  </data>
-  <data name="successRemovedFromWatched" xml:space="preserve">
-    <value>Successfully removed from watched</value>
-  </data>
-  <data name="successRemovedFromWatchlist" xml:space="preserve">
-    <value>Successfully removed from watchlist</value>
-  </data>
-  <data name="system" xml:space="preserve">
-    <value>System Theme</value>
+    <value>Table generated successfully!</value>
   </data>
   <data name="title" xml:space="preserve">
     <value>Title</value>
   </data>
-  <data name="toCollection" xml:space="preserve">
-    <value>To the collection of the movie</value>
-  </data>
-  <data name="toCollectionMembers" xml:space="preserve">
-    <value>To the members of the collection</value>
-  </data>
   <data name="toDetails" xml:space="preserve">
-    <value>To the Details</value>
+    <value>To the details</value>
   </data>
   <data name="type" xml:space="preserve">
     <value>Type</value>
-  </data>
-  <data name="vote" xml:space="preserve">
-    <value>Vote</value>
   </data>
   <data name="watched" xml:space="preserve">
     <value>Watched</value>
@@ -404,14 +296,5 @@
   </data>
   <data name="watchlist" xml:space="preserve">
     <value>Watchlist</value>
-  </data>
-  <data name="watchlistOrAndWatched" xml:space="preserve">
-    <value>Watchlist or/and Watched</value>
-  </data>
-  <data name="whatDoYouWantToSee" xml:space="preserve">
-    <value>Do you want to display Watchlist or Viewed?</value>
-  </data>
-  <data name="yes" xml:space="preserve">
-    <value>Yes</value>
   </data>
 </root>

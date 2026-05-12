@@ -35,7 +35,7 @@
                 <StackLayout Margin="10" 
                              RadioButtonGroup.GroupName="Theme" 
                              RadioButtonGroup.SelectedValue="{Binding ThemeAsString, Mode=TwoWay}">
-                    <RadioButton Content="{x:Static strings:AppResources.system}" 
+                    <RadioButton Content="System" 
                                  Value="Unspecified"/>
                     <RadioButton Content="{x:Static strings:AppResources.dark}" 
                                  Value="Dark"/>

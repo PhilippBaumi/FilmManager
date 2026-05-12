@@ -49,10 +49,10 @@ namespace FilmManager.Helpers
             List<string> list = new();
             using (StreamReader reader = new(path))
             {
-                while(true)
+                while (true)
                 {
                     string? line = reader.ReadLine();
-                    if(line==null)
+                    if (line == null)
                     {
                         break;
                     }
@@ -151,7 +151,7 @@ namespace FilmManager.Helpers
         public string GetValue(string value, string key)
         {
             string? val = TryGetValue(value, key);
-            if(string.IsNullOrEmpty(val))
+            if (string.IsNullOrEmpty(val))
             {
                 throw new Exception(AppResources.cantGetValue);
             }
@@ -160,9 +160,9 @@ namespace FilmManager.Helpers
 
         private string? TryGetValue(string value, string key)
         {
-            string pattern =$@"{key}:\s*(.*?)(?=\s*(ID|MediaType|Title|OriginalTitle|OriginalLanguage|OriginCountry|Overview|GenreIds|ReleaseDate|PosterPath|BackdropPath|Popularity|VoteAverage|VoteCount|Adult|Video):|$)";
+            string pattern = $@"{key}:\s*(.*?)(?=\s*(ID|MediaType|Title|OriginalTitle|OriginalLanguage|OriginCountry|Overview|GenreIds|ReleaseDate|PosterPath|BackdropPath|Popularity|VoteAverage|VoteCount|Adult|Video):|$)";
             string s = Regex.Match(value, pattern, RegexOptions.Singleline).Groups[1].Value.Trim();
-            if(string.IsNullOrEmpty(s))
+            if (string.IsNullOrEmpty(s))
             {
                 return null;
             }
@@ -174,7 +174,7 @@ namespace FilmManager.Helpers
             List<int> list = new();
             string s = GetValue(text, v);
             string[] st = s.Split(",");
-            foreach(string sT in st)
+            foreach (string sT in st)
             {
                 list.Add(Int32.Parse(sT));
             }
@@ -216,7 +216,7 @@ namespace FilmManager.Helpers
         {
             string[] st = s.Split(",");
             List<string> list = new();
-            foreach(string s2 in st)
+            foreach (string s2 in st)
             {
                 list.Add(s2);
             }
@@ -247,7 +247,7 @@ namespace FilmManager.Helpers
         {
             List<int> list = new();
             string[] st = s.Split(",");
-            foreach(string str in st)
+            foreach (string str in st)
             {
                 list.Add(Int32.Parse(str));
             }
@@ -256,7 +256,7 @@ namespace FilmManager.Helpers
 
         private string GetValueFromString(string s)
         {
-            string[] st = s.Split(": ");
+            string[] st = s.Split("; ");
             return st[1].Trim();
         }
     }

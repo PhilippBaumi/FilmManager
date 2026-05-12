@@ -2,7 +2,6 @@
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
-using System.Collections.ObjectModel;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
@@ -34,7 +33,7 @@ namespace FilmManager
             string? selectedMovie = mainViewModel.SelectedMovie;
             if (selectedMovie != null)
             {
-                await DisplayAlertAsync(AppResources.info, $"{selectedMovie} {AppResources.loading}", "OK");
+                await DisplayAlertAsync("Info", $"{selectedMovie} {AppResources.loading}", "OK");
                 int id = tMDBService.GetIdToName(selectedMovie, MediaType.Movie);
                 if (mainViewModel.Movies.Contains(selectedMovie))
                 {
@@ -70,7 +69,7 @@ namespace FilmManager
             string? selectedSeries = mainViewModel.SelectedSerie;
             if (selectedSeries != null)
             {
-                await DisplayAlertAsync(AppResources.info, $"{selectedSeries} {AppResources.loading}", "OK");
+                await DisplayAlertAsync("Info", $"{selectedSeries} {AppResources.loading}", "OK");
                 int id = tMDBService.GetIdToName(selectedSeries, MediaType.Tv);
                 if (mainViewModel.Serien.Contains(selectedSeries))
                 {
@@ -110,7 +109,7 @@ namespace FilmManager
         {
             this.database.DeleteTable("Watched");
             this.database.DeleteTable("Watchlist");
-            await DisplayAlertAsync(AppResources.info, AppResources.newGeneratedLists, "OK");
+            await DisplayAlertAsync("Info", AppResources.newGeneratedDatabase, "OK");
         }
     }
 }

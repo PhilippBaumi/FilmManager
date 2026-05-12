@@ -55,23 +55,23 @@ namespace FilmManager.Models
                 Genres = "Genres: " + GenresToString(serie.Genres);
                 CountVote = $"{AppResources.countVote}: " + serie.VoteCount;
                 OriginCountry = $"{AppResources.origionCountry}: " + string.Join(",", serie.OriginCountry);
-                Networks = "Networks: "+GetNetworks(serie.Networks);
+                Networks = "Networks: " + GetNetworks(serie.Networks);
             }
         }
 
         private string? GetNetworks(List<NetworkWithLogo>? networks)
         {
             StringBuilder sb = new();
-            if(networks.Count>=1)
+            if (networks.Count >= 1)
             {
-                foreach(NetworkWithLogo network in networks)
+                foreach (NetworkWithLogo network in networks)
                 {
                     sb.Append(network.Name);
                     sb.Append(", ");
                 }
             }
             string s = sb.ToString();
-            return s.Substring(0, s.Length-2);
+            return s.Substring(0, s.Length - 2);
         }
 
         private string GenresToString(List<Genre>? genres)

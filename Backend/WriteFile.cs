@@ -2,6 +2,7 @@
 using FilmManager.Interfaces;
 using FilmManager.Resources.Strings.Sprachen;
 using OfficeIMO.Word;
+using Sylvan.Data.Csv;
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using TMDbLib.Objects.Search;
@@ -25,7 +26,7 @@ namespace FilmManager.Backend
             WriteCSV(this.fileHelper.GetFilePath($"{watchedPath}.csv"), this.database.SelectAllEntries("Watched"));
             WriteCSV(this.fileHelper.GetFilePath($"{watchlistPath}.csv"), this.database.SelectAllEntries("Watchlist"));
         }
-        private void WriteCSV(string path, ObservableCollection<object> collection)
+        private async Task WriteCSV(string path, ObservableCollection<object> collection)
         {
             fileHelper.DeleteIfExits(path);
             using (StreamWriter streamWriter = new(path))
@@ -96,20 +97,20 @@ namespace FilmManager.Backend
                 {
                     if (obj is SearchTv tv)
                     {
-                        wordDocument.AddParagraph($"ID: {tv.Id}");
-                        wordDocument.AddParagraph($"MediaType: {tv.MediaType}");
-                        wordDocument.AddParagraph($"Title: {tv.Name}");
-                        wordDocument.AddParagraph($"OriginalTitle: {tv.OriginalName}");
-                        wordDocument.AddParagraph($"Overview: {tv.Overview}");
-                        wordDocument.AddParagraph($"OriginalLanguage: {tv.OriginalLanguage}");
-                        wordDocument.AddParagraph($"OriginCountry: {string.Join(",", tv.OriginCountry)}");
-                        wordDocument.AddParagraph($"GenreIds: {string.Join(",", tv.GenreIds)}");
-                        wordDocument.AddParagraph($"ReleaseDate: {tv.FirstAirDate?.ToString("dd.MM.yyyy")}");
-                        wordDocument.AddParagraph($"PosterPath: {tv.PosterPath}");
-                        wordDocument.AddParagraph($"BackdropPath: {tv.BackdropPath}");
-                        wordDocument.AddParagraph($"Popularity: {tv.Popularity}");
-                        wordDocument.AddParagraph($"VoteAverage: {tv.VoteAverage}");
-                        wordDocument.AddParagraph($"VoteCount: {tv.VoteCount}");
+                        wordDocument.AddParagraph($"ID; {tv.Id}");
+                        wordDocument.AddParagraph($"MediaType; {tv.MediaType}");
+                        wordDocument.AddParagraph($"Title; {tv.Name}");
+                        wordDocument.AddParagraph($"OriginalTitle; {tv.OriginalName}");
+                        wordDocument.AddParagraph($"Overview; {tv.Overview}");
+                        wordDocument.AddParagraph($"OriginalLanguage; {tv.OriginalLanguage}");
+                        wordDocument.AddParagraph($"OriginCountry; {string.Join(",", tv.OriginCountry)}");
+                        wordDocument.AddParagraph($"GenreIds; {string.Join(",", tv.GenreIds)}");
+                        wordDocument.AddParagraph($"ReleaseDate; {tv.FirstAirDate?.ToString("dd.MM.yyyy")}");
+                        wordDocument.AddParagraph($"PosterPath; {tv.PosterPath}");
+                        wordDocument.AddParagraph($"BackdropPath; {tv.BackdropPath}");
+                        wordDocument.AddParagraph($"Popularity; {tv.Popularity}");
+                        wordDocument.AddParagraph($"VoteAverage; {tv.VoteAverage}");
+                        wordDocument.AddParagraph($"VoteCount; {tv.VoteCount}");
 
                     }
                     if (obj is SearchMovie movie)

@@ -4,10 +4,9 @@ namespace FilmManager.Models
 {
     public class OptionPopupViewModel
     {
-
-        public object? Get(string selectedItem, object o)
+        public object? Get(string selectedItem, object? o)
         {
-            if (selectedItem != null)
+            if (selectedItem != null&&o!=null)
             {
                 if (o is List<SearchTv> series)
                 {

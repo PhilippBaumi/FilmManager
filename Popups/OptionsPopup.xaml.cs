@@ -21,26 +21,26 @@ public partial class OptionsPopup : Popup
     private TMDBService tMDBService;
     private object? obj;
 
-    public OptionsPopup(string? selectedItem, INavigationService navigation, object o,  IDatabase database)
+    public OptionsPopup(string? selectedItem, INavigationService navigation, object? o, IDatabase database)
     {
         InitializeComponent();
         this.selectedItem = selectedItem;
         this.database = database;
         this.navigation = navigation;
-        this.tMDBService= new(new TMDbClient(apiKey));
+        this.tMDBService = new(new TMDbClient(apiKey));
         this.obj = optionPopupViewModel.Get(selectedItem, o);
         SetTitleToLabel();
     }
 
     private void SetTitleToLabel()
     {
-        if(this.obj!=null)
+        if (this.obj != null)
         {
-            if(this.obj is SearchMovie movie)
+            if (this.obj is SearchMovie movie)
             {
                 lbTitle.Text = movie.OriginalTitle;
             }
-            if(this.obj is SearchTv tv)
+            if (this.obj is SearchTv tv)
             {
                 lbTitle.Text = tv.OriginalName;
             }
@@ -55,19 +55,19 @@ public partial class OptionsPopup : Popup
             {
                 if (this.obj == null)
                 {
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.noChoosenMovieAndSerie, "OK");
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.noChoosenMovieOrSerie, "OK");
                 }
                 this.database.CreateTable("Watched");
-                await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.info, AppResources.successfullyCreatedTable, "OK");
+                await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.successfullyCreatedTable, "OK");
                 if (this.obj is SearchTv serie)
                 {
                     this.database.InsertEntry(serie, "Watched");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.info, AppResources.insertSuccess, "OK");
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.insertSuccess, "OK");
                 }
                 if (this.obj is SearchMovie movie)
                 {
                     this.database.InsertEntry(movie, "Watched");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.info, AppResources.insertSuccess, "OK");
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.insertSuccess, "OK");
                 }
             }
         }
@@ -85,19 +85,19 @@ public partial class OptionsPopup : Popup
             {
                 if (this.obj == null)
                 {
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.noChoosenMovieAndSerie, "OK");
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.noChoosenMovieOrSerie, "OK");
                 }
                 this.database.CreateTable("Watchlist");
-                await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.info, AppResources.successfullyCreatedTable, "OK");
+                await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.successfullyCreatedTable, "OK");
                 if (this.obj is SearchTv serie)
                 {
                     this.database.InsertEntry(serie, "Watchlist");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.info, AppResources.insertSuccess, "OK");
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.insertSuccess, "OK");
                 }
                 if (this.obj is SearchMovie movie)
                 {
                     this.database.InsertEntry(movie, "Watchlist");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.info, AppResources.insertSuccess, "OK");
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.insertSuccess, "OK");
                 }
             }
         }

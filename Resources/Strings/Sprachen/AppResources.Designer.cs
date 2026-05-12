@@ -79,38 +79,11 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Willst du navigieren? ähnelt.
-        /// </summary>
-        internal static string askForNavigation {
-            get {
-                return ResourceManager.GetString("askForNavigation", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Durchschnittsbewertung ähnelt.
         /// </summary>
         internal static string averageVote {
             get {
                 return ResourceManager.GetString("averageVote", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Hintergrund ähnelt.
-        /// </summary>
-        internal static string background {
-            get {
-                return ResourceManager.GetString("background", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Abbrechen ähnelt.
-        /// </summary>
-        internal static string cancel {
-            get {
-                return ResourceManager.GetString("cancel", resourceCulture);
             }
         }
         
@@ -124,16 +97,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Kann nicht zu Sammlung navigieren ähnelt.
-        /// </summary>
-        internal static string cantNavigateToCollection {
-            get {
-                return ResourceManager.GetString("cantNavigateToCollection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Kann nicht zu Details navigieren ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kann nicht zu Details navigieren! ähnelt.
         /// </summary>
         internal static string cantNavigateToDetails {
             get {
@@ -151,20 +115,11 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wähle Theme ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wähle Design/Theme ähnelt.
         /// </summary>
         internal static string chooseTheme {
             get {
                 return ResourceManager.GetString("chooseTheme", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Liste löschen ähnelt.
-        /// </summary>
-        internal static string clearList {
-            get {
-                return ResourceManager.GetString("clearList", resourceCulture);
             }
         }
         
@@ -196,7 +151,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Dunkles Theme ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dunkel ähnelt.
         /// </summary>
         internal static string dark {
             get {
@@ -214,16 +169,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Detail ähnelt.
-        /// </summary>
-        internal static string details {
-            get {
-                return ResourceManager.GetString("details", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die existiert nicht ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die  existiert nicht! ähnelt.
         /// </summary>
         internal static string doesNotExists {
             get {
@@ -241,51 +187,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Bestätigen ähnelt.
-        /// </summary>
-        internal static string enter {
-            get {
-                return ResourceManager.GetString("enter", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Gib einen Schauspieler ein ähnelt.
-        /// </summary>
-        internal static string enterActor {
-            get {
-                return ResourceManager.GetString("enterActor", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Gib das Produzent Unternehmen ein ähnelt.
-        /// </summary>
-        internal static string enterCompany {
-            get {
-                return ResourceManager.GetString("enterCompany", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Der Film ist bereits in der Liste enthalten ähnelt.
-        /// </summary>
-        internal static string enthaltenMovie {
-            get {
-                return ResourceManager.GetString("enthaltenMovie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Die Serie ist bereits in der Liste enthalten ähnelt.
-        /// </summary>
-        internal static string enthaltenSerie {
-            get {
-                return ResourceManager.GetString("enthaltenSerie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Fehler ähnelt.
         /// </summary>
         internal static string error {
@@ -295,7 +196,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Die Datei ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Die Datei  ähnelt.
         /// </summary>
         internal static string file {
             get {
@@ -304,20 +205,11 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Speichern/Laden ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Schreiben/Lesen ähnelt.
         /// </summary>
         internal static string filesOptions {
             get {
                 return ResourceManager.GetString("filesOptions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Sprache ähnelt.
-        /// </summary>
-        internal static string filterLanguage {
-            get {
-                return ResourceManager.GetString("filterLanguage", resourceCulture);
             }
         }
         
@@ -327,15 +219,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string forAdults {
             get {
                 return ResourceManager.GetString("forAdults", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Allgemeine Daten ähnelt.
-        /// </summary>
-        internal static string generalData {
-            get {
-                return ResourceManager.GetString("generalData", resourceCulture);
             }
         }
         
@@ -358,16 +241,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Hinweis ähnelt.
-        /// </summary>
-        internal static string info {
-            get {
-                return ResourceManager.GetString("info", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Erfolgreich hinzugefügt ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Erfolgreich hinzugefügt! ähnelt.
         /// </summary>
         internal static string insertSuccess {
             get {
@@ -385,7 +259,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Sprache hat sich geändert und alles wurde neu geladen ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sprache wurde geändert! ähnelt.
         /// </summary>
         internal static string languageChanged {
             get {
@@ -394,7 +268,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Helles Theme ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hell ähnelt.
         /// </summary>
         internal static string light {
             get {
@@ -408,24 +282,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string load {
             get {
                 return ResourceManager.GetString("load", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Daten laden ähnelt.
-        /// </summary>
-        internal static string loadData {
-            get {
-                return ResourceManager.GetString("loadData", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Datenbank laden ähnelt.
-        /// </summary>
-        internal static string loadDatabase {
-            get {
-                return ResourceManager.GetString("loadDatabase", resourceCulture);
             }
         }
         
@@ -448,16 +304,25 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Medien ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Als gesehen markieren ähnelt.
         /// </summary>
-        internal static string media {
+        internal static string markAsWatched {
             get {
-                return ResourceManager.GetString("media", resourceCulture);
+                return ResourceManager.GetString("markAsWatched", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Willst du Speichern oder Laden? ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Als gesehen markiert ähnelt.
+        /// </summary>
+        internal static string markedAsWatched {
+            get {
+                return ResourceManager.GetString("markedAsWatched", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Willst du speichern oder laden? ähnelt.
         /// </summary>
         internal static string messageFiles {
             get {
@@ -484,70 +349,25 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Listen wurden erfolgreich geleert bzw. neu erstellt ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Datenbank neu erstellt ähnelt.
         /// </summary>
-        internal static string newGeneratedLists {
+        internal static string newGeneratedDatabase {
             get {
-                return ResourceManager.GetString("newGeneratedLists", resourceCulture);
+                return ResourceManager.GetString("newGeneratedDatabase", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Neu laden ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kein gewählter Film oder Serie ähnelt.
         /// </summary>
-        internal static string newLoad {
+        internal static string noChoosenMovieOrSerie {
             get {
-                return ResourceManager.GetString("newLoad", resourceCulture);
+                return ResourceManager.GetString("noChoosenMovieOrSerie", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Nein ähnelt.
-        /// </summary>
-        internal static string no {
-            get {
-                return ResourceManager.GetString("no", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Kein erlaubter Typ  ähnelt.
-        /// </summary>
-        internal static string noAllowedType {
-            get {
-                return ResourceManager.GetString("noAllowedType", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Du hast keinen gültigen Film gewählt! ähnelt.
-        /// </summary>
-        internal static string noChoosenMovie {
-            get {
-                return ResourceManager.GetString("noChoosenMovie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Du hast keinen gültigen Film oder Serie gewählt! ähnelt.
-        /// </summary>
-        internal static string noChoosenMovieAndSerie {
-            get {
-                return ResourceManager.GetString("noChoosenMovieAndSerie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Du hast keinen gültigen Serie gewählt! ähnelt.
-        /// </summary>
-        internal static string noChoosenSerie {
-            get {
-                return ResourceManager.GetString("noChoosenSerie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Keine Sammlung vorhanden ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Keine Sammlung ähnelt.
         /// </summary>
         internal static string noCollection {
             get {
@@ -556,20 +376,11 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Object ist null oder kein Object gewählt ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nicht entfernt! ähnelt.
         /// </summary>
-        internal static string noObject {
+        internal static string notRemoved {
             get {
-                return ResourceManager.GetString("noObject", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Object (Film oder Serie) ist nicht in der Liste enthalten ähnelt.
-        /// </summary>
-        internal static string notIncludedObject {
-            get {
-                return ResourceManager.GetString("notIncludedObject", resourceCulture);
+                return ResourceManager.GetString("notRemoved", resourceCulture);
             }
         }
         
@@ -583,7 +394,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Originaltitel ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Original Titel ähnelt.
         /// </summary>
         internal static string originalTitle {
             get {
@@ -601,20 +412,11 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Übersicht ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Überblick ähnelt.
         /// </summary>
         internal static string overview {
             get {
                 return ResourceManager.GetString("overview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die PDF nicht unterstützt ähnelt.
-        /// </summary>
-        internal static string pdfNotSupported {
-            get {
-                return ResourceManager.GetString("pdfNotSupported", resourceCulture);
             }
         }
         
@@ -628,16 +430,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Frage ähnelt.
-        /// </summary>
-        internal static string question {
-            get {
-                return ResourceManager.GetString("question", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Erscheinungsdatum ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Veröffentlichungsdatum ähnelt.
         /// </summary>
         internal static string releaseDate {
             get {
@@ -646,29 +439,20 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Gelöscht ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Entfernen ähnelt.
+        /// </summary>
+        internal static string remove {
+            get {
+                return ResourceManager.GetString("remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Entfernt! ähnelt.
         /// </summary>
         internal static string removed {
             get {
                 return ResourceManager.GetString("removed", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die wurde gelöscht! ähnelt.
-        /// </summary>
-        internal static string removedMessage {
-            get {
-                return ResourceManager.GetString("removedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Von Liste entfernen ähnelt.
-        /// </summary>
-        internal static string removeFromList {
-            get {
-                return ResourceManager.GetString("removeFromList", resourceCulture);
             }
         }
         
@@ -678,24 +462,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string resetDatabase {
             get {
                 return ResourceManager.GetString("resetDatabase", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Abrufen ähnelt.
-        /// </summary>
-        internal static string retrieve {
-            get {
-                return ResourceManager.GetString("retrieve", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Abgerufen ähnelt.
-        /// </summary>
-        internal static string retrieved {
-            get {
-                return ResourceManager.GetString("retrieved", resourceCulture);
             }
         }
         
@@ -736,20 +502,11 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Gib eine Collection ein ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Suche Sammlung ähnelt.
         /// </summary>
         internal static string searchCollectionPlaceholder {
             get {
                 return ResourceManager.GetString("searchCollectionPlaceholder", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Was willst du suchen? ähnelt.
-        /// </summary>
-        internal static string searchPlaceholder {
-            get {
-                return ResourceManager.GetString("searchPlaceholder", resourceCulture);
             }
         }
         
@@ -772,33 +529,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Erfolg ähnelt.
-        /// </summary>
-        internal static string success {
-            get {
-                return ResourceManager.GetString("success", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Die Serie wurde erfolgreich hinzugefügt ähnelt.
-        /// </summary>
-        internal static string successAddedMovie {
-            get {
-                return ResourceManager.GetString("successAddedMovie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Der Film wurde erfolgreich hinzugefügt ähnelt.
-        /// </summary>
-        internal static string successAddedSerie {
-            get {
-                return ResourceManager.GetString("successAddedSerie", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Erfolgreich ähnelt.
         /// </summary>
         internal static string successfully {
@@ -808,38 +538,11 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Tabelle erfolgreich erstellt  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tabelle erfolgreich erstellt! ähnelt.
         /// </summary>
         internal static string successfullyCreatedTable {
             get {
                 return ResourceManager.GetString("successfullyCreatedTable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Erfolgreich aus Gesehen entfernt ähnelt.
-        /// </summary>
-        internal static string successRemovedFromWatched {
-            get {
-                return ResourceManager.GetString("successRemovedFromWatched", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Erfolgreich aus Merkliste entfernt ähnelt.
-        /// </summary>
-        internal static string successRemovedFromWatchlist {
-            get {
-                return ResourceManager.GetString("successRemovedFromWatchlist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die System Theme ähnelt.
-        /// </summary>
-        internal static string system {
-            get {
-                return ResourceManager.GetString("system", resourceCulture);
             }
         }
         
@@ -849,24 +552,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string title {
             get {
                 return ResourceManager.GetString("title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Zu der Sammlung des Films ähnelt.
-        /// </summary>
-        internal static string toCollection {
-            get {
-                return ResourceManager.GetString("toCollection", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Zum Inhalt der Sammlung ähnelt.
-        /// </summary>
-        internal static string toCollectionMembers {
-            get {
-                return ResourceManager.GetString("toCollectionMembers", resourceCulture);
             }
         }
         
@@ -885,15 +570,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string type {
             get {
                 return ResourceManager.GetString("type", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Bewertung ähnelt.
-        /// </summary>
-        internal static string vote {
-            get {
-                return ResourceManager.GetString("vote", resourceCulture);
             }
         }
         
@@ -921,33 +597,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string watchlist {
             get {
                 return ResourceManager.GetString("watchlist", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Merkliste und/oder Gesehen ähnelt.
-        /// </summary>
-        internal static string watchlistOrAndWatched {
-            get {
-                return ResourceManager.GetString("watchlistOrAndWatched", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Willst du Merkliste oder Gesehen anzeigen? ähnelt.
-        /// </summary>
-        internal static string whatDoYouWantToSee {
-            get {
-                return ResourceManager.GetString("whatDoYouWantToSee", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Ja ähnelt.
-        /// </summary>
-        internal static string yes {
-            get {
-                return ResourceManager.GetString("yes", resourceCulture);
             }
         }
     }

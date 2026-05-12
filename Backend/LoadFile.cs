@@ -1,4 +1,5 @@
-﻿using FilmManager.Helpers;
+﻿using DocumentFormat.OpenXml.Drawing;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Resources.Strings.Sprachen;
 using OfficeIMO.Word;
@@ -46,23 +47,23 @@ namespace FilmManager.Backend
                 List<WordParagraph> paragraphs = wordDocument.Paragraphs;
                 foreach (WordParagraph paragraph in paragraphs)
                 {
-                    string text=paragraph.Text?.Trim()??"";
-                    if(string.IsNullOrEmpty(text))
+                    string text = paragraph.Text?.Trim() ?? "";
+                    if (string.IsNullOrEmpty(text))
                     {
                         continue;
                     }
                     lines.Add(text);
-                    if(text.StartsWith("VoteCount"))
+                    if (text.StartsWith("VoteCount"))
                     {
                         if (lines[1].StartsWith("MediaType"))
                         {
-                            string[] st = lines[1].Split(":");
+                            string[] st = lines[1].Split(";");
                             string s = st[1].Trim();
-                            if(s.Equals("Tv"))
+                            if (s.Equals("Tv"))
                             {
                                 list.Add(fileHelper.GetSerieFromDOCX(lines));
                             }
-                            if(s.Equals("Movie"))
+                            if (s.Equals("Movie"))
                             {
                                 list.Add(fileHelper.GetMovieFromDOCX(lines));
                             }
@@ -121,7 +122,7 @@ namespace FilmManager.Backend
                     {
                         results.Add(fileHelper.GetTv(parts));
                     }
-                }
+                } 
             }
             return results;
         }

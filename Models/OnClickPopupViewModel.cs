@@ -12,78 +12,27 @@ namespace FilmManager.Models
         {
             this.database = database;
         }
-        public object? Get(string selectedItem)
-        {
-            string[] st = selectedItem.Split("(");
-            string name = st[0].Trim();
-            object? obj = Search(selectedItem, name);
-            return obj;
-        }
 
-        private object? Search(string selectedItem, string name)
+        public bool MyContains(ObservableCollection<object> collection, object o)
         {
-            ObservableCollection<object> watched = this.database.SelectAllEntries("Watched");
-            foreach (object o in watched)
+            foreach(object obj in collection)
             {
-                if (o is SearchTv serie)
+                if(o is SearchMovie movie&&obj is SearchMovie m)
                 {
-                    if (!string.IsNullOrEmpty(serie.Name))
+                    if (movie.Id == m.Id)
                     {
-                        if (serie.Name.Equals(name))
-                        {
-                            return o;
-                        }
+                        return true;
                     }
                 }
-                if (o is SearchMovie movie)
+                if (o is SearchTv tv && obj is SearchTv t)
                 {
-                    if (!string.IsNullOrEmpty(movie.Title))
+                    if (tv.Id == t.Id)
                     {
-                        if (movie.Title.Equals(name))
-                        {
-                            return o;
-                        }
+                        return true;
                     }
                 }
             }
-            ObservableCollection<object> watchlist = this.database.SelectAllEntries("Watchlist");
-            foreach (object o in watchlist)
-            {
-                if (o is SearchTv serie)
-                {
-                    if (!string.IsNullOrEmpty(serie.Name))
-                    {
-                        if (serie.Name.Equals(name))
-                        {
-                            return o;
-                        }
-                    }
-                }
-                if (o is SearchMovie movie)
-                {
-                    if (!string.IsNullOrEmpty(movie.Title))
-                    {
-                        if (movie.Title.Equals(name))
-                        {
-                            return o;
-                        }
-                    }
-                }
-            }
-            return null;
-        }
-
-        public string? GetName(object obj)
-        {
-            if (obj is SearchTv serie)
-            {
-                return serie.Name;
-            }
-            if (obj is SearchMovie movie)
-            {
-                return movie.Title;
-            }
-            return null;
+            return false;
         }
     }
 }

@@ -1,9 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
-using System.Text;
 using TMDbLib.Objects.Search;
 
 namespace FilmManager.Models
@@ -21,7 +17,7 @@ namespace FilmManager.Models
         public void SetList(object list)
         {
             this.Images.Clear();
-            if(list is List<SearchMovie>movies)
+            if (list is List<SearchMovie> movies)
             {
                 this.m = movies;
                 foreach (SearchMovie movie in movies)
@@ -32,7 +28,7 @@ namespace FilmManager.Models
             if (list is List<SearchTv> tv)
             {
                 this.t = tv;
-                foreach(SearchTv searchTv in tv)
+                foreach (SearchTv searchTv in tv)
                 {
                     this.Images.Add($"{ImageBaseUrl}{searchTv.PosterPath}");
                 }
@@ -46,7 +42,7 @@ namespace FilmManager.Models
             {
                 if (!string.IsNullOrEmpty(movie.PosterPath))
                 {
-                    if(movie.PosterPath.Equals(selectedItem))
+                    if (movie.PosterPath.Equals(selectedItem))
                     {
                         objs.Add(movie);
                     }
@@ -68,9 +64,9 @@ namespace FilmManager.Models
         public List<SearchMovie> GetSearchMovieList(List<object> list)
         {
             List<SearchMovie> movies = new();
-            foreach(object o in list)
+            foreach (object o in list)
             {
-                if(o is SearchMovie movie)
+                if (o is SearchMovie movie)
                 {
                     movies.Add(movie);
                 }

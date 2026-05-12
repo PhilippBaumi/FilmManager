@@ -1,8 +1,8 @@
+using CommunityToolkit.Maui.Extensions;
 using FilmManager.Backend;
 using FilmManager.Interfaces;
 using FilmManager.Models;
-using FilmManager.Resources.Strings.Sprachen;
-using System.Collections.ObjectModel;
+using FilmManager.Popups;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
@@ -15,29 +15,31 @@ public partial class SearchPage : ContentPage
     private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
     private SearchPageViewModel searchPageViewModel = new();
     private INavigationService navigationService;
-    public SearchPage(INavigationService navigationService)
-	{
-		InitializeComponent();
+    private IDatabase database;
+    public SearchPage(INavigationService navigationService, IDatabase database)
+    {
+        InitializeComponent();
         this.navigationService = navigationService;
-		BindingContext = searchPageViewModel;
-	}
+        this.database=database;
+        BindingContext = searchPageViewModel;
+    }
 
     private async void Search(object sender, EventArgs e)
     {
-		TMDBService tMDBService=new TMDBService(new TMDbClient(apiKey));
-		string search=entrySearch.Text;
-		if(rbMovie.IsChecked)
-		{
-			SearchContainer<SearchMovie>resultMovies=await tMDBService.SearchMovieAsync(search);
-			List<SearchMovie>movies=resultMovies.Results;
-			this.searchPageViewModel.SetList(movies);
-		}
-		if (rbTv.IsChecked)
-		{
-			SearchContainer<SearchTv> resultSerien = await tMDBService.SearchSerieAsync(search);
-			List<SearchTv> tv = resultSerien.Results;
-			this.searchPageViewModel.SetList(tv);
-		}
+        TMDBService tMDBService = new TMDBService(new TMDbClient(apiKey));
+        string search = entrySearch.Text;
+        if (rbMovie.IsChecked)
+        {
+            SearchContainer<SearchMovie> resultMovies = await tMDBService.SearchMovieAsync(search);
+            List<SearchMovie> movies = resultMovies.Results;
+            this.searchPageViewModel.SetList(movies);
+        }
+        if (rbTv.IsChecked)
+        {
+            SearchContainer<SearchTv> resultSerien = await tMDBService.SearchSerieAsync(search);
+            List<SearchTv> tv = resultSerien.Results;
+            this.searchPageViewModel.SetList(tv);
+        }
     }
 
     private async void GetSearchToImage(object sender, SelectionChangedEventArgs e)

@@ -1,5 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using DocumentFormat.OpenXml.Office2010.Excel;
 using FilmManager.Resources.Strings.Sprachen;
 using System.Collections.ObjectModel;
 using TMDbLib.Objects.Search;
@@ -12,7 +11,7 @@ namespace FilmManager.Models
         public ObservableCollection<string> Watchlist { get; } = new();
 
         private List<object> watchlist = new();
-        private List<object> watched=new();
+        private List<object> watched = new();
 
         [ObservableProperty]
         private string selectedItem;
@@ -65,28 +64,28 @@ namespace FilmManager.Models
 
         public object? Get(string s)
         {
-            foreach(object obj in watched)
+            foreach (object obj in watched)
             {
-                if(obj is SearchMovie movie)
+                if (obj is SearchMovie movie)
                 {
-                    if(movie.OriginalTitle.Equals(s))
-                    { 
+                    if (movie.OriginalTitle.Equals(s))
+                    {
                         return movie;
                     }
                 }
-                if(obj is SearchTv tv)
+                if (obj is SearchTv tv)
                 {
-                    if(tv.OriginalName.Equals(s))
+                    if (tv.OriginalName.Equals(s))
                     {
                         return tv;
                     }
                 }
             }
-            foreach(object obj in watchlist)
+            foreach (object obj in watchlist)
             {
-                if(obj is SearchTv serie)
+                if (obj is SearchTv serie)
                 {
-                    if(serie.OriginalName.Equals(s))
+                    if (serie.OriginalName.Equals(s))
                     {
                         return serie;
                     }
@@ -100,6 +99,18 @@ namespace FilmManager.Models
                 }
             }
             return null;
+        }
+
+        public bool IsInWatchedList(object? obj)
+        {
+            if (this.watched.Contains(obj))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
