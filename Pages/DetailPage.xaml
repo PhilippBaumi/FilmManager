@@ -3,42 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FilmManager.DetailPage">
     <ScrollView>
-        <VerticalStackLayout>
+        <VerticalStackLayout Padding="20">
             <Label Text="{Binding OriginalName}" 
                    HorizontalTextAlignment="Center" 
                    FontSize="24" 
-                   Padding="20" 
                    FontFamily="Bold"/>
             <Image Source="{Binding Poster}" />
             <Image Source="{Binding Backport}" />
-            <Label Padding="20" 
-                   Text="{Binding Id}"/>
-            <Label Padding="20" 
-                   Text="{Binding Overview}"/>
-            <Label Padding="20" 
-                   Text="{Binding Language}"/>
-            <Label Padding="20" 
-                   Text="{Binding OriginCountry}"/>
-            <Label Padding="20" 
-                   Text="{Binding ReleaseDate}"/>
-            <Label Padding="20" 
-                   Text="{Binding Popularity}"/>
-            <Label Padding="20" 
-                   Text="{Binding AverageVote}"/>
-            <Label Padding="20" 
-                   Text="{Binding CountVote}"/>
-            <Label Padding="20" 
-                   Text="{Binding Homepage}" 
+            <Label Text="{Binding Cast}"/>
+            <Label Text="{Binding Id}"/>
+            <Label Text="{Binding Overview}"/>
+            <Label Text="{Binding Language}"/>
+            <Label Text="{Binding OriginCountry}"/>
+            <Label Text="{Binding ReleaseDate}"/>
+            <Label Text="{Binding Popularity}"/>
+            <Label Text="{Binding AverageVote}"/>
+            <Label Text="{Binding CountVote}"/>
+            <Label Text="{Binding Homepage}" 
                    TextColor="OrangeRed">
                 <Label.GestureRecognizers>
                     <TapGestureRecognizer NumberOfTapsRequired="1" 
                                           Tapped="HandleLinkClicked"/>
                 </Label.GestureRecognizers>
             </Label>
-            <Label Text="{Binding Genres}" 
-                   Padding="20"/>
-            <Label Text="{Binding Networks}"
-                   Padding="20"/>
+            <Label Text="{Binding Genres}" />
+            <Label Text="{Binding Networks}"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -156,6 +156,9 @@
   <data name="doesNotExists" xml:space="preserve">
     <value> existiert nicht!</value>
   </data>
+  <data name="doYouWantToNavigateToCast" xml:space="preserve">
+    <value>Willst du zur Cast Seite wechseln?</value>
+  </data>
   <data name="english" xml:space="preserve">
     <value>Englisch</value>
   </data>
@@ -215,6 +218,9 @@
   </data>
   <data name="newGeneratedDatabase" xml:space="preserve">
     <value>Datenbank neu erstellt</value>
+  </data>
+  <data name="no" xml:space="preserve">
+    <value>Nein</value>
   </data>
   <data name="noChoosenMovieOrSerie" xml:space="preserve">
     <value>Kein gewählter Film oder Serie</value>
@@ -296,5 +302,8 @@
   </data>
   <data name="watchlist" xml:space="preserve">
     <value>Merkliste</value>
+  </data>
+  <data name="yes" xml:space="preserve">
+    <value>Ja</value>
   </data>
 </root>

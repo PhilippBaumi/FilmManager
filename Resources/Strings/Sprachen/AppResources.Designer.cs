@@ -178,6 +178,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Willst du zur Cast Seite wechseln? ähnelt.
+        /// </summary>
+        internal static string doYouWantToNavigateToCast {
+            get {
+                return ResourceManager.GetString("doYouWantToNavigateToCast", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Englisch ähnelt.
         /// </summary>
         internal static string english {
@@ -354,6 +363,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string newGeneratedDatabase {
             get {
                 return ResourceManager.GetString("newGeneratedDatabase", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nein ähnelt.
+        /// </summary>
+        internal static string no {
+            get {
+                return ResourceManager.GetString("no", resourceCulture);
             }
         }
         
@@ -597,6 +615,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string watchlist {
             get {
                 return ResourceManager.GetString("watchlist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Ja ähnelt.
+        /// </summary>
+        internal static string yes {
+            get {
+                return ResourceManager.GetString("yes", resourceCulture);
             }
         }
     }

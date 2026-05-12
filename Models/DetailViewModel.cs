@@ -1,4 +1,6 @@
-﻿using FilmManager.Resources.Strings.Sprachen;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using FilmManager.Resources.Strings.Sprachen;
+using System.Collections.ObjectModel;
 using System.Text;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
@@ -6,7 +8,7 @@ using TMDbLib.Objects.TvShows;
 
 namespace FilmManager.Models
 {
-    public class DetailViewModel
+    public partial class DetailViewModel : ObservableObject
     {
         private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
         public string? OriginalName { get; set; }
@@ -23,6 +25,7 @@ namespace FilmManager.Models
         public string? CountVote { get; set; }
         public string? OriginCountry { get; set; }
         public string? Networks { get; set; }
+        public string? Cast { get; set; } 
         public DetailViewModel(object o)
         {
             if (o is Movie movie)
@@ -39,6 +42,7 @@ namespace FilmManager.Models
                 Homepage = movie.Homepage;
                 Genres = "Genres: " + GenresToString(movie.Genres);
                 CountVote = $"{AppResources.countVote}: " + movie.VoteCount;
+                Cast = "Cast: "+GetCast(movie.Credits.Cast);
             }
             if (o is TvShow serie)
             {
@@ -56,7 +60,34 @@ namespace FilmManager.Models
                 CountVote = $"{AppResources.countVote}: " + serie.VoteCount;
                 OriginCountry = $"{AppResources.origionCountry}: " + string.Join(",", serie.OriginCountry);
                 Networks = "Networks: " + GetNetworks(serie.Networks);
+                Cast = "Cast: "+GetCast(serie.Credits.Cast);
             }
+        }
+
+        private string GetCast(object? obj)
+        {
+            StringBuilder sb = new();
+            if(obj!=null)
+            {
+                if(obj is List<TMDbLib.Objects.Movies.Cast> mCastList)
+                {
+                    foreach(TMDbLib.Objects.Movies.Cast mCast in mCastList)
+                    {
+                        sb.Append(mCast.Name);
+                        sb.Append(", ");
+                    }
+                }
+                if(obj is List<TMDbLib.Objects.TvShows.Cast> tCastList)
+                {
+                    foreach(TMDbLib.Objects.TvShows.Cast tCast in tCastList)
+                    {
+                        sb.Append(tCast.Name);
+                        sb.Append(", ");
+                    }
+                }
+            }
+            string s = sb.ToString();
+            return s.Substring(0, s.Length - 2);
         }
 
         private string? GetNetworks(List<NetworkWithLogo>? networks)
