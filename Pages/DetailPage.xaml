@@ -6,7 +6,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="20">
             <Image Source="{Binding Logo}"
-                   Aspect="Center"/>
+                   Aspect="AspectFit"/>
             <Image Source="{Binding Poster}" />
             <Image Source="{Binding Backport}" />
             <Label Text="{Binding Id}"/>

@@ -1,6 +1,4 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using DocumentFormat.OpenXml.Drawing;
-using DocumentFormat.OpenXml.Presentation;
 using FilmManager.Resources.Strings.Sprachen;
 using System.Collections.ObjectModel;
 using System.Text;
