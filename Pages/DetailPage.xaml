@@ -1,20 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="FilmManager.DetailPage">
+             x:Class="FilmManager.DetailPage"
+             xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
     <ScrollView>
         <VerticalStackLayout Padding="20">
-            <Label Text="{Binding OriginalName}" 
-                   HorizontalTextAlignment="Center" 
-                   FontSize="24" 
-                   FontFamily="Bold"/>
+            <Image Source="{Binding Logo}"
+                   Aspect="Center"/>
             <Image Source="{Binding Poster}" />
             <Image Source="{Binding Backport}" />
-            <Label Text="{Binding Cast}"/>
             <Label Text="{Binding Id}"/>
+            <Label Text="{Binding EpisodsCount}"/>
+            <Label Text="{Binding SeasonsCount}"/>
             <Label Text="{Binding Overview}"/>
+            <Label Text="{Binding Cast}"/>
+            <Label Text="{Binding CreatedBy}"/>
             <Label Text="{Binding Language}"/>
             <Label Text="{Binding OriginCountry}"/>
+            <Label Text="{Binding ProductionCompanies}"/>
             <Label Text="{Binding ReleaseDate}"/>
             <Label Text="{Binding Popularity}"/>
             <Label Text="{Binding AverageVote}"/>
@@ -28,6 +31,26 @@
             </Label>
             <Label Text="{Binding Genres}" />
             <Label Text="{Binding Networks}"/>
+            <Picker Title="{x:Static strings:AppResources.recommendations}"
+                    ItemsSource="{Binding Recommendations}"
+                    SelectedItem="{Binding SelectedRecommendation}"
+                    SelectedIndexChanged="HandleRecommendation"/>
+            <Label Text="{x:Static strings:AppResources.linksToMedia}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center"
+                   FontAttributes="Bold"/>
+            <Picker Title="Logos"
+                    ItemsSource="{Binding Logos}"
+                    SelectedItem="{Binding SelectedLogo}"
+                    SelectedIndexChanged="HandleLogos"/>
+            <Picker Title="Posters"
+                    ItemsSource="{Binding Posters}"
+                    SelectedItem="{Binding SelectedPoster}"
+                    SelectedIndexChanged="HandlePosters"/>
+            <Picker Title="{x:Static strings:AppResources.backports}"
+                    ItemsSource="{Binding Backports}"
+                    SelectedItem="{Binding SelectedBackport}"
+                    SelectedIndexChanged="HandleBackports"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -58,16 +58,15 @@ public partial class OptionsPopup : Popup
                     await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.noChoosenMovieOrSerie, "OK");
                 }
                 this.database.CreateTable("Watched");
-                await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.successfullyCreatedTable, "OK");
                 if (this.obj is SearchTv serie)
                 {
                     this.database.InsertEntry(serie, "Watched");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.insertSuccess, "OK");
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
                 }
                 if (this.obj is SearchMovie movie)
                 {
                     this.database.InsertEntry(movie, "Watched");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.insertSuccess, "OK");
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
                 }
             }
         }
@@ -88,16 +87,14 @@ public partial class OptionsPopup : Popup
                     await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.noChoosenMovieOrSerie, "OK");
                 }
                 this.database.CreateTable("Watchlist");
-                await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.successfullyCreatedTable, "OK");
                 if (this.obj is SearchTv serie)
                 {
                     this.database.InsertEntry(serie, "Watchlist");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.insertSuccess, "OK");
-                }
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");                }
                 if (this.obj is SearchMovie movie)
                 {
                     this.database.InsertEntry(movie, "Watchlist");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.insertSuccess, "OK");
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
                 }
             }
         }
@@ -109,25 +106,32 @@ public partial class OptionsPopup : Popup
 
     private async void NavigateToDetails(object sender, EventArgs e)
     {
-        if (this.selectedItem != null)
+        try
+        { 
+            if (this.selectedItem != null)
+            {
+                if (this.obj != null)
+                {
+                    if (this.obj is SearchTv serie)
+                    {
+                        TvShow tvShow = await this.tMDBService.GetTvShowAsync(serie.Id);
+                        await navigation.NavigateToAsync("//Detail", new Dictionary<string, object> { { "content", tvShow } });
+                    }
+                    if (this.obj is SearchMovie movie)
+                    {
+                        Movie tMovie = await this.tMDBService.GetMovieAsync(movie.Id);
+                        await navigation.NavigateToAsync("//Detail", new Dictionary<string, object> { { "content", tMovie } });
+                    }
+                }
+                if (this.obj == null)
+                {
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.cantNavigateToDetails, "OK");
+                }
+            }
+        }
+        catch (Exception ex)
         {
-            if (this.obj != null)
-            {
-                if (this.obj is SearchTv serie)
-                {
-                    TvShow tvShow = await this.tMDBService.GetTvShowAsync(serie.Id);
-                    await navigation.NavigateToAsync("//Detail", new Dictionary<string, object> { { "content", tvShow } });
-                }
-                if (this.obj is SearchMovie movie)
-                {
-                    Movie tMovie = await this.tMDBService.GetMovieAsync(movie.Id);
-                    await navigation.NavigateToAsync("//Detail", new Dictionary<string, object> { { "content", tMovie } });
-                }
-            }
-            if (this.obj == null)
-            {
-                await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.cantNavigateToDetails, "OK");
-            }
+            await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, ex.Message, "OK");
         }
     }
 

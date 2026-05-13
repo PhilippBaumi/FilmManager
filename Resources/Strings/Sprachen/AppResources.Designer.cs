@@ -79,11 +79,29 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die und ähnelt.
+        /// </summary>
+        internal static string and {
+            get {
+                return ResourceManager.GetString("and", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Durchschnittsbewertung ähnelt.
         /// </summary>
         internal static string averageVote {
             get {
                 return ResourceManager.GetString("averageVote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Hintergründe ähnelt.
+        /// </summary>
+        internal static string backports {
+            get {
+                return ResourceManager.GetString("backports", resourceCulture);
             }
         }
         
@@ -147,6 +165,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string countVote {
             get {
                 return ResourceManager.GetString("countVote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Produzenten ähnelt.
+        /// </summary>
+        internal static string createdBy {
+            get {
+                return ResourceManager.GetString("createdBy", resourceCulture);
             }
         }
         
@@ -268,11 +295,11 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Sprache wurde geändert! ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sprache wurde geändert! Es wird zu Start gewechselt.  ähnelt.
         /// </summary>
-        internal static string languageChanged {
+        internal static string languageChangedAndNavigateToHome {
             get {
-                return ResourceManager.GetString("languageChanged", resourceCulture);
+                return ResourceManager.GetString("languageChangedAndNavigateToHome", resourceCulture);
             }
         }
         
@@ -282,6 +309,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string light {
             get {
                 return ResourceManager.GetString("light", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Links zu Medien ähnelt.
+        /// </summary>
+        internal static string linksToMedia {
+            get {
+                return ResourceManager.GetString("linksToMedia", resourceCulture);
             }
         }
         
@@ -403,6 +439,24 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Anzahl Episoden ähnelt.
+        /// </summary>
+        internal static string numberOfEpisodes {
+            get {
+                return ResourceManager.GetString("numberOfEpisodes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Anzahl Staffeln ähnelt.
+        /// </summary>
+        internal static string numberOfSeasons {
+            get {
+                return ResourceManager.GetString("numberOfSeasons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Originalsprache ähnelt.
         /// </summary>
         internal static string originalLanguage {
@@ -444,6 +498,24 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string popularity {
             get {
                 return ResourceManager.GetString("popularity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Produktionsunternehmen ähnelt.
+        /// </summary>
+        internal static string productionCompanies {
+            get {
+                return ResourceManager.GetString("productionCompanies", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Empfehlungen ähnelt.
+        /// </summary>
+        internal static string recommendations {
+            get {
+                return ResourceManager.GetString("recommendations", resourceCulture);
             }
         }
         
@@ -579,6 +651,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string toDetails {
             get {
                 return ResourceManager.GetString("toDetails", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die da nur 500 Seiten abgerufen werden können, aber es mehr Seiten gab! ähnelt.
+        /// </summary>
+        internal static string tooMuchPages {
+            get {
+                return ResourceManager.GetString("tooMuchPages", resourceCulture);
             }
         }
         

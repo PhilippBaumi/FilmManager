@@ -4,6 +4,7 @@ using FilmManager.Models;
 using FilmManager.Popups;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using TMDbLib.Objects.Search;
 
 namespace FilmManager;
 
@@ -49,7 +50,29 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
             O = query["list"];
             overviewViewModel = new(O);
             BindingContext = overviewViewModel;
-            OnPropertyChanged(nameof(O));
+        }
+        if(query.ContainsKey("objectlist"))
+        {
+            object? obj = query["objectlist"];
+            if(obj is List<object> list)
+            {
+                if (list.Count == 1 && list[0] is SearchTv tv)
+                {
+                    List<SearchTv> tvs = new();
+                    tvs.Add(tv);
+                    O = tvs;
+                    overviewViewModel = new(O);
+                    BindingContext = overviewViewModel;
+                }
+                if(list.Count==1 && list[0] is SearchMovie movie)
+                {
+                    List<SearchMovie> movies = new();
+                    movies.Add(movie);
+                    O = movies;
+                    overviewViewModel = new(O);
+                    BindingContext = overviewViewModel;
+                }
+            }
         }
         query.Clear();
         MainThread.BeginInvokeOnMainThread(() =>

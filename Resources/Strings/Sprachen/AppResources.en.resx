@@ -123,6 +123,9 @@
   <data name="addToWatchlist" xml:space="preserve">
     <value>Add to watchlist</value>
   </data>
+  <data name="and" xml:space="preserve">
+    <value>and</value>
+  </data>
   <data name="averageVote" xml:space="preserve">
     <value>Average Vote</value>
   </data>
@@ -156,8 +159,11 @@
   <data name="doesNotExists" xml:space="preserve">
     <value>Does not exist!</value>
   </data>
+  <data name="tooMuchPages" xml:space="preserve">
+    <value>because only 500 pages can be retrieved, but there were more pages!</value>
+  </data>
   <data name="doYouWantToNavigateToCast" xml:space="preserve">
-    <value>Dao you want to switch to Cast Page?</value>
+    <value>Do you want to switch to Cast Page?</value>
   </data>
   <data name="english" xml:space="preserve">
     <value>English</value>
@@ -186,8 +192,8 @@
   <data name="language" xml:space="preserve">
     <value>Language</value>
   </data>
-  <data name="languageChanged" xml:space="preserve">
-    <value>Language changed!</value>
+  <data name="languageChangedAndNavigateToHome" xml:space="preserve">
+    <value>Language changed! You will swaitch to Home. </value>
   </data>
   <data name="light" xml:space="preserve">
     <value>Light</value>
@@ -305,5 +311,26 @@
   </data>
   <data name="yes" xml:space="preserve">
     <value>Yes</value>
+  </data>
+  <data name="createdBy" xml:space="preserve">
+    <value>Producers</value>
+  </data>
+  <data name="linksToMedia" xml:space="preserve">
+    <value>Links to media</value>
+  </data>
+  <data name="numberOfEpisodes" xml:space="preserve">
+    <value>Number of Episodes</value>
+  </data>
+  <data name="numberOfSeasons" xml:space="preserve">
+    <value>Number of Seasons</value>
+  </data>
+  <data name="productionCompanies" xml:space="preserve">
+    <value>Production companies</value>
+  </data>
+  <data name="recommendations" xml:space="preserve">
+    <value>Recommendations</value>
+  </data>
+  <data name="backports" xml:space="preserve">
+    <value>Backports</value>
   </data>
 </root>

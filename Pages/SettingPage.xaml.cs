@@ -30,7 +30,7 @@ public partial class SettingPage : ContentPage
                 case "English": localization.SetLanguage("en"); break;
             }
         }
-        await DisplayAlertAsync("Info", AppResources.languageChanged, "OK");
+        await DisplayAlertAsync("Info", AppResources.languageChangedAndNavigateToHome, "OK");
         Application.Current.MainPage = new AppShell(navigationService);
     }
 }

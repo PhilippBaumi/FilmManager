@@ -1,5 +1,4 @@
-﻿using DocumentFormat.OpenXml.Drawing;
-using FilmManager.Helpers;
+﻿using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Resources.Strings.Sprachen;
 using OfficeIMO.Word;
@@ -94,35 +93,56 @@ namespace FilmManager.Backend
                 throw new FileNotFoundException($"{AppResources.file} {path} {AppResources.doesNotExists}!");
             }
             ObservableCollection<object> results = new();
-            using (CsvDataReader reader = CsvDataReader.Create(path, new CsvDataReaderOptions
+            //using (CsvDataReader reader = CsvDataReader.Create(path, new CsvDataReaderOptions
+            //{
+            //    Delimiter = ';'
+            //}))
+            //{
+            //    while (reader.Read())
+            //    {
+            //        string type = reader.GetString(0);
+            //        string[] parts = new string[reader.FieldCount];
+            //        for (int i = 0; i < parts.Length; i++)
+            //        {
+            //            if (reader.IsDBNull(i))
+            //            {
+            //                parts[i] = "";
+            //            }
+            //            else
+            //            {
+            //                parts[i] = reader.GetString(i);
+            //            }
+            //        }
+            //        if (type.Equals("Movie"))
+            //        {
+            //            results.Add(fileHelper.GetMovie(parts));
+            //        }
+            //        if (type.Equals("Tv"))
+            //        {
+            //            results.Add(fileHelper.GetTv(parts));
+            //        }
+            //    } 
+            //}
+            using (StreamReader sr = new StreamReader(path))
             {
-                Delimiter = ';'
-            }))
-            {
-                while (reader.Read())
+                while(true)
                 {
-                    string type = reader.GetString(0);
-                    string[] parts = new string[reader.FieldCount];
-                    for (int i = 0; i < parts.Length; i++)
+                    string? line = sr.ReadLine();
+                    if(line==null)
                     {
-                        if (reader.IsDBNull(i))
-                        {
-                            parts[i] = "";
-                        }
-                        else
-                        {
-                            parts[i] = reader.GetString(i);
-                        }
+                        break;
                     }
-                    if (type.Equals("Movie"))
+                    string[] st = line.Split(";");
+                    string type = st[0];
+                    if(type.Equals("Movie"))
                     {
-                        results.Add(fileHelper.GetMovie(parts));
+                        results.Add(fileHelper.GetMovie(st));
                     }
-                    if (type.Equals("Tv"))
+                    if(type.Equals("Tv"))
                     {
-                        results.Add(fileHelper.GetTv(parts));
+                        results.Add(fileHelper.GetTv(st));
                     }
-                } 
+                }
             }
             return results;
         }

@@ -52,7 +52,7 @@ namespace FilmManager
                     }
                     catch (Exception ex)
                     {
-                        await DisplayAlertAsync(AppResources.error, ex.Message + " und/and " + mainViewModel.movies.Count + " Einträge. ", "OK");
+                        await DisplayAlertAsync("Info", $"{ex.Message}, {AppResources.tooMuchPages}" , "OK");
                     }
                 }
                 IDictionary<string, object> parameters = new Dictionary<string, object>
@@ -92,7 +92,7 @@ namespace FilmManager
                     }
                     catch (Exception ex)
                     {
-                        await DisplayAlertAsync(AppResources.error, ex.Message + " und/and " + mainViewModel.series.Count + " Einträge. ", "OK");
+                        await DisplayAlertAsync("Info", $"{ex.Message}, {AppResources.tooMuchPages}", "OK");
                     }
                     IDictionary<string, object> parameters = new Dictionary<string, object>
                     {

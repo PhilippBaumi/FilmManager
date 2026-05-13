@@ -123,6 +123,9 @@
   <data name="addToWatchlist" xml:space="preserve">
     <value>Zu Merkliste hinzufügen</value>
   </data>
+  <data name="and" xml:space="preserve">
+    <value>und</value>
+  </data>
   <data name="averageVote" xml:space="preserve">
     <value>Durchschnittsbewertung</value>
   </data>
@@ -156,6 +159,9 @@
   <data name="doesNotExists" xml:space="preserve">
     <value> existiert nicht!</value>
   </data>
+  <data name="tooMuchPages" xml:space="preserve">
+    <value>da nur 500 Seiten abgerufen werden können, aber es mehr Seiten gab!</value>
+  </data>
   <data name="doYouWantToNavigateToCast" xml:space="preserve">
     <value>Willst du zur Cast Seite wechseln?</value>
   </data>
@@ -186,8 +192,8 @@
   <data name="language" xml:space="preserve">
     <value>Sprache</value>
   </data>
-  <data name="languageChanged" xml:space="preserve">
-    <value>Sprache wurde geändert!</value>
+  <data name="languageChangedAndNavigateToHome" xml:space="preserve">
+    <value>Sprache wurde geändert! Es wird zu Start gewechselt. </value>
   </data>
   <data name="light" xml:space="preserve">
     <value>Hell</value>
@@ -305,5 +311,26 @@
   </data>
   <data name="yes" xml:space="preserve">
     <value>Ja</value>
+  </data>
+  <data name="createdBy" xml:space="preserve">
+    <value>Produzenten</value>
+  </data>
+  <data name="linksToMedia" xml:space="preserve">
+    <value>Links zu Medien</value>
+  </data>
+  <data name="numberOfEpisodes" xml:space="preserve">
+    <value>Anzahl Episoden</value>
+  </data>
+  <data name="numberOfSeasons" xml:space="preserve">
+    <value>Anzahl Staffeln</value>
+  </data>
+  <data name="productionCompanies" xml:space="preserve">
+    <value>Produktionsunternehmen</value>
+  </data>
+  <data name="recommendations" xml:space="preserve">
+    <value>Empfehlungen</value>
+  </data>
+  <data name="backports" xml:space="preserve">
+    <value>Hintergründe</value>
   </data>
 </root>

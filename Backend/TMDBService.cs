@@ -74,12 +74,12 @@ namespace FilmManager.Backend
 
         public async Task<Movie> GetMovieAsync(int id)
         {
-            return await client.GetMovieAsync(id, MovieMethods.Credits); 
+            return await client.GetMovieAsync(id, MovieMethods.Credits|MovieMethods.Images|MovieMethods.Videos|MovieMethods.Lists|MovieMethods.Recommendations|MovieMethods.WatchProviders);  
         }
 
         public async Task<TvShow> GetTvShowAsync(int id)
         {
-            return await client.GetTvShowAsync(id, TvShowMethods.Credits);
+            return await client.GetTvShowAsync(id, TvShowMethods.Credits | TvShowMethods.Images | TvShowMethods.Videos | TvShowMethods.WatchProviders| TvShowMethods.Recommendations);
         }
 
         public async Task<Collection> GetCollectionAsync(int id)

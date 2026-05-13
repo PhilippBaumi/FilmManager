@@ -26,7 +26,7 @@ namespace FilmManager.Backend
             WriteCSV(this.fileHelper.GetFilePath($"{watchedPath}.csv"), this.database.SelectAllEntries("Watched"));
             WriteCSV(this.fileHelper.GetFilePath($"{watchlistPath}.csv"), this.database.SelectAllEntries("Watchlist"));
         }
-        private async Task WriteCSV(string path, ObservableCollection<object> collection)
+        private void WriteCSV(string path, ObservableCollection<object> collection)
         {
             fileHelper.DeleteIfExits(path);
             using (StreamWriter streamWriter = new(path))
@@ -41,7 +41,6 @@ namespace FilmManager.Backend
                     if (o is SearchMovie m)
                     {
                         streamWriter.WriteLine(string.Join(";", fileHelper.ConvertToCsv(m.MediaType.ToString()), fileHelper.ConvertToCsv(m.Id.ToString()), fileHelper.ConvertToCsv(m.Title), fileHelper.ConvertToCsv(m.OriginalTitle), fileHelper.ConvertToCsv(fileHelper.DateTimeToString(m.ReleaseDate)), fileHelper.ConvertToCsv(""), fileHelper.ConvertToCsv(m.BackdropPath), fileHelper.ConvertToCsv(m.PosterPath), fileHelper.ConvertToCsv(string.Join(",", m.GenreIds)), fileHelper.ConvertToCsv(m.OriginalLanguage), fileHelper.ConvertToCsv(m.Overview), fileHelper.ConvertToCsv(m.VoteCount.ToString()), fileHelper.ConvertToCsv(m.VoteAverage.ToString()), fileHelper.ConvertToCsv(m.Popularity.ToString()), fileHelper.ConvertToCsv(m.Adult.ToString()), fileHelper.ConvertToCsv(m.Video.ToString())));
-
                     }
                 }
             }
@@ -115,21 +114,21 @@ namespace FilmManager.Backend
                     }
                     if (obj is SearchMovie movie)
                     {
-                        wordDocument.AddParagraph($"ID: {movie.Id}");
-                        wordDocument.AddParagraph($"MediaType: {movie.MediaType}");
-                        wordDocument.AddParagraph($"Title: {movie.Title}");
-                        wordDocument.AddParagraph($"OriginalTitle: {movie.OriginalTitle}");
-                        wordDocument.AddParagraph($"Overview: {movie.Overview}");
-                        wordDocument.AddParagraph($"OriginalLanguage: {movie.OriginalLanguage}");
-                        wordDocument.AddParagraph($"GenreIds: {string.Join(",", movie.GenreIds)}");
-                        wordDocument.AddParagraph($"ReleaseDate: {movie.ReleaseDate?.ToString("dd.MM.yyyy")}");
-                        wordDocument.AddParagraph($"PosterPath: {movie.PosterPath}");
-                        wordDocument.AddParagraph($"BackdropPath: {movie.BackdropPath}");
-                        wordDocument.AddParagraph($"Adult: {movie.Adult}");
-                        wordDocument.AddParagraph($"Video: {movie.Video}");
-                        wordDocument.AddParagraph($"Popularity: {movie.Popularity}");
-                        wordDocument.AddParagraph($"VoteAverage: {movie.VoteAverage}");
-                        wordDocument.AddParagraph($"VoteCount: {movie.VoteCount}");
+                        wordDocument.AddParagraph($"ID; {movie.Id}");
+                        wordDocument.AddParagraph($"MediaType; {movie.MediaType}");
+                        wordDocument.AddParagraph($"Title; {movie.Title}");
+                        wordDocument.AddParagraph($"OriginalTitle; {movie.OriginalTitle}");
+                        wordDocument.AddParagraph($"Overview; {movie.Overview}");
+                        wordDocument.AddParagraph($"OriginalLanguage; {movie.OriginalLanguage}");
+                        wordDocument.AddParagraph($"GenreIds; {string.Join(",", movie.GenreIds)}");
+                        wordDocument.AddParagraph($"ReleaseDate; {movie.ReleaseDate?.ToString("dd.MM.yyyy")}");
+                        wordDocument.AddParagraph($"PosterPath; {movie.PosterPath}");
+                        wordDocument.AddParagraph($"BackdropPath; {movie.BackdropPath}");
+                        wordDocument.AddParagraph($"Adult; {movie.Adult}");
+                        wordDocument.AddParagraph($"Video; {movie.Video}");
+                        wordDocument.AddParagraph($"Popularity; {movie.Popularity}");
+                        wordDocument.AddParagraph($"VoteAverage; {movie.VoteAverage}");
+                        wordDocument.AddParagraph($"VoteCount; {movie.VoteCount}");
                     }
                     wordDocument.AddPageBreak();
                 }
