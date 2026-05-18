@@ -1,6 +1,9 @@
-﻿using FilmManager.Backend;
+﻿using CommunityToolkit.Maui.Extensions;
+using CommunityToolkit.Maui.Views;
+using FilmManager.Backend;
 using FilmManager.Interfaces;
 using FilmManager.Models;
+using FilmManager.Popups;
 using FilmManager.Resources.Strings.Sprachen;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
@@ -39,11 +42,11 @@ namespace FilmManager
                 {
                     try
                     {
-                        SearchContainer<SearchMovie> discoversMovies = await tMDBService.DiscoverMoviesByGenre(id, 1);
+                        SearchContainer<SearchMovie> discoversMovies = await tMDBService.DiscoverMovies(id, 1);
                         for (int page = discoversMovies.Page; page <= discoversMovies.TotalPages; page++)
                         {
                             discoversMovies.Page = page;
-                            discoversMovies = await tMDBService.DiscoverMoviesByGenre(id, page);
+                            discoversMovies = await tMDBService.DiscoverMovies(id, page);
                             if (discoversMovies.Results != null)
                             {
                                 mainViewModel.GetMovies(discoversMovies.Results);
@@ -75,7 +78,7 @@ namespace FilmManager
                 {
                     try
                     {
-                        SearchContainer<SearchTv> discoversSeries = await tMDBService.DiscoverSerienByGenre(id, 1);
+                        SearchContainer<SearchTv> discoversSeries = await tMDBService.DiscoverSerien(id, 1);
                         if (discoversSeries.Results != null)
                         {
                             mainViewModel.GetSerien(discoversSeries.Results);
@@ -83,7 +86,7 @@ namespace FilmManager
                         for (int page = discoversSeries.Page + 1; page <= discoversSeries.TotalPages; page++)
                         {
                             discoversSeries.Page = page;
-                            discoversSeries = await tMDBService.DiscoverSerienByGenre(id, page);
+                            discoversSeries = await tMDBService.DiscoverSerien(id, page);
                             if (discoversSeries.Results != null)
                             {
                                 mainViewModel.GetSerien(discoversSeries.Results);

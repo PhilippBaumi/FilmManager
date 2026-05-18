@@ -1,4 +1,7 @@
-﻿using TMDbLib.Objects.Search;
+﻿using FilmManager.Helpers;
+using TMDbLib.Objects.Movies;
+using TMDbLib.Objects.Search;
+using TMDbLib.Objects.TvShows;
 
 namespace FilmManager.Models
 {
@@ -6,6 +9,7 @@ namespace FilmManager.Models
     {
         public object? Get(string selectedItem, object? o)
         {
+            TMDbHelper tmdbHelper = new();
             if (selectedItem != null&&o!=null)
             {
                 if (o is List<SearchTv> series)
@@ -33,6 +37,14 @@ namespace FilmManager.Models
                             }
                         }
                     }
+                }
+                else if(o is TvShow show)
+                {
+                    return tmdbHelper.SearchTvFromTvShow(show);
+                }
+                else if(o is Movie movie)
+                {
+                    return tmdbHelper.SearchMovieFromMovie(movie);
                 }
             }
             return null;

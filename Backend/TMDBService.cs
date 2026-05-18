@@ -41,7 +41,7 @@ namespace FilmManager.Backend
             }
         }
 
-        public async Task<SearchContainer<SearchMovie>> DiscoverMoviesByGenre(int genreId, int page)
+        public async Task<SearchContainer<SearchMovie>> DiscoverMovies(int genreId, int page)
         {
             DiscoverMovie discover = client.DiscoverMoviesAsync();
             IEnumerable<int> enumerable = new int[] { genreId };
@@ -49,7 +49,7 @@ namespace FilmManager.Backend
             return await discover.Query(page);
         }
 
-        public async Task<SearchContainer<SearchTv>> DiscoverSerienByGenre(int genreId, int page)
+        public async Task<SearchContainer<SearchTv>> DiscoverSerien(int genreId, int page)
         {
             DiscoverTv discover = client.DiscoverTvShowsAsync();
             IEnumerable<int> enumerable = new int[] { genreId };

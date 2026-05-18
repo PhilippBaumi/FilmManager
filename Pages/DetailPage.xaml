@@ -51,6 +51,8 @@
                     ItemsSource="{Binding Backports}"
                     SelectedItem="{Binding SelectedBackport}"
                     SelectedIndexChanged="HandleBackports"/>
+            <Button Text="{x:Static strings:AppResources.showPopup}"
+                    Clicked="HandlePopupShow"/>
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

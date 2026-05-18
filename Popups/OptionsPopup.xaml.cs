@@ -21,7 +21,7 @@ public partial class OptionsPopup : Popup
     private TMDBService tMDBService;
     private object? obj;
 
-    public OptionsPopup(string? selectedItem, INavigationService navigation, object? o, IDatabase database)
+    public OptionsPopup(string? selectedItem, INavigationService navigation, object? o, IDatabase database, string option)
     {
         InitializeComponent();
         this.selectedItem = selectedItem;
@@ -30,6 +30,10 @@ public partial class OptionsPopup : Popup
         this.tMDBService = new(new TMDbClient(apiKey));
         this.obj = optionPopupViewModel.Get(selectedItem, o);
         SetTitleToLabel();
+        if(option.Equals("Detail"))
+        {
+            btnDetails.IsVisible = false;
+        }
     }
 
     private void SetTitleToLabel()

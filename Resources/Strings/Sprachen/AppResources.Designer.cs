@@ -637,6 +637,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zeige Popup ähnelt.
+        /// </summary>
+        internal static string showPopup {
+            get {
+                return ResourceManager.GetString("showPopup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Erfolgreich ähnelt.
         /// </summary>
         internal static string successfully {

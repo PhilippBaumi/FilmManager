@@ -1,25 +1,32 @@
+using CommunityToolkit.Maui.Extensions;
 using FilmManager.Interfaces;
 using FilmManager.Models;
+using FilmManager.Popups;
 using FilmManager.Resources.Strings.Sprachen;
+using TMDbLib.Objects.Search;
 
 namespace FilmManager;
 
 public partial class DetailPage : ContentPage, IQueryAttributable
 {
+    private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
     private INavigationService navigationService;
     private DetailViewModel detailViewModel;
+    private object o;
+    private IDatabase database;
 
-    public DetailPage(INavigationService navigationSerive)
+    public DetailPage(INavigationService navigationSerive, IDatabase database)
     {
         InitializeComponent();
         this.navigationService = navigationSerive;
+        this.database = database;
     }
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (query.ContainsKey("content"))
         {
-            object o = query["content"];
+            o = query["content"];
             detailViewModel = new(o);
             BindingContext = detailViewModel;
         }
@@ -105,5 +112,13 @@ public partial class DetailPage : ContentPage, IQueryAttributable
             };
             await navigationService.NavigateToAsync("//Overview", parameters);
         }
+    }
+
+    private void HandlePopupShow(object sender, EventArgs e)
+    {
+        string? selectedPoster = detailViewModel.Poster;
+        selectedPoster = selectedPoster.Replace(ImageBaseUrl, string.Empty);
+        OptionsPopup popup = new(selectedPoster, navigationService,o, database, "Detail");
+        Application.Current.Windows[0].Page.ShowPopup(popup);
     }
 }

@@ -339,4 +339,7 @@
   <data name="nothingSelectedMessage" xml:space="preserve">
     <value>Nothing was selected! </value>
   </data>
+  <data name="showPopup" xml:space="preserve">
+    <value>Show popup</value>
+  </data>
 </root>
