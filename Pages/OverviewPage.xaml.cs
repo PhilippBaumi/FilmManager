@@ -90,7 +90,7 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
         {
             selectedItem = selectedItem.Replace(ImageBaseUrl, string.Empty);
             OptionsPopup popup = new(selectedItem, navigationService, o, database);
-            Application.Current.MainPage.ShowPopup(popup);
+            Application.Current.Windows[0].Page.ShowPopup(popup);
         }
         ((CollectionView)sender).SelectedItem = null;
     }

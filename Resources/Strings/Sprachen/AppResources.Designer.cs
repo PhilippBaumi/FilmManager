@@ -430,6 +430,24 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Es wurde nichts gewählt! ähnelt.
+        /// </summary>
+        internal static string nothingSelectedMessage {
+            get {
+                return ResourceManager.GetString("nothingSelectedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Nichts gewählt ähnelt.
+        /// </summary>
+        internal static string nothingSelectedName {
+            get {
+                return ResourceManager.GetString("nothingSelectedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Nicht entfernt! ähnelt.
         /// </summary>
         internal static string notRemoved {

@@ -333,4 +333,10 @@
   <data name="backports" xml:space="preserve">
     <value>Backports</value>
   </data>
+  <data name="nothingSelectedName" xml:space="preserve">
+    <value>Nothing selected</value>
+  </data>
+  <data name="nothingSelectedMessage" xml:space="preserve">
+    <value>Nothing was selected! </value>
+  </data>
 </root>

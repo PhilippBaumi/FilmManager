@@ -23,6 +23,13 @@ public partial class WatchlistWatchedPage : ContentPage
         this.database = database;
     }
 
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+        LoadWatched();
+        LoadWatchlist();
+    }
+
     private async void OnSelectionItem(object sender, SelectionChangedEventArgs e)
     {
         string? selectedItem = watchlistWatchedViewModel.SelectedItem;
@@ -34,7 +41,7 @@ public partial class WatchlistWatchedPage : ContentPage
                 object? obj = this.watchlistWatchedViewModel.Get(st[0].Trim());
                 bool inWatchedList = this.watchlistWatchedViewModel.IsInWatchedList(obj);
                 OnClickPopup popup = new(obj, inWatchedList, database, navigationService);
-                Application.Current.MainPage.ShowPopup(popup);
+                Application.Current.Windows[0].Page.ShowPopup(popup);
             }
         }
         catch (Exception ex)
@@ -43,7 +50,7 @@ public partial class WatchlistWatchedPage : ContentPage
         }
     }
 
-    private async void LoadWatchlist(object sender, EventArgs e)
+    private async void LoadWatchlist()
     {
         try
         {
@@ -57,7 +64,7 @@ public partial class WatchlistWatchedPage : ContentPage
         BindingContext = this.watchlistWatchedViewModel;
     }
 
-    private async void LoadWatched(object sender, EventArgs e)
+    private async void LoadWatched()
     {
         try
         {

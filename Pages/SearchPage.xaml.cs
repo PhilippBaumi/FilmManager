@@ -3,6 +3,7 @@ using FilmManager.Backend;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Popups;
+using FilmManager.Resources.Strings.Sprachen;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
@@ -67,7 +68,7 @@ public partial class SearchPage : ContentPage
                 };
                 await navigationService.NavigateToAsync("//Overview", parameters);
             }
-            ((CollectionView)sender).SelectedItem = null;
+            ((CollectionView)sender).SelectedItem=null;
         }
     }
 }

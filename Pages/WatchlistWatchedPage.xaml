@@ -12,8 +12,7 @@
                                Padding="10" 
                                IsExpanded="False">
                 <toolkit:Expander.Header>
-                    <Button Text="{x:Static strings:AppResources.watched}" 
-                            Clicked="LoadWatched"/>
+                    <Button Text="{x:Static strings:AppResources.watched}"/>
                 </toolkit:Expander.Header>
                 <toolkit:Expander.Content>
                     <StackLayout Margin="10">
@@ -40,8 +39,7 @@
                               Padding="10" 
                               IsExpanded="False">
                 <toolkit:Expander.Header>
-                    <Button Text="{x:Static strings:AppResources.watchlist}" 
-                            Clicked="LoadWatchlist"/>
+                    <Button Text="{x:Static strings:AppResources.watchlist}"/>
                 </toolkit:Expander.Header>
                 <toolkit:Expander.Content>
                     <StackLayout Margin="10">

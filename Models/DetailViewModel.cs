@@ -149,7 +149,7 @@ namespace FilmManager.Models
             {
                 if (image.FilePath != null && image.Iso_3166_1 != null)
                 {
-                    Backports.Add($"{ImageBaseUrl}{image.FilePath}[{image.Iso_3166_1}]");
+                    Backports.Add($"{ImageBaseUrl}{image.FilePath} [{image.Iso_3166_1}]");
                 }
             }
         }
@@ -160,7 +160,7 @@ namespace FilmManager.Models
             {
                 if(image.FilePath!=null&&image.Iso_3166_1!=null)
                 {
-                    Posters.Add($"{ImageBaseUrl}{image.FilePath}[{image.Iso_3166_1}]");
+                    Posters.Add($"{ImageBaseUrl}{image.FilePath} [{image.Iso_3166_1}]");
                 } 
             }
         }
@@ -171,7 +171,7 @@ namespace FilmManager.Models
             {
                 if (image.FilePath != null && image.Iso_3166_1 != null)
                 {
-                    Logos.Add($"{ImageBaseUrl}{image.FilePath}[{image.Iso_3166_1}]");
+                    Logos.Add($"{ImageBaseUrl}{image.FilePath} [{image.Iso_3166_1}]");
                 }
             }
         }

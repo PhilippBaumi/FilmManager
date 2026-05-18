@@ -133,7 +133,8 @@ namespace FilmManager.Helpers
             s = s.Replace("\"", "\"\"");
             if (mustQuote)
             {
-                return $"\"{s}\"";
+                string st = $"\"{s}\"";
+                return st;
             }
             return s;
         }
