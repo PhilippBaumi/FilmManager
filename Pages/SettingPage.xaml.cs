@@ -16,7 +16,7 @@ public partial class SettingPage : ContentPage
         BindingContext = settingViewModel;
     }
 
-    private async void HandleChecked(object sender, CheckedChangedEventArgs e)
+    private async void HandlePickerLanguage(object sender, EventArgs e)
     {
         Localization localization = new();
         string? language = settingViewModel.Language;

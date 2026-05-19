@@ -6,43 +6,12 @@
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
     <VerticalStackLayout Margin="10" 
                          Padding="10">
-        <toolkit:Expander Direction="Down"
-                          Margin="10" 
-                          Padding="10">
-            <toolkit:Expander.Header>
-                <Button Text="{x:Static strings:AppResources.language}"/>
-            </toolkit:Expander.Header>
-            <toolkit:Expander.Content>
-                <StackLayout Margin="10" 
-                             RadioButtonGroup.GroupName="Language" 
-                             RadioButtonGroup.SelectedValue="{Binding Language, Mode=TwoWay}">
-                    <RadioButton Content="{x:Static strings:AppResources.german}" 
-                                 Value="{x:Static strings:AppResources.german}" 
-                                 CheckedChanged="HandleChecked"/>
-                    <RadioButton Content="{x:Static strings:AppResources.english}" 
-                                 Value="{x:Static strings:AppResources.english}" 
-                                 CheckedChanged="HandleChecked"/>
-                </StackLayout>
-            </toolkit:Expander.Content>
-        </toolkit:Expander>
-        <toolkit:Expander Direction="Down" 
-                          Margin="10" 
-                          Padding="10">
-            <toolkit:Expander.Header>
-                <Button Text="Design/Theme"/>
-            </toolkit:Expander.Header>
-            <toolkit:Expander.Content>
-                <StackLayout Margin="10" 
-                             RadioButtonGroup.GroupName="Theme" 
-                             RadioButtonGroup.SelectedValue="{Binding ThemeAsString, Mode=TwoWay}">
-                    <RadioButton Content="System" 
-                                 Value="Unspecified"/>
-                    <RadioButton Content="{x:Static strings:AppResources.dark}" 
-                                 Value="Dark"/>
-                    <RadioButton Content="{x:Static strings:AppResources.light}" 
-                                 Value="Light"/>
-                </StackLayout>
-            </toolkit:Expander.Content>
-        </toolkit:Expander>
+        <Picker Title="{x:Static strings:AppResources.language}"
+                ItemsSource="{Binding Languages}"
+                SelectedItem="{Binding Language}"
+                SelectedIndexChanged="HandlePickerLanguage"/>
+        <Picker Title="Design/Theme"
+                ItemsSource="{Binding Themes}"
+                SelectedItem="{Binding ThemeAsString}"/>
     </VerticalStackLayout>
 </ContentPage>

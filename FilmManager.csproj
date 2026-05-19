@@ -84,13 +84,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-    <PackageReference Include="Dapper" Version="2.1.72" />
-    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="10.0.7" />
+    <PackageReference Include="Dapper" Version="2.1.79" />
+    <PackageReference Include="Microsoft.Data.Sqlite.Core" Version="10.0.8" />
     <PackageReference Include="Microsoft.Maui.Controls" Version="10.0.60" />
     <PackageReference Include="CommunityToolkit.Maui" Version="14.1.1" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
 	  <PackageReference Include="Microsoft.Maui.Essentials" Version="10.0.60" />
-	  <PackageReference Include="OfficeIMO.Word" Version="1.0.46" />
+	  <PackageReference Include="OfficeIMO.Word" Version="1.0.50" />
 	  <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.3" />
 	  <PackageReference Include="TMDbLib" Version="3.0.0" />
 	</ItemGroup>

@@ -3,6 +3,7 @@ using FilmManager.Interfaces;
 using FilmManager.Resources.Strings.Sprachen;
 using OfficeIMO.Word;
 using System.Collections.ObjectModel;
+using System.Text;
 using System.Text.Json;
 using TMDbLib.Objects.Search;
 
@@ -94,24 +95,25 @@ namespace FilmManager.Backend
             ObservableCollection<object> results = new();
             using (StreamReader sr = new StreamReader(path))
             {
-                while(true)
+                while (true)
                 {
                     string? line = sr.ReadLine();
-                    if(line==null)
+                    if (line == null)
                     {
                         break;
                     }
+                    Console.WriteLine(line);
                     string[] st = line.Split(";");
                     string type = st[0];
-                    if(type.Equals("Movie"))
+                    if (type.Equals("Movie"))
                     {
                         results.Add(fileHelper.GetMovie(st));
                     }
-                    if(type.Equals("Tv"))
+                    if (type.Equals("Tv"))
                     {
                         results.Add(fileHelper.GetTv(st));
                     }
-               }
+                }
             }
             return results;
         }

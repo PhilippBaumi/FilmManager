@@ -53,11 +53,31 @@ namespace FilmManager.Models
         {
             if (o is Movie movie)
             {
-                Logo = ImageBaseUrl + GetRandomImage(GetUSList(movie.Images.Logos));
+                string? logo = GetRandomImage(GetUSList(movie.Images.Logos));
+                if (logo != null)
+                {
+                    Logo = ImageBaseUrl + logo;
+                }
                 Id = "ID: " + movie.Id;
                 Language = $"{AppResources.language}: " + movie.OriginalLanguage;
-                Poster = ImageBaseUrl + GetRandomImage(GetUSList(movie.Images.Posters));
-                Backport = ImageBaseUrl + GetRandomImage(GetUSList(movie.Images.Backdrops));
+                string? poster= GetRandomImage(GetUSList(movie.Images.Posters));
+                if (poster != null)
+                {
+                    Poster = ImageBaseUrl+poster;
+                }
+                else
+                {
+                    Poster = ImageBaseUrl + movie.PosterPath;
+                }
+                string? backport= GetRandomImage(GetUSList(movie.Images.Backdrops));
+                if(backport != null)
+                {
+                    Backport = ImageBaseUrl+backport;
+                }
+                else
+                {
+                    Backport = ImageBaseUrl + movie.BackdropPath;
+                }
                 Overview = $"{AppResources.description}: " + movie.Overview;
                 ReleaseDate = $"{AppResources.releaseDate}: " + movie.ReleaseDate?.ToString("dd.MM.yyyy") ?? string.Empty;
                 Popularity = $"{AppResources.popularity}: " + movie.Popularity;
@@ -73,11 +93,31 @@ namespace FilmManager.Models
             }
             if (o is TvShow serie)
             {
-                Logo = ImageBaseUrl + GetRandomImage(GetUSList(serie.Images.Logos));
+                string? logo = GetRandomImage(GetUSList(serie.Images.Logos));
+                if (logo != null)
+                {
+                    Logo = ImageBaseUrl + logo;
+                }
                 Id = "ID: " + serie.Id;
                 Language = $"{AppResources.language}: " + serie.OriginalLanguage;
-                Poster = ImageBaseUrl + GetRandomImage(GetUSList(serie.Images.Posters));
-                Backport = ImageBaseUrl + GetRandomImage(GetUSList(serie.Images.Backdrops));
+                string? poster = GetRandomImage(GetUSList(serie.Images.Posters));
+                if (poster != null)
+                {
+                    Poster = ImageBaseUrl + poster;
+                }
+                else
+                {
+                    Poster = ImageBaseUrl + serie.PosterPath;
+                }
+                string? backport = GetRandomImage(GetUSList(serie.Images.Backdrops));
+                if (backport != null)
+                {
+                    Backport = ImageBaseUrl + backport;
+                }
+                else
+                {
+                    Backport = ImageBaseUrl + serie.BackdropPath;
+                }
                 Overview = $"{AppResources.description}: " + serie.Overview;
                 ReleaseDate = $"{AppResources.releaseDate}: " + serie.FirstAirDate?.ToString("dd.MM.yyyy") ?? string.Empty;
                 Popularity = $"{AppResources.popularity}: " + serie.Popularity;
@@ -194,10 +234,14 @@ namespace FilmManager.Models
 
         private string? GetRandomImage(List<ImageData>? images)
         {
-            Random random = new();
-            int r = random.Next(0, images.Count);
-            ImageData image = images[r];
-            return image.FilePath;
+            if (images != null && images.Count != 0)
+            {
+                Random random = new();
+                int r = random.Next(0, images.Count);
+                ImageData image = images[r];
+                return image.FilePath;
+            }
+            return null;
         }
 
         private string GetCast(object? obj)
