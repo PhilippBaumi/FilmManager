@@ -92,7 +92,6 @@
 	  <PackageReference Include="Microsoft.Maui.Essentials" Version="10.0.60" />
 	  <PackageReference Include="OfficeIMO.Word" Version="1.0.46" />
 	  <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.3" />
-	  <PackageReference Include="Sylvan.Data.Csv" Version="1.4.4" />
 	  <PackageReference Include="TMDbLib" Version="3.0.0" />
 	</ItemGroup>
 
@@ -108,9 +107,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-    <MauiXaml Update="Pages\FilterPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </MauiXaml>
     <MauiXaml Update="Pages\CollectionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>

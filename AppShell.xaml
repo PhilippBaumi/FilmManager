@@ -37,10 +37,6 @@
                       Title="{x:Static strings:AppResources.search}" 
                       Route="Search" 
                       ContentTemplate="{DataTemplate local:SearchPage}"/>
-        <ShellContent x:Name="filterNav"
-                      Title="Filter"
-                      Route="Filter"
-                      ContentTemplate="{DataTemplate local:FilterPage}"/>
         <ShellContent x:Name="settingsNav" 
                       Title="{x:Static strings:AppResources.settings}" 
                       Route="Settings" 

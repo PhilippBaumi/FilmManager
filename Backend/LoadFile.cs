@@ -1,11 +1,8 @@
-﻿using DocumentFormat.OpenXml.Math;
-using FilmManager.Helpers;
+﻿using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Resources.Strings.Sprachen;
 using OfficeIMO.Word;
-using Sylvan.Data.Csv;
 using System.Collections.ObjectModel;
-using System.Text;
 using System.Text.Json;
 using TMDbLib.Objects.Search;
 
@@ -95,58 +92,27 @@ namespace FilmManager.Backend
                 throw new FileNotFoundException($"{AppResources.file} {path} {AppResources.doesNotExists}!");
             }
             ObservableCollection<object> results = new();
-            //StreamReader streamReader = new(File.OpenRead(path), Encoding.UTF8, true);
-            using (CsvDataReader dataReader = CsvDataReader.Create(new StreamReader(File.OpenRead(path), Encoding.UTF8, true), new CsvDataReaderOptions
+            using (StreamReader sr = new StreamReader(path))
             {
-                Delimiter=';'
-            }))
-            {
-                while (dataReader.Read())
+                while(true)
                 {
-                    string type = dataReader.GetString(0);
-                    string[] parts = new string[dataReader.FieldCount];
-                    for (int i = 0; i < parts.Length; i++)
+                    string? line = sr.ReadLine();
+                    if(line==null)
                     {
-                        if (dataReader.IsDBNull(i))
-                        {
-                            parts[i] = "";
-                        }
-                        else
-                        {
-                            parts[i] = dataReader.GetString(i);
-                        }
+                        break;
                     }
-                    if (type.Equals("Movie"))
+                    string[] st = line.Split(";");
+                    string type = st[0];
+                    if(type.Equals("Movie"))
                     {
-                        results.Add(fileHelper.GetMovie(parts));
+                        results.Add(fileHelper.GetMovie(st));
                     }
-                    if (type.Equals("Tv"))
+                    if(type.Equals("Tv"))
                     {
-                        results.Add(fileHelper.GetTv(parts));
+                        results.Add(fileHelper.GetTv(st));
                     }
-                } 
+               }
             }
-            //using (StreamReader sr = new StreamReader(path))
-            //{
-            //    while(true)
-            //    {
-            //        string? line = sr.ReadLine();
-            //        if(line==null)
-            //        {
-            //            break;
-            //        }
-            //        string[] st = line.Split(";");
-            //        string type = st[0];
-            //        if(type.Equals("Movie"))
-            //        {
-            //            results.Add(fileHelper.GetMovie(st));
-            //        }
-            //        if(type.Equals("Tv"))
-            //        {
-            //            results.Add(fileHelper.GetTv(st));
-            //        }
-            //    }
-            //}
             return results;
         }
 
