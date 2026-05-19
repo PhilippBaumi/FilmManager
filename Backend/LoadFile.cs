@@ -76,11 +76,11 @@ namespace FilmManager.Backend
 
         public void LoadFromCSV()
         {
-            ObservableCollection<object> watched = LoadCSV(this.fileHelper.GetFilePath($"{watchedPath}.docx"));
+            ObservableCollection<object> watched = LoadCSV(this.fileHelper.GetFilePath($"{watchedPath}.csv"));
             this.database.DeleteTable("Watched");
             this.database.CreateTable("Watched");
             Save(watched, "Watched");
-            ObservableCollection<object> watchlist = LoadCSV(this.fileHelper.GetFilePath($"{watchlistPath}.docx"));
+            ObservableCollection<object> watchlist = LoadCSV(this.fileHelper.GetFilePath($"{watchlistPath}.csv"));
             this.database.DeleteTable("Watchlist");
             this.database.CreateTable("Watchlist");
             Save(watchlist, "Watchlist");
@@ -102,7 +102,6 @@ namespace FilmManager.Backend
                     {
                         break;
                     }
-                    Console.WriteLine(line);
                     string[] st = line.Split(";");
                     string type = st[0];
                     if (type.Equals("Movie"))

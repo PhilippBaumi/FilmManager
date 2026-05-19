@@ -39,7 +39,7 @@ namespace FilmManager.Models
                     case "Dunkel":
                         Application.Current.UserAppTheme = AppTheme.Dark;
                         break;
-                    default:
+                    case "System":
                         Application.Current.UserAppTheme = AppTheme.Unspecified;
                         break;
                 }
