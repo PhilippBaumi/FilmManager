@@ -10,7 +10,7 @@
                           Margin="10" 
                           Padding="10">
             <toolkit:Expander.Header>
-                <Button Text="{x:Static strings:AppResources.chooseLanguage}"/>
+                <Button Text="{x:Static strings:AppResources.language}"/>
             </toolkit:Expander.Header>
             <toolkit:Expander.Content>
                 <StackLayout Margin="10" 
@@ -29,7 +29,7 @@
                           Margin="10" 
                           Padding="10">
             <toolkit:Expander.Header>
-                <Button Text="{x:Static strings:AppResources.chooseTheme}"/>
+                <Button Text="Design/Theme"/>
             </toolkit:Expander.Header>
             <toolkit:Expander.Content>
                 <StackLayout Margin="10" 

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FilmManager.FilterPage"
+             xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
+             Title="FilterPage">
+    <VerticalStackLayout>
+        <RadioButton x:Name="rbRegion"
+                     Content="Region" 
+                     Value="Region"/>
+        <RadioButton x:Name="rbSprache"
+                     Content="{x:Static strings:AppResources.language}"
+                     Value="{x:Static strings:AppResources.language}"/>
+        <Button Text="Filter" 
+                Clicked="HandleFilter"/>
+    </VerticalStackLayout>
+</ContentPage>

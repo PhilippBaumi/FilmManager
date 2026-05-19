@@ -108,6 +108,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+    <MauiXaml Update="Pages\FilterPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
     <MauiXaml Update="Pages\CollectionPage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>

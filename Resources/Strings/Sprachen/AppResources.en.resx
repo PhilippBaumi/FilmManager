@@ -135,12 +135,6 @@
   <data name="cantNavigateToDetails" xml:space="preserve">
     <value>Can't navigate to details!</value>
   </data>
-  <data name="chooseLanguage" xml:space="preserve">
-    <value>Choose language</value>
-  </data>
-  <data name="chooseTheme" xml:space="preserve">
-    <value>Choose design/theme</value>
-  </data>
   <data name="close" xml:space="preserve">
     <value>Close</value>
   </data>

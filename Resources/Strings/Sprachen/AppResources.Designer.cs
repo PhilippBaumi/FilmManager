@@ -124,24 +124,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wähle Sprache ähnelt.
-        /// </summary>
-        internal static string chooseLanguage {
-            get {
-                return ResourceManager.GetString("chooseLanguage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Wähle Design/Theme ähnelt.
-        /// </summary>
-        internal static string chooseTheme {
-            get {
-                return ResourceManager.GetString("chooseTheme", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Schließen ähnelt.
         /// </summary>
         internal static string close {
