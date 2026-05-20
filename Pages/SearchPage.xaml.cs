@@ -45,30 +45,37 @@ public partial class SearchPage : ContentPage
 
     private async void GetSearchToImage(object sender, SelectionChangedEventArgs e)
     {
-        string selectedItem = this.searchPageViewModel.SelectedItem;
-        if (!string.IsNullOrEmpty(selectedItem))
+        try
         {
-            selectedItem = selectedItem.Replace(ImageBaseUrl, string.Empty);
-            List<object> list = this.searchPageViewModel.GetList(selectedItem);
-            if (rbMovie.IsChecked)
+            string selectedItem = this.searchPageViewModel.SelectedItem;
+            if (!string.IsNullOrEmpty(selectedItem))
             {
-                List<SearchMovie> movies = this.searchPageViewModel.GetSearchMovieList(list);
-                IDictionary<string, object> parameters = new Dictionary<string, object>
+                selectedItem = selectedItem.Replace(ImageBaseUrl, string.Empty);
+                List<object> list = this.searchPageViewModel.GetList(selectedItem);
+                if (rbMovie.IsChecked)
+                {
+                    List<SearchMovie> movies = this.searchPageViewModel.GetSearchMovieList(list);
+                    IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
                      { "list", movies }
                 };
-                await navigationService.NavigateToAsync("//Overview", parameters);
-            }
-            if (rbTv.IsChecked)
-            {
-                List<SearchTv> tv = this.searchPageViewModel.GetSearchTvList(list);
-                IDictionary<string, object> parameters = new Dictionary<string, object>
+                    await navigationService.NavigateToAsync("//Overview", parameters);
+                }
+                if (rbTv.IsChecked)
+                {
+                    List<SearchTv> tv = this.searchPageViewModel.GetSearchTvList(list);
+                    IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
                      { "list", tv }
                 };
-                await navigationService.NavigateToAsync("//Overview", parameters);
+                    await navigationService.NavigateToAsync("//Overview", parameters);
+                }
             }
-            ((CollectionView)sender).SelectedItem=null;
+            ((CollectionView)sender).SelectedItem = null;
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
         }
     }
 }
