@@ -8,10 +8,10 @@
                          Padding="10">
         <Picker Title="{x:Static strings:AppResources.language}"
                 ItemsSource="{Binding Languages}"
-                SelectedItem="{Binding Language}"
+                SelectedItem="{Binding Language, Mode=TwoWay}"
                 SelectedIndexChanged="HandlePickerLanguage"/>
         <Picker Title="Design/Theme"
                 ItemsSource="{Binding Themes}"
-                SelectedItem="{Binding ThemeAsString}"/>
+                SelectedItem="{Binding ThemeAsString, Mode=TwoWay}"/>
     </VerticalStackLayout>
 </ContentPage>

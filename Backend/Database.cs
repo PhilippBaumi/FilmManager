@@ -3,7 +3,6 @@ using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using Microsoft.Data.Sqlite;
 using System.Collections.ObjectModel;
-using System.Reflection;
 using TMDbLib.Objects.Search;
 
 namespace FilmManager.Backend
@@ -11,6 +10,7 @@ namespace FilmManager.Backend
     public class Database : IDatabase
     {
         private FileHelper fileHelper = new();
+        private DatabaseHelper databaseHelper = new();
         private readonly SqliteConnection connection;
         public Database(string path)
         {
@@ -24,7 +24,7 @@ namespace FilmManager.Backend
 
         public void DeleteEntry(object entry, string tableName)
         {
-            int? getId = GetId(entry);
+            int? getId = databaseHelper.GetId(entry);
             if (getId.HasValue)
             {
                 this.connection.Execute($"DELETE FROM {tableName} WHERE Id=@Id", new { Id = getId });
@@ -102,7 +102,7 @@ namespace FilmManager.Backend
                     movie.Title = reader["Title"].ToString();
                     movie.OriginalTitle = reader["OriginalTitle"].ToString();
                     movie.Overview = reader["Overview"].ToString();
-                    movie.GenreIds = GetIntListFromString(reader["GenreIds"].ToString());
+                    movie.GenreIds = databaseHelper.GetIntListFromString(reader["GenreIds"].ToString());
                     movie.OriginalLanguage = reader["OriginalLanguage"].ToString();
                     movie.ReleaseDate = fileHelper.StringToDataTime(reader["ReleaseDate"].ToString());
                     movie.BackdropPath = reader["BackdropPath"].ToString();
@@ -127,8 +127,8 @@ namespace FilmManager.Backend
                     tv.Name = reader["Title"].ToString();
                     tv.OriginalName = reader["OriginalTitle"].ToString();
                     tv.Overview = reader["Overview"].ToString();
-                    tv.GenreIds = GetIntListFromString(reader["GenreIds"].ToString());
-                    tv.OriginCountry = GetStringListFromString(reader["OriginCountry"].ToString());
+                    tv.GenreIds = databaseHelper.GetIntListFromString(reader["GenreIds"].ToString());
+                    tv.OriginCountry = databaseHelper.GetStringListFromString(reader["OriginCountry"].ToString());
                     tv.OriginalLanguage = reader["OriginalLanguage"].ToString();
                     tv.FirstAirDate = fileHelper.StringToDataTime(reader["ReleaseDate"].ToString());
                     tv.BackdropPath = reader["BackdropPath"].ToString();
@@ -140,50 +140,6 @@ namespace FilmManager.Backend
                 }
             }
             return collection;
-        }
-
-        private List<string>? GetStringListFromString(string? s)
-        {
-            List<string> results = new();
-            if (!string.IsNullOrEmpty(s))
-            {
-                string[] st = s.Split(",");
-                foreach (string s2 in st)
-                {
-                    results.Add(s2);
-                }
-            }
-            return results;
-        }
-
-        private List<int>? GetIntListFromString(string? s)
-        {
-            List<int> results = new();
-            if (!string.IsNullOrEmpty(s))
-            {
-                string[] st = s.Split(",");
-                foreach (string s2 in st)
-                {
-                    if (int.TryParse(s2, out int id))
-                    {
-                        results.Add(id);
-                    }
-                }
-            }
-            return results;
-        }
-
-        private int? GetId(object entry)
-        {
-            PropertyInfo? propertyInfo = entry.GetType().GetProperty("Id");
-            if (propertyInfo == null)
-            {
-                return null;
-            }
-            else
-            {
-                return Convert.ToInt32(propertyInfo.GetValue(entry));
-            }
         }
     }
 }

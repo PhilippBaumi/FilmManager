@@ -22,7 +22,7 @@ public partial class OnClickPopup : Popup
     {
         InitializeComponent();
         this.o = o;
-        lbTitle.Text = SetText(o);
+        lbTitle.Text = SetText();
         this.database = database;
         this.onClickPopupViewModel = new(database);
         this.navigationService = navigationService;
@@ -33,15 +33,15 @@ public partial class OnClickPopup : Popup
         BindingContext = onClickPopupViewModel;
     }
 
-    private string SetText(object? o)
+    private string SetText()
     {
-        if (o != null)
+        if (this.o != null)
         {
-            if (o is SearchMovie movie)
+            if (this.o is SearchMovie movie)
             {
                 return movie.OriginalTitle;
             }
-            if (o is SearchTv tv)
+            if (this.o is SearchTv tv)
             {
                 return tv.OriginalName;
             }
