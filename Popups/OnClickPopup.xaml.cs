@@ -51,9 +51,40 @@ public partial class OnClickPopup : Popup
 
     private async void MarkAsWatched(object sender, EventArgs e)
     {
-        this.database.DeleteEntry(o, "Watchlist");
-        this.database.InsertEntry(o, "Watched");
-        await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.markedAsWatched, "OK");
+        if(o is SearchMovie movie)
+        {
+            DateTime? rDate = movie.ReleaseDate;
+            if (rDate.HasValue)
+            {
+                if (rDate.Value > DateTime.Today)
+                {
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.dateIsFuture, "OK");
+                }
+                else
+                {
+                    this.database.DeleteEntry(movie, "Watchlist");
+                    this.database.InsertEntry(movie, "Watched");
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.markedAsWatched, "OK");
+                }
+            }
+        }
+        if (o is SearchTv tv)
+        {
+            DateTime? rDate = tv.FirstAirDate;
+            if (rDate.HasValue)
+            {
+                if (rDate.Value > DateTime.Today)
+                {
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.dateIsFuture, "OK");
+                }
+                else
+                {
+                    this.database.DeleteEntry(tv, "Watchlist");
+                    this.database.InsertEntry(tv, "Watched");
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.markedAsWatched, "OK");
+                }
+            }
+        }
     }
 
     private async void HandleRemove(object sender, EventArgs e)

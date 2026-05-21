@@ -47,7 +47,7 @@
                     ItemsSource="{Binding Posters}"
                     SelectedItem="{Binding SelectedPoster}"
                     SelectedIndexChanged="HandlePosters"/>
-            <Picker Title="{x:Static strings:AppResources.backports}"
+            <Picker Title="{x:Static strings:AppResources.backdrops}"
                     ItemsSource="{Binding Backports}"
                     SelectedItem="{Binding SelectedBackport}"
                     SelectedIndexChanged="HandleBackports"/>

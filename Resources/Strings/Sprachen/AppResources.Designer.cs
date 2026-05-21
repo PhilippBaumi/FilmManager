@@ -99,9 +99,9 @@ namespace FilmManager.Resources.Strings.Sprachen {
         /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Hintergründe ähnelt.
         /// </summary>
-        internal static string backports {
+        internal static string backdrops {
             get {
-                return ResourceManager.GetString("backports", resourceCulture);
+                return ResourceManager.GetString("backdrops", resourceCulture);
             }
         }
         
@@ -165,6 +165,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string dark {
             get {
                 return ResourceManager.GetString("dark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Du kannst keine Serie/Film als gesehen markieren, welche erst in der Zukunft erscheint.  ähnelt.
+        /// </summary>
+        internal static string dateIsFuture {
+            get {
+                return ResourceManager.GetString("dateIsFuture", resourceCulture);
             }
         }
         

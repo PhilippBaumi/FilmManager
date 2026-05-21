@@ -46,6 +46,7 @@ namespace FilmManager.Backend
             DiscoverMovie discover = client.DiscoverMoviesAsync();
             IEnumerable<int> enumerable = new int[] { genreId };
             discover = discover.IncludeWithAllOfGenre(enumerable);
+            discover = discover.OrderBy(DiscoverMovieSortBy.PopularityDesc);
             return await discover.Query(page);
         }
 
@@ -54,6 +55,7 @@ namespace FilmManager.Backend
             DiscoverTv discover = client.DiscoverTvShowsAsync();
             IEnumerable<int> enumerable = new int[] { genreId };
             discover = discover.WhereGenresInclude(enumerable);
+            discover=discover.OrderBy(DiscoverTvShowSortBy.PopularityDesc);
             return await discover.Query(page);
         }
 

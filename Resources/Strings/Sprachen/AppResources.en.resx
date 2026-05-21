@@ -324,8 +324,8 @@
   <data name="recommendations" xml:space="preserve">
     <value>Recommendations</value>
   </data>
-  <data name="backports" xml:space="preserve">
-    <value>Backports</value>
+  <data name="backdrops" xml:space="preserve">
+    <value>Backdrops</value>
   </data>
   <data name="nothingSelectedName" xml:space="preserve">
     <value>Nothing selected</value>
@@ -335,5 +335,8 @@
   </data>
   <data name="showPopup" xml:space="preserve">
     <value>Show popup</value>
+  </data>
+  <data name="dateIsFuture" xml:space="preserve">
+    <value>You cannot mark a series/movie as watched that will only be released in the future.</value>
   </data>
 </root>

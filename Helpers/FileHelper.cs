@@ -1,4 +1,5 @@
 ﻿using FilmManager.Resources.Strings.Sprachen;
+using System.Globalization;
 using System.Text;
 using System.Text.RegularExpressions;
 using TMDbLib.Objects.Search;
@@ -143,6 +144,7 @@ namespace FilmManager.Helpers
         {
             if (!string.IsNullOrEmpty(s))
             {
+                //DateTime dateTime = DateTime.ParseExact(s, "dd.MM.yyyy", new CultureInfo("de-AT"));
                 DateTime dateTime = DateTime.Parse(s);
                 return dateTime;
             }

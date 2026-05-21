@@ -20,6 +20,7 @@ public partial class SettingPage : ContentPage
     {
         Localization localization = new();
         string? language = settingViewModel.Language;
+
         if (language != null)
         {
             switch (language)
@@ -31,6 +32,5 @@ public partial class SettingPage : ContentPage
             }
         }
         await DisplayAlertAsync("Info", AppResources.languageChangedAndNavigateToHome, "OK");
-        Application.Current.MainPage = new AppShell(navigationService);
     }
 }

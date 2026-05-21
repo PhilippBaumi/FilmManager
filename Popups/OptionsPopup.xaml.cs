@@ -64,13 +64,35 @@ public partial class OptionsPopup : Popup
                 this.database.CreateTable("Watched");
                 if (this.obj is SearchTv serie)
                 {
-                    this.database.InsertEntry(serie, "Watched");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
+                    DateTime? rDate = serie.FirstAirDate;
+                    if(rDate.HasValue)
+                    {
+                        if(rDate.Value>DateTime.Today)
+                        {
+                            await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.dateIsFuture, "OK");
+                        }
+                        else
+                        {
+                            this.database.InsertEntry(serie, "Watched");
+                            await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
+                        }
+                    }
                 }
                 if (this.obj is SearchMovie movie)
                 {
-                    this.database.InsertEntry(movie, "Watched");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
+                    DateTime? rDate = movie.ReleaseDate;
+                    if(rDate.HasValue)
+                    {
+                        if(rDate.Value>DateTime.Today)
+                        {
+                            await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.dateIsFuture, "OK");
+                        }
+                        else
+                        {
+                            this.database.InsertEntry(movie, "Watched");
+                            await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
+                        }
+                    }
                 }
             }
         }
