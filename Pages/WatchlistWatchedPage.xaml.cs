@@ -37,6 +37,7 @@ public partial class WatchlistWatchedPage : ContentPage
         }
         catch (Exception ex)
         {
+            this.watchlist.Clear();
             await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
         }
         this.watchlistWatchedViewModel = new(watchlist, watched);
@@ -51,6 +52,7 @@ public partial class WatchlistWatchedPage : ContentPage
         }
         catch (Exception ex)
         {
+            this.watched.Clear();
             await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
         }
         this.watchlistWatchedViewModel = new(watchlist, watched);

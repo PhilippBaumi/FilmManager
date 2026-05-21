@@ -32,5 +32,6 @@ public partial class SettingPage : ContentPage
             }
         }
         await DisplayAlertAsync("Info", AppResources.languageChangedAndNavigateToHome, "OK");
+        Application.Current.MainPage = new AppShell(navigationService);
     }
 }

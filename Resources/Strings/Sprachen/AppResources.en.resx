@@ -187,7 +187,7 @@
     <value>Language</value>
   </data>
   <data name="languageChangedAndNavigateToHome" xml:space="preserve">
-    <value>Language changed! You will swaitch to Home. </value>
+    <value>Language changed! You will switch to Home. </value>
   </data>
   <data name="light" xml:space="preserve">
     <value>Light</value>

@@ -44,7 +44,7 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
             }
             if (o is Movie movie)
             {
-                SearchCollection searchCollection = movie.BelongsToCollection;
+                SearchCollection? searchCollection = movie.BelongsToCollection;
                 this.collectionPageViewModel.SetList(new List<SearchCollection> { searchCollection });
                 BindingContext = this.collectionPageViewModel;
             }

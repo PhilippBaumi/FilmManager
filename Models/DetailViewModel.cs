@@ -267,7 +267,11 @@ namespace FilmManager.Models
                 }
             }
             string s = sb.ToString();
-            return s.Substring(0, s.Length - 2);
+            if (s.Length >= 2)
+            {
+                return s.Substring(0, s.Length - 2);
+            }
+            return s;
         }
 
         private string? GetNetworks(List<NetworkWithLogo>? networks)
