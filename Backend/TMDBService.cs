@@ -24,20 +24,26 @@ namespace FilmManager.Backend
         public void AddMoviesGenresToList()
         {
             List<Genre>? taskResult = client.GetMovieGenresAsync().Result;
-            foreach (Genre genre in taskResult)
+            if (taskResult != null)
             {
-                MovieGenresName.Add(genre.Name);
-                moviesGenres.Add(genre);
+                foreach (Genre genre in taskResult)
+                {
+                    MovieGenresName.Add(genre.Name);
+                    moviesGenres.Add(genre);
+                }
             }
         }
 
         public void AddSerienGenresToList()
         {
-            List<Genre> taskResult = client.GetTvGenresAsync().Result;
-            foreach (Genre genre in taskResult)
+            List<Genre>? taskResult = client.GetTvGenresAsync().Result;
+            if(taskResult!=null)
             {
-                SerienGenresName.Add(genre.Name);
-                serienGenres.Add(genre);
+                foreach (Genre genre in taskResult)
+                {
+                    SerienGenresName.Add(genre.Name);
+                    serienGenres.Add(genre);
+                }
             }
         }
 
@@ -79,7 +85,7 @@ namespace FilmManager.Backend
             return await client.GetMovieAsync(id, MovieMethods.Credits|MovieMethods.Images|MovieMethods.Videos|MovieMethods.Lists|MovieMethods.Recommendations|MovieMethods.WatchProviders);  
         }
 
-        public async Task<TvShow> GetTvShowAsync(int id)
+        public async Task<TvShow?> GetTvShowAsync(int id)
         {
             return await client.GetTvShowAsync(id, TvShowMethods.Credits | TvShowMethods.Images | TvShowMethods.Videos | TvShowMethods.WatchProviders| TvShowMethods.Recommendations);
         }

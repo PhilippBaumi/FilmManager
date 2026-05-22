@@ -20,11 +20,6 @@ namespace FilmManager
             InitializeComponent();
             this.navigationService = navigation;
             this.database = database;
-        }
-
-        protected async override void OnAppearing()
-        {
-            base.OnAppearing();
             this.tMDBService = new TMDBService(new TMDbClient("c7108e21486edb11a641d92aa539f3e2"));
             this.tMDBService.AddMoviesGenresToList();
             List<string> movieGenres = tMDBService.MovieGenresName;
@@ -105,7 +100,8 @@ namespace FilmManager
                 }
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
-                    { "list", mainViewModel.movies }
+                    { "list", mainViewModel.movies },
+                    { "apiKey", "c7108e21486edb11a641d92aa539f3e2" }
                 };
                 await navigationService.NavigateToAsync("//Overview", parameters);
             }
