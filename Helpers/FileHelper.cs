@@ -31,18 +31,14 @@ namespace FilmManager.Helpers
             }
         }
 
-        public string DateTimeToString(DateTime? releaseDate)
+        public string? DateTimeToString(DateTime? releaseDate)
         {
-            StringBuilder sb = new();
-            if (releaseDate.HasValue)
+            if (releaseDate != null)
             {
-                sb.Append(releaseDate.Value.Day);
-                sb.Append(".");
-                sb.Append(releaseDate.Value.Month);
-                sb.Append(".");
-                sb.Append(releaseDate.Value.Year);
+                DateTime date= releaseDate.Value;
+                return date.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
             }
-            return sb.ToString();
+            return null;
         }
 
         public List<string> ReadLines(string path)
@@ -124,7 +120,7 @@ namespace FilmManager.Helpers
             return strings;
         }
 
-        public string ConvertToCsv(string s)
+        public string ConvertToCsv(string? s)
         {
             if (s == null)
             {
@@ -144,8 +140,7 @@ namespace FilmManager.Helpers
         {
             if (!string.IsNullOrEmpty(s))
             {
-                //DateTime dateTime = DateTime.ParseExact(s, "dd.MM.yyyy", new CultureInfo("de-AT"));
-                DateTime dateTime = DateTime.Parse(s);
+                DateTime dateTime = DateTime.ParseExact(s, "dd.MM.yyyy", CultureInfo.InvariantCulture);
                 return dateTime;
             }
             return null;

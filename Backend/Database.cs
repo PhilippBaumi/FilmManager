@@ -19,7 +19,7 @@ namespace FilmManager.Backend
         }
         public void CreateTable(string tableName)
         {
-            this.connection.Execute($"""CREATE TABLE IF NOT EXISTS {tableName}(Id Integer PRIMARY KEY, MediaType Text NOT NULL, Title Text NOT NULL, OriginalTitle Text NOT NULL, Overview Text NOT NULL, GenreIds Text NOT NULL, OriginCountry Text NULL, OriginalLanguage Text NOT NULL, ReleaseDate Text NOT NULL, BackdropPath Text NOT NULL, PosterPath Text NOT NULL, Popularity Real NOT NULL, VoteAverage Real NOT NULL, VoteCount Integer NOT NULL, Adult Integer NULL, Video Integer NULL)""");
+            this.connection.Execute($"""CREATE TABLE IF NOT EXISTS {tableName}(Id Integer PRIMARY KEY, MediaType Text NOT NULL, Title Text NOT NULL, OriginalTitle Text NOT NULL, Overview Text NOT NULL, GenreIds Text NOT NULL, OriginCountry Text NULL, OriginalLanguage Text NOT NULL, ReleaseDate Text NULL, BackdropPath Text NOT NULL, PosterPath Text NOT NULL, Popularity Real NOT NULL, VoteAverage Real NOT NULL, VoteCount Integer NOT NULL, Adult Integer NULL, Video Integer NULL)""");
         }
 
         public void DeleteEntry(object entry, string tableName)
