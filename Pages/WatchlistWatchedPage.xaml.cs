@@ -69,7 +69,7 @@ public partial class WatchlistWatchedPage : ContentPage
                 string[] st = selectedItem.Split("(");
                 object? obj = this.watchlistWatchedViewModel.Get(st[0].Trim());
                 bool inWatchedList = this.watchlistWatchedViewModel.IsInWatchedList(obj);
-                OnClickPopup popup = new(obj, inWatchedList, database, navigationService);
+                OnClickPopup popup = new(obj, inWatchedList, database, navigationService, "c7108e21486edb11a641d92aa539f3e2"); 
                 Application.Current.Windows[0].Page.ShowPopup(popup);
             }
         }

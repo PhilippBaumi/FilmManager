@@ -13,10 +13,9 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
     private object o;
     private OverviewViewModel overviewViewModel;
     private INavigationService navigationService;
+    private string apiKey;
     private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
-
     public event PropertyChangedEventHandler PropertyChanged;
-
     private IDatabase database;
 
     public OverviewPage(INavigationService navigation, IDatabase database)
@@ -74,6 +73,10 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
                 }
             }
         }
+        if(query.ContainsKey("apiKey"))
+        {
+            apiKey = query["apiKey"] as string;
+        }
         query.Clear();
         MainThread.BeginInvokeOnMainThread(() =>
         {
@@ -89,7 +92,7 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
         if (!string.IsNullOrEmpty(selectedItem))
         {
             selectedItem = selectedItem.Replace(ImageBaseUrl, string.Empty);
-            OptionsPopup popup = new(selectedItem, navigationService, o, database, "");
+            OptionsPopup popup = new(selectedItem, navigationService, o, database, "", apiKey);
             Application.Current.Windows[0].Page.ShowPopup(popup);
         }
         ((CollectionView)sender).SelectedItem = null;

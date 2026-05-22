@@ -17,13 +17,14 @@ public partial class OnClickPopup : Popup
     private IDatabase database;
     private INavigationService navigationService;
     private OnClickPopupViewModel onClickPopupViewModel;
-    private const string apiKey = "c7108e21486edb11a641d92aa539f3e2";
-    public OnClickPopup(object? o, bool isInWatched, IDatabase database, INavigationService navigationService)
+    private string apiKey;
+    public OnClickPopup(object? o, bool isInWatched, IDatabase database, INavigationService navigationService, string apiKey)
     {
         InitializeComponent();
         this.o = o;
         lbTitle.Text = SetText();
         this.database = database;
+        this.apiKey = apiKey;
         this.onClickPopupViewModel = new(database);
         this.navigationService = navigationService;
         if (isInWatched)

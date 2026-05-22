@@ -12,8 +12,7 @@ namespace FilmManager
     public partial class MainPage : ContentPage
     {
         private INavigationService navigationService;
-        private const string apiKey = "c7108e21486edb11a641d92aa539f3e2";
-        private TMDBService tMDBService = new(new TMDbClient(apiKey));
+        private TMDBService tMDBService;
         private MainViewModel mainViewModel;
         private IDatabase database;
         public MainPage(INavigationService navigation, IDatabase database)
@@ -21,6 +20,12 @@ namespace FilmManager
             InitializeComponent();
             this.navigationService = navigation;
             this.database = database;
+        }
+
+        protected async override void OnAppearing()
+        {
+            base.OnAppearing();
+            this.tMDBService = new TMDBService(new TMDbClient("c7108e21486edb11a641d92aa539f3e2"));
             this.tMDBService.AddMoviesGenresToList();
             List<string> movieGenres = tMDBService.MovieGenresName;
             this.tMDBService.AddSerienGenresToList();
@@ -61,7 +66,8 @@ namespace FilmManager
                     }
                     IDictionary<string, object> parameters = new Dictionary<string, object>
                     {
-                        { "list", mainViewModel.series }
+                        { "list", mainViewModel.series },
+                        { "apiKey", "c7108e21486edb11a641d92aa539f3e2" }
                     };
                     await navigationService.NavigateToAsync("//Overview", parameters);
                 }

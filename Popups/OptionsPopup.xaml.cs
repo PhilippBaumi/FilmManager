@@ -16,17 +16,18 @@ public partial class OptionsPopup : Popup
     private string? selectedItem;
     private INavigationService navigation;
     private OptionPopupViewModel optionPopupViewModel = new();
-    private const string apiKey = "c7108e21486edb11a641d92aa539f3e2";
     private IDatabase database;
     private TMDBService tMDBService;
     private object? obj;
+    private string apiKey;
 
-    public OptionsPopup(string? selectedItem, INavigationService navigation, object? o, IDatabase database, string option)
+    public OptionsPopup(string? selectedItem, INavigationService navigation, object? o, IDatabase database, string option, string apiKey)
     {
         InitializeComponent();
         this.selectedItem = selectedItem;
         this.database = database;
         this.navigation = navigation;
+        this.apiKey = apiKey;
         this.tMDBService = new(new TMDbClient(apiKey));
         this.obj = optionPopupViewModel.Get(selectedItem, o);
         SetTitleToLabel();
@@ -141,12 +142,22 @@ public partial class OptionsPopup : Popup
                     if (this.obj is SearchTv serie)
                     {
                         TvShow tvShow = await this.tMDBService.GetTvShowAsync(serie.Id);
-                        await navigation.NavigateToAsync("//Detail", new Dictionary<string, object> { { "content", tvShow } });
+                        IDictionary<string, object> dict = new Dictionary<string, object>
+                        {
+                            { "content", tvShow },
+                            { "apiKey", apiKey }
+                        };
+                        await navigation.NavigateToAsync("//Detail", dict);
                     }
                     if (this.obj is SearchMovie movie)
                     {
                         Movie tMovie = await this.tMDBService.GetMovieAsync(movie.Id);
-                        await navigation.NavigateToAsync("//Detail", new Dictionary<string, object> { { "content", tMovie } });
+                        IDictionary<string, object> dict = new Dictionary<string, object>
+                        {
+                            { "content", tMovie },
+                            { "apiKey", apiKey }
+                        };
+                        await navigation.NavigateToAsync("//Detail", dict);
                     }
                 }
                 if (this.obj == null)

@@ -13,6 +13,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
     private INavigationService navigationService;
     private DetailViewModel detailViewModel;
     private object o;
+    private string apiKey;
     private IDatabase database;
 
     public DetailPage(INavigationService navigationSerive, IDatabase database)
@@ -29,6 +30,10 @@ public partial class DetailPage : ContentPage, IQueryAttributable
             o = query["content"];
             detailViewModel = new(o);
             BindingContext = detailViewModel;
+        }
+        if(query.ContainsKey("apiKey"))
+        {
+            apiKey = query["apiKey"] as string;
         }
         query.Clear();
     }
@@ -118,7 +123,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
     {
         string? selectedPoster = detailViewModel.Poster;
         selectedPoster = selectedPoster.Replace(ImageBaseUrl, string.Empty);
-        OptionsPopup popup = new(selectedPoster, navigationService,o, database, "Detail");
+        OptionsPopup popup = new(selectedPoster, navigationService,o, database, "Detail", apiKey);
         Application.Current.Windows[0].Page.ShowPopup(popup);
     }
 }

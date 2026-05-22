@@ -168,7 +168,11 @@ namespace FilmManager.Models
                 sb.Append(", ");
             }
             string s = sb.ToString();
-            return s.Substring(0, s.Length - 2);
+            if (s.Length >= 2)
+            {
+                return s.Substring(0, s.Length - 2);
+            }
+            return s;
         }
 
         private string CreatedByToString(List<CreatedBy>? createdBy)
@@ -179,8 +183,12 @@ namespace FilmManager.Models
                 sb.Append(created.Name);
                 sb.Append(", ");
             }
-            string s= sb.ToString();
-            return s.Substring(0, s.Length - 2);
+            string s = sb.ToString();
+            if (s.Length >= 2)
+            {
+                return s.Substring(0, s.Length - 2);
+            }
+            return s;
         }
 
         private void SetBackdrops(List<ImageData>? backdrops)

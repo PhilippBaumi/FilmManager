@@ -12,7 +12,6 @@ namespace FilmManager;
 
 public partial class SearchPage : ContentPage
 {
-    private const string apiKey = "c7108e21486edb11a641d92aa539f3e2";
     private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
     private SearchPageViewModel searchPageViewModel = new();
     private INavigationService navigationService;
@@ -21,13 +20,12 @@ public partial class SearchPage : ContentPage
     {
         InitializeComponent();
         this.navigationService = navigationService;
-        this.database=database;
+        this.database = database;
         BindingContext = searchPageViewModel;
     }
-
     private async void Search(object sender, EventArgs e)
     {
-        TMDBService tMDBService = new TMDBService(new TMDbClient(apiKey));
+        TMDBService tMDBService = new TMDBService(new TMDbClient("c7108e21486edb11a641d92aa539f3e2"));
         string search = entrySearch.Text;
         if (rbMovie.IsChecked)
         {
@@ -56,18 +54,20 @@ public partial class SearchPage : ContentPage
                 {
                     List<SearchMovie> movies = this.searchPageViewModel.GetSearchMovieList(list);
                     IDictionary<string, object> parameters = new Dictionary<string, object>
-                {
-                     { "list", movies }
-                };
+                    {
+                        { "list", movies },
+                        { "apiKey",  "c7108e21486edb11a641d92aa539f3e2"}
+                    };
                     await navigationService.NavigateToAsync("//Overview", parameters);
                 }
                 if (rbTv.IsChecked)
                 {
                     List<SearchTv> tv = this.searchPageViewModel.GetSearchTvList(list);
                     IDictionary<string, object> parameters = new Dictionary<string, object>
-                {
-                     { "list", tv }
-                };
+                    {
+                        { "list", tv },
+                        { "apiKey",  "c7108e21486edb11a641d92aa539f3e2"}
+                    };
                     await navigationService.NavigateToAsync("//Overview", parameters);
                 }
             }
