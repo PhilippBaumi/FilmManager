@@ -142,7 +142,8 @@ public partial class OnClickPopup : Popup
             Movie m = await tMDBService.GetMovieAsync(movie.Id);
             dict = new Dictionary<string, object>
             {
-                {"content", m }
+                {"content", m },
+                {"apiKey", apiKey }
             };
             await navigationService.NavigateToAsync("//Detail", dict);
         }
@@ -151,7 +152,8 @@ public partial class OnClickPopup : Popup
             TvShow show = await tMDBService.GetTvShowAsync(tv.Id);
             dict = new Dictionary<string, object>
             {
-                {"content", show }
+                {"content", show },
+                {"apiKey", apiKey  }
             };
             await navigationService.NavigateToAsync("//Detail", dict);
         }

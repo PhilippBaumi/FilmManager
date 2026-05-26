@@ -113,7 +113,8 @@ public partial class DetailPage : ContentPage, IQueryAttributable
             List<object> list = detailViewModel.GetList(selectedRecommentation);
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
-                { "objectlist", list }
+                { "objectlist", list },
+                { "apiKey", apiKey }
             };
             await navigationService.NavigateToAsync("//Overview", parameters);
         }
