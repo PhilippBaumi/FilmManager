@@ -4,7 +4,6 @@
     {
         void WriteToCSV();
         void WriteToDOCX();
-
         void WriteToJSON();
 
     }

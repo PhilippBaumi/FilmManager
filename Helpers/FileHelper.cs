@@ -33,12 +33,11 @@ namespace FilmManager.Helpers
 
         public string? DateTimeToString(DateTime? releaseDate)
         {
-            if (releaseDate != null)
+            if (releaseDate == null)
             {
-                DateTime date= releaseDate.Value;
-                return date.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
+                return null;
             }
-            return null;
+            return releaseDate.Value.ToString("dd.MM.yyyy", CultureInfo.InvariantCulture);
         }
 
         public List<string> ReadLines(string path)
@@ -65,7 +64,7 @@ namespace FilmManager.Helpers
             m.Id = Int32.Parse(parts[1]);
             m.Title = parts[2];
             m.OriginalTitle = parts[3];
-            m.ReleaseDate = DateTime.Parse(parts[4]);
+            m.ReleaseDate = StringToDataTime(parts[4]);
             m.BackdropPath = parts[6];
             m.PosterPath = parts[7];
             m.GenreIds = GetGenreIds(parts[8]);
@@ -85,7 +84,7 @@ namespace FilmManager.Helpers
             tv.Id = Int32.Parse(parts[1]);
             tv.Name = parts[2];
             tv.OriginalName = parts[3];
-            tv.FirstAirDate = DateTime.Parse(parts[4]);
+            tv.FirstAirDate = StringToDataTime(parts[4]);
             tv.OriginCountry = GetCountries(parts[5]);
             tv.BackdropPath = parts[6];
             tv.PosterPath = parts[7];
@@ -138,12 +137,8 @@ namespace FilmManager.Helpers
 
         public DateTime? StringToDataTime(string? s)
         {
-            if (!string.IsNullOrEmpty(s))
-            {
-                DateTime dateTime = DateTime.ParseExact(s, "dd.MM.yyyy", CultureInfo.InvariantCulture);
-                return dateTime;
-            }
-            return null;
+            if (string.IsNullOrEmpty(s)) return null;
+            return DateTime.ParseExact(s, "dd.MM.yyyy", CultureInfo.InvariantCulture);
         }
 
         public string GetValue(string value, string key)

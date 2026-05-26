@@ -104,7 +104,7 @@ namespace FilmManager.Backend
                         wordDocument.AddParagraph($"OriginalLanguage; {tv.OriginalLanguage}");
                         wordDocument.AddParagraph($"OriginCountry; {string.Join(",", tv.OriginCountry)}");
                         wordDocument.AddParagraph($"GenreIds; {string.Join(",", tv.GenreIds)}");
-                        wordDocument.AddParagraph($"ReleaseDate; {tv.FirstAirDate?.ToString("dd.MM.yyyy")}");
+                        wordDocument.AddParagraph($"ReleaseDate; {fileHelper.DateTimeToString(tv.FirstAirDate)}");
                         wordDocument.AddParagraph($"PosterPath; {tv.PosterPath}");
                         wordDocument.AddParagraph($"BackdropPath; {tv.BackdropPath}");
                         wordDocument.AddParagraph($"Popularity; {tv.Popularity}");
@@ -121,7 +121,7 @@ namespace FilmManager.Backend
                         wordDocument.AddParagraph($"Overview; {movie.Overview}");
                         wordDocument.AddParagraph($"OriginalLanguage; {movie.OriginalLanguage}");
                         wordDocument.AddParagraph($"GenreIds; {string.Join(",", movie.GenreIds)}");
-                        wordDocument.AddParagraph($"ReleaseDate; {movie.ReleaseDate?.ToString("dd.MM.yyyy")}");
+                        wordDocument.AddParagraph($"ReleaseDate; {fileHelper.DateTimeToString(movie.ReleaseDate)}");
                         wordDocument.AddParagraph($"PosterPath; {movie.PosterPath}");
                         wordDocument.AddParagraph($"BackdropPath; {movie.BackdropPath}");
                         wordDocument.AddParagraph($"Adult; {movie.Adult}");

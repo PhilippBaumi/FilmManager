@@ -6,6 +6,7 @@ using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
 using TMDbLib.Objects.TvShows;
+using FilmManager.Helpers;
 
 namespace FilmManager.Models
 {
@@ -51,6 +52,7 @@ namespace FilmManager.Models
         private string? selectedRecommendation;
         public DetailViewModel(object o)
         {
+            FileHelper fileHelper = new();
             if (o is Movie movie)
             {
                 string? logo = GetRandomImage(GetUSList(movie.Images.Logos));
@@ -79,7 +81,7 @@ namespace FilmManager.Models
                     Backport = ImageBaseUrl + movie.BackdropPath;
                 }
                 Overview = $"{AppResources.description}: " + movie.Overview;
-                ReleaseDate = $"{AppResources.releaseDate}: " + movie.ReleaseDate?.ToString("dd.MM.yyyy") ?? string.Empty;
+                ReleaseDate = $"{AppResources.releaseDate}: " + (fileHelper.DateTimeToString(movie.ReleaseDate) ?? string.Empty);
                 Popularity = $"{AppResources.popularity}: " + movie.Popularity;
                 AverageVote = $"{AppResources.averageVote}: " + movie.VoteAverage;
                 Homepage = movie.Homepage;
@@ -119,7 +121,7 @@ namespace FilmManager.Models
                     Backport = ImageBaseUrl + serie.BackdropPath;
                 }
                 Overview = $"{AppResources.description}: " + serie.Overview;
-                ReleaseDate = $"{AppResources.releaseDate}: " + serie.FirstAirDate?.ToString("dd.MM.yyyy") ?? string.Empty;
+                ReleaseDate = $"{AppResources.releaseDate}: " + (fileHelper.DateTimeToString(serie.FirstAirDate) ?? string.Empty);
                 Popularity = $"{AppResources.popularity}: " + serie.Popularity;
                 AverageVote = $"{AppResources.averageVote}: " + serie.VoteAverage;
                 Homepage = serie.Homepage;
