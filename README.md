@@ -51,7 +51,7 @@ Technische Hinweise
 
 Build & Ausführen
 
-- Voraussetzungen: .NET 10 SDK, .NET MAUI Workload, passende IDE/Tooling (z. B. Visual Studio mit MAUI‑Support).
+- Voraussetzungen: .NET 10 SDK, .NET MAUI Workload, passende IDE/Tooling (z. B. Visual Studio 2026 Community oder JetBrains Rider mit MAUI‑Support).
 - Projekt öffnen und starten mit gewünschtem Target (z. B. Windows oder Android).
 - CLI (Beispiel):
   - dotnet restore

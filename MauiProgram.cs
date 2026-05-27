@@ -10,7 +10,6 @@ namespace FilmManager
     {
         public static MauiApp CreateMauiApp()
         {
-            SQLitePCL.Batteries.Init();
             var builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()

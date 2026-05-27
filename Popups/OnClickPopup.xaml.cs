@@ -97,33 +97,39 @@ public partial class OnClickPopup : Popup
             if (!this.onClickPopupViewModel.MyContains(watched, movie) && !this.onClickPopupViewModel.MyContains(watchlist, movie))
             {
                 await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.notRemoved, "OK");
+                return;
             }
             if (this.onClickPopupViewModel.MyContains(watched, movie))
             {
                 this.database.DeleteEntry(movie, "Watched");
                 await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.removed, "OK");
+                return;
             }
             if (this.onClickPopupViewModel.MyContains(watchlist, movie))
             {
                 this.database.DeleteEntry(movie, "Watchlist");
                 await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.removed, "OK");
+                return;
             }
         }
-        if (o is SearchTv tv)
+        else if (o is SearchTv tv)
         {
             if(!this.onClickPopupViewModel.MyContains(watched, tv)&&!this.onClickPopupViewModel.MyContains(watchlist, tv))
             {
                 await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.notRemoved, "OK");
+                return;
             }
             if (this.onClickPopupViewModel.MyContains(watched, tv))
             {
                 this.database.DeleteEntry(tv, "Watched");
                 await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.removed, "OK");
+                return;
             }
             if (this.onClickPopupViewModel.MyContains(watchlist, tv))
             {
                 this.database.DeleteEntry(tv, "Watchlist");
                 await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.removed, "OK");
+                return;
             }
         }
     }

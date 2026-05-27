@@ -69,16 +69,22 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove=".github\**" />
 	  <AndroidResource Remove="Geschrieben Dateien\**" />
 	  <AndroidResource Remove="Resources\Icons\**" />
+	  <Compile Remove=".github\**" />
 	  <Compile Remove="Geschrieben Dateien\**" />
 	  <Compile Remove="Resources\Icons\**" />
+	  <EmbeddedResource Remove=".github\**" />
 	  <EmbeddedResource Remove="Geschrieben Dateien\**" />
 	  <EmbeddedResource Remove="Resources\Icons\**" />
+	  <MauiCss Remove=".github\**" />
 	  <MauiCss Remove="Geschrieben Dateien\**" />
 	  <MauiCss Remove="Resources\Icons\**" />
+	  <MauiXaml Remove=".github\**" />
 	  <MauiXaml Remove="Geschrieben Dateien\**" />
 	  <MauiXaml Remove="Resources\Icons\**" />
+	  <None Remove=".github\**" />
 	  <None Remove="Geschrieben Dateien\**" />
 	  <None Remove="Resources\Icons\**" />
 	</ItemGroup>
