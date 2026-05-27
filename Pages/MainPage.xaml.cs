@@ -41,11 +41,7 @@ namespace FilmManager
                     try
                     {
                         SearchContainer<SearchTv> discoversSeries = await tMDBService.DiscoverSerien(id, 1);
-                        if (discoversSeries.Results != null)
-                        {
-                            mainViewModel.GetSerien(discoversSeries.Results);
-                        }
-                        for (int page = discoversSeries.Page + 1; page <= discoversSeries.TotalPages; page++)
+                        for (int page = discoversSeries.Page; page <= discoversSeries.TotalPages; page++)
                         {
                             discoversSeries.Page = page;
                             discoversSeries = await tMDBService.DiscoverSerien(id, page);
