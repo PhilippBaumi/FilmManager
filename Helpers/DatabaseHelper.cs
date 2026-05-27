@@ -1,4 +1,5 @@
 ﻿using System.Reflection;
+using TMDbLib.Objects.Search;
 
 namespace FilmManager.Helpers
 {

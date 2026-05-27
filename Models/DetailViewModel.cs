@@ -60,8 +60,8 @@ namespace FilmManager.Models
                 {
                     Logo = ImageBaseUrl + logo;
                 }
-                Id = "ID: " + movie.Id;
-                Language = $"{AppResources.language}: " + movie.OriginalLanguage;
+                Id = $"ID: {movie.Id}";
+                Language = $"{AppResources.language}: {movie.OriginalLanguage}";
                 string? poster= GetRandomImage(GetUSList(movie.Images.Posters));
                 if (poster != null)
                 {
@@ -80,14 +80,14 @@ namespace FilmManager.Models
                 {
                     Backport = ImageBaseUrl + movie.BackdropPath;
                 }
-                Overview = $"{AppResources.description}: " + movie.Overview;
-                ReleaseDate = $"{AppResources.releaseDate}: " + (fileHelper.DateTimeToString(movie.ReleaseDate) ?? string.Empty);
-                Popularity = $"{AppResources.popularity}: " + movie.Popularity;
-                AverageVote = $"{AppResources.averageVote}: " + movie.VoteAverage;
+                Overview = $"{AppResources.description}: {movie.Overview}";
+                ReleaseDate = $"{AppResources.releaseDate}: {(fileHelper.DateTimeToString(movie.ReleaseDate) ?? string.Empty)}";
+                Popularity = $"{AppResources.popularity}: {movie.Popularity}";
+                AverageVote = $"{AppResources.averageVote}: {movie.VoteAverage}";
                 Homepage = movie.Homepage;
-                Genres = "Genres: " + GenresToString(movie.Genres);
-                CountVote = $"{AppResources.countVote}: " + movie.VoteCount;
-                Cast = "Cast: "+GetCast(movie.Credits.Cast);
+                Genres = $"Genres: {GenresToString(movie.Genres)}";
+                CountVote = $"{AppResources.countVote}: {movie.VoteCount}";
+                Cast = $"Cast: {GetCast(movie.Credits.Cast)}";
                 SetLogos(movie.Images.Logos);
                 SetPosters(movie.Images.Posters);
                 SetBackdrops(movie.Images.Backdrops);
@@ -101,7 +101,7 @@ namespace FilmManager.Models
                     Logo = ImageBaseUrl + logo;
                 }
                 Id = "ID: " + serie.Id;
-                Language = $"{AppResources.language}: " + serie.OriginalLanguage;
+                Language = $"{AppResources.language}: {serie.OriginalLanguage}";
                 string? poster = GetRandomImage(GetUSList(serie.Images.Posters));
                 if (poster != null)
                 {
@@ -120,20 +120,20 @@ namespace FilmManager.Models
                 {
                     Backport = ImageBaseUrl + serie.BackdropPath;
                 }
-                Overview = $"{AppResources.description}: " + serie.Overview;
-                ReleaseDate = $"{AppResources.releaseDate}: " + (fileHelper.DateTimeToString(serie.FirstAirDate) ?? string.Empty);
-                Popularity = $"{AppResources.popularity}: " + serie.Popularity;
-                AverageVote = $"{AppResources.averageVote}: " + serie.VoteAverage;
+                Overview = $"{AppResources.description}: {serie.Overview}";
+                ReleaseDate = $"{AppResources.releaseDate}: {(fileHelper.DateTimeToString(serie.FirstAirDate) ?? string.Empty)}";
+                Popularity = $"{AppResources.popularity}: {serie.Popularity}";
+                AverageVote = $"{AppResources.averageVote}: {serie.VoteAverage}";
                 Homepage = serie.Homepage;
-                Genres = "Genres: " + GenresToString(serie.Genres);
-                CountVote = $"{AppResources.countVote}: " + serie.VoteCount;
-                OriginCountry = $"{AppResources.origionCountry}: " + string.Join(",", serie.OriginCountry);
-                Networks = "Networks: " + GetNetworks(serie.Networks);
-                Cast = "Cast: "+GetCast(serie.Credits.Cast);
-                CreatedBy = $"{AppResources.createdBy}: " + CreatedByToString(serie.CreatedBy);
-                EpisodsCount = $"{AppResources.numberOfEpisodes}: " + serie.NumberOfEpisodes;
-                SeasonsCount = $"{AppResources.numberOfSeasons}: " + serie.NumberOfSeasons;
-                ProductionCompanies = $"{AppResources.productionCompanies}: " + ProductionCompaniesToString(serie.ProductionCompanies);
+                Genres = $"Genres: {GenresToString(serie.Genres)}";
+                CountVote = $"{AppResources.countVote}: {serie.VoteCount}";
+                OriginCountry = $"{AppResources.origionCountry}: {string.Join(",", serie.OriginCountry)}";
+                Networks = $"Networks: {GetNetworks(serie.Networks)}";
+                Cast = $"Cast: {GetCast(serie.Credits.Cast)}";
+                CreatedBy = $"{AppResources.createdBy}: {CreatedByToString(serie.CreatedBy)}";
+                EpisodsCount = $"{AppResources.numberOfEpisodes}: {serie.NumberOfEpisodes}";
+                SeasonsCount = $"{AppResources.numberOfSeasons}: {serie.NumberOfSeasons}";
+                ProductionCompanies = $"{AppResources.productionCompanies}: {ProductionCompaniesToString(serie.ProductionCompanies)}";
                 SetLogos(serie.Images.Logos);
                 SetPosters(serie.Images.Posters);
                 SetBackdrops(serie.Images.Backdrops);
