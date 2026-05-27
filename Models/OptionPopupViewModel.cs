@@ -7,7 +7,7 @@ namespace FilmManager.Models
 {
     public class OptionPopupViewModel
     {
-        public object? Get(string selectedItem, object? o)
+        public object? Get(string? selectedItem, object? o)
         {
             TMDbHelper tmdbHelper = new();
             if (selectedItem != null&&o!=null)

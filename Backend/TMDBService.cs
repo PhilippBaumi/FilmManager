@@ -85,7 +85,7 @@ namespace FilmManager.Backend
             return await client.GetMovieAsync(id, MovieMethods.Credits|MovieMethods.Images|MovieMethods.Videos|MovieMethods.Lists|MovieMethods.Recommendations|MovieMethods.WatchProviders);  
         }
 
-        public async Task<TvShow?> GetTvShowAsync(int id)
+        public async Task<TvShow> GetTvShowAsync(int id)
         {
             return await client.GetTvShowAsync(id, TvShowMethods.Credits | TvShowMethods.Images | TvShowMethods.Videos | TvShowMethods.WatchProviders| TvShowMethods.Recommendations);
         }
