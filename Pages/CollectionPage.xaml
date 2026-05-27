@@ -29,9 +29,7 @@
                             HeightRequest="200" 
                             WidthRequest="150" 
                             HorizontalOptions="Center">
-                        <Image Source="{Binding .}" 
-                               Aspect="AspectFill" 
-                               BackgroundColor="LightGray" />
+                        <Image Source="{Binding .}" />
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
