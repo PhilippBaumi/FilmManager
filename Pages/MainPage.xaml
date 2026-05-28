@@ -6,12 +6,12 @@
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
              Padding="0,60,0,0">
     <VerticalStackLayout Padding="30,0" 
-                             Spacing="25">
-        <Button Text="{x:Static strings:AppResources.resetDatabase}" 
-                    Clicked="ResetDatabase" 
-                    Margin="10" 
-                    Padding="10" 
-                    WidthRequest="250"/>
+                         Spacing="25">
+        <Button Text="{x:Static strings:AppResources.resetDatabase}"
+                Clicked="ResetDatabase"
+                Margin="10" 
+                Padding="10" 
+                WidthRequest="250"/>
         <Picker Title="{x:Static strings:AppResources.series}"
                 ItemsSource="{Binding Serien}"
                 SelectedItem="{Binding SelectedSerie, Mode=TwoWay}"
