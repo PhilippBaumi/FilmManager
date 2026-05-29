@@ -4,7 +4,8 @@
              x:Class="FilmManager.SearchPage"
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
              Title="SearchPage">
-    <Grid RowDefinitions="Auto, Auto, Auto, *">
+    <Grid RowDefinitions="Auto, Auto, Auto, *"
+          Padding="20">
         <Entry x:Name="entrySearch" 
                Grid.Row="0" 
                Placeholder="{x:Static strings:AppResources.search}"/>

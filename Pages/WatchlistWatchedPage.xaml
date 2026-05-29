@@ -4,8 +4,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FilmManager.WatchlistWatchedPage"
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
-    <VerticalStackLayout Padding="30,0" 
-                             Spacing="25">
+    <VerticalStackLayout Padding="20" 
+                         Spacing="25">
         <Picker Title="{x:Static strings:AppResources.watched}"
                     ItemsSource="{Binding Watched,Mode=TwoWay}"
                     SelectedItem="{Binding SelectedItem}"

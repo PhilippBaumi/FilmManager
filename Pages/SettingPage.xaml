@@ -4,8 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FilmManager.SettingPage"
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
-    <VerticalStackLayout Margin="10" 
-                         Padding="10">
+    <VerticalStackLayout Padding="20">
         <Picker Title="{x:Static strings:AppResources.language}"
                 ItemsSource="{Binding Languages}"
                 SelectedItem="{Binding Language, Mode=TwoWay}"

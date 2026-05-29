@@ -99,8 +99,8 @@
     <PackageReference Include="OfficeIMO.Word" Version="1.0.59" />
     <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.3" />
     <PackageReference Include="TMDbLib" Version="3.0.0" />
-    <PackageReference Include="UraniumUI" Version="2.16.0" />
-    <PackageReference Include="UraniumUI.Material" Version="2.16.0" />
+    <!--<PackageReference Include="UraniumUI" Version="2.16.0" />
+    <PackageReference Include="UraniumUI.Material" Version="2.16.0" />-->
   </ItemGroup>
 
 	<ItemGroup>

@@ -2,7 +2,7 @@
 using FilmManager.Backend;
 using FilmManager.Helpers;
 using FilmManager.Interfaces;
-using UraniumUI;
+//using UraniumUI;
 
 namespace FilmManager
 {
@@ -15,8 +15,8 @@ namespace FilmManager
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
-                .UseUraniumUI()
-                .UseUraniumUIMaterial()
+                //.UseUraniumUI()
+                //.UseUraniumUIMaterial()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

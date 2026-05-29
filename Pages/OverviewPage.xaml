@@ -5,7 +5,8 @@
              xmlns:sys="clr-namespace:System;assembly=netstandard"
              x:DataType="models:OverviewViewModel"
              x:Class="FilmManager.OverviewPage">
-    <Grid RowDefinitions="*">
+    <Grid RowDefinitions="*"
+          Padding="20">
         <CollectionView Grid.Row="0" 
                         ItemsSource="{Binding Images}" 
                         SelectedItem="{Binding ImageUrl, Mode=TwoWay}" 

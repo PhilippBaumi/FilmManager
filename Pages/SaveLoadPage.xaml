@@ -5,17 +5,20 @@
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
     <VerticalStackLayout>
         <StackLayout x:Name="SaveOrLoadGroup" 
-                     Margin="10" 
+                     Padding="20"
                      RadioButtonGroup.GroupName="Save">
             <RadioButton Content="DOCX" 
                          Value="DOCX" 
                          CheckedChanged="SaveOrLoad"/>
+            <!--Margin="10"/>-->
             <RadioButton Content="CSV" 
                          Value="CSV" 
                          CheckedChanged="SaveOrLoad"/>
+            <!--Margin="10"/>-->
             <RadioButton Content="JSON" 
                          Value="JSON" 
                          CheckedChanged="SaveOrLoad"/>
+            <!--Margin="10"/>-->
         </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

@@ -53,6 +53,7 @@
                     SelectedIndexChanged="HandleBackports"/>
             <Button Text="{x:Static strings:AppResources.showPopup}"
                     Clicked="HandlePopupShow"/>
+            <!--Margin="0,10,0,0"/>-->
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
