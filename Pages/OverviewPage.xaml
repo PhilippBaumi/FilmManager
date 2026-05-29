@@ -20,8 +20,7 @@
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="sys:String">
-                    <Border Stroke="Transparent" 
-                            HeightRequest="200" 
+                    <Border HeightRequest="200" 
                             WidthRequest="150" 
                             HorizontalOptions="Center">
                         <Image Source="{Binding .}"/>
