@@ -339,4 +339,7 @@
   <data name="dateIsFuture" xml:space="preserve">
     <value>Du kannst keine Serie/Film als gesehen markieren, welche erst in der Zukunft erscheint. </value>
   </data>
+  <data name="page" xml:space="preserve">
+    <value>Seite</value>
+  </data>
 </root>

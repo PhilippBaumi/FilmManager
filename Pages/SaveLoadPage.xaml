@@ -10,15 +10,12 @@
             <RadioButton Content="DOCX" 
                          Value="DOCX" 
                          CheckedChanged="SaveOrLoad"/>
-            <!--Margin="10"/>-->
             <RadioButton Content="CSV" 
                          Value="CSV" 
                          CheckedChanged="SaveOrLoad"/>
-            <!--Margin="10"/>-->
             <RadioButton Content="JSON" 
                          Value="JSON" 
                          CheckedChanged="SaveOrLoad"/>
-            <!--Margin="10"/>-->
         </StackLayout>
     </VerticalStackLayout>
 </ContentPage>

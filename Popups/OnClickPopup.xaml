@@ -4,7 +4,8 @@
                xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
                x:Class="FilmManager.Popups.OnClickPopup"
                xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
-               BackgroundColor="Grey">
+               BackgroundColor="Grey"
+               CanBeDismissedByTappingOutsideOfPopup="False">
     <VerticalStackLayout>
         <Label x:Name="lbTitle" HorizontalOptions="Center" FontSize="15" FontAttributes="Bold"/>
         <Button x:Name="btnMarkedAsWatched"

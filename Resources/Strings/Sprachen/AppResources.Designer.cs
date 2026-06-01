@@ -502,6 +502,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Seite ähnelt.
+        /// </summary>
+        internal static string page {
+            get {
+                return ResourceManager.GetString("page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Berühmtheit ähnelt.
         /// </summary>
         internal static string popularity {

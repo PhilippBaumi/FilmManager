@@ -2,10 +2,10 @@
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
+using Mopups.PreBaked.Services;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
-using MediaType = TMDbLib.Objects.General.MediaType;
 
 namespace FilmManager
 {
@@ -41,10 +41,12 @@ namespace FilmManager
                     try
                     {
                         SearchContainer<SearchTv> discoversSeries = await tMDBService.DiscoverSerien(id, 1);
-                        for (int page = discoversSeries.Page; page <= discoversSeries.TotalPages; page++)
+                        await PreBakedMopupService.GetInstance().WrapTaskInLoader(tMDBService.DiscoverSerien(id, 1), Color.FromArgb("#1565C0"), Colors.Gray, new List<string> { $"{AppResources.page} 1 {AppResources.loading}"}, Colors.Black);
+                        for (int page = discoversSeries.Page+1; page <= discoversSeries.TotalPages; page++)
                         {
                             discoversSeries.Page = page;
                             discoversSeries = await tMDBService.DiscoverSerien(id, page);
+                            await PreBakedMopupService.GetInstance().WrapTaskInLoader(tMDBService.DiscoverSerien(id, page), Color.FromArgb("#1565C0"), Colors.Gray, new List<string> {$"{AppResources.page} {page} {AppResources.loading}"}, Colors.Black);
                             if (discoversSeries.Results != null)
                             {
                                 mainViewModel.GetSerien(discoversSeries.Results);
@@ -79,10 +81,12 @@ namespace FilmManager
                     try
                     {
                         SearchContainer<SearchMovie> discoversMovies = await tMDBService.DiscoverMovies(id, 1);
-                        for (int page = discoversMovies.Page; page <= discoversMovies.TotalPages; page++)
+                        await PreBakedMopupService.GetInstance().WrapTaskInLoader(tMDBService.DiscoverMovies(id, 1), Color.FromArgb("#1565C0"), Colors.Gray, new List<string> { $"{AppResources.page} 1 {AppResources.loading}" }, Colors.Black);
+                        for (int page = discoversMovies.Page+1; page <= discoversMovies.TotalPages; page++)
                         {
                             discoversMovies.Page = page;
                             discoversMovies = await tMDBService.DiscoverMovies(id, page);
+                            await PreBakedMopupService.GetInstance().WrapTaskInLoader(tMDBService.DiscoverMovies(id, page), Color.FromArgb("#1565C0"), Colors.Gray, new List<string> { $"{AppResources.page} 1 {AppResources.loading}" }, Colors.Black);
                             if (discoversMovies.Results != null)
                             {
                                 mainViewModel.GetMovies(discoversMovies.Results);

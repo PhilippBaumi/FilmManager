@@ -2,6 +2,7 @@
 using FilmManager.Backend;
 using FilmManager.Helpers;
 using FilmManager.Interfaces;
+using Mopups.Hosting;
 
 namespace FilmManager
 {
@@ -14,6 +15,7 @@ namespace FilmManager
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .ConfigureMopups()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
