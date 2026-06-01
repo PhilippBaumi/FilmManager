@@ -17,10 +17,13 @@ namespace FilmManager.Models
         [ObservableProperty]
         private string? selectedMovie;
 
-        public MainViewModel(List<string> movieGenres, List<string> serieGenres)
+        public MainViewModel(List<string>? movieGenres, List<string>? serieGenres)
         {
-            AddSerien(serieGenres);
-            AddMovies(movieGenres);
+            if (movieGenres != null && serieGenres != null)
+            {
+                AddSerien(serieGenres);
+                AddMovies(movieGenres);
+            }
         }
 
         private void AddMovies(List<string> movieGenres)

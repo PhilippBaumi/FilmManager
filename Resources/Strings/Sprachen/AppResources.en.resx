@@ -342,4 +342,7 @@
   <data name="page" xml:space="preserve">
     <value>Page</value>
   </data>
+  <data name="loadingError" xml:space="preserve">
+    <value>Loading and opening failed</value>
+  </data>
 </root>

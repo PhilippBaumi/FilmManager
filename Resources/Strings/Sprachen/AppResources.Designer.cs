@@ -340,6 +340,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Laden und öffnen ähnelt.
+        /// </summary>
+        internal static string loadingError {
+            get {
+                return ResourceManager.GetString("loadingError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Als gesehen markieren ähnelt.
         /// </summary>
         internal static string markAsWatched {

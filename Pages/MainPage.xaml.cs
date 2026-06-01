@@ -12,20 +12,42 @@ namespace FilmManager
     {
         private INavigationService navigationService;
         private TMDBService tMDBService;
-        private MainViewModel mainViewModel;
         private IDatabase database;
+        private MainViewModel mainViewModel;
         public MainPage(INavigationService navigation, TMDBService tMDBService, IDatabase database)
         {
             InitializeComponent();
             this.navigationService = navigation;
             this.database = database;
             this.tMDBService = tMDBService;
-            this.tMDBService.AddMoviesGenresToList();
-            List<string> movieGenres = tMDBService.MovieGenresName;
-            this.tMDBService.AddSerienGenresToList();
-            List<string> serieGenres = tMDBService.SerienGenresName;
-            this.mainViewModel = new(movieGenres, serieGenres);
-            BindingContext = mainViewModel;
+        }
+
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            try
+            {
+                this.tMDBService.AddMoviesGenresToList();
+                List<string> movieGenres = tMDBService.MovieGenresName;
+                this.tMDBService.AddSerienGenresToList();
+                List<string> serieGenres = tMDBService.SerienGenresName;
+                this.mainViewModel = new(movieGenres, serieGenres);
+            }
+            catch (Exception ex)
+            {
+                await DisplayAlertAsync(AppResources.error, $"{ex.Message}, {AppResources.loadingError}", "OK");
+            }
+            finally
+            {
+                if(this.mainViewModel != null)
+                {
+                    BindingContext = mainViewModel;
+                }
+                else
+                {
+                    BindingContext = new MainViewModel(null, null);
+                }
+            }
         }
 
         private async void OnPickerSeriesSelectionChanged(object sender, EventArgs e)
