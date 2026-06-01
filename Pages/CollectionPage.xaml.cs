@@ -18,12 +18,12 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
     private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
     private TMDBService tMDBService;
     private INavigationService navigation;
-    public CollectionPage(INavigationService navigation)
+    public CollectionPage(INavigationService navigation, TMDBService tMDBService)
     {
         InitializeComponent();
         this.collectionPageViewModel = new();
         this.navigation = navigation;
-        this.tMDBService = new TMDBService(new TMDbClient("c7108e21486edb11a641d92aa539f3e2"));
+        this.tMDBService = tMDBService;
         BindingContext = this.collectionPageViewModel;
     }
     private async void SearchCollection(object sender, EventArgs e)
@@ -84,7 +84,7 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "list", movies },
-                    { "apiKey",  "c7108e21486edb11a641d92aa539f3e2"}
+                    { "apiKey", tMDBService.client.ApiKey }
                 };
 
                 await navigation.NavigateToAsync("//Overview", parameters);

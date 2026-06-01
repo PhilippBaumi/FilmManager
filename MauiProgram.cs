@@ -3,6 +3,7 @@ using FilmManager.Backend;
 using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using Mopups.Hosting;
+using TMDbLib.Client;
 
 namespace FilmManager
 {
@@ -24,6 +25,8 @@ namespace FilmManager
 
             builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
             builder.Services.AddSingleton<AppShell>();
+            builder.Services.AddSingleton(new TMDbClient("c7108e21486edb11a641d92aa539f3e2"));
+            builder.Services.AddSingleton<TMDBService>();
             builder.Services.AddSingleton<IDatabase>(serviceProvider =>
             {
                 FileHelper fileHelper = new();

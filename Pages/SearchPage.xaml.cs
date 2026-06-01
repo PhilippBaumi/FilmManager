@@ -15,12 +15,10 @@ public partial class SearchPage : ContentPage
     private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
     private SearchPageViewModel searchPageViewModel = new();
     private INavigationService navigationService;
-    private IDatabase database;
-    public SearchPage(INavigationService navigationService, IDatabase database)
+    public SearchPage(INavigationService navigationService)
     {
         InitializeComponent();
         this.navigationService = navigationService;
-        this.database = database;
         BindingContext = searchPageViewModel;
     }
     private async void Search(object sender, EventArgs e)

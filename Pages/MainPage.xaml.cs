@@ -3,7 +3,6 @@ using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
 using Mopups.PreBaked.Services;
-using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
 
@@ -15,12 +14,12 @@ namespace FilmManager
         private TMDBService tMDBService;
         private MainViewModel mainViewModel;
         private IDatabase database;
-        public MainPage(INavigationService navigation, IDatabase database)
+        public MainPage(INavigationService navigation, TMDBService tMDBService, IDatabase database)
         {
             InitializeComponent();
             this.navigationService = navigation;
             this.database = database;
-            this.tMDBService = new TMDBService(new TMDbClient("c7108e21486edb11a641d92aa539f3e2"));
+            this.tMDBService = tMDBService;
             this.tMDBService.AddMoviesGenresToList();
             List<string> movieGenres = tMDBService.MovieGenresName;
             this.tMDBService.AddSerienGenresToList();
@@ -60,7 +59,7 @@ namespace FilmManager
                     IDictionary<string, object> parameters = new Dictionary<string, object>
                     {
                         { "list", mainViewModel.series },
-                        { "apiKey", "c7108e21486edb11a641d92aa539f3e2" }
+                        { "apiKey", tMDBService.client.ApiKey }
                     };
                     await navigationService.NavigateToAsync("//Overview", parameters);
                 }
@@ -101,7 +100,7 @@ namespace FilmManager
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "list", mainViewModel.movies },
-                    { "apiKey", "c7108e21486edb11a641d92aa539f3e2" }
+                    { "apiKey", tMDBService.client.ApiKey }
                 };
                 await navigationService.NavigateToAsync("//Overview", parameters);
             }
