@@ -7,12 +7,12 @@
     <VerticalStackLayout Padding="20" 
                          Spacing="25">
         <Picker Title="{x:Static strings:AppResources.watched}"
-                    ItemsSource="{Binding Watched,Mode=TwoWay}"
-                    SelectedItem="{Binding SelectedItem}"
-                    SelectedIndexChanged="HandlePickerSelection"/>
+                ItemsSource="{Binding Watched,Mode=TwoWay}"
+                SelectedItem="{Binding SelectedItem}"
+                SelectedIndexChanged="HandlePickerSelection"/>
         <Picker Title="{x:Static strings:AppResources.watchlist}"
-                    ItemsSource="{Binding Watchlist, Mode=TwoWay}"
-                    SelectedItem="{Binding SelectedItem}"
-                    SelectedIndexChanged="HandlePickerSelection"/>
+                ItemsSource="{Binding Watchlist, Mode=TwoWay}"
+                SelectedItem="{Binding SelectedItem}"
+                SelectedIndexChanged="HandlePickerSelection"/>
     </VerticalStackLayout>
 </ContentPage>
