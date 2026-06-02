@@ -103,7 +103,7 @@ namespace FilmManager.Models
 
         public bool IsInWatchedList(object? obj)
         {
-            if (obj!=null&&this.watched.Contains(obj))
+            if (obj != null && this.watched.Contains(obj))
             {
                 return true;
             }

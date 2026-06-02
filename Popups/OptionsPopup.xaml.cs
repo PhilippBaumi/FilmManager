@@ -31,7 +31,7 @@ public partial class OptionsPopup : Popup
         this.tMDBService = new(new TMDbClient(apiKey));
         this.obj = optionPopupViewModel.Get(selectedItem, o);
         SetTitleToLabel();
-        if(option.Equals("Detail"))
+        if (option.Equals("Detail"))
         {
             btnDetails.IsVisible = false;
         }
@@ -66,9 +66,9 @@ public partial class OptionsPopup : Popup
                 if (this.obj is SearchTv serie)
                 {
                     DateTime? rDate = serie.FirstAirDate;
-                    if(rDate.HasValue)
+                    if (rDate.HasValue)
                     {
-                        if(rDate.Value>DateTime.Today)
+                        if (rDate.Value > DateTime.Today)
                         {
                             await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.dateIsFuture, "OK");
                         }
@@ -82,9 +82,9 @@ public partial class OptionsPopup : Popup
                 if (this.obj is SearchMovie movie)
                 {
                     DateTime? rDate = movie.ReleaseDate;
-                    if(rDate.HasValue)
+                    if (rDate.HasValue)
                     {
-                        if(rDate.Value>DateTime.Today)
+                        if (rDate.Value > DateTime.Today)
                         {
                             await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.dateIsFuture, "OK");
                         }
@@ -117,7 +117,8 @@ public partial class OptionsPopup : Popup
                 if (this.obj is SearchTv serie)
                 {
                     this.database.InsertEntry(serie, "Watchlist");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");                }
+                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
+                }
                 if (this.obj is SearchMovie movie)
                 {
                     this.database.InsertEntry(movie, "Watchlist");
@@ -134,7 +135,7 @@ public partial class OptionsPopup : Popup
     private async void NavigateToDetails(object sender, EventArgs e)
     {
         try
-        { 
+        {
             if (this.selectedItem != null)
             {
                 if (this.obj != null)

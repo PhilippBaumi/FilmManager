@@ -2,7 +2,6 @@ using FilmManager.Backend;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
-using TMDbLib.Client;
 using TMDbLib.Objects.Collections;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
@@ -90,7 +89,7 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
                 await navigation.NavigateToAsync("//Overview", parameters);
             }
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
         }

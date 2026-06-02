@@ -1,6 +1,5 @@
 ﻿using FilmManager.Resources.Strings.Sprachen;
 using System.Globalization;
-using System.Text;
 using System.Text.RegularExpressions;
 using TMDbLib.Objects.Search;
 

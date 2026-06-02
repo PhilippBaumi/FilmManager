@@ -30,7 +30,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
             detailViewModel = new(o);
             BindingContext = detailViewModel;
         }
-        if(query.ContainsKey("apiKey"))
+        if (query.ContainsKey("apiKey"))
         {
             apiKey = query["apiKey"] as string;
         }
@@ -123,7 +123,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
     {
         string? selectedPoster = detailViewModel.Poster;
         selectedPoster = selectedPoster.Replace(ImageBaseUrl, string.Empty);
-        OptionsPopup popup = new(selectedPoster, navigationService,o, database, "Detail", apiKey);
+        OptionsPopup popup = new(selectedPoster, navigationService, o, database, "Detail", apiKey);
         Application.Current.Windows[0].Page.ShowPopup(popup);
     }
 }

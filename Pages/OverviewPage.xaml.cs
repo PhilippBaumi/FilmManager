@@ -50,10 +50,10 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
             overviewViewModel = new(O);
             BindingContext = overviewViewModel;
         }
-        if(query.ContainsKey("objectlist"))
+        if (query.ContainsKey("objectlist"))
         {
             object? obj = query["objectlist"];
-            if(obj is List<object> list)
+            if (obj is List<object> list)
             {
                 if (list.Count == 1 && list[0] is SearchTv tv)
                 {
@@ -63,7 +63,7 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
                     overviewViewModel = new(O);
                     BindingContext = overviewViewModel;
                 }
-                if(list.Count==1 && list[0] is SearchMovie movie)
+                if (list.Count == 1 && list[0] is SearchMovie movie)
                 {
                     List<SearchMovie> movies = new();
                     movies.Add(movie);
@@ -73,7 +73,7 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
                 }
             }
         }
-        if(query.ContainsKey("apiKey"))
+        if (query.ContainsKey("apiKey"))
         {
             apiKey = query["apiKey"] as string;
         }

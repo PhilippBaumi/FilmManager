@@ -49,7 +49,7 @@ namespace FilmManager.Helpers
         private List<int>? GetGenreIds(List<Genre>? genres)
         {
             List<int> genreIds = new();
-            foreach(Genre g in genres)
+            foreach (Genre g in genres)
             {
                 genreIds.Add(g.Id);
             }

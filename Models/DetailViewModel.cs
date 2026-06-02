@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using FilmManager.Helpers;
 using FilmManager.Resources.Strings.Sprachen;
 using System.Collections.ObjectModel;
 using System.Text;
@@ -6,7 +7,6 @@ using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
 using TMDbLib.Objects.TvShows;
-using FilmManager.Helpers;
 
 namespace FilmManager.Models
 {
@@ -26,13 +26,13 @@ namespace FilmManager.Models
         public string? CountVote { get; set; }
         public string? OriginCountry { get; set; }
         public string? Networks { get; set; }
-        public string? Cast { get; set; } 
+        public string? Cast { get; set; }
         public string? CreatedBy { get; set; }
         public string? Logo { get; set; }
         public string? EpisodsCount { get; set; }
         public string? SeasonsCount { get; set; }
 
-        public string? ProductionCompanies { get; set;  }
+        public string? ProductionCompanies { get; set; }
 
         public ObservableCollection<string> Logos { get; set; } = new();
         public ObservableCollection<string> Posters { get; set; } = new();
@@ -62,19 +62,19 @@ namespace FilmManager.Models
                 }
                 Id = $"ID: {movie.Id}";
                 Language = $"{AppResources.language}: {movie.OriginalLanguage}";
-                string? poster= GetRandomImage(GetUSList(movie.Images.Posters));
+                string? poster = GetRandomImage(GetUSList(movie.Images.Posters));
                 if (poster != null)
                 {
-                    Poster = ImageBaseUrl+poster;
+                    Poster = ImageBaseUrl + poster;
                 }
                 else
                 {
                     Poster = ImageBaseUrl + movie.PosterPath;
                 }
-                string? backport= GetRandomImage(GetUSList(movie.Images.Backdrops));
-                if(backport != null)
+                string? backport = GetRandomImage(GetUSList(movie.Images.Backdrops));
+                if (backport != null)
                 {
-                    Backport = ImageBaseUrl+backport;
+                    Backport = ImageBaseUrl + backport;
                 }
                 else
                 {
@@ -144,7 +144,7 @@ namespace FilmManager.Models
         private void SetRecommendations(SearchContainer<SearchTv>? recommendations)
         {
             List<SearchTv> searchTv = recommendations.Results;
-            foreach(SearchTv tv in searchTv)
+            foreach (SearchTv tv in searchTv)
             {
                 Recommendations.Add(tv.Name);
                 this.recommentationList.Add(tv);
@@ -180,7 +180,7 @@ namespace FilmManager.Models
         private string CreatedByToString(List<CreatedBy>? createdBy)
         {
             StringBuilder sb = new();
-            foreach(CreatedBy created in createdBy)
+            foreach (CreatedBy created in createdBy)
             {
                 sb.Append(created.Name);
                 sb.Append(", ");
@@ -208,10 +208,10 @@ namespace FilmManager.Models
         {
             foreach (ImageData image in posters)
             {
-                if(image.FilePath!=null&&image.Iso_3166_1!=null)
+                if (image.FilePath != null && image.Iso_3166_1 != null)
                 {
                     Posters.Add($"{ImageBaseUrl}{image.FilePath} [{image.Iso_3166_1}]");
-                } 
+                }
             }
         }
 
@@ -229,11 +229,11 @@ namespace FilmManager.Models
         private List<ImageData>? GetUSList(List<ImageData>? list)
         {
             List<ImageData>? images = new();
-            foreach(ImageData image in list)
+            foreach (ImageData image in list)
             {
-                if(image!=null)
+                if (image != null)
                 {
-                    if(image.Iso_3166_1!=null &&image.Iso_3166_1.Equals("US"))
+                    if (image.Iso_3166_1 != null && image.Iso_3166_1.Equals("US"))
                     {
                         images.Add(image);
                     }
@@ -257,19 +257,19 @@ namespace FilmManager.Models
         private string GetCast(object? obj)
         {
             StringBuilder sb = new();
-            if(obj!=null)
+            if (obj != null)
             {
-                if(obj is List<TMDbLib.Objects.Movies.Cast> mCastList)
+                if (obj is List<TMDbLib.Objects.Movies.Cast> mCastList)
                 {
-                    foreach(TMDbLib.Objects.Movies.Cast mCast in mCastList)
+                    foreach (TMDbLib.Objects.Movies.Cast mCast in mCastList)
                     {
                         sb.Append(mCast.Name);
                         sb.Append(", ");
                     }
                 }
-                if(obj is List<TMDbLib.Objects.TvShows.Cast> tCastList)
+                if (obj is List<TMDbLib.Objects.TvShows.Cast> tCastList)
                 {
-                    foreach(TMDbLib.Objects.TvShows.Cast tCast in tCastList)
+                    foreach (TMDbLib.Objects.TvShows.Cast tCast in tCastList)
                     {
                         sb.Append(tCast.Name);
                         sb.Append(", ");
@@ -315,18 +315,18 @@ namespace FilmManager.Models
         public List<object> GetList(string selectedRecommentation)
         {
             List<object> list = new();
-            foreach(object o in this.recommentationList)
+            foreach (object o in this.recommentationList)
             {
-                if(o is SearchMovie movie)
+                if (o is SearchMovie movie)
                 {
-                    if(movie.Title.Equals(selectedRecommentation))
+                    if (movie.Title.Equals(selectedRecommentation))
                     {
                         list.Add(movie);
                     }
                 }
-                if(o is SearchTv tv)
+                if (o is SearchTv tv)
                 {
-                    if(tv.Name.Equals(selectedRecommendation))
+                    if (tv.Name.Equals(selectedRecommendation))
                     {
                         list.Add(tv);
                     }

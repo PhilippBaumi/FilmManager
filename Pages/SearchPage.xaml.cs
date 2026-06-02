@@ -1,8 +1,6 @@
-using CommunityToolkit.Maui.Extensions;
 using FilmManager.Backend;
 using FilmManager.Interfaces;
 using FilmManager.Models;
-using FilmManager.Popups;
 using FilmManager.Resources.Strings.Sprachen;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;

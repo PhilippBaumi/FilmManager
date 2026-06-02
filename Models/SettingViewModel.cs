@@ -15,7 +15,7 @@ namespace FilmManager.Models
         [ObservableProperty]
         private string? themeAsString;
 
-        public SettingViewModel() 
+        public SettingViewModel()
         {
             this.Languages.Add(AppResources.german);
             this.Languages.Add(AppResources.english);

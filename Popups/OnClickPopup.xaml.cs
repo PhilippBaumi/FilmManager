@@ -25,7 +25,7 @@ public partial class OnClickPopup : Popup
         lbTitle.Text = SetText();
         this.database = database;
         this.apiKey = apiKey;
-        this.onClickPopupViewModel = new(database);
+        this.onClickPopupViewModel = new();
         this.navigationService = navigationService;
         if (isInWatched)
         {
@@ -52,7 +52,7 @@ public partial class OnClickPopup : Popup
 
     private async void MarkAsWatched(object sender, EventArgs e)
     {
-        if(o is SearchMovie movie)
+        if (o is SearchMovie movie)
         {
             DateTime? rDate = movie.ReleaseDate;
             if (rDate.HasValue)
@@ -114,7 +114,7 @@ public partial class OnClickPopup : Popup
         }
         else if (o is SearchTv tv)
         {
-            if(!this.onClickPopupViewModel.MyContains(watched, tv)&&!this.onClickPopupViewModel.MyContains(watchlist, tv))
+            if (!this.onClickPopupViewModel.MyContains(watched, tv) && !this.onClickPopupViewModel.MyContains(watchlist, tv))
             {
                 await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.notRemoved, "OK");
                 return;

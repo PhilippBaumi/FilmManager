@@ -1,23 +1,15 @@
-﻿using FilmManager.Interfaces;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using TMDbLib.Objects.Search;
 
 namespace FilmManager.Models
 {
     public class OnClickPopupViewModel
     {
-        private IDatabase database;
-
-        public OnClickPopupViewModel(IDatabase database)
-        {
-            this.database = database;
-        }
-
         public bool MyContains(ObservableCollection<object> collection, object o)
         {
-            foreach(object obj in collection)
+            foreach (object obj in collection)
             {
-                if(o is SearchMovie movie&&obj is SearchMovie m)
+                if (o is SearchMovie movie && obj is SearchMovie m)
                 {
                     if (movie.Id == m.Id)
                     {

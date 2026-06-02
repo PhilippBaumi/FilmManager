@@ -63,13 +63,12 @@ namespace FilmManager
                 {
                     LoadingPopup loadingPopup = new(AppResources.loading);
                     CancellationTokenSource cts = new();
-                    Task popupTask=this.ShowPopupAsync(loadingPopup, new PopupOptions
+                    Task popupTask = this.ShowPopupAsync(loadingPopup, new PopupOptions
                     {
                         CanBeDismissedByTappingOutsideOfPopup = false
                     }, cts.Token);
                     try
                     {
-                        //await Task.Delay(100);
                         SearchContainer<SearchTv> discoversSeries = await tMDBService.DiscoverSerien(id, 1);
                         if (discoversSeries.Results != null)
                         {
@@ -91,7 +90,7 @@ namespace FilmManager
                     }
                     finally
                     {
-                       cts.Cancel();
+                        cts.Cancel();
                     }
                     IDictionary<string, object> parameters = new Dictionary<string, object>
                     {
@@ -121,7 +120,6 @@ namespace FilmManager
                     }, cts.Token);
                     try
                     {
-                        //await Task.Delay(100);
                         SearchContainer<SearchMovie> discoversMovies = await tMDBService.DiscoverMovies(id, 1);
                         if (discoversMovies.Results != null)
                         {

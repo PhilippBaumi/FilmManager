@@ -24,11 +24,5 @@ namespace FilmManager.Helpers
                 await Shell.Current.GoToAsync(route);
             }
         }
-
-
-        public async Task GoBackAsync()
-        {
-            await NavigateToAsync("..");
-        }
     }
 }

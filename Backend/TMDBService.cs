@@ -12,7 +12,7 @@ namespace FilmManager.Backend
 {
     public class TMDBService
     {
-        public TMDbClient client{ get; }
+        public TMDbClient client { get; }
         public List<string> MovieGenresName { get; } = new();
         public List<string> SerienGenresName { get; } = new();
         private List<Genre> moviesGenres = new();
@@ -39,7 +39,7 @@ namespace FilmManager.Backend
         public void AddSerienGenresToList()
         {
             List<Genre>? taskResult = client.GetTvGenresAsync().Result;
-            if(taskResult!=null)
+            if (taskResult != null)
             {
                 foreach (Genre genre in taskResult)
                 {
@@ -63,7 +63,7 @@ namespace FilmManager.Backend
             DiscoverTv discover = client.DiscoverTvShowsAsync();
             IEnumerable<int> enumerable = new int[] { genreId };
             discover = discover.WhereGenresInclude(enumerable);
-            discover=discover.OrderBy(DiscoverTvShowSortBy.PopularityDesc);
+            discover = discover.OrderBy(DiscoverTvShowSortBy.PopularityDesc);
             return await RetryLoadingAsync(async () => await discover.Query(page));
         }
 
@@ -84,12 +84,12 @@ namespace FilmManager.Backend
 
         public async Task<Movie> GetMovieAsync(int id)
         {
-            return await RetryLoadingAsync(async () => await client.GetMovieAsync(id, MovieMethods.Credits|MovieMethods.Images|MovieMethods.Videos|MovieMethods.Lists|MovieMethods.Recommendations|MovieMethods.WatchProviders));  
+            return await RetryLoadingAsync(async () => await client.GetMovieAsync(id, MovieMethods.Credits | MovieMethods.Images | MovieMethods.Videos | MovieMethods.Lists | MovieMethods.Recommendations | MovieMethods.WatchProviders));
         }
 
         public async Task<TvShow> GetTvShowAsync(int id)
         {
-            return await RetryLoadingAsync(async () => await client.GetTvShowAsync(id, TvShowMethods.Credits | TvShowMethods.Images | TvShowMethods.Videos | TvShowMethods.WatchProviders| TvShowMethods.Recommendations));
+            return await RetryLoadingAsync(async () => await client.GetTvShowAsync(id, TvShowMethods.Credits | TvShowMethods.Images | TvShowMethods.Videos | TvShowMethods.WatchProviders | TvShowMethods.Recommendations));
         }
 
         public async Task<Collection> GetCollectionAsync(int id)

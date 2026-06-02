@@ -10,7 +10,7 @@ namespace FilmManager.Models
         public object? Get(string? selectedItem, object? o)
         {
             TMDbHelper tmdbHelper = new();
-            if (selectedItem != null&&o!=null)
+            if (selectedItem != null && o != null)
             {
                 if (o is List<SearchTv> series)
                 {
@@ -38,11 +38,11 @@ namespace FilmManager.Models
                         }
                     }
                 }
-                else if(o is TvShow show)
+                else if (o is TvShow show)
                 {
                     return tmdbHelper.SearchTvFromTvShow(show);
                 }
-                else if(o is Movie movie)
+                else if (o is Movie movie)
                 {
                     return tmdbHelper.SearchMovieFromMovie(movie);
                 }
