@@ -199,7 +199,7 @@
     <value>Loaded</value>
   </data>
   <data name="loading" xml:space="preserve">
-    <value>is loading</value>
+    <value>Is loading</value>
   </data>
   <data name="markAsWatched" xml:space="preserve">
     <value>Mark as watched</value>

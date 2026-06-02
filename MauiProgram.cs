@@ -2,7 +2,6 @@
 using FilmManager.Backend;
 using FilmManager.Helpers;
 using FilmManager.Interfaces;
-using Mopups.Hosting;
 using TMDbLib.Client;
 
 namespace FilmManager
@@ -16,13 +15,11 @@ namespace FilmManager
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
-                .ConfigureMopups()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
             builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
             builder.Services.AddSingleton<AppShell>();
             builder.Services.AddSingleton(new TMDbClient("c7108e21486edb11a641d92aa539f3e2"));

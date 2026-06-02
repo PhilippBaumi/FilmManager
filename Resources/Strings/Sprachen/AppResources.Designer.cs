@@ -331,7 +331,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die wird geladen ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wird geladen ähnelt.
         /// </summary>
         internal static string loading {
             get {

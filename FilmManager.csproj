@@ -96,7 +96,6 @@
     <PackageReference Include="CommunityToolkit.Maui" Version="14.1.1" />
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="Microsoft.Maui.Essentials" Version="10.0.70" />
-    <PackageReference Include="Mopups" Version="1.3.4" />
     <PackageReference Include="OfficeIMO.Word" Version="1.0.59" />
     <PackageReference Include="Polly" Version="8.6.6" />
     <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.3" />
@@ -137,6 +136,9 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Pages\SearchPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Popups\LoadingPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
 	</ItemGroup>
