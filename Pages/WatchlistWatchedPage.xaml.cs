@@ -1,4 +1,6 @@
 using CommunityToolkit.Maui.Extensions;
+using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Popups;
@@ -14,11 +16,13 @@ public partial class WatchlistWatchedPage : ContentPage
     private ObservableCollection<object> watched = new();
     private ObservableCollection<object> watchlist = new();
     private IDatabase database;
+    private TMDBService tMDBService;
 
-    public WatchlistWatchedPage(INavigationService navigation, IDatabase database)
+    public WatchlistWatchedPage(INavigationService navigation, TMDBService tmdbService, IDatabase database)
     {
         InitializeComponent();
         this.navigationService = navigation;
+        this.tMDBService = tmdbService;
         this.database = database;
     }
 
@@ -38,7 +42,7 @@ public partial class WatchlistWatchedPage : ContentPage
         catch (Exception ex)
         {
             this.watchlist.Clear();
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
         this.watchlistWatchedViewModel = new(watchlist, watched);
         BindingContext = this.watchlistWatchedViewModel;
@@ -53,10 +57,17 @@ public partial class WatchlistWatchedPage : ContentPage
         catch (Exception ex)
         {
             this.watched.Clear();
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
         this.watchlistWatchedViewModel = new(watchlist, watched);
-        BindingContext = this.watchlistWatchedViewModel;
+        if (this.watchlistWatchedViewModel != null)
+        {
+            BindingContext = this.watchlistWatchedViewModel;
+        }
+        else
+        {
+            BindingContext = new WatchlistWatchedViewModel(null, null);
+        }
     }
 
     private async void HandlePickerSelection(object sender, EventArgs e)
@@ -69,13 +80,13 @@ public partial class WatchlistWatchedPage : ContentPage
                 string[] st = selectedItem.Split("(");
                 object? obj = this.watchlistWatchedViewModel.Get(st[0].Trim());
                 bool inWatchedList = this.watchlistWatchedViewModel.IsInWatchedList(obj);
-                OnClickPopup popup = new(obj, inWatchedList, database, navigationService, "c7108e21486edb11a641d92aa539f3e2");
-                Application.Current.Windows[0].Page.ShowPopup(popup);
+                OnClickPopup popup = new(obj, inWatchedList, database, navigationService, this.tMDBService.client.ApiKey);
+                Shell.Current?.CurrentPage?.ShowPopup(popup);
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 }

@@ -1,5 +1,6 @@
 using CommunityToolkit.Maui.Views;
 using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
@@ -47,7 +48,7 @@ public partial class OnClickPopup : Popup
                 return tv.OriginalName;
             }
         }
-        return null;
+        return "";
     }
 
     private async void MarkAsWatched(object sender, EventArgs e)
@@ -59,13 +60,13 @@ public partial class OnClickPopup : Popup
             {
                 if (rDate.Value > DateTime.Today)
                 {
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.dateIsFuture, "OK");
+                    await AlertHelper.InfoAlert(AppResources.dateIsFuture);
                 }
                 else
                 {
                     this.database.DeleteEntry(movie, "Watchlist");
                     this.database.InsertEntry(movie, "Watched");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.markedAsWatched, "OK");
+                    await AlertHelper.InfoAlert(AppResources.markedAsWatched);
                 }
             }
         }
@@ -76,13 +77,13 @@ public partial class OnClickPopup : Popup
             {
                 if (rDate.Value > DateTime.Today)
                 {
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.dateIsFuture, "OK");
+                    await AlertHelper.InfoAlert(AppResources.dateIsFuture);
                 }
                 else
                 {
                     this.database.DeleteEntry(tv, "Watchlist");
                     this.database.InsertEntry(tv, "Watched");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.markedAsWatched, "OK");
+                    await AlertHelper.InfoAlert(AppResources.markedAsWatched);
                 }
             }
         }
@@ -96,19 +97,19 @@ public partial class OnClickPopup : Popup
         {
             if (!this.onClickPopupViewModel.MyContains(watched, movie) && !this.onClickPopupViewModel.MyContains(watchlist, movie))
             {
-                await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.notRemoved, "OK");
+                await AlertHelper.InfoAlert(AppResources.notRemoved);
                 return;
             }
             if (this.onClickPopupViewModel.MyContains(watched, movie))
             {
                 this.database.DeleteEntry(movie, "Watched");
-                await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.removed, "OK");
+                await AlertHelper.InfoAlert(AppResources.removed);
                 return;
             }
             if (this.onClickPopupViewModel.MyContains(watchlist, movie))
             {
                 this.database.DeleteEntry(movie, "Watchlist");
-                await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.removed, "OK");
+                await AlertHelper.InfoAlert(AppResources.removed);
                 return;
             }
         }
@@ -116,19 +117,19 @@ public partial class OnClickPopup : Popup
         {
             if (!this.onClickPopupViewModel.MyContains(watched, tv) && !this.onClickPopupViewModel.MyContains(watchlist, tv))
             {
-                await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.notRemoved, "OK");
+                await AlertHelper.InfoAlert(AppResources.notRemoved);
                 return;
             }
             if (this.onClickPopupViewModel.MyContains(watched, tv))
             {
                 this.database.DeleteEntry(tv, "Watched");
-                await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.removed, "OK");
+                await AlertHelper.InfoAlert(AppResources.removed);
                 return;
             }
             if (this.onClickPopupViewModel.MyContains(watchlist, tv))
             {
                 this.database.DeleteEntry(tv, "Watchlist");
-                await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.removed, "OK");
+                await AlertHelper.InfoAlert(AppResources.removed);
                 return;
             }
         }

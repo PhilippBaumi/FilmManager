@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using CommunityToolkit.Maui.Extensions;
 using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Popups;
@@ -38,7 +39,7 @@ namespace FilmManager
             }
             catch (Exception ex)
             {
-                await DisplayAlertAsync(AppResources.error, $"{ex.Message}, {AppResources.loadingError}", "OK");
+                await AlertHelper.ErrorAlert($"{ex.Message}, {AppResources.loadingError}");
             }
             finally
             {
@@ -86,7 +87,7 @@ namespace FilmManager
                     }
                     catch (Exception ex)
                     {
-                        await DisplayAlertAsync("Info", $"{ex.Message}, {AppResources.tooMuchPages}", "OK");
+                        await AlertHelper.ErrorAlert($"{ex.Message}, {AppResources.tooMuchPages}");
                     }
                     finally
                     {
@@ -137,7 +138,7 @@ namespace FilmManager
                     }
                     catch (Exception ex)
                     {
-                        await DisplayAlertAsync("Info", $"{ex.Message}, {AppResources.tooMuchPages}", "OK");
+                        await AlertHelper.ErrorAlert($"{ex.Message}, {AppResources.tooMuchPages}");
                     }
                     finally
                     {
@@ -158,7 +159,7 @@ namespace FilmManager
         {
             this.database.DeleteTable("Watched");
             this.database.DeleteTable("Watchlist");
-            await DisplayAlertAsync("Info", AppResources.newGeneratedDatabase, "OK");
+            await AlertHelper.InfoAlert(AppResources.newGeneratedDatabase);
         }
     }
 }

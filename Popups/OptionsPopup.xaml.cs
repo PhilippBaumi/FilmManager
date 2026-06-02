@@ -1,5 +1,6 @@
 using CommunityToolkit.Maui.Views;
 using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
@@ -60,7 +61,7 @@ public partial class OptionsPopup : Popup
             {
                 if (this.obj == null)
                 {
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.noChoosenMovieOrSerie, "OK");
+                    await AlertHelper.InfoAlert(AppResources.noChoosenMovieOrSerie);
                 }
                 this.database.CreateTable("Watched");
                 if (this.obj is SearchTv serie)
@@ -70,12 +71,12 @@ public partial class OptionsPopup : Popup
                     {
                         if (rDate.Value > DateTime.Today)
                         {
-                            await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.dateIsFuture, "OK");
+                            await AlertHelper.InfoAlert(AppResources.dateIsFuture);
                         }
                         else
                         {
                             this.database.InsertEntry(serie, "Watched");
-                            await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
+                            await AlertHelper.InfoAlert($"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}");
                         }
                     }
                 }
@@ -86,12 +87,12 @@ public partial class OptionsPopup : Popup
                     {
                         if (rDate.Value > DateTime.Today)
                         {
-                            await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", AppResources.dateIsFuture, "OK");
+                            await AlertHelper.InfoAlert(AppResources.dateIsFuture);
                         }
                         else
                         {
                             this.database.InsertEntry(movie, "Watched");
-                            await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
+                            await AlertHelper.InfoAlert($"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}");
                         }
                     }
                 }
@@ -99,7 +100,7 @@ public partial class OptionsPopup : Popup
         }
         catch (Exception ex)
         {
-            await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 
@@ -111,24 +112,24 @@ public partial class OptionsPopup : Popup
             {
                 if (this.obj == null)
                 {
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.noChoosenMovieOrSerie, "OK");
+                    await AlertHelper.InfoAlert(AppResources.noChoosenMovieOrSerie);
                 }
                 this.database.CreateTable("Watchlist");
                 if (this.obj is SearchTv serie)
                 {
                     this.database.InsertEntry(serie, "Watchlist");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
+                    await AlertHelper.InfoAlert($"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}");
                 }
                 if (this.obj is SearchMovie movie)
                 {
                     this.database.InsertEntry(movie, "Watchlist");
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync("Info", $"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}", "OK");
+                    await AlertHelper.InfoAlert($"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}");
                 }
             }
         }
         catch (Exception ex)
         {
-            await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 
@@ -163,13 +164,13 @@ public partial class OptionsPopup : Popup
                 }
                 if (this.obj == null)
                 {
-                    await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, AppResources.cantNavigateToDetails, "OK");
+                    await AlertHelper.ErrorAlert(AppResources.cantNavigateToDetails);
                 }
             }
         }
         catch (Exception ex)
         {
-            await Application.Current.Windows[0].Page.DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 

@@ -1,8 +1,7 @@
 using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
-using FilmManager.Resources.Strings.Sprachen;
-using TMDbLib.Client;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
 
@@ -13,25 +12,26 @@ public partial class SearchPage : ContentPage
     private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
     private SearchPageViewModel searchPageViewModel = new();
     private INavigationService navigationService;
-    public SearchPage(INavigationService navigationService)
+    private TMDBService tMDBService;
+    public SearchPage(INavigationService navigationService, TMDBService tmdbService)
     {
         InitializeComponent();
         this.navigationService = navigationService;
+        this.tMDBService = tmdbService;
         BindingContext = searchPageViewModel;
     }
     private async void Search(object sender, EventArgs e)
     {
-        TMDBService tMDBService = new TMDBService(new TMDbClient("c7108e21486edb11a641d92aa539f3e2"));
         string search = entrySearch.Text;
         if (rbMovie.IsChecked)
         {
-            SearchContainer<SearchMovie> resultMovies = await tMDBService.SearchMovieAsync(search);
+            SearchContainer<SearchMovie> resultMovies = await this.tMDBService.SearchMovieAsync(search);
             List<SearchMovie> movies = resultMovies.Results;
             this.searchPageViewModel.SetList(movies);
         }
         if (rbTv.IsChecked)
         {
-            SearchContainer<SearchTv> resultSerien = await tMDBService.SearchSerieAsync(search);
+            SearchContainer<SearchTv> resultSerien = await this.tMDBService.SearchSerieAsync(search);
             List<SearchTv> tv = resultSerien.Results;
             this.searchPageViewModel.SetList(tv);
         }
@@ -52,7 +52,7 @@ public partial class SearchPage : ContentPage
                     IDictionary<string, object> parameters = new Dictionary<string, object>
                     {
                         { "list", movies },
-                        { "apiKey",  "c7108e21486edb11a641d92aa539f3e2"}
+                        { "apiKey", this.tMDBService.client.ApiKey }
                     };
                     await navigationService.NavigateToAsync("//Overview", parameters);
                 }
@@ -62,7 +62,7 @@ public partial class SearchPage : ContentPage
                     IDictionary<string, object> parameters = new Dictionary<string, object>
                     {
                         { "list", tv },
-                        { "apiKey",  "c7108e21486edb11a641d92aa539f3e2"}
+                        { "apiKey", this.tMDBService.client.ApiKey }
                     };
                     await navigationService.NavigateToAsync("//Overview", parameters);
                 }
@@ -71,7 +71,7 @@ public partial class SearchPage : ContentPage
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 }

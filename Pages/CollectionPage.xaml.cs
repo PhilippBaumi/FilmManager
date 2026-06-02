@@ -1,4 +1,5 @@
 using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
@@ -36,7 +37,7 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
             object o = query["content"];
             if (o is TvShow tv)
             {
-                await DisplayAlertAsync("Info", AppResources.noCollection, "OK");
+                await AlertHelper.InfoAlert(AppResources.noCollection);
             }
             if (o is Movie movie)
             {
@@ -65,7 +66,7 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 
@@ -91,7 +92,7 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
         ((CollectionView)sender).SelectedItem = null;
     }

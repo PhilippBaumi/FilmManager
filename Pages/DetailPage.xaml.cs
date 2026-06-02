@@ -1,4 +1,5 @@
 using CommunityToolkit.Maui.Extensions;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Popups;
@@ -46,7 +47,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 
@@ -64,7 +65,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 
@@ -82,7 +83,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 
@@ -100,7 +101,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 
@@ -122,8 +123,11 @@ public partial class DetailPage : ContentPage, IQueryAttributable
     private void HandlePopupShow(object sender, EventArgs e)
     {
         string? selectedPoster = detailViewModel.Poster;
-        selectedPoster = selectedPoster.Replace(ImageBaseUrl, string.Empty);
-        OptionsPopup popup = new(selectedPoster, navigationService, o, database, "Detail", apiKey);
-        Application.Current.Windows[0].Page.ShowPopup(popup);
+        if (!string.IsNullOrEmpty(selectedPoster))
+        {
+            selectedPoster = selectedPoster.Replace(ImageBaseUrl, string.Empty);
+            OptionsPopup popup = new(selectedPoster, navigationService, o, database, "Detail", apiKey);
+            Shell.Current?.CurrentPage?.ShowPopup(popup);
+        }
     }
 }

@@ -1,4 +1,5 @@
 using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
@@ -8,13 +9,11 @@ namespace FilmManager;
 public partial class SaveLoadPage : ContentPage
 {
     private SaveLoadViewModel saveLoadViewModel = new();
-    private INavigationService navigationService;
     private IDatabase database;
 
-    public SaveLoadPage(INavigationService navigation, IDatabase database)
+    public SaveLoadPage(IDatabase database)
     {
         InitializeComponent();
-        this.navigationService = navigation;
         this.database = database;
         BindingContext = saveLoadViewModel;
     }
@@ -43,18 +42,18 @@ public partial class SaveLoadPage : ContentPage
             {
                 WriteFile writeFile = new(database);
                 writeFile.WriteToJSON();
-                await DisplayAlertAsync(AppResources.saved, $"{AppResources.successfully} {AppResources.saved.ToLower()}", "OK");
+                await AlertHelper.BaseAlert(AppResources.saved, $"{AppResources.successfully} {AppResources.saved.ToLower()}");
             }
             else
             {
                 LoadFile loadFile = new(database);
                 loadFile.LoadFromJSON();
-                await DisplayAlertAsync(AppResources.loaded, $"{AppResources.successfully} {AppResources.loaded.ToLower()}", "OK");
+                await AlertHelper.BaseAlert(AppResources.loaded, $"{AppResources.successfully} {AppResources.loaded.ToLower()}");
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 
@@ -67,18 +66,18 @@ public partial class SaveLoadPage : ContentPage
             {
                 WriteFile writeFile = new(database);
                 writeFile.WriteToDOCX();
-                await DisplayAlertAsync(AppResources.saved, $"{AppResources.successfully} {AppResources.saved.ToLower()}", "OK");
+                await AlertHelper.BaseAlert(AppResources.saved, $"{AppResources.successfully} {AppResources.saved.ToLower()}");
             }
             else
             {
                 LoadFile loadFile = new(database);
                 loadFile.LoadFromDOCX();
-                await DisplayAlertAsync(AppResources.loaded, $"{AppResources.successfully} {AppResources.loaded.ToLower()}", "OK");
+                await AlertHelper.BaseAlert(AppResources.loaded, $"{AppResources.successfully} {AppResources.loaded.ToLower()}");
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 
@@ -91,18 +90,18 @@ public partial class SaveLoadPage : ContentPage
             {
                 WriteFile writeFile = new(database);
                 writeFile.WriteToCSV();
-                await DisplayAlertAsync(AppResources.saved, $"{AppResources.successfully} {AppResources.saved.ToLower()}", "OK");
+                await AlertHelper.BaseAlert(AppResources.saved, $"{AppResources.successfully} {AppResources.saved.ToLower()}");
             }
             else
             {
                 LoadFile loadFile = new(database);
                 loadFile.LoadFromCSV();
-                await DisplayAlertAsync(AppResources.loaded, $"{AppResources.successfully} {AppResources.loaded.ToLower()}", "OK");
+                await AlertHelper.BaseAlert(AppResources.loaded, $"{AppResources.successfully} {AppResources.loaded.ToLower()}");
             }
         }
         catch (Exception ex)
         {
-            await DisplayAlertAsync(AppResources.error, ex.Message, "OK");
+            await AlertHelper.ErrorAlert(ex.Message);
         }
     }
 }
