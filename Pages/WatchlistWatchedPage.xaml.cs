@@ -80,8 +80,8 @@ public partial class WatchlistWatchedPage : ContentPage
                 string[] st = selectedItem.Split("(");
                 object? obj = this.watchlistWatchedViewModel.Get(st[0].Trim());
                 bool inWatchedList = this.watchlistWatchedViewModel.IsInWatchedList(obj);
-                OnClickPopup popup = new(obj, inWatchedList, database, navigationService, this.tMDBService.client.ApiKey);
-                Shell.Current?.CurrentPage?.ShowPopup(popup);
+                OnClickMenu onClickMenu = new(obj, inWatchedList, database, navigationService, this.tMDBService.client.ApiKey);
+                await onClickMenu.ShowAsync();
             }
         }
         catch (Exception ex)

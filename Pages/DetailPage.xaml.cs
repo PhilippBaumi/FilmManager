@@ -120,14 +120,14 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         }
     }
 
-    private void HandlePopupShow(object sender, EventArgs e)
+    private async void HandlePopupShow(object sender, EventArgs e)
     {
         string? selectedPoster = detailViewModel.Poster;
         if (!string.IsNullOrEmpty(selectedPoster))
         {
             selectedPoster = selectedPoster.Replace(ImageBaseUrl, string.Empty);
-            OptionsPopup popup = new(selectedPoster, navigationService, o, database, "Detail", apiKey);
-            Shell.Current?.CurrentPage?.ShowPopup(popup);
+            OptionsMenu optionsMenu = new(selectedPoster, navigationService, o, database, apiKey);
+            await optionsMenu.ShowAsync("Detail");
         }
     }
 }

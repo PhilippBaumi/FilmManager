@@ -5,7 +5,7 @@ using TMDbLib.Objects.TvShows;
 
 namespace FilmManager.Models
 {
-    public class OptionPopupViewModel
+    public class OptionMenuViewModel
     {
         public object? Get(string? selectedItem, object? o)
         {

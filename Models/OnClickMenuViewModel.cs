@@ -3,7 +3,7 @@ using TMDbLib.Objects.Search;
 
 namespace FilmManager.Models
 {
-    public class OnClickPopupViewModel
+    public class OnClickMenuViewModel
     {
         public bool MyContains(ObservableCollection<object> collection, object o)
         {
