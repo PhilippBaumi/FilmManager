@@ -11,8 +11,6 @@ namespace FilmManager.Backend
     public class WriteFile : IWriteFile
     {
         private FileHelper fileHelper = new();
-        private const string watchedPath = "FilmManager-Watched";
-        private const string watchlistPath = "FilmManager-Watchlist";
         private IDatabase database;
 
         public WriteFile(IDatabase database)
@@ -22,8 +20,8 @@ namespace FilmManager.Backend
 
         public void WriteToCSV()
         {
-            WriteCSV(this.fileHelper.GetFilePath($"{watchedPath}.csv"), this.database.SelectAllEntries("Watched"));
-            WriteCSV(this.fileHelper.GetFilePath($"{watchlistPath}.csv"), this.database.SelectAllEntries("Watchlist"));
+            WriteCSV(this.fileHelper.GetFilePath("FilmManager-Watched.csv"), this.database.SelectAllEntries("Watched"));
+            WriteCSV(this.fileHelper.GetFilePath("FilmManager-Watchlist.csv"), this.database.SelectAllEntries("Watchlist"));
         }
         private void WriteCSV(string path, ObservableCollection<object> collection)
         {
@@ -47,8 +45,8 @@ namespace FilmManager.Backend
 
         public void WriteToJSON()
         {
-            WriteJSON(this.fileHelper.GetFilePath($"{watchedPath}.json"), this.database.SelectAllEntries("Watched"));
-            WriteJSON(this.fileHelper.GetFilePath($"{watchlistPath}.json"), this.database.SelectAllEntries("Watchlist"));
+            WriteJSON(this.fileHelper.GetFilePath("FilmManager-Watched.json"), this.database.SelectAllEntries("Watched"));
+            WriteJSON(this.fileHelper.GetFilePath("FilmManager-Watchlist.json"), this.database.SelectAllEntries("Watchlist"));
         }
 
         private void WriteJSON(string path, ObservableCollection<object> collection)
@@ -82,11 +80,11 @@ namespace FilmManager.Backend
 
         public void WriteToDOCX()
         {
-            WriteDOCX(this.fileHelper.GetFilePath($"{watchedPath}.docx"), this.database.SelectAllEntries("Watched"), watchedPath);
-            WriteDOCX(this.fileHelper.GetFilePath($"{watchlistPath}.docx"), this.database.SelectAllEntries("Watchlist"), watchlistPath);
+            WriteDOCX(this.fileHelper.GetFilePath("FilmManager-Watched.docx"), this.database.SelectAllEntries("Watched"));
+            WriteDOCX(this.fileHelper.GetFilePath("FilmManager-Watchlist.docx"), this.database.SelectAllEntries("Watchlist"));
         }
 
-        private void WriteDOCX(string path, ObservableCollection<object> collection, string basePath)
+        private void WriteDOCX(string path, ObservableCollection<object> collection)
         {
             fileHelper.DeleteIfExits(path);
             using (WordDocument wordDocument = WordDocument.Create(path))

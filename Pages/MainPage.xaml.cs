@@ -60,47 +60,43 @@ namespace FilmManager
             if (selectedSeries is not null)
             {
                 int id = tMDBService.GetIdToName(selectedSeries, MediaType.Tv);
-                if (mainViewModel.Serien.Contains(selectedSeries))
+                LoadingPopup loadingPopup = new(AppResources.loading);
+                CancellationTokenSource cts = new();
+                Task popupTask = this.ShowPopupAsync(loadingPopup, new PopupOptions
                 {
-                    LoadingPopup loadingPopup = new(AppResources.loading);
-                    CancellationTokenSource cts = new();
-                    Task popupTask = this.ShowPopupAsync(loadingPopup, new PopupOptions
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                }, cts.Token);
+                try
+                {
+                    SearchContainer<SearchTv> discoversSeries = await tMDBService.DiscoverSerien(id, 1);
+                    if (discoversSeries.Results is not null)
                     {
-                        CanBeDismissedByTappingOutsideOfPopup = false
-                    }, cts.Token);
-                    try
+                        mainViewModel.GetSerien(discoversSeries.Results);
+                    }
+                    for (int page = discoversSeries.Page + 1; page <= discoversSeries.TotalPages; page++)
                     {
-                        SearchContainer<SearchTv> discoversSeries = await tMDBService.DiscoverSerien(id, 1);
+                        discoversSeries.Page = page;
+                        discoversSeries = await tMDBService.DiscoverSerien(id, page);
                         if (discoversSeries.Results is not null)
                         {
                             mainViewModel.GetSerien(discoversSeries.Results);
                         }
-                        for (int page = discoversSeries.Page + 1; page <= discoversSeries.TotalPages; page++)
-                        {
-                            discoversSeries.Page = page;
-                            discoversSeries = await tMDBService.DiscoverSerien(id, page);
-                            if (discoversSeries.Results is not null)
-                            {
-                                mainViewModel.GetSerien(discoversSeries.Results);
-                            }
-                        }
                     }
-                    catch (Exception ex)
-                    {
-                        await AlertHelper.ErrorAlert($"{ex.Message}, {AppResources.tooMuchPages}");
-                    }
-                    finally
-                    {
-                        cts.Cancel();
-                    }
-                    IDictionary<string, object> parameters = new Dictionary<string, object>
+                }
+                catch (Exception ex)
+                {
+                    await AlertHelper.ErrorAlert($"{ex.Message}, {AppResources.tooMuchPages}");
+                }
+                finally
+                {
+                    cts.Cancel();
+                }
+                IDictionary<string, object> parameters = new Dictionary<string, object>
                     {
                         { "list", mainViewModel.series },
                         { "apiKey", tMDBService.client.ApiKey }
                     };
-                    await navigationService.NavigateToAsync("//Overview", parameters);
-                }
-
+                await navigationService.NavigateToAsync("//Overview", parameters);
             }
             ((Picker)sender).SelectedItem = null;
         }
@@ -111,45 +107,42 @@ namespace FilmManager
             if (selectedMovie is not null)
             {
                 int id = tMDBService.GetIdToName(selectedMovie, MediaType.Movie);
-                if (mainViewModel.Movies.Contains(selectedMovie))
+                LoadingPopup loadingPopup = new(AppResources.loading);
+                CancellationTokenSource cts = new();
+                Task popupTask = this.ShowPopupAsync(loadingPopup, new PopupOptions
                 {
-                    LoadingPopup loadingPopup = new(AppResources.loading);
-                    CancellationTokenSource cts = new();
-                    Task popupTask = this.ShowPopupAsync(loadingPopup, new PopupOptions
+                    CanBeDismissedByTappingOutsideOfPopup = false
+                }, cts.Token);
+                try
+                {
+                    SearchContainer<SearchMovie> discoversMovies = await tMDBService.DiscoverMovies(id, 1);
+                    if (discoversMovies.Results is not null)
                     {
-                        CanBeDismissedByTappingOutsideOfPopup = false
-                    }, cts.Token);
-                    try
+                        mainViewModel.GetMovies(discoversMovies.Results);
+                    }
+                    for (int page = discoversMovies.Page + 1; page <= discoversMovies.TotalPages; page++)
                     {
-                        SearchContainer<SearchMovie> discoversMovies = await tMDBService.DiscoverMovies(id, 1);
+                        discoversMovies.Page = page;
+                        discoversMovies = await tMDBService.DiscoverMovies(id, page);
                         if (discoversMovies.Results is not null)
                         {
                             mainViewModel.GetMovies(discoversMovies.Results);
                         }
-                        for (int page = discoversMovies.Page + 1; page <= discoversMovies.TotalPages; page++)
-                        {
-                            discoversMovies.Page = page;
-                            discoversMovies = await tMDBService.DiscoverMovies(id, page);
-                            if (discoversMovies.Results is not null)
-                            {
-                                mainViewModel.GetMovies(discoversMovies.Results);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        await AlertHelper.ErrorAlert($"{ex.Message}, {AppResources.tooMuchPages}");
-                    }
-                    finally
-                    {
-                        cts.Cancel();
                     }
                 }
-                IDictionary<string, object> parameters = new Dictionary<string, object>
+                catch (Exception ex)
                 {
-                    { "list", mainViewModel.movies },
-                    { "apiKey", tMDBService.client.ApiKey }
-                };
+                    await AlertHelper.ErrorAlert($"{ex.Message}, {AppResources.tooMuchPages}");
+                }
+                finally
+                {
+                    cts.Cancel();
+                }
+                IDictionary<string, object> parameters = new Dictionary<string, object>
+                    {
+                        { "list", mainViewModel.movies },
+                        { "apiKey", tMDBService.client.ApiKey }
+                    };
                 await navigationService.NavigateToAsync("//Overview", parameters);
             }
             ((Picker)sender).SelectedItem = null;

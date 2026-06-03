@@ -319,14 +319,14 @@ namespace FilmManager.Models
             {
                 if (o is SearchMovie movie)
                 {
-                    if (movie.Title.Equals(selectedRecommentation))
+                    if (string.Equals(movie.Title, selectedRecommentation))
                     {
                         list.Add(movie);
                     }
                 }
                 if (o is SearchTv tv)
                 {
-                    if (tv.Name.Equals(selectedRecommendation))
+                    if (string.Equals(tv.Name, selectedRecommendation))
                     {
                         list.Add(tv);
                     }

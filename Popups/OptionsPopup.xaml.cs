@@ -32,7 +32,7 @@ public partial class OptionsPopup : Popup
         this.tMDBService = new(new TMDbClient(apiKey));
         this.obj = optionPopupViewModel.Get(selectedItem, o);
         SetTitleToLabel();
-        if (option.Equals("Detail"))
+        if (string.Equals(option, "Detail"))
         {
             btnDetails.IsVisible = false;
         }

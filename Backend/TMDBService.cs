@@ -106,7 +106,7 @@ namespace FilmManager.Backend
                 {
                     foreach (Genre genre in moviesGenres)
                     {
-                        if (genre.Name.Equals(selected))
+                        if (string.Equals(genre.Name, selected))
                         {
                             id = genre.Id;
                             break;
@@ -117,7 +117,7 @@ namespace FilmManager.Backend
                 {
                     foreach (Genre genre in serienGenres)
                     {
-                        if (genre.Name.Equals(selected))
+                        if (string.Equals(genre.Name, selected))
                         {
                             id = genre.Id;
                             break;

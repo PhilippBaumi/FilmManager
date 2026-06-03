@@ -11,8 +11,6 @@ namespace FilmManager.Backend
     public class LoadFile : ILoadFile
     {
         private FileHelper fileHelper = new();
-        private const string watchedPath = "FilmManager-Watched";
-        private const string watchlistPath = "FilmManager-Watchlist";
         private IDatabase database;
 
         public LoadFile(IDatabase database)
@@ -22,11 +20,11 @@ namespace FilmManager.Backend
 
         public void LoadFromDOCX()
         {
-            ObservableCollection<object> watched = LoadDOCX(this.fileHelper.GetFilePath($"{watchedPath}.docx"));
+            ObservableCollection<object> watched = LoadDOCX(this.fileHelper.GetFilePath("FilmManager-Watched.docx"));
             this.database.DeleteTable("Watched");
             this.database.CreateTable("Watched");
             Save(watched, "Watched");
-            ObservableCollection<object> watchlist = LoadDOCX(this.fileHelper.GetFilePath($"{watchlistPath}.docx"));
+            ObservableCollection<object> watchlist = LoadDOCX(this.fileHelper.GetFilePath("FilmManager-Watchlist.docx"));
             this.database.DeleteTable("Watchlist");
             this.database.CreateTable("Watchlist");
             Save(watchlist, "Watchlist");
@@ -57,11 +55,11 @@ namespace FilmManager.Backend
                         {
                             string[] st = lines[1].Split(";");
                             string s = st[1].Trim();
-                            if (s.Equals("Tv"))
+                            if (string.Equals(s, "Tv"))
                             {
                                 list.Add(fileHelper.GetSerieFromDOCX(lines));
                             }
-                            if (s.Equals("Movie"))
+                            if (string.Equals(s, "Movie"))
                             {
                                 list.Add(fileHelper.GetMovieFromDOCX(lines));
                             }
@@ -75,11 +73,11 @@ namespace FilmManager.Backend
 
         public void LoadFromCSV()
         {
-            ObservableCollection<object> watched = LoadCSV(this.fileHelper.GetFilePath($"{watchedPath}.csv"));
+            ObservableCollection<object> watched = LoadCSV(this.fileHelper.GetFilePath("FilmManager-Watched.csv"));
             this.database.DeleteTable("Watched");
             this.database.CreateTable("Watched");
             Save(watched, "Watched");
-            ObservableCollection<object> watchlist = LoadCSV(this.fileHelper.GetFilePath($"{watchlistPath}.csv"));
+            ObservableCollection<object> watchlist = LoadCSV(this.fileHelper.GetFilePath("FilmManager-Watchlist.csv"));
             this.database.DeleteTable("Watchlist");
             this.database.CreateTable("Watchlist");
             Save(watchlist, "Watchlist");
@@ -103,11 +101,11 @@ namespace FilmManager.Backend
                     }
                     string[] st = line.Split(";");
                     string type = st[0];
-                    if (type.Equals("Movie"))
+                    if (string.Equals(type, "Movie"))
                     {
                         results.Add(fileHelper.GetMovie(st));
                     }
-                    if (type.Equals("Tv"))
+                    if (string.Equals(type, "Tv"))
                     {
                         results.Add(fileHelper.GetTv(st));
                     }
@@ -118,11 +116,11 @@ namespace FilmManager.Backend
 
         public void LoadFromJSON()
         {
-            ObservableCollection<object> watched = LoadJSON(this.fileHelper.GetFilePath($"{watchedPath}.json"));
+            ObservableCollection<object> watched = LoadJSON(this.fileHelper.GetFilePath("FilmManager-Watched.json"));
             this.database.DeleteTable("Watched");
             this.database.CreateTable("Watched");
             Save(watched, "Watched");
-            ObservableCollection<object> watchlist = LoadJSON(this.fileHelper.GetFilePath($"{watchlistPath}.json"));
+            ObservableCollection<object> watchlist = LoadJSON(this.fileHelper.GetFilePath("FilmManager-Watchlist.json"));
             this.database.DeleteTable("Watchlist");
             this.database.CreateTable("Watchlist");
             Save(watchlist, "Watchlist");

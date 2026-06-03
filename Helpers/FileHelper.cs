@@ -118,22 +118,6 @@ namespace FilmManager.Helpers
             return strings;
         }
 
-        public string ConvertToCsv(string? s)
-        {
-            if (s is null)
-            {
-                return "";
-            }
-            bool mustQuote = s.Contains(";") || s.Contains("\"") || s.Contains("\n") || s.Contains("\r");
-            s = s.Replace("\"", "\"\"");
-            if (mustQuote)
-            {
-                string st = $"\"{s}\"";
-                return st;
-            }
-            return s;
-        }
-
         public DateTime? StringToDataTime(string? s)
         {
             if (string.IsNullOrEmpty(s)) return null;
@@ -250,6 +234,22 @@ namespace FilmManager.Helpers
         {
             string[] st = s.Split("; ");
             return st[1].Trim();
+        }
+
+        public string ConvertToCsv(string? s)
+        {
+            if (s is null)
+            {
+                return "";
+            }
+            bool mustQuote = s.Contains(";") || s.Contains("\"") || s.Contains("\n") || s.Contains("\r");
+            s = s.Replace("\"", "\"\"");
+            if (mustQuote)
+            {
+                string st = $"\"{s}\"";
+                return st;
+            }
+            return s;
         }
     }
 }

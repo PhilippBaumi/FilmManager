@@ -68,14 +68,14 @@ namespace FilmManager.Models
             {
                 if (obj is SearchMovie movie)
                 {
-                    if (movie.OriginalTitle.Equals(s))
+                    if (string.Equals(movie.OriginalTitle, s))
                     {
                         return movie;
                     }
                 }
                 if (obj is SearchTv tv)
                 {
-                    if (tv.OriginalName.Equals(s))
+                    if (string.Equals(tv.OriginalName, s))
                     {
                         return tv;
                     }
@@ -85,14 +85,14 @@ namespace FilmManager.Models
             {
                 if (obj is SearchTv serie)
                 {
-                    if (serie.OriginalName.Equals(s))
+                    if (string.Equals(serie.OriginalName, s))
                     {
                         return serie;
                     }
                 }
                 if (obj is SearchMovie movie)
                 {
-                    if (movie.OriginalTitle.Equals(s))
+                    if (string.Equals(movie.OriginalTitle, s))
                     {
                         return movie;
                     }
