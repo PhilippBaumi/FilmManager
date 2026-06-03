@@ -45,8 +45,8 @@ namespace FilmManager.Backend
                 List<WordParagraph> paragraphs = wordDocument.Paragraphs;
                 foreach (WordParagraph paragraph in paragraphs)
                 {
-                    string text = paragraph.Text?.Trim() ?? "";
-                    if (string.IsNullOrEmpty(text))
+                    string? text = paragraph.Text?.Trim() ?? "";
+                    if (string.IsNullOrWhiteSpace(text))
                     {
                         continue;
                     }
@@ -97,7 +97,7 @@ namespace FilmManager.Backend
                 while (true)
                 {
                     string? line = sr.ReadLine();
-                    if (line == null)
+                    if (line is null)
                     {
                         break;
                     }
@@ -142,20 +142,20 @@ namespace FilmManager.Backend
                 {
                     JsonElement root = jsonDocument.RootElement;
                     string? type = root.GetProperty("Type").GetString();
-                    if (type != null)
+                    if (type is not null)
                     {
-                        if (type == "Movie")
+                        if (type is "Movie")
                         {
                             JsonEntry<SearchMovie>? entry = JsonSerializer.Deserialize<JsonEntry<SearchMovie>>(line);
-                            if (entry != null && entry.Data != null)
+                            if (entry is not null && entry.Data is not null)
                             {
                                 list.Add(entry.Data);
                             }
                         }
-                        if (type == "Tv")
+                        if (type is "Tv")
                         {
                             JsonEntry<SearchTv>? entry = JsonSerializer.Deserialize<JsonEntry<SearchTv>>(line);
-                            if (entry != null && entry.Data != null)
+                            if (entry is not null && entry.Data is not null)
                             {
                                 list.Add(entry.Data);
                             }

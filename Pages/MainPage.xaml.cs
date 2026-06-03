@@ -43,7 +43,7 @@ namespace FilmManager
             }
             finally
             {
-                if (this.mainViewModel != null)
+                if (this.mainViewModel is not null)
                 {
                     BindingContext = mainViewModel;
                 }
@@ -57,7 +57,7 @@ namespace FilmManager
         private async void OnPickerSeriesSelectionChanged(object sender, EventArgs e)
         {
             string? selectedSeries = mainViewModel.SelectedSerie;
-            if (selectedSeries != null)
+            if (selectedSeries is not null)
             {
                 int id = tMDBService.GetIdToName(selectedSeries, MediaType.Tv);
                 if (mainViewModel.Serien.Contains(selectedSeries))
@@ -71,7 +71,7 @@ namespace FilmManager
                     try
                     {
                         SearchContainer<SearchTv> discoversSeries = await tMDBService.DiscoverSerien(id, 1);
-                        if (discoversSeries.Results != null)
+                        if (discoversSeries.Results is not null)
                         {
                             mainViewModel.GetSerien(discoversSeries.Results);
                         }
@@ -79,7 +79,7 @@ namespace FilmManager
                         {
                             discoversSeries.Page = page;
                             discoversSeries = await tMDBService.DiscoverSerien(id, page);
-                            if (discoversSeries.Results != null)
+                            if (discoversSeries.Results is not null)
                             {
                                 mainViewModel.GetSerien(discoversSeries.Results);
                             }
@@ -108,7 +108,7 @@ namespace FilmManager
         private async void OnPickerMoviesSelectionChanged(object sender, EventArgs e)
         {
             string? selectedMovie = mainViewModel.SelectedMovie;
-            if (selectedMovie != null)
+            if (selectedMovie is not null)
             {
                 int id = tMDBService.GetIdToName(selectedMovie, MediaType.Movie);
                 if (mainViewModel.Movies.Contains(selectedMovie))
@@ -122,7 +122,7 @@ namespace FilmManager
                     try
                     {
                         SearchContainer<SearchMovie> discoversMovies = await tMDBService.DiscoverMovies(id, 1);
-                        if (discoversMovies.Results != null)
+                        if (discoversMovies.Results is not null)
                         {
                             mainViewModel.GetMovies(discoversMovies.Results);
                         }
@@ -130,7 +130,7 @@ namespace FilmManager
                         {
                             discoversMovies.Page = page;
                             discoversMovies = await tMDBService.DiscoverMovies(id, page);
-                            if (discoversMovies.Results != null)
+                            if (discoversMovies.Results is not null)
                             {
                                 mainViewModel.GetMovies(discoversMovies.Results);
                             }

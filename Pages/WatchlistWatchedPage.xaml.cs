@@ -75,7 +75,7 @@ public partial class WatchlistWatchedPage : ContentPage
         string? selectedItem = watchlistWatchedViewModel.SelectedItem;
         try
         {
-            if (selectedItem != null)
+            if (selectedItem is not null)
             {
                 string[] st = selectedItem.Split("(");
                 object? obj = this.watchlistWatchedViewModel.Get(st[0].Trim());

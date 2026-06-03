@@ -56,14 +56,14 @@ namespace FilmManager.Models
             if (o is Movie movie)
             {
                 string? logo = GetRandomImage(GetUSList(movie.Images.Logos));
-                if (logo != null)
+                if (logo is not null)
                 {
                     Logo = ImageBaseUrl + logo;
                 }
                 Id = $"ID: {movie.Id}";
                 Language = $"{AppResources.language}: {movie.OriginalLanguage}";
                 string? poster = GetRandomImage(GetUSList(movie.Images.Posters));
-                if (poster != null)
+                if (poster is not null)
                 {
                     Poster = ImageBaseUrl + poster;
                 }
@@ -72,7 +72,7 @@ namespace FilmManager.Models
                     Poster = ImageBaseUrl + movie.PosterPath;
                 }
                 string? backport = GetRandomImage(GetUSList(movie.Images.Backdrops));
-                if (backport != null)
+                if (backport is not null)
                 {
                     Backport = ImageBaseUrl + backport;
                 }
@@ -96,14 +96,14 @@ namespace FilmManager.Models
             if (o is TvShow serie)
             {
                 string? logo = GetRandomImage(GetUSList(serie.Images.Logos));
-                if (logo != null)
+                if (logo is not null)
                 {
                     Logo = ImageBaseUrl + logo;
                 }
                 Id = "ID: " + serie.Id;
                 Language = $"{AppResources.language}: {serie.OriginalLanguage}";
                 string? poster = GetRandomImage(GetUSList(serie.Images.Posters));
-                if (poster != null)
+                if (poster is not null)
                 {
                     Poster = ImageBaseUrl + poster;
                 }
@@ -112,7 +112,7 @@ namespace FilmManager.Models
                     Poster = ImageBaseUrl + serie.PosterPath;
                 }
                 string? backport = GetRandomImage(GetUSList(serie.Images.Backdrops));
-                if (backport != null)
+                if (backport is not null)
                 {
                     Backport = ImageBaseUrl + backport;
                 }
@@ -208,7 +208,7 @@ namespace FilmManager.Models
         {
             foreach (ImageData image in posters)
             {
-                if (image.FilePath != null && image.Iso_3166_1 != null)
+                if (image.FilePath is not null && image.Iso_3166_1 is not null)
                 {
                     Posters.Add($"{ImageBaseUrl}{image.FilePath} [{image.Iso_3166_1}]");
                 }
@@ -219,7 +219,7 @@ namespace FilmManager.Models
         {
             foreach (ImageData image in logos)
             {
-                if (image.FilePath != null && image.Iso_3166_1 != null)
+                if (image.FilePath is not null && image.Iso_3166_1 is not null)
                 {
                     Logos.Add($"{ImageBaseUrl}{image.FilePath} [{image.Iso_3166_1}]");
                 }
@@ -231,9 +231,9 @@ namespace FilmManager.Models
             List<ImageData>? images = new();
             foreach (ImageData image in list)
             {
-                if (image != null)
+                if (image is not null)
                 {
-                    if (image.Iso_3166_1 != null && image.Iso_3166_1.Equals("US"))
+                    if (image.Iso_3166_1 is not null && image.Iso_3166_1.Equals("US"))
                     {
                         images.Add(image);
                     }
@@ -244,7 +244,7 @@ namespace FilmManager.Models
 
         private string? GetRandomImage(List<ImageData>? images)
         {
-            if (images != null && images.Count != 0)
+            if (images is not null && images.Count is not 0)
             {
                 Random random = new();
                 int r = random.Next(0, images.Count);
@@ -257,7 +257,7 @@ namespace FilmManager.Models
         private string GetCast(object? obj)
         {
             StringBuilder sb = new();
-            if (obj != null)
+            if (obj is not null)
             {
                 if (obj is List<TMDbLib.Objects.Movies.Cast> mCastList)
                 {
@@ -287,7 +287,7 @@ namespace FilmManager.Models
         private string? GetNetworks(List<NetworkWithLogo>? networks)
         {
             StringBuilder sb = new();
-            if (networks.Count >= 1)
+            if (networks is not null && networks.Count >= 1)
             {
                 foreach (NetworkWithLogo network in networks)
                 {

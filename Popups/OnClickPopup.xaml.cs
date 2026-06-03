@@ -37,7 +37,7 @@ public partial class OnClickPopup : Popup
 
     private string SetText()
     {
-        if (this.o != null)
+        if (this.o is not null)
         {
             if (this.o is SearchMovie movie)
             {

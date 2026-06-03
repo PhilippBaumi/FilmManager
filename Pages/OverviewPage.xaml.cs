@@ -80,7 +80,7 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
         query.Clear();
         MainThread.BeginInvokeOnMainThread(() =>
         {
-            if (o != null)
+            if (o is not null)
             {
                 overviewViewModel.UpdateData(o);
             }

@@ -26,7 +26,7 @@ namespace FilmManager.Backend
         public void AddMoviesGenresToList()
         {
             List<Genre>? taskResult = client.GetMovieGenresAsync().Result;
-            if (taskResult != null)
+            if (taskResult is not null)
             {
                 foreach (Genre genre in taskResult)
                 {
@@ -39,7 +39,7 @@ namespace FilmManager.Backend
         public void AddSerienGenresToList()
         {
             List<Genre>? taskResult = client.GetTvGenresAsync().Result;
-            if (taskResult != null)
+            if (taskResult is not null)
             {
                 foreach (Genre genre in taskResult)
                 {
@@ -100,9 +100,9 @@ namespace FilmManager.Backend
         public int GetIdToName(string selected, MediaType type)
         {
             int id = 0;
-            if (selected != null)
+            if (selected is not null)
             {
-                if (type == MediaType.Movie)
+                if (type is MediaType.Movie)
                 {
                     foreach (Genre genre in moviesGenres)
                     {
@@ -113,7 +113,7 @@ namespace FilmManager.Backend
                         }
                     }
                 }
-                if (type == MediaType.Tv)
+                if (type is MediaType.Tv)
                 {
                     foreach (Genre genre in serienGenres)
                     {

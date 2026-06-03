@@ -27,7 +27,7 @@ namespace FilmManager.Models
 
         partial void OnThemeAsStringChanged(string? value)
         {
-            if (value != null)
+            if (value is not null)
             {
                 switch (value)
                 {

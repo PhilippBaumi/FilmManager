@@ -95,7 +95,7 @@ namespace FilmManager.Backend
             while (reader.Read())
             {
                 string mediaType = reader["MediaType"].ToString() ?? "";
-                if (mediaType == "Movie")
+                if (mediaType is "Movie")
                 {
                     SearchMovie movie = new();
                     movie.Id = Convert.ToInt32(reader["Id"]);
@@ -104,7 +104,10 @@ namespace FilmManager.Backend
                     movie.Overview = reader["Overview"].ToString();
                     movie.GenreIds = databaseHelper.GetIntListFromString(reader["GenreIds"].ToString());
                     movie.OriginalLanguage = reader["OriginalLanguage"].ToString();
-                    movie.ReleaseDate = fileHelper.StringToDataTime(reader["ReleaseDate"].ToString());
+                    if (reader["ReleaseDate"] != DBNull.Value)
+                    {
+                        movie.ReleaseDate = fileHelper.StringToDataTime(reader["ReleaseDate"].ToString());
+                    }
                     movie.BackdropPath = reader["BackdropPath"].ToString();
                     movie.PosterPath = reader["PosterPath"].ToString();
                     movie.Popularity = Convert.ToDouble(reader["Popularity"]);
@@ -120,7 +123,7 @@ namespace FilmManager.Backend
                     }
                     collection.Add(movie);
                 }
-                if (mediaType == "Tv")
+                if (mediaType is "Tv")
                 {
                     SearchTv tv = new();
                     tv.Id = Convert.ToInt32(reader["Id"]);
@@ -128,9 +131,15 @@ namespace FilmManager.Backend
                     tv.OriginalName = reader["OriginalTitle"].ToString();
                     tv.Overview = reader["Overview"].ToString();
                     tv.GenreIds = databaseHelper.GetIntListFromString(reader["GenreIds"].ToString());
-                    tv.OriginCountry = databaseHelper.GetStringListFromString(reader["OriginCountry"].ToString());
+                    if (reader["OriginCountry"] != DBNull.Value)
+                    {
+                        tv.OriginCountry = databaseHelper.GetStringListFromString(reader["OriginCountry"].ToString());
+                    }
                     tv.OriginalLanguage = reader["OriginalLanguage"].ToString();
-                    tv.FirstAirDate = fileHelper.StringToDataTime(reader["ReleaseDate"].ToString());
+                    if (reader["ReleaseDate"] != DBNull.Value)
+                    {
+                        tv.FirstAirDate = fileHelper.StringToDataTime(reader["ReleaseDate"].ToString());
+                    }
                     tv.BackdropPath = reader["BackdropPath"].ToString();
                     tv.PosterPath = reader["PosterPath"].ToString();
                     tv.Popularity = Convert.ToDouble(reader["Popularity"]);

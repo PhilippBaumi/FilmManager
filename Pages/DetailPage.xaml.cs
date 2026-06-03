@@ -56,7 +56,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         try
         {
             string? selectedLogo = detailViewModel.SelectedLogo;
-            if (selectedLogo != null)
+            if (selectedLogo is not null)
             {
                 selectedLogo = selectedLogo.Substring(0, selectedLogo.Length - 4);
                 Uri uri = new(selectedLogo);
@@ -74,7 +74,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         try
         {
             string? selectedPoster = detailViewModel.SelectedPoster;
-            if (selectedPoster != null)
+            if (selectedPoster is not null)
             {
                 selectedPoster = selectedPoster.Substring(0, selectedPoster.Length - 4);
                 Uri uri = new(selectedPoster);
@@ -92,7 +92,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         try
         {
             string? selectedBackport = detailViewModel.SelectedBackport;
-            if (selectedBackport != null)
+            if (selectedBackport is not null)
             {
                 selectedBackport = selectedBackport.Substring(0, selectedBackport.Length - 4);
                 Uri uri = new(selectedBackport);

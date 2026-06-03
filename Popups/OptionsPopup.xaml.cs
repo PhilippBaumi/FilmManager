@@ -40,7 +40,7 @@ public partial class OptionsPopup : Popup
 
     private void SetTitleToLabel()
     {
-        if (this.obj != null)
+        if (this.obj is not null)
         {
             if (this.obj is SearchMovie movie)
             {
@@ -57,7 +57,7 @@ public partial class OptionsPopup : Popup
     {
         try
         {
-            if (this.selectedItem != null)
+            if (this.selectedItem is not null)
             {
                 if (this.obj == null)
                 {
@@ -108,9 +108,9 @@ public partial class OptionsPopup : Popup
     {
         try
         {
-            if (this.selectedItem != null)
+            if (this.selectedItem is not null)
             {
-                if (this.obj == null)
+                if (this.obj is null)
                 {
                     await AlertHelper.InfoAlert(AppResources.noChoosenMovieOrSerie);
                 }
@@ -137,9 +137,9 @@ public partial class OptionsPopup : Popup
     {
         try
         {
-            if (this.selectedItem != null)
+            if (this.selectedItem is not null)
             {
-                if (this.obj != null)
+                if (this.obj is not null)
                 {
                     if (this.obj is SearchTv serie)
                     {
@@ -162,7 +162,7 @@ public partial class OptionsPopup : Popup
                         await navigation.NavigateToAsync("//Detail", dict);
                     }
                 }
-                if (this.obj == null)
+                if (this.obj is null)
                 {
                     await AlertHelper.ErrorAlert(AppResources.cantNavigateToDetails);
                 }

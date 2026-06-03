@@ -21,7 +21,7 @@ public partial class SettingPage : ContentPage
         Localization localization = new();
         string? language = settingViewModel.Language;
 
-        if (language != null)
+        if (language is not null)
         {
             switch (language)
             {

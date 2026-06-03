@@ -15,7 +15,7 @@ namespace FilmManager.Helpers
             {
                 throw new InvalidOperationException("Shell is not initialized.");
             }
-            if (routeParameters != null)
+            if (routeParameters is not null)
             {
                 await Shell.Current.GoToAsync(route, routeParameters);
             }

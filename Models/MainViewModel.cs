@@ -19,7 +19,7 @@ namespace FilmManager.Models
 
         public MainViewModel(List<string>? movieGenres, List<string>? serieGenres)
         {
-            if (movieGenres != null && serieGenres != null)
+            if (movieGenres is not null && serieGenres is not null)
             {
                 AddSerien(serieGenres);
                 AddMovies(movieGenres);
