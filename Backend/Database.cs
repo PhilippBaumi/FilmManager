@@ -104,7 +104,7 @@ namespace FilmManager.Backend
                     movie.Overview = reader["Overview"].ToString();
                     movie.GenreIds = databaseHelper.GetIntListFromString(reader["GenreIds"].ToString());
                     movie.OriginalLanguage = reader["OriginalLanguage"].ToString();
-                    if (reader["ReleaseDate"] != DBNull.Value)
+                    if (reader["ReleaseDate"] is not DBNull)
                     {
                         movie.ReleaseDate = fileHelper.StringToDataTime(reader["ReleaseDate"].ToString());
                     }
@@ -113,11 +113,11 @@ namespace FilmManager.Backend
                     movie.Popularity = Convert.ToDouble(reader["Popularity"]);
                     movie.VoteAverage = Convert.ToDouble(reader["VoteAverage"]);
                     movie.VoteCount = Convert.ToInt32(reader["VoteCount"]);
-                    if (reader["Adult"] != DBNull.Value)
+                    if (reader["Adult"] is not DBNull)
                     {
                         movie.Adult = Convert.ToBoolean(reader["Adult"]);
                     }
-                    if (reader["Video"] != DBNull.Value)
+                    if (reader["Video"] is not DBNull)
                     {
                         movie.Video = Convert.ToBoolean(reader["Video"]);
                     }
@@ -131,12 +131,12 @@ namespace FilmManager.Backend
                     tv.OriginalName = reader["OriginalTitle"].ToString();
                     tv.Overview = reader["Overview"].ToString();
                     tv.GenreIds = databaseHelper.GetIntListFromString(reader["GenreIds"].ToString());
-                    if (reader["OriginCountry"] != DBNull.Value)
+                    if (reader["OriginCountry"] is not DBNull)
                     {
                         tv.OriginCountry = databaseHelper.GetStringListFromString(reader["OriginCountry"].ToString());
                     }
                     tv.OriginalLanguage = reader["OriginalLanguage"].ToString();
-                    if (reader["ReleaseDate"] != DBNull.Value)
+                    if (reader["ReleaseDate"] is not DBNull)
                     {
                         tv.FirstAirDate = fileHelper.StringToDataTime(reader["ReleaseDate"].ToString());
                     }

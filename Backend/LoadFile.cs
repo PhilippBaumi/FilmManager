@@ -144,7 +144,7 @@ namespace FilmManager.Backend
                     string? type = root.GetProperty("Type").GetString();
                     if (type is not null)
                     {
-                        if (type is "Movie")
+                        if (string.Equals(type, "Movie"))
                         {
                             JsonEntry<SearchMovie>? entry = JsonSerializer.Deserialize<JsonEntry<SearchMovie>>(line);
                             if (entry is not null && entry.Data is not null)
@@ -152,7 +152,7 @@ namespace FilmManager.Backend
                                 list.Add(entry.Data);
                             }
                         }
-                        if (type is "Tv")
+                        if (string.Equals(type, "Tv"))
                         {
                             JsonEntry<SearchTv>? entry = JsonSerializer.Deserialize<JsonEntry<SearchTv>>(line);
                             if (entry is not null && entry.Data is not null)

@@ -38,7 +38,7 @@ namespace FilmManager.Helpers
         public int? GetId(object entry)
         {
             PropertyInfo? propertyInfo = entry.GetType().GetProperty("Id");
-            if (propertyInfo == null)
+            if (propertyInfo is null)
             {
                 return null;
             }

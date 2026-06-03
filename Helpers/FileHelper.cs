@@ -32,7 +32,7 @@ namespace FilmManager.Helpers
 
         public string? DateTimeToString(DateTime? releaseDate)
         {
-            if (releaseDate == null)
+            if (releaseDate is null)
             {
                 return null;
             }
@@ -47,7 +47,7 @@ namespace FilmManager.Helpers
                 while (true)
                 {
                     string? line = reader.ReadLine();
-                    if (line == null)
+                    if (line is null)
                     {
                         break;
                     }
@@ -120,7 +120,7 @@ namespace FilmManager.Helpers
 
         public string ConvertToCsv(string? s)
         {
-            if (s == null)
+            if (s is null)
             {
                 return "";
             }

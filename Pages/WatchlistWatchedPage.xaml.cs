@@ -60,7 +60,7 @@ public partial class WatchlistWatchedPage : ContentPage
             await AlertHelper.ErrorAlert(ex.Message);
         }
         this.watchlistWatchedViewModel = new(watchlist, watched);
-        if (this.watchlistWatchedViewModel != null)
+        if (this.watchlistWatchedViewModel is not null)
         {
             BindingContext = this.watchlistWatchedViewModel;
         }

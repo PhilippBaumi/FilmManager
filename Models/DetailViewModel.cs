@@ -197,7 +197,7 @@ namespace FilmManager.Models
         {
             foreach (ImageData image in backdrops)
             {
-                if (image.FilePath != null && image.Iso_3166_1 != null)
+                if (image.FilePath is not null && image.Iso_3166_1 is not null)
                 {
                     Backports.Add($"{ImageBaseUrl}{image.FilePath} [{image.Iso_3166_1}]");
                 }

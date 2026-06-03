@@ -59,7 +59,7 @@ public partial class OptionsPopup : Popup
         {
             if (this.selectedItem is not null)
             {
-                if (this.obj == null)
+                if (this.obj is null)
                 {
                     await AlertHelper.InfoAlert(AppResources.noChoosenMovieOrSerie);
                 }
