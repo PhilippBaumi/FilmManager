@@ -1,8 +1,9 @@
 using FilmManager.Backend;
-using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
+using MarketAlly.Dialogs.Maui.Dialogs;
+using MarketAlly.Dialogs.Maui.Models;
 using TMDbLib.Objects.Collections;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
@@ -37,7 +38,7 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
             object o = query["content"];
             if (o is TvShow tv)
             {
-                await AlertHelper.InfoAlert(AppResources.noCollection);
+                await Toast.ShowAsync(AppResources.noCollection, DialogType.Info);
             }
             if (o is Movie movie)
             {
@@ -66,7 +67,7 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
     }
 
@@ -92,7 +93,7 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
         ((CollectionView)sender).SelectedItem = null;
     }

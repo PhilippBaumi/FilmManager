@@ -1,8 +1,9 @@
 using FilmManager.Backend;
-using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
+using MarketAlly.Dialogs.Maui.Dialogs;
+using MarketAlly.Dialogs.Maui.Models;
 
 namespace FilmManager;
 
@@ -35,73 +36,79 @@ public partial class SaveLoadPage : ContentPage
 
     private async void SaveOrLoadJSON()
     {
-        bool result = await DisplayAlertAsync(AppResources.filesOptions, AppResources.messageFiles, AppResources.save, AppResources.load);
+        bool result=await ShowDialog();
         try
         {
             if (result)
             {
                 WriteFile writeFile = new(database);
-                writeFile.WriteToJSON();
-                await AlertHelper.BaseAlert(AppResources.saved, $"{AppResources.successfully} {AppResources.saved.ToLower()}");
+                await LoadingDialog.ShowAsync(AppResources.saving, async () => writeFile.WriteToJSON());
+                await Toast.ShowAsync(AppResources.saved, DialogType.Success);
             }
             else
             {
                 LoadFile loadFile = new(database);
-                loadFile.LoadFromJSON();
-                await AlertHelper.BaseAlert(AppResources.loaded, $"{AppResources.successfully} {AppResources.loaded.ToLower()}");
+                await LoadingDialog.ShowAsync(AppResources.loading, async () => loadFile.LoadFromJSON());
+                await Toast.ShowAsync(AppResources.loaded, DialogType.Success);
             }
         }
         catch (Exception ex)
         {
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
     }
 
     private async void SaveOrLoadDOCX()
     {
-        bool result = await DisplayAlertAsync(AppResources.filesOptions, AppResources.messageFiles, AppResources.save, AppResources.load);
+        bool result = await ShowDialog();
         try
         {
             if (result)
             {
                 WriteFile writeFile = new(database);
-                writeFile.WriteToDOCX();
-                await AlertHelper.BaseAlert(AppResources.saved, $"{AppResources.successfully} {AppResources.saved.ToLower()}");
+                await LoadingDialog.ShowAsync(AppResources.saving, async () => writeFile.WriteToDOCX());
+                await Toast.ShowAsync(AppResources.saved, DialogType.Success);
             }
             else
             {
                 LoadFile loadFile = new(database);
-                loadFile.LoadFromDOCX();
-                await AlertHelper.BaseAlert(AppResources.loaded, $"{AppResources.successfully} {AppResources.loaded.ToLower()}");
+                await LoadingDialog.ShowAsync(AppResources.loading, async () => loadFile.LoadFromDOCX());
+                await Toast.ShowAsync(AppResources.loaded, DialogType.Success);
             }
         }
         catch (Exception ex)
         {
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
     }
 
     private async void SaveOrLoadCSV()
     {
-        bool result = await DisplayAlertAsync(AppResources.filesOptions, AppResources.messageFiles, AppResources.save, AppResources.load);
+        bool result = await ShowDialog();
         try
         {
             if (result)
             {
                 WriteFile writeFile = new(database);
-                writeFile.WriteToCSV();
-                await AlertHelper.BaseAlert(AppResources.saved, $"{AppResources.successfully} {AppResources.saved.ToLower()}");
+                await LoadingDialog.ShowAsync(AppResources.saving, async () => writeFile.WriteToCSV());
+                await Toast.ShowAsync(AppResources.saved, DialogType.Success);
             }
             else
             {
                 LoadFile loadFile = new(database);
-                loadFile.LoadFromCSV();
-                await AlertHelper.BaseAlert(AppResources.loaded, $"{AppResources.successfully} {AppResources.loaded.ToLower()}");
+                await LoadingDialog.ShowAsync(AppResources.loading, async () => loadFile.LoadFromCSV());
+                await Toast.ShowAsync(AppResources.loaded, DialogType.Success);
             }
         }
         catch (Exception ex)
         {
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
+    }
+
+    private async Task<bool> ShowDialog()
+    {
+        ConfirmDialog dialog = new(AppResources.filesOptions, AppResources.messageFiles, AppResources.save, AppResources.load);
+        return await dialog.ShowAsync();
     }
 }

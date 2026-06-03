@@ -286,11 +286,11 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Sprache wurde geändert! Es wird zu Start gewechselt.  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Sprache wurde geändert!  ähnelt.
         /// </summary>
-        internal static string languageChangedAndNavigateToHome {
+        internal static string languageChanged {
             get {
-                return ResourceManager.GetString("languageChangedAndNavigateToHome", resourceCulture);
+                return ResourceManager.GetString("languageChanged", resourceCulture);
             }
         }
         
@@ -610,6 +610,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Wird gespeichert! ähnelt.
+        /// </summary>
+        internal static string saving {
+            get {
+                return ResourceManager.GetString("saving", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Suche ähnelt.
         /// </summary>
         internal static string search {
@@ -664,7 +673,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Tabelle erfolgreich erstellt! ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Tabelle erfolgreich erstellt ähnelt.
         /// </summary>
         internal static string successfullyCreatedTable {
             get {

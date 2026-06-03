@@ -1,7 +1,8 @@
 using FilmManager.Backend;
-using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
+using MarketAlly.Dialogs.Maui.Dialogs;
+using MarketAlly.Dialogs.Maui.Models;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
 
@@ -71,7 +72,7 @@ public partial class SearchPage : ContentPage
         }
         catch (Exception ex)
         {
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
     }
 }

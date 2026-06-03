@@ -1,10 +1,9 @@
-using CommunityToolkit.Maui.Extensions;
 using FilmManager.Backend;
-using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Popups;
-using FilmManager.Resources.Strings.Sprachen;
+using MarketAlly.Dialogs.Maui.Dialogs;
+using MarketAlly.Dialogs.Maui.Models;
 using System.Collections.ObjectModel;
 
 namespace FilmManager;
@@ -41,8 +40,7 @@ public partial class WatchlistWatchedPage : ContentPage
         }
         catch (Exception ex)
         {
-            this.watchlist.Clear();
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
         this.watchlistWatchedViewModel = new(watchlist, watched);
         BindingContext = this.watchlistWatchedViewModel;
@@ -56,8 +54,7 @@ public partial class WatchlistWatchedPage : ContentPage
         }
         catch (Exception ex)
         {
-            this.watched.Clear();
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
         this.watchlistWatchedViewModel = new(watchlist, watched);
         if (this.watchlistWatchedViewModel is not null)
@@ -86,7 +83,7 @@ public partial class WatchlistWatchedPage : ContentPage
         }
         catch (Exception ex)
         {
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
     }
 }

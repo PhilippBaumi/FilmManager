@@ -1,14 +1,10 @@
 ﻿using FilmManager.Backend;
-using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
 using MarketAlly.Dialogs.Maui.Dialogs;
 using MarketAlly.Dialogs.Maui.Models;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Text;
 using TMDbLib.Client;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
@@ -89,19 +85,19 @@ namespace FilmManager.Popups
             {
                 if (!this.onClickPopupViewModel.MyContains(watched, movie) && !this.onClickPopupViewModel.MyContains(watchlist, movie))
                 {
-                    await AlertHelper.InfoAlert(AppResources.notRemoved);
+                    await Toast.ShowAsync(AppResources.notRemoved, DialogType.Info);
                     return;
                 }
                 if (this.onClickPopupViewModel.MyContains(watched, movie))
                 {
                     this.database.DeleteEntry(movie, "Watched");
-                    await AlertHelper.InfoAlert(AppResources.removed);
+                    await Toast.ShowAsync(AppResources.removed, DialogType.Success);
                     return;
                 }
                 if (this.onClickPopupViewModel.MyContains(watchlist, movie))
                 {
                     this.database.DeleteEntry(movie, "Watchlist");
-                    await AlertHelper.InfoAlert(AppResources.removed);
+                    await Toast.ShowAsync(AppResources.removed, DialogType.Success);
                     return;
                 }
             }
@@ -109,19 +105,19 @@ namespace FilmManager.Popups
             {
                 if (!this.onClickPopupViewModel.MyContains(watched, tv) && !this.onClickPopupViewModel.MyContains(watchlist, tv))
                 {
-                    await AlertHelper.InfoAlert(AppResources.notRemoved);
+                    await Toast.ShowAsync(AppResources.notRemoved, DialogType.Info);
                     return;
                 }
                 if (this.onClickPopupViewModel.MyContains(watched, tv))
                 {
                     this.database.DeleteEntry(tv, "Watched");
-                    await AlertHelper.InfoAlert(AppResources.removed);
+                    await Toast.ShowAsync(AppResources.removed, DialogType.Success);
                     return;
                 }
                 if (this.onClickPopupViewModel.MyContains(watchlist, tv))
                 {
                     this.database.DeleteEntry(tv, "Watchlist");
-                    await AlertHelper.InfoAlert(AppResources.removed);
+                    await Toast.ShowAsync(AppResources.removed, DialogType.Success);
                     return;
                 }
             }
@@ -136,13 +132,13 @@ namespace FilmManager.Popups
                 {
                     if (rDate.Value > DateTime.Today)
                     {
-                        await AlertHelper.InfoAlert(AppResources.dateIsFuture);
+                        await Toast.ShowAsync(AppResources.dateIsFuture, DialogType.Info);
                     }
                     else
                     {
                         this.database.DeleteEntry(movie, "Watchlist");
                         this.database.InsertEntry(movie, "Watched");
-                        await AlertHelper.InfoAlert(AppResources.markedAsWatched);
+                        await Toast.ShowAsync(AppResources.markedAsWatched, DialogType.Success);
                     }
                 }
             }
@@ -153,13 +149,13 @@ namespace FilmManager.Popups
                 {
                     if (rDate.Value > DateTime.Today)
                     {
-                        await AlertHelper.InfoAlert(AppResources.dateIsFuture);
+                        await Toast.ShowAsync(AppResources.dateIsFuture, DialogType.Info);
                     }
                     else
                     {
                         this.database.DeleteEntry(tv, "Watchlist");
                         this.database.InsertEntry(tv, "Watched");
-                        await AlertHelper.InfoAlert(AppResources.markedAsWatched);
+                        await Toast.ShowAsync(AppResources.markedAsWatched, DialogType.Success);
                     }
                 }
             }

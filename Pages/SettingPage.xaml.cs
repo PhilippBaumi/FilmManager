@@ -2,6 +2,8 @@ using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
+using MarketAlly.Dialogs.Maui.Dialogs;
+using MarketAlly.Dialogs.Maui.Models;
 
 namespace FilmManager;
 
@@ -31,7 +33,7 @@ public partial class SettingPage : ContentPage
                 case "English": localization.SetLanguage("en"); break;
             }
         }
-        await AlertHelper.InfoAlert(AppResources.languageChangedAndNavigateToHome);
+        await Toast.ShowAsync(AppResources.languageChanged, DialogType.Info);
         Application.Current.MainPage = new AppShell(navigationService);
     }
 }

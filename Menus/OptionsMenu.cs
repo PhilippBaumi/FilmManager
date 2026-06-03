@@ -1,5 +1,4 @@
 ﻿using FilmManager.Backend;
-using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
@@ -75,7 +74,7 @@ namespace FilmManager.Popups
                 {
                     if (this.obj is null)
                     {
-                        await AlertHelper.InfoAlert(AppResources.noChoosenMovieOrSerie);
+                        await Toast.ShowAsync(AppResources.noChoosenMovieOrSerie, DialogType.Info);
                     }
                     this.database.CreateTable("Watched");
                     if (this.obj is SearchTv serie)
@@ -85,12 +84,12 @@ namespace FilmManager.Popups
                         {
                             if (rDate.Value > DateTime.Today)
                             {
-                                await AlertHelper.InfoAlert(AppResources.dateIsFuture);
+                                await Toast.ShowAsync(AppResources.dateIsFuture, DialogType.Info);
                             }
                             else
                             {
                                 this.database.InsertEntry(serie, "Watched");
-                                await AlertHelper.InfoAlert($"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}");
+                                await Toast.ShowAsync(AppResources.insertSuccess, DialogType.Info);
                             }
                         }
                     }
@@ -101,12 +100,12 @@ namespace FilmManager.Popups
                         {
                             if (rDate.Value > DateTime.Today)
                             {
-                                await AlertHelper.InfoAlert(AppResources.dateIsFuture);
+                                await Toast.ShowAsync(AppResources.dateIsFuture,DialogType.Info);
                             }
                             else
                             {
                                 this.database.InsertEntry(movie, "Watched");
-                                await AlertHelper.InfoAlert($"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}");
+                                await Toast.ShowAsync(AppResources.insertSuccess, DialogType.Info);
                             }
                         }
                     }
@@ -114,7 +113,7 @@ namespace FilmManager.Popups
             }
             catch (Exception ex)
             {
-                await AlertHelper.ErrorAlert(ex.Message);
+                await Toast.ShowAsync(ex.Message, DialogType.Error);
             }
         }
 
@@ -126,24 +125,24 @@ namespace FilmManager.Popups
                 {
                     if (this.obj is null)
                     {
-                        await AlertHelper.InfoAlert(AppResources.noChoosenMovieOrSerie);
+                        await Toast.ShowAsync(AppResources.noChoosenMovieOrSerie, DialogType.Info);
                     }
                     this.database.CreateTable("Watchlist");
                     if (this.obj is SearchTv serie)
                     {
                         this.database.InsertEntry(serie, "Watchlist");
-                        await AlertHelper.InfoAlert($"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}");
+                        await Toast.ShowAsync(AppResources.insertSuccess, DialogType.Info);
                     }
                     if (this.obj is SearchMovie movie)
                     {
                         this.database.InsertEntry(movie, "Watchlist");
-                        await AlertHelper.InfoAlert($"{AppResources.successfullyCreatedTable} {AppResources.and} {AppResources.insertSuccess}");
+                        await Toast.ShowAsync(AppResources.insertSuccess, DialogType.Info);
                     }
                 }
             }
             catch (Exception ex)
             {
-                await AlertHelper.ErrorAlert(ex.Message);
+                await Toast.ShowAsync(ex.Message, DialogType.Error);
             }
         }
 
@@ -178,13 +177,13 @@ namespace FilmManager.Popups
                     }
                     if (this.obj is null)
                     {
-                        await AlertHelper.ErrorAlert(AppResources.cantNavigateToDetails);
+                        await Toast.ShowAsync(AppResources.cantNavigateToDetails, DialogType.Info);
                     }
                 }
             }
             catch (Exception ex)
             {
-                await AlertHelper.ErrorAlert(ex.Message);
+                await Toast.ShowAsync(ex.Message, DialogType.Error);
             }
         }
     }

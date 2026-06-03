@@ -1,9 +1,8 @@
-using CommunityToolkit.Maui.Extensions;
-using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Popups;
-using FilmManager.Resources.Strings.Sprachen;
+using MarketAlly.Dialogs.Maui.Dialogs;
+using MarketAlly.Dialogs.Maui.Models;
 
 namespace FilmManager;
 
@@ -47,7 +46,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
     }
 
@@ -65,7 +64,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
     }
 
@@ -83,7 +82,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
     }
 
@@ -101,7 +100,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         }
         catch (Exception ex)
         {
-            await AlertHelper.ErrorAlert(ex.Message);
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
     }
 

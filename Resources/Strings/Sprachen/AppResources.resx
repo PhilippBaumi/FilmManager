@@ -186,8 +186,8 @@
   <data name="language" xml:space="preserve">
     <value>Sprache</value>
   </data>
-  <data name="languageChangedAndNavigateToHome" xml:space="preserve">
-    <value>Sprache wurde geändert! Es wird zu Start gewechselt. </value>
+  <data name="languageChanged" xml:space="preserve">
+    <value>Sprache wurde geändert! </value>
   </data>
   <data name="light" xml:space="preserve">
     <value>Hell</value>
@@ -283,7 +283,7 @@
     <value>Erfolgreich</value>
   </data>
   <data name="successfullyCreatedTable" xml:space="preserve">
-    <value>Tabelle erfolgreich erstellt!</value>
+    <value>Tabelle erfolgreich erstellt</value>
   </data>
   <data name="title" xml:space="preserve">
     <value>Titel</value>
@@ -344,5 +344,8 @@
   </data>
   <data name="loadingError" xml:space="preserve">
     <value>Fehler beim Laden und öffnen</value>
+  </data>
+  <data name="saving" xml:space="preserve">
+    <value>Wird gespeichert!</value>
   </data>
 </root>
