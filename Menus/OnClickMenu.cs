@@ -19,7 +19,6 @@ namespace FilmManager.Popups
         private IDatabase database;
         private INavigationService navigationService;
         private string apiKey;
-        private bool isInWatched;
         private OnClickMenuViewModel onClickPopupViewModel = new();
 
         public OnClickMenu(object? obj, bool inWatchedList, IDatabase database, INavigationService navigationService, string apiKey)
@@ -27,7 +26,6 @@ namespace FilmManager.Popups
             this.o = obj;
             this.inWatchedList = inWatchedList;
             this.database = database;
-            this.isInWatched = inWatchedList;
             this.navigationService = navigationService;
             this.apiKey = apiKey;
         }
@@ -42,7 +40,7 @@ namespace FilmManager.Popups
         private List<ActionItem> AddActions()
         {
             List<ActionItem> items = new();
-            if (!isInWatched)
+            if (!inWatchedList)
             {
                 items.Add(new ActionItem(AppResources.markAsWatched, async () => await MarkAsWatchedAsync()));
             }

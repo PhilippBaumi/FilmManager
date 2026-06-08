@@ -27,10 +27,9 @@ public partial class SettingPage : ContentPage
         {
             switch (language)
             {
-                case "Deutsch": localization.SetLanguage("de"); break;
-                case "German": localization.SetLanguage("de"); break;
-                case "Englisch": localization.SetLanguage("en"); break;
-                case "English": localization.SetLanguage("en"); break;
+                case "Deutsch": case "German": localization.SetLanguage("de"); break;
+                case "Englisch": case "English": localization.SetLanguage("en"); break;
+                default: localization.SetLanguage("en"); break;
             }
         }
         await Toast.ShowAsync(AppResources.languageChanged, DialogType.Info);

@@ -11,6 +11,7 @@ public partial class SaveLoadPage : ContentPage
 {
     private SaveLoadViewModel saveLoadViewModel = new();
     private IDatabase database;
+    private SemaphoreSlim isDialogShown = new(1, 1);
 
     public SaveLoadPage(IDatabase database)
     {
@@ -19,7 +20,7 @@ public partial class SaveLoadPage : ContentPage
         BindingContext = saveLoadViewModel;
     }
 
-    private async void SaveOrLoad(object sender, CheckedChangedEventArgs e)
+    private void SaveOrLoad(object sender, CheckedChangedEventArgs e)
     {
         if (sender is RadioButton { Value: not null } bt)
         {
@@ -108,7 +109,23 @@ public partial class SaveLoadPage : ContentPage
 
     private async Task<bool> ShowDialog()
     {
-        ConfirmDialog dialog = new(AppResources.filesOptions, AppResources.messageFiles, AppResources.save, AppResources.load);
-        return await dialog.ShowAsync();
+        if(!await this.isDialogShown.WaitAsync(0))
+        {
+            return false;
+        }
+        try
+        {
+            ConfirmDialog dialog = new(AppResources.filesOptions, AppResources.messageFiles, AppResources.save, AppResources.load);
+            return await dialog.ShowAsync();
+        }
+        catch (Exception ex)
+        {
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
+            return false;
+        }
+        finally
+        {
+            this.isDialogShown.Dispose();
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using FilmManager.Backend;
-using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
@@ -136,7 +135,6 @@ namespace FilmManager
         {
             this.database.DeleteTable("Watched");
             this.database.DeleteTable("Watchlist");
-
             await Toast.ShowAsync(AppResources.newGeneratedDatabase, DialogType.Success);
         }
     }
