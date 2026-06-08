@@ -22,7 +22,8 @@ public partial class SaveLoadPage : ContentPage
 
     private void SaveOrLoad(object sender, CheckedChangedEventArgs e)
     {
-        if (sender is RadioButton { Value: not null } bt)
+        bool checkedArgs=e.Value;
+        if (sender is RadioButton { Value: not null } bt && checkedArgs)
         {
             string selectedButtonText = bt.Value.ToString();
             switch (selectedButtonText)
@@ -37,9 +38,9 @@ public partial class SaveLoadPage : ContentPage
 
     private async void SaveOrLoadJSON()
     {
-        bool result=await ShowDialog();
         try
         {
+            bool result = await ShowDialog();
             if (result)
             {
                 WriteFile writeFile = new(database);
@@ -61,9 +62,9 @@ public partial class SaveLoadPage : ContentPage
 
     private async void SaveOrLoadDOCX()
     {
-        bool result = await ShowDialog();
         try
         {
+            bool result = await ShowDialog();
             if (result)
             {
                 WriteFile writeFile = new(database);
@@ -85,9 +86,9 @@ public partial class SaveLoadPage : ContentPage
 
     private async void SaveOrLoadCSV()
     {
-        bool result = await ShowDialog();
         try
         {
+            bool result = await ShowDialog();
             if (result)
             {
                 WriteFile writeFile = new(database);
@@ -109,7 +110,7 @@ public partial class SaveLoadPage : ContentPage
 
     private async Task<bool> ShowDialog()
     {
-        if(!await this.isDialogShown.WaitAsync(0))
+        if (!await isDialogShown.WaitAsync(0))
         {
             return false;
         }
@@ -125,7 +126,7 @@ public partial class SaveLoadPage : ContentPage
         }
         finally
         {
-            this.isDialogShown.Dispose();
+            isDialogShown.Release();
         }
     }
 }

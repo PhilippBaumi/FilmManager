@@ -142,6 +142,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die wirklich löschen? ähnelt.
+        /// </summary>
+        internal static string confirmDelete {
+            get {
+                return ResourceManager.GetString("confirmDelete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Anzahl Bewertungen ähnelt.
         /// </summary>
         internal static string countVote {
@@ -174,6 +183,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string dateIsFuture {
             get {
                 return ResourceManager.GetString("dateIsFuture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Löschen ähnelt.
+        /// </summary>
+        internal static string delete {
+            get {
+                return ResourceManager.GetString("delete", resourceCulture);
             }
         }
         
@@ -714,6 +732,24 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string type {
             get {
                 return ResourceManager.GetString("type", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Rückgängig ähnelt.
+        /// </summary>
+        internal static string undo {
+            get {
+                return ResourceManager.GetString("undo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Erfolgreich wiederhergestellt ähnelt.
+        /// </summary>
+        internal static string undoSuccess {
+            get {
+                return ResourceManager.GetString("undoSuccess", resourceCulture);
             }
         }
         

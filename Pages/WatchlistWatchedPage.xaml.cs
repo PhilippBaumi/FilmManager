@@ -79,6 +79,9 @@ public partial class WatchlistWatchedPage : ContentPage
                 bool inWatchedList = this.watchlistWatchedViewModel.IsInWatchedList(obj);
                 OnClickMenu onClickMenu = new(obj, inWatchedList, database, navigationService, this.tMDBService.client.ApiKey);
                 await onClickMenu.ShowAsync();
+                ((Picker)sender).SelectedItem = null;
+                LoadWatched();
+                LoadWatchlist();
             }
         }
         catch (Exception ex)

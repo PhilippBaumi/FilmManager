@@ -348,4 +348,16 @@
   <data name="saving" xml:space="preserve">
     <value>Wird gespeichert!</value>
   </data>
+  <data name="delete" xml:space="preserve">
+    <value>Löschen</value>
+  </data>
+  <data name="confirmDelete" xml:space="preserve">
+    <value>wirklich löschen?</value>
+  </data>
+  <data name="undo" xml:space="preserve">
+    <value>Rückgängig</value>
+  </data>
+  <data name="undoSuccess" xml:space="preserve">
+    <value>Erfolgreich wiederhergestellt</value>
+  </data>
 </root>

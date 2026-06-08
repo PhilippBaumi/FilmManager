@@ -348,4 +348,16 @@
   <data name="saving" xml:space="preserve">
     <value>Is saving!</value>
   </data>
+  <data name="delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="confirmDelete" xml:space="preserve">
+    <value>really delete?</value>
+  </data>
+  <data name="undo" xml:space="preserve">
+    <value>Undo</value>
+  </data>
+  <data name="undoSuccess" xml:space="preserve">
+    <value>Undo success</value>
+  </data>
 </root>
