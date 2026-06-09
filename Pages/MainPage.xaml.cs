@@ -80,9 +80,9 @@ namespace FilmManager
                         }
                     });
                 }
-                catch (Exception ex)
+                catch
                 {
-                    await Toast.ShowAsync($"{ex.Message}, {AppResources.tooMuchPages}", DialogType.Error);
+                    await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
                 }
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
@@ -120,9 +120,9 @@ namespace FilmManager
                         }
                     });
                 }
-                catch (Exception ex)
+                catch
                 {
-                    await Toast.ShowAsync($"{ex.Message}, {AppResources.tooMuchPages}", DialogType.Error);
+                    await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
                 }
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {

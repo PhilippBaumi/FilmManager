@@ -154,7 +154,7 @@
     <value> existiert nicht!</value>
   </data>
   <data name="tooMuchPages" xml:space="preserve">
-    <value>da nur 500 Seiten abgerufen werden können, aber es mehr Seiten gab!</value>
+    <value>Zu viele Seiten! </value>
   </data>
   <data name="doYouWantToNavigateToCast" xml:space="preserve">
     <value>Willst du zur Cast Seite wechseln?</value>

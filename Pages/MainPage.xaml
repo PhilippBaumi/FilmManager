@@ -6,15 +6,11 @@
              x:Class="FilmManager.MainPage"
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
              Padding="0,60,0,0">
-    <VerticalStackLayout Padding="20" 
-                         Spacing="25">
+    <VerticalStackLayout>
         <skia:SKCanvasView x:Name="HeaderCanvas"
-                           HeightRequest="100"
                            PaintSurface="HandlePaintSurface" />
         <Button Text="{x:Static strings:AppResources.resetDatabase}"
                 Clicked="ResetDatabase"
-                Margin="10" 
-                Padding="10" 
                 WidthRequest="250"/>
         <Picker Title="{x:Static strings:AppResources.series}"
                 ItemsSource="{Binding Serien}"

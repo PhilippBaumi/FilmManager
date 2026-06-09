@@ -154,7 +154,7 @@
     <value>Does not exist!</value>
   </data>
   <data name="tooMuchPages" xml:space="preserve">
-    <value>because only 500 pages can be retrieved, but there were more pages!</value>
+    <value>Too much pages! </value>
   </data>
   <data name="doYouWantToNavigateToCast" xml:space="preserve">
     <value>Do you want to switch to Cast Page?</value>

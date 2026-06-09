@@ -3,29 +3,20 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
              x:Class="FilmManager.OverviewPage">
-    <VerticalStackLayout Padding="20"
-                         Spacing="25">
+    <VerticalStackLayout>
         <skia:SKCanvasView x:Name="HeaderCanvas"
-                   HeightRequest="100"
-                   PaintSurface="HandlePaintSurface" />
-        <Grid RowDefinitions="*" 
-              Padding="20">
+                           PaintSurface="HandlePaintSurface" />
+        <Grid RowDefinitions="*">
                 <CollectionView Grid.Row="0"
                                 ItemsSource="{Binding Images}" 
                                 SelectedItem="{Binding ImageUrl, Mode=TwoWay}" 
-                                SelectionMode="Single" 
                                 SelectionChanged="OnSelectionChanged">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" 
-                                     Span="3" 
-                                     HorizontalItemSpacing="10" 
-                                     VerticalItemSpacing="10" />
+                    <GridItemsLayout Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border HeightRequest="200" 
-                                WidthRequest="150" 
-                                HorizontalOptions="Center">
+                        <Border>
                             <Image Source="{Binding .}"/>
                         </Border>
                     </DataTemplate>

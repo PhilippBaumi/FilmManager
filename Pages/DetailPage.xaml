@@ -5,13 +5,10 @@
              x:Class="FilmManager.DetailPage"
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
     <ScrollView>
-        <VerticalStackLayout Padding="20"
-                             Spacing="25">
+        <VerticalStackLayout>
             <skia:SKCanvasView x:Name="HeaderCanvas"
-                   HeightRequest="100"
-                   PaintSurface="HandlePaintSurface" />
-            <Image Source="{Binding Logo}"
-                   Aspect="Fill"/>
+                               PaintSurface="HandlePaintSurface" />
+            <Image Source="{Binding Logo}" />
             <Image Source="{Binding Poster}" />
             <Image Source="{Binding Backport}" />
             <Label Text="{Binding Id}"/>

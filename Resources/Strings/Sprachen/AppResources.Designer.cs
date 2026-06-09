@@ -718,7 +718,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die da nur 500 Seiten abgerufen werden können, aber es mehr Seiten gab! ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Zu viele Seiten!  ähnelt.
         /// </summary>
         internal static string tooMuchPages {
             get {

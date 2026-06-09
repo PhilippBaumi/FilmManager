@@ -4,13 +4,10 @@
              xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
              x:Class="FilmManager.SaveLoadPage"
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
-    <VerticalStackLayout Padding="20"
-                         Spacing="25">
+    <VerticalStackLayout>
         <skia:SKCanvasView x:Name="HeaderCanvas"
-                           HeightRequest="100"
                            PaintSurface="HandlePaintSurface" />
         <StackLayout x:Name="SaveOrLoadGroup" 
-                     Padding="20"
                      RadioButtonGroup.GroupName="Save">
             <RadioButton Content="DOCX" 
                          Value="DOCX" 

@@ -5,18 +5,14 @@
              x:Class="FilmManager.SearchPage"
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
              Title="SearchPage">
-    <VerticalStackLayout Padding="20" 
-                         Spacing="25">
+    <VerticalStackLayout>
         <skia:SKCanvasView x:Name="HeaderCanvas"
-                   HeightRequest="100"
-                   PaintSurface="HandlePaintSurface" />
-        <Grid RowDefinitions="Auto, Auto, Auto, *"
-              Padding="20">
+                           PaintSurface="HandlePaintSurface" />
+        <Grid RowDefinitions="Auto, Auto, Auto, *">
             <Entry x:Name="entrySearch" 
                    Grid.Row="0" 
                    Placeholder="{x:Static strings:AppResources.search}"/>
             <StackLayout Grid.Row="1" 
-                         Margin="10" 
                          RadioButtonGroup.GroupName="Type">
                 <RadioButton x:Name="rbMovie" 
                              Content="{x:Static strings:AppResources.movie}" 
@@ -31,19 +27,13 @@
             <CollectionView Grid.Row="3" 
                             ItemsSource="{Binding Images}"
                             SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-                            SelectionMode="Single"
                             SelectionChanged="GetSearchToImage">
                 <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" 
-                                     Span="3" 
-                                     HorizontalItemSpacing="10" 
-                                     VerticalItemSpacing="10" />
+                    <GridItemsLayout Orientation="Vertical" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Border HeightRequest="200" 
-                                WidthRequest="150" 
-                                HorizontalOptions="Center">
+                        <Border>
                             <Image Source="{Binding .}" />
                         </Border>
                     </DataTemplate>
