@@ -1,7 +1,11 @@
 using CommunityToolkit.Maui.Extensions;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Popups;
+using FilmManager.Resources.Strings.Sprachen;
+using SkiaSharp;
+using SkiaSharp.Views.Maui;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using TMDbLib.Objects.Search;
@@ -96,5 +100,13 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
             await optionsMenu.ShowAsync("Overview");
         }
         ((CollectionView)sender).SelectedItem = null;
+    }
+
+    private void HandlePaintSurface(object sender, SKPaintSurfaceEventArgs e)
+    {
+        SKCanvas canvas = e.Surface.Canvas;
+        SKImageInfo info = e.Info;
+        canvas.Clear(SKColors.Transparent);
+        SKiaDrawHelper.DrawHeader(canvas, info, AppResources.overview);
     }
 }

@@ -1,9 +1,12 @@
 using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
 using MarketAlly.Dialogs.Maui.Dialogs;
 using MarketAlly.Dialogs.Maui.Models;
+using SkiaSharp;
+using SkiaSharp.Views.Maui;
 
 namespace FilmManager;
 
@@ -128,5 +131,13 @@ public partial class SaveLoadPage : ContentPage
         {
             isDialogShown.Release();
         }
+    }
+
+    private void HandlePaintSurface(object sender, SKPaintSurfaceEventArgs e)
+    {
+        SKCanvas canvas = e.Surface.Canvas;
+        SKImageInfo info = e.Info;
+        canvas.Clear(SKColors.Transparent);
+        SKiaDrawHelper.DrawHeader(canvas, info, AppResources.saveLoad);
     }
 }

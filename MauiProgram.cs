@@ -3,6 +3,7 @@ using FilmManager.Backend;
 using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using Mopups.Hosting;
+using SkiaSharp.Views.Maui.Controls.Hosting;
 using TMDbLib.Client;
 
 namespace FilmManager
@@ -16,6 +17,7 @@ namespace FilmManager
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
+                .UseSkiaSharp()
                 .ConfigureMopups()
                 .ConfigureFonts(fonts =>
                 {

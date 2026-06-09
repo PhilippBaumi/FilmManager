@@ -11,7 +11,7 @@ using TMDbLib.Objects.TvShows;
 
 namespace FilmManager.Popups
 {
-    internal class OptionsMenu
+    public class OptionsMenu
     {
         private string selectedItem;
         private INavigationService navigationService;

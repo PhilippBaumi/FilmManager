@@ -1,9 +1,13 @@
 using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Popups;
+using FilmManager.Resources.Strings.Sprachen;
 using MarketAlly.Dialogs.Maui.Dialogs;
 using MarketAlly.Dialogs.Maui.Models;
+using SkiaSharp;
+using SkiaSharp.Views.Maui;
 using System.Collections.ObjectModel;
 
 namespace FilmManager;
@@ -88,5 +92,13 @@ public partial class WatchlistWatchedPage : ContentPage
         {
             await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
+    }
+
+    private void HandlePaintSurface(object sender, SKPaintSurfaceEventArgs e)
+    {
+        SKCanvas canvas = e.Surface.Canvas;
+        SKImageInfo info = e.Info;
+        canvas.Clear(SKColors.Transparent);
+        SKiaDrawHelper.DrawHeader(canvas, info, AppResources.watchedWatchlist);
     }
 }

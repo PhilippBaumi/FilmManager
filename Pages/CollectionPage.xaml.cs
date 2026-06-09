@@ -1,9 +1,12 @@
 using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
 using MarketAlly.Dialogs.Maui.Dialogs;
 using MarketAlly.Dialogs.Maui.Models;
+using SkiaSharp;
+using SkiaSharp.Views.Maui;
 using TMDbLib.Objects.Collections;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
@@ -96,5 +99,13 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
             await Toast.ShowAsync(ex.Message, DialogType.Error);
         }
         ((CollectionView)sender).SelectedItem = null;
+    }
+
+    private void HandlePaintSurface(object sender, SKPaintSurfaceEventArgs e)
+    {
+        SKCanvas canvas = e.Surface.Canvas;
+        SKImageInfo info = e.Info;
+        canvas.Clear(SKColors.Transparent);
+        SKiaDrawHelper.DrawHeader(canvas, info, AppResources.collection);
     }
 }
