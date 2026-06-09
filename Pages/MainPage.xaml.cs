@@ -56,12 +56,12 @@ namespace FilmManager
 
         private async void OnPickerSeriesSelectionChanged(object sender, EventArgs e)
         {
-            string? selectedSeries = mainViewModel.SelectedSerie;
-            if (selectedSeries is not null)
+            try
             {
-                int id = tMDBService.GetIdToName(selectedSeries, MediaType.Tv);
-                try
+                string? selectedSeries = mainViewModel.SelectedSerie;
+                if (selectedSeries is not null)
                 {
+                    int id = tMDBService.GetIdToName(selectedSeries, MediaType.Tv);
                     await LoadingDialog.ShowAsync(AppResources.loading, async () =>
                     {
                         SearchContainer<SearchTv> discoversSeries = await tMDBService.DiscoverSerien(id, 1);
@@ -79,29 +79,29 @@ namespace FilmManager
                             }
                         }
                     });
-                }
-                catch
-                {
-                    await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
-                }
-                IDictionary<string, object> parameters = new Dictionary<string, object>
+                    IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "list", mainViewModel.series },
                     { "apiKey", tMDBService.client.ApiKey }
                 };
-                await navigationService.NavigateToAsync("//Overview", parameters);
+                    await navigationService.NavigateToAsync("//Overview", parameters);
+                }
+                ((Picker)sender).SelectedItem = null;
             }
-            ((Picker)sender).SelectedItem = null;
+            catch
+            {
+                await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
+            }
         }
 
         private async void OnPickerMoviesSelectionChanged(object sender, EventArgs e)
         {
-            string? selectedMovie = mainViewModel.SelectedMovie;
-            if (selectedMovie is not null)
+            try
             {
-                int id = tMDBService.GetIdToName(selectedMovie, MediaType.Movie);
-                try
+                string? selectedMovie = mainViewModel.SelectedMovie;
+                if (selectedMovie is not null)
                 {
+                    int id = tMDBService.GetIdToName(selectedMovie, MediaType.Movie);
                     await LoadingDialog.ShowAsync(AppResources.loading, async () =>
                     {
                         SearchContainer<SearchMovie> discoversMovies = await tMDBService.DiscoverMovies(id, 1);
@@ -119,19 +119,19 @@ namespace FilmManager
                             }
                         }
                     });
-                }
-                catch
-                {
-                    await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
-                }
-                IDictionary<string, object> parameters = new Dictionary<string, object>
+                    IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "list", mainViewModel.movies },
                     { "apiKey", tMDBService.client.ApiKey }
                 };
-                await navigationService.NavigateToAsync("//Overview", parameters);
+                    await navigationService.NavigateToAsync("//Overview", parameters);
+                }
+                ((Picker)sender).SelectedItem = null;
             }
-            ((Picker)sender).SelectedItem = null;
+            catch
+            {
+                await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
+            }
         }
 
         private async void ResetDatabase(object sender, EventArgs e)

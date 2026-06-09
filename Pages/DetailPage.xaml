@@ -9,8 +9,10 @@
             <skia:SKCanvasView x:Name="HeaderCanvas"
                                PaintSurface="HandlePaintSurface" />
             <Image Source="{Binding Logo}" />
-            <Image Source="{Binding Poster}" />
-            <Image Source="{Binding Backport}" />
+            <Image Source="{Binding Poster}" 
+                   HorizontalOptions="Center"/>
+            <Image Source="{Binding Backport}" 
+                   HorizontalOptions="Center"/>
             <Label Text="{Binding Id}"/>
             <Label Text="{Binding EpisodsCount}"/>
             <Label Text="{Binding SeasonsCount}"/>

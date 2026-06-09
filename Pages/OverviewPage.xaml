@@ -3,25 +3,25 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
              x:Class="FilmManager.OverviewPage">
-    <VerticalStackLayout>
-        <skia:SKCanvasView x:Name="HeaderCanvas"
+    <Grid RowDefinitions="Auto, Auto, *">
+        <skia:SKCanvasView Grid.Row="0"
+                           x:Name="HeaderCanvas"
                            PaintSurface="HandlePaintSurface" />
-        <Grid RowDefinitions="*">
-                <CollectionView Grid.Row="0"
-                                ItemsSource="{Binding Images}" 
-                                SelectedItem="{Binding ImageUrl, Mode=TwoWay}" 
-                                SelectionChanged="OnSelectionChanged">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <Border>
-                            <Image Source="{Binding .}"/>
-                        </Border>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </Grid>
-    </VerticalStackLayout>
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Images}" 
+                        SelectedItem="{Binding ImageUrl, Mode=TwoWay}" 
+                        SelectionChanged="OnSelectionChanged">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout Orientation="Vertical"
+                                 Span="3"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Border>
+                        <Image Source="{Binding .}"/>
+                    </Border>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
 </ContentPage>

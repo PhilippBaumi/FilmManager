@@ -18,17 +18,16 @@
         <Setter Property="Margin" Value="10" />
     </Style>
     
-    <Style TargetType="VerticalStackLayout">
+    <!--<Style TargetType="VerticalStackLayout">
         <Setter Property="Padding" Value="20" />
         <Setter Property="Spacing" Value="25" />
-    </Style>
+    </Style>-->
 
     <Style TargetType="Grid">
         <Setter Property="Padding" Value="20" />
     </Style>
 
     <Style TargetType="GridItemsLayout">
-        <Setter Property="Span" Value="3" />
         <Setter Property="HorizontalItemSpacing" Value="10" />
         <Setter Property="VerticalItemSpacing" Value="10" />
     </Style>
@@ -40,12 +39,12 @@
     <Style TargetType="Image">
         <Setter Property="Margin" Value="10"/>
         <Setter Property="HeightRequest" Value="200"/>
-        <Setter Property="HorizontalOptions" Value="Center"/>
-        <Setter Property="Aspect" Value="Fill" />
+        <Setter Property="Aspect" Value="AspectFit" />
     </Style>
 
     <Style TargetType="skia:SKCanvasView">
         <Setter Property="HeightRequest" Value="100" />
+        <Setter Property="Margin" Value="20" />
     </Style>
     
     <Style TargetType="Button">
