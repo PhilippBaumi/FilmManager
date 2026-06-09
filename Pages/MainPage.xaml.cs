@@ -146,7 +146,7 @@ namespace FilmManager
             SKCanvas canvas = e.Surface.Canvas;
             SKImageInfo info = e.Info;
             canvas.Clear(SKColors.Transparent);
-            SKiaDrawHelper.DrawHeader(canvas, info, AppResources.home);
+            SKiaDrawHelper.DrawHeader(canvas, info, $"  {AppResources.home}");
         }
     }
 }

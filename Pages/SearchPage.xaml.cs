@@ -85,6 +85,6 @@ public partial class SearchPage : ContentPage
         SKCanvas canvas = e.Surface.Canvas;
         SKImageInfo info = e.Info;
         canvas.Clear(SKColors.Transparent);
-        SKiaDrawHelper.DrawHeader(canvas, info, AppResources.search);
+        SKiaDrawHelper.DrawHeader(canvas, info, $"  {AppResources.search}");
     }
 }

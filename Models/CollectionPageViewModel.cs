@@ -9,11 +9,11 @@ namespace FilmManager.Models
         private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
         public ObservableCollection<string> Images { get; set; } = new();
 
-        private List<SearchCollection> collection;
+        private List<SearchCollection?> collection;
 
         [ObservableProperty]
         private string selectedItem;
-        public void SetList(List<SearchCollection> collection)
+        public void SetList(List<SearchCollection?> collection)
         {
             this.collection = collection;
             this.Images.Clear();

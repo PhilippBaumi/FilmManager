@@ -46,7 +46,7 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
             if (o is Movie movie)
             {
                 SearchCollection? searchCollection = movie.BelongsToCollection;
-                this.collectionPageViewModel.SetList(new List<SearchCollection> { searchCollection });
+                this.collectionPageViewModel.SetList(new List<SearchCollection?> { searchCollection });
                 BindingContext = this.collectionPageViewModel;
             }
         }
@@ -106,6 +106,6 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
         SKCanvas canvas = e.Surface.Canvas;
         SKImageInfo info = e.Info;
         canvas.Clear(SKColors.Transparent);
-        SKiaDrawHelper.DrawHeader(canvas, info, AppResources.collection);
+        SKiaDrawHelper.DrawHeader(canvas, info, $"  {AppResources.collection}");
     }
 }

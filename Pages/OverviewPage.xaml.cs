@@ -107,6 +107,6 @@ public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyProp
         SKCanvas canvas = e.Surface.Canvas;
         SKImageInfo info = e.Info;
         canvas.Clear(SKColors.Transparent);
-        SKiaDrawHelper.DrawHeader(canvas, info, AppResources.overview);
+        SKiaDrawHelper.DrawHeader(canvas, info, $"  {AppResources.overview}");
     }
 }

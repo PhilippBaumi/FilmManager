@@ -139,6 +139,6 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         SKCanvas canvas = e.Surface.Canvas;
         SKImageInfo info = e.Info;
         canvas.Clear(SKColors.Transparent);
-        SKiaDrawHelper.DrawHeader(canvas, info, "Details");
+        SKiaDrawHelper.DrawHeader(canvas, info, "   Details");
     }
 }

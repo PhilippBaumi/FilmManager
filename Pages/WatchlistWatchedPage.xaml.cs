@@ -99,6 +99,6 @@ public partial class WatchlistWatchedPage : ContentPage
         SKCanvas canvas = e.Surface.Canvas;
         SKImageInfo info = e.Info;
         canvas.Clear(SKColors.Transparent);
-        SKiaDrawHelper.DrawHeader(canvas, info, AppResources.watchedWatchlist);
+        SKiaDrawHelper.DrawHeader(canvas, info, $"  {AppResources.watchedWatchlist}");
     }
 }

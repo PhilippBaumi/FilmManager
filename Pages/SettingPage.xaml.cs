@@ -43,6 +43,6 @@ public partial class SettingPage : ContentPage
         SKCanvas canvas = e.Surface.Canvas;
         SKImageInfo info = e.Info;
         canvas.Clear(SKColors.Transparent);
-        SKiaDrawHelper.DrawHeader(canvas, info, AppResources.settings);
+        SKiaDrawHelper.DrawHeader(canvas, info, $"  {AppResources.settings}");
     }
 }
