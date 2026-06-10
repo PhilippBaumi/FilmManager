@@ -5,6 +5,7 @@ using TMDbLib.Objects.Collections;
 using TMDbLib.Objects.Discover;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
+using TMDbLib.Objects.People;
 using TMDbLib.Objects.Search;
 using TMDbLib.Objects.TvShows;
 
@@ -97,6 +98,16 @@ namespace FilmManager.Backend
             return await RetryLoadingAsync(async () => await this.client.GetCollectionAsync(id));
         }
 
+        public async Task<SearchContainer<SearchPerson>> SearchPersonAsync(string name)
+        {
+            return await RetryLoadingAsync(async () => await this.client.SearchPersonAsync(name));
+        }
+
+        public async Task<Person> GetPersonAsync(int id)
+        {
+            return await RetryLoadingAsync(async () => await this.client.GetPersonAsync(id));
+        }
+        
         public int GetIdToName(string selected, MediaType type)
         {
             int id = 0;

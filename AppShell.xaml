@@ -41,5 +41,9 @@
                       Title="{x:Static strings:AppResources.settings}" 
                       Route="Settings" 
                       ContentTemplate="{DataTemplate local:SettingPage}"/>
+        <ShellContent x:Name="castNav" 
+                      Title="Cast" 
+                      Route="Cast" 
+                      ContentTemplate="{DataTemplate local:CastPage}"/>
     </TabBar>
 </Shell>

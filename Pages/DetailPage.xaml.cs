@@ -1,12 +1,15 @@
+using FilmManager.Backend;
 using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Popups;
-using FilmManager.Resources.Strings.Sprachen;
 using MarketAlly.Dialogs.Maui.Dialogs;
 using MarketAlly.Dialogs.Maui.Models;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
+using TMDbLib.Client;
+using TMDbLib.Objects.General;
+using TMDbLib.Objects.Search;
 
 namespace FilmManager;
 
@@ -140,5 +143,24 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         SKImageInfo info = e.Info;
         canvas.Clear(SKColors.Transparent);
         SKiaDrawHelper.DrawHeader(canvas, info, "   Details");
+    }
+
+    private async void HandleCast(object sender, EventArgs e)
+    {
+        string? selectedCast = this.detailViewModel.SelectedCast;
+        if(selectedCast is not null)
+        {
+            TMDBService tMDBService=new(new TMDbClient(apiKey));
+            SearchContainer<SearchPerson>cast=await tMDBService.SearchPersonAsync(selectedCast);
+            if(cast.Results is not null)
+            {
+                IDictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "cast", cast.Results },
+                    { "apiKey", this.apiKey }
+                };
+                await this.navigationService.NavigateToAsync("//Cast", parameters);
+            }
+        }
     }
 }

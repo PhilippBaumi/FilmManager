@@ -106,6 +106,24 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Biografie ähnelt.
+        /// </summary>
+        internal static string biography {
+            get {
+                return ResourceManager.GetString("biography", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Geburtstag ähnelt.
+        /// </summary>
+        internal static string birthday {
+            get {
+                return ResourceManager.GetString("birthday", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Kann Wert nicht finden ähnelt.
         /// </summary>
         internal static string cantGetValue {
@@ -268,6 +286,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Geschlecht ähnelt.
+        /// </summary>
+        internal static string gender {
+            get {
+                return ResourceManager.GetString("gender", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Deutsch ähnelt.
         /// </summary>
         internal static string german {
@@ -291,6 +318,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string insertSuccess {
             get {
                 return ResourceManager.GetString("insertSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Bereich ähnelt.
+        /// </summary>
+        internal static string knownForDepartment {
+            get {
+                return ResourceManager.GetString("knownForDepartment", resourceCulture);
             }
         }
         
@@ -534,6 +570,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string page {
             get {
                 return ResourceManager.GetString("page", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Geburtsort ähnelt.
+        /// </summary>
+        internal static string placeOfBirth {
+            get {
+                return ResourceManager.GetString("placeOfBirth", resourceCulture);
             }
         }
         

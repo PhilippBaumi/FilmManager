@@ -26,7 +26,6 @@ namespace FilmManager.Models
         public string? CountVote { get; set; }
         public string? OriginCountry { get; set; }
         public string? Networks { get; set; }
-        public string? Cast { get; set; }
         public string? CreatedBy { get; set; }
         public string? Logo { get; set; }
         public string? EpisodsCount { get; set; }
@@ -37,10 +36,11 @@ namespace FilmManager.Models
         public ObservableCollection<string> Logos { get; set; } = new();
         public ObservableCollection<string> Posters { get; set; } = new();
         public ObservableCollection<string> Backports { get; set; } = new();
-
+        public ObservableCollection<string> Cast { get; set; } = new();
         public ObservableCollection<string> Recommendations { get; set; } = new();
 
         private List<object> recommentationList = new();
+
 
         [ObservableProperty]
         private string? selectedLogo;
@@ -50,6 +50,8 @@ namespace FilmManager.Models
         private string? selectedBackport;
         [ObservableProperty]
         private string? selectedRecommendation;
+        [ObservableProperty]
+        private string? selectedCast;
         public DetailViewModel(object o)
         {
             FileHelper fileHelper = new();
@@ -87,11 +89,11 @@ namespace FilmManager.Models
                 Homepage = movie.Homepage;
                 Genres = $"Genres: {GenresToString(movie.Genres)}";
                 CountVote = $"{AppResources.countVote}: {movie.VoteCount}";
-                Cast = $"Cast: {GetCast(movie.Credits.Cast)}";
                 SetLogos(movie.Images.Logos);
                 SetPosters(movie.Images.Posters);
                 SetBackdrops(movie.Images.Backdrops);
                 SetRecommendations(movie.Recommendations);
+                SetCast(movie.Credits.Cast);
             }
             if (o is TvShow serie)
             {
@@ -129,7 +131,6 @@ namespace FilmManager.Models
                 CountVote = $"{AppResources.countVote}: {serie.VoteCount}";
                 OriginCountry = $"{AppResources.origionCountry}: {string.Join(",", serie.OriginCountry)}";
                 Networks = $"Networks: {GetNetworks(serie.Networks)}";
-                Cast = $"Cast: {GetCast(serie.Credits.Cast)}";
                 CreatedBy = $"{AppResources.createdBy}: {CreatedByToString(serie.CreatedBy)}";
                 EpisodsCount = $"{AppResources.numberOfEpisodes}: {serie.NumberOfEpisodes}";
                 SeasonsCount = $"{AppResources.numberOfSeasons}: {serie.NumberOfSeasons}";
@@ -138,6 +139,28 @@ namespace FilmManager.Models
                 SetPosters(serie.Images.Posters);
                 SetBackdrops(serie.Images.Backdrops);
                 SetRecommendations(serie.Recommendations);
+                SetCast(serie.Credits.Cast);
+            }
+        }
+
+        private void SetCast(object? obj)
+        {
+            if (obj is not null)
+            {
+                if (obj is List<TMDbLib.Objects.Movies.Cast> mCastList)
+                {
+                    foreach (TMDbLib.Objects.Movies.Cast mCast in mCastList)
+                    {
+                        Cast.Add(mCast.Name);
+                    }
+                }
+                if (obj is List<TMDbLib.Objects.TvShows.Cast> tCastList)
+                {
+                    foreach (TMDbLib.Objects.TvShows.Cast tCast in tCastList)
+                    {
+                        Cast.Add(tCast.Name);
+                    }
+                }
             }
         }
 
@@ -252,36 +275,6 @@ namespace FilmManager.Models
                 return image.FilePath;
             }
             return null;
-        }
-
-        private string GetCast(object? obj)
-        {
-            StringBuilder sb = new();
-            if (obj is not null)
-            {
-                if (obj is List<TMDbLib.Objects.Movies.Cast> mCastList)
-                {
-                    foreach (TMDbLib.Objects.Movies.Cast mCast in mCastList)
-                    {
-                        sb.Append(mCast.Name);
-                        sb.Append(", ");
-                    }
-                }
-                if (obj is List<TMDbLib.Objects.TvShows.Cast> tCastList)
-                {
-                    foreach (TMDbLib.Objects.TvShows.Cast tCast in tCastList)
-                    {
-                        sb.Append(tCast.Name);
-                        sb.Append(", ");
-                    }
-                }
-            }
-            string s = sb.ToString();
-            if (s.Length >= 2)
-            {
-                return s.Substring(0, s.Length - 2);
-            }
-            return s;
         }
 
         private string? GetNetworks(List<NetworkWithLogo>? networks)

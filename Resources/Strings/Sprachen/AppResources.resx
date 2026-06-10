@@ -360,4 +360,19 @@
   <data name="undoSuccess" xml:space="preserve">
     <value>Erfolgreich wiederhergestellt</value>
   </data>
+  <data name="birthday" xml:space="preserve">
+    <value>Geburtstag</value>
+  </data>
+  <data name="gender" xml:space="preserve">
+    <value>Geschlecht</value>
+  </data>
+  <data name="biography" xml:space="preserve">
+    <value>Biografie</value>
+  </data>
+  <data name="placeOfBirth" xml:space="preserve">
+    <value>Geburtsort</value>
+  </data>
+  <data name="knownForDepartment" xml:space="preserve">
+    <value>Bereich</value>
+  </data>
 </root>

@@ -7,8 +7,8 @@
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
     <Grid RowDefinitions="Auto, Auto, Auto, *">
         <skia:SKCanvasView Grid.Row="0"
-                           x:Name="HeaderCanvas"
-                           PaintSurface="HandlePaintSurface" />
+                   x:Name="HeaderCanvas"
+                   PaintSurface="HandlePaintSurface" />
         <Entry Grid.Row="1" 
                x:Name="entrySearchCollection" 
                Placeholder="{x:Static strings:AppResources.searchCollectionPlaceholder}"
