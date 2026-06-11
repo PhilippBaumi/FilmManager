@@ -9,9 +9,6 @@ namespace FilmManager.Models
         public ObservableCollection<string> Serien { get; set; } = new();
         public ObservableCollection<string> Movies { get; set; } = new();
 
-        public List<SearchTv> series { get; } = new();
-        public List<SearchMovie> movies { get; } = new();
-
         [ObservableProperty]
         private string? selectedSerie;
         [ObservableProperty]
@@ -39,27 +36,6 @@ namespace FilmManager.Models
             foreach (string serie in serieGenres)
             {
                 Serien.Add(serie);
-            }
-        }
-        public void GetSerien(List<SearchTv> results)
-        {
-            foreach (SearchTv search in results)
-            {
-                if (!series.Contains(search))
-                {
-                    series.Add(search);
-                }
-            }
-        }
-
-        public void GetMovies(List<SearchMovie> results)
-        {
-            foreach (SearchMovie search in results)
-            {
-                if (!movies.Contains(search))
-                {
-                    movies.Add(search);
-                }
             }
         }
     }

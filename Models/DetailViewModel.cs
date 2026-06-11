@@ -22,7 +22,6 @@ namespace FilmManager.Models
         public string? AverageVote { get; set; }
         public string? Poster { get; set; }
         public string? Homepage { get; set; }
-        public string? Genres { get; set; }
         public string? CountVote { get; set; }
         public string? OriginCountry { get; set; }
         public string? Networks { get; set; }
@@ -38,6 +37,7 @@ namespace FilmManager.Models
         public ObservableCollection<string> Backports { get; set; } = new();
         public ObservableCollection<string> Cast { get; set; } = new();
         public ObservableCollection<string> Recommendations { get; set; } = new();
+        public ObservableCollection<string> Genres { get; set; } = new();
 
         private List<object> recommentationList = new();
 
@@ -52,6 +52,8 @@ namespace FilmManager.Models
         private string? selectedRecommendation;
         [ObservableProperty]
         private string? selectedCast;
+        [ObservableProperty]
+        private string? selectedGenre;
         public DetailViewModel(object o)
         {
             FileHelper fileHelper = new();
@@ -87,13 +89,13 @@ namespace FilmManager.Models
                 Popularity = $"{AppResources.popularity}: {movie.Popularity}";
                 AverageVote = $"{AppResources.averageVote}: {movie.VoteAverage}";
                 Homepage = movie.Homepage;
-                Genres = $"Genres: {GenresToString(movie.Genres)}";
                 CountVote = $"{AppResources.countVote}: {movie.VoteCount}";
                 SetLogos(movie.Images.Logos);
                 SetPosters(movie.Images.Posters);
                 SetBackdrops(movie.Images.Backdrops);
                 SetRecommendations(movie.Recommendations);
                 SetCast(movie.Credits.Cast);
+                SetGenres(movie.Genres);
             }
             if (o is TvShow serie)
             {
@@ -127,7 +129,6 @@ namespace FilmManager.Models
                 Popularity = $"{AppResources.popularity}: {serie.Popularity}";
                 AverageVote = $"{AppResources.averageVote}: {serie.VoteAverage}";
                 Homepage = serie.Homepage;
-                Genres = $"Genres: {GenresToString(serie.Genres)}";
                 CountVote = $"{AppResources.countVote}: {serie.VoteCount}";
                 OriginCountry = $"{AppResources.origionCountry}: {string.Join(",", serie.OriginCountry)}";
                 Networks = $"Networks: {GetNetworks(serie.Networks)}";
@@ -140,6 +141,18 @@ namespace FilmManager.Models
                 SetBackdrops(serie.Images.Backdrops);
                 SetRecommendations(serie.Recommendations);
                 SetCast(serie.Credits.Cast);
+                SetGenres(serie.Genres);
+            }
+        }
+
+        private void SetGenres(List<Genre>? genres)
+        {
+            if (genres!=null&&genres.Any())
+            {
+                foreach (Genre genre in genres)
+                {
+                    this.Genres.Add(genre.Name);
+                }
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using TMDbLib.Objects.General;
+﻿using FilmManager.Backend;
+using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
 using TMDbLib.Objects.TvShows;
@@ -7,6 +8,14 @@ namespace FilmManager.Helpers
 {
     public class TMDbHelper
     {
+        private TMDBService tMDBService;
+        private GenreHelper genreHelper;
+
+        public TMDbHelper(TMDBService tMDBService, GenreHelper genreHelper)
+        {
+            this.tMDBService = tMDBService;
+            this.genreHelper = genreHelper;
+        }
 
         public SearchTv SearchTvFromTvShow(TvShow show)
         {
@@ -54,6 +63,42 @@ namespace FilmManager.Helpers
                 genreIds.Add(g.Id);
             }
             return genreIds;
+        }
+
+        public async void GetMoviesToGenre(int id)
+        {
+            SearchContainer<SearchMovie> discoversMovies = await this.tMDBService.DiscoverMovies(id, 1);
+            if (discoversMovies.Results is not null)
+            {
+                this.genreHelper.GetMovies(discoversMovies.Results);
+            }
+            for (int page = discoversMovies.Page + 1; page <= discoversMovies.TotalPages; page++)
+            {
+                discoversMovies.Page = page;
+                discoversMovies = await this.tMDBService.DiscoverMovies(id, page);
+                if (discoversMovies.Results is not null)
+                {
+                    this.genreHelper.GetMovies(discoversMovies.Results);
+                }
+            }
+        }
+
+        public async void GetTvShowsToGenre(int id)
+        {
+            SearchContainer<SearchTv> discoversSeries = await this.tMDBService.DiscoverSerien(id, 1);
+            if (discoversSeries.Results is not null)
+            {
+                this.genreHelper.GetSerien(discoversSeries.Results);
+            }
+            for (int page = discoversSeries.Page + 1; page <= discoversSeries.TotalPages; page++)
+            {
+                discoversSeries.Page = page;
+                discoversSeries = await this.tMDBService.DiscoverSerien(id, page);
+                if (discoversSeries.Results is not null)
+                {
+                    this.genreHelper.GetSerien(discoversSeries.Results);
+                }
+            }
         }
     }
 }

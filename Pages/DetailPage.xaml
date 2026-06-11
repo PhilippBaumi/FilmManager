@@ -36,7 +36,10 @@
                                           Tapped="HandleLinkClicked"/>
                 </Label.GestureRecognizers>
             </Label>
-            <Label Text="{Binding Genres}" />
+            <Picker Title="Genres"
+                    ItemsSource="{Binding Genres}"
+                    SelectedItem="{Binding SelectedGenre}"
+                    SelectedIndexChanged="HandleGenreChanged" />
             <Label Text="{Binding Networks}"/>
             <Picker Title="{x:Static strings:AppResources.recommendations}"
                     ItemsSource="{Binding Recommendations}"

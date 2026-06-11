@@ -3,13 +3,16 @@ using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Popups;
+using FilmManager.Resources.Strings.Sprachen;
 using MarketAlly.Dialogs.Maui.Dialogs;
 using MarketAlly.Dialogs.Maui.Models;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using TMDbLib.Client;
 using TMDbLib.Objects.General;
+using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
+using TMDbLib.Objects.TvShows;
 
 namespace FilmManager;
 
@@ -21,6 +24,9 @@ public partial class DetailPage : ContentPage, IQueryAttributable
     private object o;
     private string apiKey;
     private IDatabase database;
+    private TMDBService tMDBService;
+    private TMDbHelper tMDbHelper;
+    private GenreHelper genreHelper;
 
     public DetailPage(INavigationService navigationSerive, IDatabase database)
     {
@@ -40,6 +46,9 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         if (query.ContainsKey("apiKey"))
         {
             apiKey = query["apiKey"] as string;
+            this.tMDBService = new(new TMDbClient(apiKey));
+            this.genreHelper = new(tMDBService);
+            this.tMDbHelper = new(tMDBService, genreHelper);
         }
         query.Clear();
     }
@@ -150,7 +159,6 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         string? selectedCast = this.detailViewModel.SelectedCast;
         if(selectedCast is not null)
         {
-            TMDBService tMDBService=new(new TMDbClient(apiKey));
             SearchContainer<SearchPerson>cast=await tMDBService.SearchPersonAsync(selectedCast);
             if(cast.Results is not null)
             {
@@ -162,5 +170,155 @@ public partial class DetailPage : ContentPage, IQueryAttributable
                 await this.navigationService.NavigateToAsync("//Cast", parameters);
             }
         }
+    }
+
+    private async void HandleGenreChanged(object sender, EventArgs e)
+    {
+        string? selectedGenre = this.detailViewModel.SelectedGenre;
+        if (selectedGenre is not null && o is Movie movie)
+        {
+            try
+            {
+                this.tMDBService.AddMoviesGenresToList();
+                int id = this.tMDBService.GetIdToName(selectedGenre, MediaType.Movie);
+                await LoadingDialog.ShowAsync(AppResources.loading, async () =>
+                {
+                    SearchContainer<SearchMovie> discoversMovies = await this.tMDBService.DiscoverMovies(id, 1);
+                    if (discoversMovies.Results is not null)
+                    {
+                        this.genreHelper.GetMovies(discoversMovies.Results);
+                    }
+                    for (int page = discoversMovies.Page + 1; page <= discoversMovies.TotalPages; page++)
+                    {
+                        discoversMovies.Page = page;
+                        discoversMovies = await this.tMDBService.DiscoverMovies(id, page);
+                        if (discoversMovies.Results is not null)
+                        {
+                            this.genreHelper.GetMovies(discoversMovies.Results);
+                        }
+                    }
+                });
+            }
+            catch
+            {
+                await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
+            }
+            finally
+            {
+                IDictionary<string, object> parameters = new Dictionary<string, object>
+                {
+                    { "list", genreHelper.movies },
+                    { "apiKey", apiKey }
+                };
+                await navigationService.NavigateToAsync("//Overview", parameters);
+                ((Picker)sender).SelectedItem = null;
+            }
+        }
+        if(selectedGenre is not null && o is TvShow show)
+        {
+            try
+            {
+                this.tMDBService.AddSerienGenresToList();
+                int id = this.tMDBService.GetIdToName(selectedGenre, MediaType.Tv);
+                await LoadingDialog.ShowAsync(AppResources.loading, async () =>
+                {
+                    SearchContainer<SearchTv> discoversSeries = await this.tMDBService.DiscoverSerien(id, 1);
+                    if (discoversSeries.Results is not null)
+                    {
+                        this.genreHelper.GetSerien(discoversSeries.Results);
+                    }
+                    for (int page = discoversSeries.Page + 1; page <= discoversSeries.TotalPages; page++)
+                    {
+                        discoversSeries.Page = page;
+                        discoversSeries = await this.tMDBService.DiscoverSerien(id, page);
+                        if (discoversSeries.Results is not null)
+                        {
+                            this.genreHelper.GetSerien(discoversSeries.Results);
+                        }
+                    }
+                });
+            }
+            catch
+            {
+                await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
+            }
+            IDictionary<string, object> parameters = new Dictionary<string, object>
+        {
+            { "list", genreHelper.series },
+            { "apiKey", apiKey }
+        };
+            await navigationService.NavigateToAsync("//Overview", parameters);
+            ((Picker)sender).SelectedItem = null;
+        }
+    }
+
+    private async void HandleSerie(string selectedGenre, TvShow show, GenreHelper genreHelper)
+    {
+        try
+        {
+            int id = tMDBService.GetIdToName(selectedGenre, MediaType.Tv);
+            await LoadingDialog.ShowAsync(AppResources.loading, async () =>
+            {
+                SearchContainer<SearchTv> discoversSeries = await this.tMDBService.DiscoverSerien(id, 1);
+                if (discoversSeries.Results is not null)
+                {
+                    this.genreHelper.GetSerien(discoversSeries.Results);
+                }
+                for (int page = discoversSeries.Page + 1; page <= discoversSeries.TotalPages; page++)
+                {
+                    discoversSeries.Page = page;
+                    discoversSeries = await this.tMDBService.DiscoverSerien(id, page);
+                    if (discoversSeries.Results is not null)
+                    {
+                        this.genreHelper.GetSerien(discoversSeries.Results);
+                    }
+                }
+            });
+        }
+        catch
+        {
+            await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
+        }
+        IDictionary<string, object> parameters = new Dictionary<string, object>
+        {
+            { "list", genreHelper.series },
+            { "apiKey", apiKey }
+        };
+        await navigationService.NavigateToAsync("//Overview", parameters);
+    }
+
+    private async void HandleMovie(string selectedGenre, Movie movie, GenreHelper genreHelper)
+    {
+        try
+        {
+            int id = tMDBService.GetIdToName(selectedGenre, MediaType.Movie);
+            await LoadingDialog.ShowAsync(AppResources.loading, async () =>
+            {
+                SearchContainer<SearchMovie> discoversMovies = await this.tMDBService.DiscoverMovies(id, 1);
+                if (discoversMovies.Results is not null)
+                {
+                    this.genreHelper.GetMovies(discoversMovies.Results);
+                }
+                for (int page = discoversMovies.Page + 1; page <= discoversMovies.TotalPages; page++)
+                {
+                    discoversMovies.Page = page;
+                    discoversMovies = await this.tMDBService.DiscoverMovies(id, page);
+                    if (discoversMovies.Results is not null)
+                    {
+                        this.genreHelper.GetMovies(discoversMovies.Results);
+                    }
+                }
+            });
+        }
+        catch
+        {
+            await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
+        }
+        IDictionary<string, object> parameters = new Dictionary<string, object>
+        {
+            { "list", genreHelper.movies },
+            { "apiKey", apiKey }
+        };
+        await navigationService.NavigateToAsync("//Overview", parameters);
     }
 }

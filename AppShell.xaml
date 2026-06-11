@@ -37,13 +37,13 @@
                       Title="{x:Static strings:AppResources.search}" 
                       Route="Search" 
                       ContentTemplate="{DataTemplate local:SearchPage}"/>
-        <ShellContent x:Name="settingsNav" 
-                      Title="{x:Static strings:AppResources.settings}" 
-                      Route="Settings" 
-                      ContentTemplate="{DataTemplate local:SettingPage}"/>
         <ShellContent x:Name="castNav" 
                       Title="Cast" 
                       Route="Cast" 
                       ContentTemplate="{DataTemplate local:CastPage}"/>
+        <ShellContent x:Name="settingsNav" 
+                      Title="{x:Static strings:AppResources.settings}" 
+                      Route="Settings" 
+                      ContentTemplate="{DataTemplate local:SettingPage}"/>
     </TabBar>
 </Shell>

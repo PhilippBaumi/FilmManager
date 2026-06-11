@@ -1,4 +1,5 @@
 ﻿using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
@@ -28,7 +29,7 @@ namespace FilmManager.Popups
             this.database = database;
             this.apiKey = apiKey;
             this.tmdbService = new(new TMDbClient(apiKey));
-            this.obj = optionPopupViewModel.Get(selectedItem, o);
+            this.obj = optionPopupViewModel.Get(selectedItem, o, tmdbService);
         }
 
         public async Task ShowAsync(string action)

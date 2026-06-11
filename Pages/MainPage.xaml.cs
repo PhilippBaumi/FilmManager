@@ -18,12 +18,16 @@ namespace FilmManager
         private TMDBService tMDBService;
         private IDatabase database;
         private MainViewModel mainViewModel;
+        private GenreHelper genreHelper;
+        private TMDbHelper tMDbHelper;
         public MainPage(INavigationService navigation, TMDBService tMDBService, IDatabase database)
         {
             InitializeComponent();
             this.navigationService = navigation;
             this.database = database;
             this.tMDBService = tMDBService;
+            this.genreHelper = new(tMDBService);
+            this.tMDbHelper = new(tMDBService, genreHelper);
         }
 
         protected override async void OnAppearing()
@@ -31,11 +35,7 @@ namespace FilmManager
             base.OnAppearing();
             try
             {
-                this.tMDBService.AddMoviesGenresToList();
-                List<string> movieGenres = tMDBService.MovieGenresName;
-                this.tMDBService.AddSerienGenresToList();
-                List<string> serieGenres = tMDBService.SerienGenresName;
-                this.mainViewModel = new(movieGenres, serieGenres);
+                this.mainViewModel = new(this.genreHelper.MovieGenres(), this.genreHelper.SeriesGenres());
             }
             catch (Exception ex)
             {
@@ -64,18 +64,19 @@ namespace FilmManager
                     int id = tMDBService.GetIdToName(selectedSeries, MediaType.Tv);
                     await LoadingDialog.ShowAsync(AppResources.loading, async () =>
                     {
-                        SearchContainer<SearchTv> discoversSeries = await tMDBService.DiscoverSerien(id, 1);
+                        //this.tMDbHelper.GetTvShowsToGenre(id);
+                        SearchContainer<SearchTv> discoversSeries = await this.tMDBService.DiscoverSerien(id, 1);
                         if (discoversSeries.Results is not null)
                         {
-                            mainViewModel.GetSerien(discoversSeries.Results);
+                            this.genreHelper.GetSerien(discoversSeries.Results);
                         }
                         for (int page = discoversSeries.Page + 1; page <= discoversSeries.TotalPages; page++)
                         {
                             discoversSeries.Page = page;
-                            discoversSeries = await tMDBService.DiscoverSerien(id, page);
+                            discoversSeries = await this.tMDBService.DiscoverSerien(id, page);
                             if (discoversSeries.Results is not null)
                             {
-                                mainViewModel.GetSerien(discoversSeries.Results);
+                                this.genreHelper.GetSerien(discoversSeries.Results);
                             }
                         }
                     });
@@ -86,7 +87,7 @@ namespace FilmManager
                 }
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
-                    { "list", mainViewModel.series },
+                    { "list", genreHelper.series },
                     { "apiKey", tMDBService.client.ApiKey }
                 };
                 await navigationService.NavigateToAsync("//Overview", parameters);
@@ -104,10 +105,11 @@ namespace FilmManager
                     int id = tMDBService.GetIdToName(selectedMovie, MediaType.Movie);
                     await LoadingDialog.ShowAsync(AppResources.loading, async () =>
                     {
+                        //this.tMDbHelper.GetMoviesToGenre(id);
                         SearchContainer<SearchMovie> discoversMovies = await tMDBService.DiscoverMovies(id, 1);
                         if (discoversMovies.Results is not null)
                         {
-                            mainViewModel.GetMovies(discoversMovies.Results);
+                            genreHelper.GetMovies(discoversMovies.Results);
                         }
                         for (int page = discoversMovies.Page + 1; page <= discoversMovies.TotalPages; page++)
                         {
@@ -115,7 +117,7 @@ namespace FilmManager
                             discoversMovies = await tMDBService.DiscoverMovies(id, page);
                             if (discoversMovies.Results is not null)
                             {
-                                mainViewModel.GetMovies(discoversMovies.Results);
+                                genreHelper.GetMovies(discoversMovies.Results);
                             }
                         }
                     });
@@ -126,7 +128,7 @@ namespace FilmManager
                 }
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
-                    { "list", mainViewModel.movies },
+                    { "list", genreHelper.movies },
                     { "apiKey", tMDBService.client.ApiKey }
                 };
                 await navigationService.NavigateToAsync("//Overview", parameters);
