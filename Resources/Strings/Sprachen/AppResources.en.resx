@@ -337,7 +337,7 @@
     <value>Show popup</value>
   </data>
   <data name="dateIsFuture" xml:space="preserve">
-    <value>You cannot mark a series/movie as watched that will only be released in the future.</value>
+    <value>Date is in the future</value>
   </data>
   <data name="page" xml:space="preserve">
     <value>Page</value>

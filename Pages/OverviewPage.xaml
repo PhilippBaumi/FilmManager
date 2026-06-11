@@ -18,7 +18,7 @@
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Border>
-                        <Image Source="{Binding .}"/>
+                        <Image Source="{Binding .}" />
                     </Border>
                 </DataTemplate>
             </CollectionView.ItemTemplate>

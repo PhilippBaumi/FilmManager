@@ -56,5 +56,6 @@ public partial class CastPage : ContentPage, IQueryAttributable
                 await this.ShowPopupAsync(castPopup);
             }
         }
+        ((CollectionView)sender).SelectedItem = null;
     }
 }

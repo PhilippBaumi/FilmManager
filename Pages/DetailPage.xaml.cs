@@ -243,10 +243,10 @@ public partial class DetailPage : ContentPage, IQueryAttributable
                 await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
             }
             IDictionary<string, object> parameters = new Dictionary<string, object>
-        {
-            { "list", genreHelper.series },
-            { "apiKey", apiKey }
-        };
+            {
+                { "list", genreHelper.series },
+                { "apiKey", apiKey }
+            };
             await navigationService.NavigateToAsync("//Overview", parameters);
             ((Picker)sender).SelectedItem = null;
         }

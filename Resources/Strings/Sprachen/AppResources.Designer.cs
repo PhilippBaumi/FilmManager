@@ -196,7 +196,7 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Du kannst keine Serie/Film als gesehen markieren, welche erst in der Zukunft erscheint.  ähnelt.
+        ///   Sucht eine lokalisierte Zeichenfolge, die Datum ist in der Zukunft ähnelt.
         /// </summary>
         internal static string dateIsFuture {
             get {

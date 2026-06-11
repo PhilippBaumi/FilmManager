@@ -39,7 +39,11 @@ namespace FilmManager
             }
             catch (Exception ex)
             {
-                await Toast.ShowAsync(ex.Message, DialogType.Error);
+                Dispatcher.Dispatch(async () =>
+                {
+                    await Task.Delay(200);
+                    await Toast.ShowAsync(ex.Message, DialogType.Error);
+                });
             }
             finally
             {
@@ -90,9 +94,10 @@ namespace FilmManager
                     { "list", genreHelper.series },
                     { "apiKey", tMDBService.client.ApiKey }
                 };
+                ((Picker)sender).SelectedItem = null;
                 await navigationService.NavigateToAsync("//Overview", parameters);
             }
-            ((Picker)sender).SelectedItem = null;
+            //((Picker)sender).SelectedItem = null;
         }
 
         private async void OnPickerMoviesSelectionChanged(object sender, EventArgs e)
@@ -131,9 +136,10 @@ namespace FilmManager
                     { "list", genreHelper.movies },
                     { "apiKey", tMDBService.client.ApiKey }
                 };
+                ((Picker)sender).SelectedItem = null;
                 await navigationService.NavigateToAsync("//Overview", parameters);
             }
-            ((Picker)sender).SelectedItem = null;
+            //((Picker)sender).SelectedItem = null;
         }
 
         private async void ResetDatabase(object sender, EventArgs e)

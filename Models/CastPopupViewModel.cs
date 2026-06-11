@@ -16,7 +16,7 @@ namespace FilmManager.Models
         public CastPopupViewModel(Person p)
         {
             this.Name = $"Name: {p.Name}";
-            this.AlsoKnownAs=$"Alias: {p.AlsoKnownAs}";
+            this.AlsoKnownAs=$"Alias: {string.Join(", ", p.AlsoKnownAs)}";
             this.Birthday=$"{AppResources.birthday}: {p.Birthday}";
             this.PlaceOfBirth=$"{AppResources.placeOfBirth}: {p.PlaceOfBirth}";
             this.Gender=$"{AppResources.gender}: {p.Gender}";
