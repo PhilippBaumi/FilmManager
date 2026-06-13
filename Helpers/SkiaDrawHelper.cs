@@ -10,12 +10,7 @@ namespace FilmManager.Helpers
             using SKPaint backgroundPaint = new()
             {
                 IsAntialias = true,
-                Shader = SKShader.CreateLinearGradient(
-                    new SKPoint(0, 0),
-                    new SKPoint(info.Width, info.Height),
-                    new[] { SKColor.Parse("#0066CC"), SKColor.Parse("#00CCFF") },
-                    null,
-                    SKShaderTileMode.Clamp)
+                Shader = SKShader.CreateLinearGradient(new SKPoint(0, 0), new SKPoint(info.Width, info.Height), new[] { SKColor.Parse("#0066CC"), SKColor.Parse("#00CCFF") }, null, SKShaderTileMode.Clamp)
             };
 
             using SKPaint reelPaint = new()
@@ -48,7 +43,7 @@ namespace FilmManager.Helpers
             SKRoundRect card = new(new SKRect(0, 0, info.Width, info.Height), 34, 34);
             canvas.DrawRoundRect(card, backgroundPaint);
             float centerY = info.Height * 0.5f;
-            canvas.DrawText(text, info.Width * 0.40f, centerY + font.Size * 0.35f, SKTextAlign.Center, font, titlePaint);
+            canvas.DrawText(text, info.Width * 0.5f, centerY + font.Size * 0.5f, SKTextAlign.Center, font, titlePaint);
         }
     }
 }

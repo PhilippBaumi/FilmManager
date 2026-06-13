@@ -19,7 +19,6 @@ namespace FilmManager
         private IDatabase database;
         private MainViewModel mainViewModel;
         private GenreHelper genreHelper;
-        private TMDbHelper tMDbHelper;
         public MainPage(INavigationService navigation, TMDBService tMDBService, IDatabase database)
         {
             InitializeComponent();
@@ -27,7 +26,6 @@ namespace FilmManager
             this.database = database;
             this.tMDBService = tMDBService;
             this.genreHelper = new(tMDBService);
-            this.tMDbHelper = new(tMDBService, genreHelper);
         }
 
         protected override async void OnAppearing()
@@ -68,7 +66,6 @@ namespace FilmManager
                     int id = tMDBService.GetIdToName(selectedSeries, MediaType.Tv);
                     await LoadingDialog.ShowAsync(AppResources.loading, async () =>
                     {
-                        //this.tMDbHelper.GetTvShowsToGenre(id);
                         SearchContainer<SearchTv> discoversSeries = await this.tMDBService.DiscoverSerien(id, 1);
                         if (discoversSeries.Results is not null)
                         {
@@ -85,19 +82,33 @@ namespace FilmManager
                         }
                     });
                 }
-                catch
+                catch (Exception ex)
                 {
-                    await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
+                    string errorMessage = ex.Message;
+                    if(errorMessage.Equals("TMDb returned an unexpected HTTP error: 400"))
+                    {
+                        errorMessage = errorMessage.Remove(0, 28);
+                    }
+                    await Toast.ShowAsync(errorMessage, DialogType.Error);
                 }
-                IDictionary<string, object> parameters = new Dictionary<string, object>
+                try
                 {
-                    { "list", genreHelper.series },
-                    { "apiKey", tMDBService.client.ApiKey }
-                };
-                ((Picker)sender).SelectedItem = null;
-                await navigationService.NavigateToAsync("//Overview", parameters);
+                    IDictionary<string, object> parameters = new Dictionary<string, object>
+                    {
+                        { "list", genreHelper.series },
+                        { "apiKey", tMDBService.client.ApiKey }
+                    };
+                    await navigationService.NavigateToAsync("//Overview", parameters);
+                }
+                catch (Exception ex)
+                {
+                    await Toast.ShowAsync(ex.Message, DialogType.Error);
+                }
+                finally
+                {
+                    ((Picker)sender).SelectedItem = null;
+                }
             }
-            //((Picker)sender).SelectedItem = null;
         }
 
         private async void OnPickerMoviesSelectionChanged(object sender, EventArgs e)
@@ -110,7 +121,6 @@ namespace FilmManager
                     int id = tMDBService.GetIdToName(selectedMovie, MediaType.Movie);
                     await LoadingDialog.ShowAsync(AppResources.loading, async () =>
                     {
-                        //this.tMDbHelper.GetMoviesToGenre(id);
                         SearchContainer<SearchMovie> discoversMovies = await tMDBService.DiscoverMovies(id, 1);
                         if (discoversMovies.Results is not null)
                         {
@@ -127,19 +137,33 @@ namespace FilmManager
                         }
                     });
                 }
-                catch
+                catch (Exception ex)
                 {
-                    await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
+                    string errorMessage = ex.Message;
+                    if (errorMessage.Equals("TMDb returned an unexpected HTTP error: 400"))
+                    {
+                        errorMessage = errorMessage.Remove(0, 28);
+                    }
+                    await Toast.ShowAsync(errorMessage, DialogType.Error);
                 }
-                IDictionary<string, object> parameters = new Dictionary<string, object>
+                try
                 {
-                    { "list", genreHelper.movies },
-                    { "apiKey", tMDBService.client.ApiKey }
-                };
-                ((Picker)sender).SelectedItem = null;
-                await navigationService.NavigateToAsync("//Overview", parameters);
+                    IDictionary<string, object> parameters = new Dictionary<string, object>
+                    {
+                        { "list", genreHelper.movies },
+                        { "apiKey", tMDBService.client.ApiKey }
+                    };
+                    await navigationService.NavigateToAsync("//Overview", parameters);
+                }
+                catch(Exception ex) 
+                {
+                        await Toast.ShowAsync(ex.Message, DialogType.Error);
+                }
+                finally
+                {
+                    ((Picker)sender).SelectedItem = null;
+                }
             }
-            //((Picker)sender).SelectedItem = null;
         }
 
         private async void ResetDatabase(object sender, EventArgs e)

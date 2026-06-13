@@ -8,9 +8,9 @@ namespace FilmManager.Models
 {
     public class OptionMenuViewModel
     {
-        public object? Get(string? selectedItem, object? o, TMDBService tMDBService)
+        public object? Get(string? selectedItem, object? o)
         {
-            TMDbHelper tmdbHelper = new(tMDBService, new GenreHelper(tMDBService));
+            TMDbHelper tmdbHelper = new();
             if (selectedItem is not null && o is not null)
             {
                 if (o is List<SearchTv> series)

@@ -16,8 +16,14 @@ namespace FilmManager.Models
         public CastPopupViewModel(Person p)
         {
             this.Name = $"Name: {p.Name}";
-            this.AlsoKnownAs=$"Alias: {string.Join(", ", p.AlsoKnownAs)}";
-            this.Birthday=$"{AppResources.birthday}: {p.Birthday}";
+            if (p.AlsoKnownAs != null)
+            {
+                this.AlsoKnownAs = $"Alias: {string.Join(", ", p.AlsoKnownAs)}";
+            }
+            if (p.Birthday.HasValue)
+            {
+                this.Birthday = $"{AppResources.birthday}: {p.Birthday.Value}";
+            }
             this.PlaceOfBirth=$"{AppResources.placeOfBirth}: {p.PlaceOfBirth}";
             this.Gender=$"{AppResources.gender}: {p.Gender}";
             this.Popularity=$"{AppResources.popularity}: {p.Popularity}";

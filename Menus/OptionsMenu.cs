@@ -29,7 +29,7 @@ namespace FilmManager.Popups
             this.database = database;
             this.apiKey = apiKey;
             this.tmdbService = new(new TMDbClient(apiKey));
-            this.obj = optionPopupViewModel.Get(selectedItem, o, tmdbService);
+            this.obj = optionPopupViewModel.Get(selectedItem, o);
         }
 
         public async Task ShowAsync(string action)
