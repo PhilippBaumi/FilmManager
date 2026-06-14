@@ -98,7 +98,7 @@
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
     <PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="10.0.71" />
     <PackageReference Include="Microsoft.Maui.Essentials" Version="10.0.71" />
-    <PackageReference Include="OfficeIMO.Word" Version="1.0.63" />
+    <PackageReference Include="OfficeIMO.Word" Version="1.0.64" />
     <PackageReference Include="Polly" Version="8.7.0" />
     <PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="3.119.4" />
     <PackageReference Include="SQLitePCLRaw.bundle_e_sqlite3" Version="3.0.3" />
@@ -145,6 +145,9 @@
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
     <MauiXaml Update="Popups\CastPopup.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </MauiXaml>
+    <MauiXaml Update="Views\OnClickPopup.xaml">
       <Generator>MSBuild:Compile</Generator>
     </MauiXaml>
 	</ItemGroup>

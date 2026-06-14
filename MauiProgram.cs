@@ -39,6 +39,9 @@ namespace FilmManager
             builder.Services.AddTransient<SaveLoadPage>();
             builder.Services.AddTransient<SettingPage>();
             builder.Services.AddTransient<WatchlistWatchedPage>();
+            builder.Services.AddTransient<CollectionPage>();
+            builder.Services.AddTransient<CastPage>();
+            builder.Services.AddTransient<SearchPage>();
             return builder.Build();
         }
     }

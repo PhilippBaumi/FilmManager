@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using FilmManager.Helpers;
 using System.Collections.ObjectModel;
 using TMDbLib.Objects.Search;
 
@@ -6,7 +7,6 @@ namespace FilmManager.Models
 {
     public partial class CastViewModel : ObservableObject
     {
-        private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
         public ObservableCollection<string> Cast { get; set; } = new();
         [ObservableProperty]
         private string? selectedCast;
@@ -18,13 +18,8 @@ namespace FilmManager.Models
             if(o is List<SearchPerson> cast)
             {
                 this.persons = cast;
-                foreach (SearchPerson person in cast)
-                {
-                    if (!string.IsNullOrEmpty(person.ProfilePath))
-                    {
-                        this.Cast.Add($"{ImageBaseUrl}{person.ProfilePath}");
-                    }
-                }
+                TMDbHelper tMDbHelper = new TMDbHelper();
+                tMDbHelper.SetImages(Cast, cast, person => person.ProfilePath);
             }
         }
 

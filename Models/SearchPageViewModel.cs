@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using FilmManager.Helpers;
 using System.Collections.ObjectModel;
 using TMDbLib.Objects.Search;
 
@@ -6,32 +7,30 @@ namespace FilmManager.Models
 {
     public partial class SearchPageViewModel : ObservableObject
     {
-        private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
         public ObservableCollection<string> Images { get; set; } = new();
 
-        private List<SearchMovie> m = new();
-        private List<SearchTv> t = new();
+                private List<SearchMovie> m = new();
+                private List<SearchTv> t = new();
 
         [ObservableProperty]
         private string selectedItem;
         public void SetList(object list)
         {
-            this.Images.Clear();
+
+            TMDbHelper tMDbHelper = new();
             if (list is List<SearchMovie> movies)
             {
                 this.m = movies;
-                foreach (SearchMovie movie in movies)
-                {
-                    this.Images.Add($"{ImageBaseUrl}{movie.PosterPath}");
-                }
+                tMDbHelper.SetImages(Images, movies, movie => movie.PosterPath);
             }
-            if (list is List<SearchTv> tv)
+            else if (list is List<SearchTv> tv)
             {
                 this.t = tv;
-                foreach (SearchTv searchTv in tv)
-                {
-                    this.Images.Add($"{ImageBaseUrl}{searchTv.PosterPath}");
-                }
+                tMDbHelper.SetImages(Images, tv, t => t.PosterPath);
+            }
+            else
+            {
+                Images.Clear();
             }
         }
 

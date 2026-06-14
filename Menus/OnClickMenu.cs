@@ -1,4 +1,4 @@
-﻿using FilmManager.Backend;
+using FilmManager.Backend;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;

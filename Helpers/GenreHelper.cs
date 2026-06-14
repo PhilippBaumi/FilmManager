@@ -1,4 +1,4 @@
-﻿using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using FilmManager.Backend;
 using System;
 using System.Collections.Generic;

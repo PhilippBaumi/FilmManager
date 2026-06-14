@@ -1,36 +1,52 @@
 ﻿<?xml version="1.0" encoding="UTF-8" ?>
 <ResourceDictionary 
-    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls">
+xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls">
 
+<Thickness x:Key="PagePadding">16</Thickness>
+<Thickness x:Key="ControlMargin">10</Thickness>
+<Thickness x:Key="ControlPadding">10</Thickness>
+
+<Style TargetType="ContentPage">
+        <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource White}, Dark={StaticResource OffBlack}}"/>
+    </Style>
+    
     <Style TargetType="StackLayout">
-        <Setter Property="Padding" Value="20" />
-        <Setter Property="Margin" Value="10" />
+        <Setter Property="Padding" Value="{StaticResource PagePadding}" />
+        <Setter Property="Spacing" Value="12" />
     </Style>
 
+    <Style TargetType="VerticalStackLayout">
+        <Setter Property="Padding" Value="{StaticResource PagePadding}" />
+        <Setter Property="Spacing" Value="12" />
+    </Style>
+    
     <Style TargetType="Grid">
-        <Setter Property="Padding" Value="20" />
+        <Setter Property="Padding" Value="{StaticResource PagePadding}" />
+        <Setter Property="ColumnSpacing" Value="12" />
+        <Setter Property="RowSpacing" Value="12" />
     </Style>
 
     <Style TargetType="GridItemsLayout">
-        <Setter Property="HorizontalItemSpacing" Value="10" />
-        <Setter Property="VerticalItemSpacing" Value="10" />
+        <Setter Property="HorizontalItemSpacing" Value="12" />
+        <Setter Property="VerticalItemSpacing" Value="12" />
     </Style>
 
     <Style TargetType="CollectionView">
         <Setter Property="SelectionMode" Value="Single" />
+        <Setter Property="Margin" Value="{StaticResource ControlMargin}" />
     </Style>
     
     <Style TargetType="Image">
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Margin" Value="{StaticResource ControlMargin}"/>
         <Setter Property="HeightRequest" Value="200"/>
         <Setter Property="Aspect" Value="AspectFit" />
     </Style>
 
     <Style TargetType="skia:SKCanvasView">
         <Setter Property="HeightRequest" Value="100" />
-        <Setter Property="Margin" Value="20" />
+        <Setter Property="Margin" Value="{StaticResource ControlMargin}" />
     </Style>
 
     <Style TargetType="Button">
@@ -40,10 +56,10 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="BorderWidth" Value="0"/>
         <Setter Property="CornerRadius" Value="20"/>
-        <Setter Property="Padding" Value="10"/>
+        <Setter Property="Padding" Value="{StaticResource ControlPadding}"/>
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Margin" Value="{StaticResource ControlMargin}"/>
         <Setter Property="Shadow">
             <Setter.Value>
                 <Shadow Brush="#80000000"
@@ -72,18 +88,18 @@
     </Style>
 
     <Style TargetType="Picker">
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Margin" Value="{StaticResource ControlMargin}"/>
     </Style>
 
     <Style TargetType="Entry">
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Margin" Value="{StaticResource ControlMargin}"/>
     </Style>
 
     <Style TargetType="RadioButton">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Black}, Dark={StaticResource White}}" />
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Margin" Value="10"/>
+        <Setter Property="Margin" Value="{StaticResource ControlMargin}"/>
         <Setter Property="MinimumHeightRequest" Value="44"/>
         <Setter Property="MinimumWidthRequest" Value="44"/>
         <Setter Property="VisualStateManager.VisualStateGroups">

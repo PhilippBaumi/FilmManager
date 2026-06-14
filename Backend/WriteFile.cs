@@ -58,7 +58,7 @@ namespace FilmManager.Backend
                 {
                     if (o is SearchMovie m)
                     {
-                        JsonEntry<SearchMovie> entry = new JsonEntry<SearchMovie>
+                        JsonEntry<SearchMovie> entry = new()
                         {
                             Type = "Movie",
                             Data = m
@@ -67,7 +67,7 @@ namespace FilmManager.Backend
                     }
                     if (o is SearchTv s)
                     {
-                        JsonEntry<SearchTv> entry = new JsonEntry<SearchTv>
+                        JsonEntry<SearchTv> entry = new()
                         {
                             Type = "Tv",
                             Data = s

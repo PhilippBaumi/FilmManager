@@ -14,7 +14,6 @@ public partial class CastPage : ContentPage, IQueryAttributable
 {
     private CastViewModel castViewModel;
     private string apiKey;
-    private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
     public CastPage()
 	{
 		InitializeComponent();
@@ -45,10 +44,11 @@ public partial class CastPage : ContentPage, IQueryAttributable
     private async void HandleSelectedCast(object sender, SelectionChangedEventArgs e)
     {
         string? selectedCast = this.castViewModel.SelectedCast;
+        TMDbHelper tMDbHelper = new();
         if(selectedCast is not null)
         {
             TMDBService tMDBService = new(new TMDbClient(apiKey));
-            SearchPerson? person = this.castViewModel.GetPerson(selectedCast.Replace(ImageBaseUrl, ""));
+            SearchPerson? person = this.castViewModel.GetPerson(tMDbHelper.ToImagePath(selectedCast));
             if (person is not null)
             {
                 Person p = await tMDBService.GetPersonAsync(person.Id);

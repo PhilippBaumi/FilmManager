@@ -7,96 +7,66 @@ using FilmManager.Resources.Strings.Sprachen;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using System.ComponentModel;
+using System.Net.Mime;
 using System.Runtime.CompilerServices;
 using TMDbLib.Objects.Search;
 
 namespace FilmManager;
 
-public partial class OverviewPage : ContentPage, IQueryAttributable, INotifyPropertyChanged
+public partial class OverviewPage : ContentPage, IQueryAttributable
 {
-    private object o;
-    private OverviewViewModel overviewViewModel;
-    private INavigationService navigationService;
-    private string apiKey;
-    private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
-    public event PropertyChangedEventHandler PropertyChanged;
     private IDatabase database;
+    private INavigationService navigationService;
+    private OverviewViewModel overviewViewModel=new(null);
+    private object? content;
+    private string? apiKey;
 
     public OverviewPage(INavigationService navigation, IDatabase database)
     {
         InitializeComponent();
         this.navigationService = navigation;
         this.database = database;
-    }
-    public object O
-    {
-        get => o;
-        set
-        {
-            if (o != value)
-            {
-                o = value;
-                OnPropertyChanged();
-            }
-        }
-    }
-
-    public void OnPropertyChanged([CallerMemberName] string? name = null)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        BindingContext = overviewViewModel;
     }
 
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
-        if (query.ContainsKey("list"))
+        this.content = GetContentForOverview(query);
+        if(query.TryGetValue("apiKey", out object? key))
         {
-            O = query["list"];
-            overviewViewModel = new(O);
-            BindingContext = overviewViewModel;
-        }
-        if (query.ContainsKey("objectlist"))
-        {
-            object? obj = query["objectlist"];
-            if (obj is List<object> list)
-            {
-                if (list.Count == 1 && list[0] is SearchTv tv)
-                {
-                    List<SearchTv> tvs = new();
-                    tvs.Add(tv);
-                    O = tvs;
-                    overviewViewModel = new(O);
-                    BindingContext = overviewViewModel;
-                }
-                if (list.Count == 1 && list[0] is SearchMovie movie)
-                {
-                    List<SearchMovie> movies = new();
-                    movies.Add(movie);
-                    O = movies;
-                    overviewViewModel = new(O);
-                    BindingContext = overviewViewModel;
-                }
-            }
-        }
-        if (query.ContainsKey("apiKey"))
-        {
-            apiKey = query["apiKey"] as string;
+            apiKey=key as string;
         }
         query.Clear();
-        MainThread.BeginInvokeOnMainThread(() =>
-        {
-            if (o is not null)
-            {
-                overviewViewModel.UpdateData(o);
-            }
-        });
+        MainThread.BeginInvokeOnMainThread(() => overviewViewModel.UpdateData(content));
     }
+
+    private object? GetContentForOverview(IDictionary<string, object> query)
+    {
+        if (query.TryGetValue("list", out object? list))
+        {
+            return list;
+        } 
+
+        if(query.TryGetValue("objectlist", out object? objectlist)&&objectlist is List<object> { Count: 1}values)
+        {
+            switch(values[0])
+            {
+                case SearchTv tv: return new List<SearchTv> { tv };
+                case SearchMovie movie: return new List<SearchMovie> { movie };
+            }
+            return null;
+        }
+        return null;
+    }
+
     private async void OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         string? selectedItem = overviewViewModel.ImageUrl;
-        if (!string.IsNullOrEmpty(selectedItem))
+        TMDbHelper tMDbHelper = new TMDbHelper();
+        if (!string.IsNullOrEmpty(selectedItem)&&content is not null&&!string.IsNullOrEmpty(apiKey))
         {
-            selectedItem = selectedItem.Replace(ImageBaseUrl, string.Empty);
-            OptionsMenu optionsMenu = new(selectedItem, navigationService, o, database, apiKey);
+            string selectedPath = tMDbHelper.ToImagePath(selectedItem);
+            OptionsMenu optionsMenu = new(selectedPath, navigationService, content, database, apiKey);
             await optionsMenu.ShowAsync("Overview");
         }
         ((CollectionView)sender).SelectedItem = null;

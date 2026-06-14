@@ -2,7 +2,6 @@
 using FilmManager.Helpers;
 using FilmManager.Resources.Strings.Sprachen;
 using System.Collections.ObjectModel;
-using System.Text;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
@@ -12,7 +11,6 @@ namespace FilmManager.Models
 {
     public partial class DetailViewModel : ObservableObject
     {
-        private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
         public string? Id { get; set; }
         public string? Language { get; set; }
         public string? Overview { get; set; }
@@ -56,33 +54,34 @@ namespace FilmManager.Models
         private string? selectedGenre;
         public DetailViewModel(object o)
         {
+            TMDbHelper tMDbHelper = new TMDbHelper();
             FileHelper fileHelper = new();
             if (o is Movie movie)
             {
-                string? logo = GetRandomImage(GetUSList(movie.Images.Logos));
+                string? logo = GetRandomImage(movie.Images.Logos?.Where(image => string.Equals(image.Iso_3166_1, "US", StringComparison.OrdinalIgnoreCase)).ToList() ?? new());
                 if (logo is not null)
                 {
-                    Logo = ImageBaseUrl + logo;
+                    Logo = tMDbHelper.ToImageUrl(logo);
                 }
                 Id = $"ID: {movie.Id}";
                 Language = $"{AppResources.language}: {movie.OriginalLanguage}";
-                string? poster = GetRandomImage(GetUSList(movie.Images.Posters));
+                string? poster = GetRandomImage(movie.Images.Posters?.Where(image => string.Equals(image.Iso_3166_1, "US", StringComparison.OrdinalIgnoreCase)).ToList() ?? new());
                 if (poster is not null)
                 {
-                    Poster = ImageBaseUrl + poster;
+                    Poster= tMDbHelper.ToImageUrl(poster);
                 }
                 else
                 {
-                    Poster = ImageBaseUrl + movie.PosterPath;
+                    Poster = tMDbHelper.ToImageUrl(movie.PosterPath);
                 }
-                string? backport = GetRandomImage(GetUSList(movie.Images.Backdrops));
+                string? backport = GetRandomImage(movie.Images.Backdrops?.Where(image => string.Equals(image.Iso_3166_1, "US", StringComparison.OrdinalIgnoreCase)).ToList() ?? new());
                 if (backport is not null)
                 {
-                    Backport = ImageBaseUrl + backport;
+                    Backport = tMDbHelper.ToImageUrl(backport);
                 }
                 else
                 {
-                    Backport = ImageBaseUrl + movie.BackdropPath;
+                    Backport = tMDbHelper.ToImageUrl(movie.BackdropPath);
                 }
                 Overview = $"{AppResources.description}: {movie.Overview}";
                 ReleaseDate = $"{AppResources.releaseDate}: {(fileHelper.DateTimeToString(movie.ReleaseDate) ?? string.Empty)}";
@@ -90,39 +89,39 @@ namespace FilmManager.Models
                 AverageVote = $"{AppResources.averageVote}: {movie.VoteAverage}";
                 Homepage = movie.Homepage;
                 CountVote = $"{AppResources.countVote}: {movie.VoteCount}";
-                SetLogos(movie.Images.Logos);
-                SetPosters(movie.Images.Posters);
-                SetBackdrops(movie.Images.Backdrops);
-                SetRecommendations(movie.Recommendations);
+                AddImages(Logos, movie.Images.Logos);
+                AddImages(Posters, movie.Images.Posters);
+                AddImages(Backports,  movie.Images.Backdrops);
+                AddRecommendations(movie.Recommendations?.Results, m => m.Title);
+                AddNames(Genres, movie.Genres, genre => genre.Name);
                 SetCast(movie.Credits.Cast);
-                SetGenres(movie.Genres);
             }
             if (o is TvShow serie)
             {
-                string? logo = GetRandomImage(GetUSList(serie.Images.Logos));
+                string? logo = GetRandomImage(serie.Images.Logos?.Where(image => string.Equals(image.Iso_3166_1, "US", StringComparison.OrdinalIgnoreCase)).ToList() ?? new());
                 if (logo is not null)
                 {
-                    Logo = ImageBaseUrl + logo;
+                    Logo = tMDbHelper.ToImageUrl(logo);
                 }
                 Id = "ID: " + serie.Id;
                 Language = $"{AppResources.language}: {serie.OriginalLanguage}";
-                string? poster = GetRandomImage(GetUSList(serie.Images.Posters));
+                string? poster = GetRandomImage(serie.Images.Posters?.Where(image => string.Equals(image.Iso_3166_1, "US", StringComparison.OrdinalIgnoreCase)).ToList() ?? new());
                 if (poster is not null)
                 {
-                    Poster = ImageBaseUrl + poster;
+                    Poster = tMDbHelper.ToImageUrl(poster);
                 }
                 else
                 {
-                    Poster = ImageBaseUrl + serie.PosterPath;
+                    Poster = tMDbHelper.ToImageUrl(serie.PosterPath);
                 }
-                string? backport = GetRandomImage(GetUSList(serie.Images.Backdrops));
+                string? backport = GetRandomImage(serie.Images.Backdrops?.Where(image => string.Equals(image.Iso_3166_1, "US", StringComparison.OrdinalIgnoreCase)).ToList() ?? new());
                 if (backport is not null)
                 {
-                    Backport = ImageBaseUrl + backport;
+                    Backport = tMDbHelper.ToImageUrl(backport);
                 }
                 else
                 {
-                    Backport = ImageBaseUrl + serie.BackdropPath;
+                    Backport = tMDbHelper.ToImageUrl(serie.BackdropPath);
                 }
                 Overview = $"{AppResources.description}: {serie.Overview}";
                 ReleaseDate = $"{AppResources.releaseDate}: {(fileHelper.DateTimeToString(serie.FirstAirDate) ?? string.Empty)}";
@@ -131,27 +130,70 @@ namespace FilmManager.Models
                 Homepage = serie.Homepage;
                 CountVote = $"{AppResources.countVote}: {serie.VoteCount}";
                 OriginCountry = $"{AppResources.origionCountry}: {string.Join(",", serie.OriginCountry)}";
-                Networks = $"Networks: {GetNetworks(serie.Networks)}";
-                CreatedBy = $"{AppResources.createdBy}: {CreatedByToString(serie.CreatedBy)}";
+                Networks = $"Networks: {JoinNames(serie.Networks, network => network.Name)}";
+                CreatedBy = $"{AppResources.createdBy}: {JoinNames(serie.CreatedBy, created => created.Name)}";
                 EpisodsCount = $"{AppResources.numberOfEpisodes}: {serie.NumberOfEpisodes}";
                 SeasonsCount = $"{AppResources.numberOfSeasons}: {serie.NumberOfSeasons}";
-                ProductionCompanies = $"{AppResources.productionCompanies}: {ProductionCompaniesToString(serie.ProductionCompanies)}";
-                SetLogos(serie.Images.Logos);
-                SetPosters(serie.Images.Posters);
-                SetBackdrops(serie.Images.Backdrops);
-                SetRecommendations(serie.Recommendations);
+                ProductionCompanies = $"{AppResources.productionCompanies}: {JoinNames(serie.ProductionCompanies, company => company.Name)}";
+                AddImages(Logos, serie.Images.Logos);
+                AddImages(Posters, serie.Images.Posters);
+                AddImages(Backports, serie.Images.Backdrops);
+                AddRecommendations(serie.Recommendations?.Results, tv => tv.Name);
+                AddNames(Genres, serie.Genres, tv => tv.Name);
                 SetCast(serie.Credits.Cast);
-                SetGenres(serie.Genres);
             }
         }
 
-        private void SetGenres(List<Genre>? genres)
+        private string JoinNames<T>(IEnumerable<T>? source, Func<T, string?> getName)
         {
-            if (genres!=null&&genres.Any())
+            if(source is null)
             {
-                foreach (Genre genre in genres)
+                return string.Empty;
+            }
+            else
+            {
+                return string.Join(", ", source.Select(getName).Where(name=>!string.IsNullOrWhiteSpace(name)));
+            }
+        }
+
+        private void AddNames<T>(ObservableCollection<string> target, IEnumerable<T>? source, Func<T, string?> getGenre)
+        {
+            if (source is not null)
+            {
+                foreach (string? name in source.Select(getGenre).Where(name=>!string.IsNullOrWhiteSpace(name)))
                 {
-                    this.Genres.Add(genre.Name);
+                    target.Add(name!);
+                }
+            }
+        }
+
+        private void AddRecommendations<T>(IEnumerable<T>? recommentations, Func<T, string?> getName)
+        {
+            if (recommentations != null)
+            {
+                foreach (T recomment in recommentations)
+                {
+                    string? name=getName(recomment);
+                    if(!string.IsNullOrWhiteSpace(name))
+                    {
+                        this.Recommendations.Add(name);
+                        this.recommentationList.Add(recomment);
+                    }
+                }
+            }
+        }
+
+        private void AddImages(ObservableCollection<string> target, IEnumerable<ImageData>? images)
+        {
+            TMDbHelper tMDbHelper= new TMDbHelper();
+            if(images is not null)
+            {
+                foreach(ImageData image in images)
+                {
+                    if(!string.IsNullOrEmpty(image.FilePath)&&!string.IsNullOrEmpty(image.Iso_3166_1))
+                    {
+                        target.Add($"{tMDbHelper.ToImageUrl(image.FilePath)}[{image.Iso_3166_1}]");
+                    }
                 }
             }
         }
@@ -177,107 +219,6 @@ namespace FilmManager.Models
             }
         }
 
-        private void SetRecommendations(SearchContainer<SearchTv>? recommendations)
-        {
-            List<SearchTv> searchTv = recommendations.Results;
-            foreach (SearchTv tv in searchTv)
-            {
-                Recommendations.Add(tv.Name);
-                this.recommentationList.Add(tv);
-            }
-        }
-
-        private void SetRecommendations(SearchContainer<SearchMovie>? recommendations)
-        {
-            List<SearchMovie> searchMovie = recommendations.Results;
-            foreach (SearchMovie movie in searchMovie)
-            {
-                Recommendations.Add(movie.Title);
-                recommentationList.Add(movie);
-            }
-        }
-
-        private string ProductionCompaniesToString(List<ProductionCompany>? productionCompanies)
-        {
-            StringBuilder sb = new();
-            foreach (ProductionCompany company in productionCompanies)
-            {
-                sb.Append(company.Name);
-                sb.Append(", ");
-            }
-            string s = sb.ToString();
-            if (s.Length >= 2)
-            {
-                return s.Substring(0, s.Length - 2);
-            }
-            return s;
-        }
-
-        private string CreatedByToString(List<CreatedBy>? createdBy)
-        {
-            StringBuilder sb = new();
-            foreach (CreatedBy created in createdBy)
-            {
-                sb.Append(created.Name);
-                sb.Append(", ");
-            }
-            string s = sb.ToString();
-            if (s.Length >= 2)
-            {
-                return s.Substring(0, s.Length - 2);
-            }
-            return s;
-        }
-
-        private void SetBackdrops(List<ImageData>? backdrops)
-        {
-            foreach (ImageData image in backdrops)
-            {
-                if (image.FilePath is not null && image.Iso_3166_1 is not null)
-                {
-                    Backports.Add($"{ImageBaseUrl}{image.FilePath} [{image.Iso_3166_1}]");
-                }
-            }
-        }
-
-        private void SetPosters(List<ImageData>? posters)
-        {
-            foreach (ImageData image in posters)
-            {
-                if (image.FilePath is not null && image.Iso_3166_1 is not null)
-                {
-                    Posters.Add($"{ImageBaseUrl}{image.FilePath} [{image.Iso_3166_1}]");
-                }
-            }
-        }
-
-        private void SetLogos(List<ImageData>? logos)
-        {
-            foreach (ImageData image in logos)
-            {
-                if (image.FilePath is not null && image.Iso_3166_1 is not null)
-                {
-                    Logos.Add($"{ImageBaseUrl}{image.FilePath} [{image.Iso_3166_1}]");
-                }
-            }
-        }
-
-        private List<ImageData>? GetUSList(List<ImageData>? list)
-        {
-            List<ImageData>? images = new();
-            foreach (ImageData image in list)
-            {
-                if (image is not null)
-                {
-                    if (image.Iso_3166_1 is not null && image.Iso_3166_1.Equals("US"))
-                    {
-                        images.Add(image);
-                    }
-                }
-            }
-            return images;
-        }
-
         private string? GetRandomImage(List<ImageData>? images)
         {
             if (images is not null && images.Count is not 0)
@@ -288,34 +229,6 @@ namespace FilmManager.Models
                 return image.FilePath;
             }
             return null;
-        }
-
-        private string? GetNetworks(List<NetworkWithLogo>? networks)
-        {
-            StringBuilder sb = new();
-            if (networks is not null && networks.Count >= 1)
-            {
-                foreach (NetworkWithLogo network in networks)
-                {
-                    sb.Append(network.Name);
-                    sb.Append(", ");
-                }
-            }
-            string s = sb.ToString();
-            return s.Substring(0, s.Length - 2);
-        }
-
-        private string GenresToString(List<Genre>? genres)
-        {
-            List<string>? names = new();
-            foreach (Genre? genre in genres)
-            {
-                if (!string.IsNullOrEmpty(genre?.Name))
-                {
-                    names.Add(genre.Name);
-                }
-            }
-            return string.Join(", ", names);
         }
 
         public List<object> GetList(string selectedRecommentation)

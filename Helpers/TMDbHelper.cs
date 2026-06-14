@@ -1,4 +1,5 @@
 ﻿using FilmManager.Backend;
+using System.Collections.ObjectModel;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
@@ -8,6 +9,7 @@ namespace FilmManager.Helpers
 {
     public class TMDbHelper
     {
+        private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
         public SearchTv SearchTvFromTvShow(TvShow show)
         {
             SearchTv tv = new();
@@ -54,6 +56,45 @@ namespace FilmManager.Helpers
                 genreIds.Add(g.Id);
             }
             return genreIds;
+        }
+
+        public string ToImageUrl(string? path)
+        {
+            if(string.IsNullOrWhiteSpace(path))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return $"{ImageBaseUrl}{path}";
+            }
+        }
+        public string ToImagePath(string? imageUrl)
+        {
+            if (string.IsNullOrWhiteSpace(imageUrl))
+            {
+                return string.Empty;
+            }
+            else
+            {
+                return imageUrl.Replace(ImageBaseUrl, string.Empty);
+            }
+        }
+
+        public void SetImages<T>(ObservableCollection<string>target, IEnumerable<T>? source, Func<T, string?>function)
+        {
+            target.Clear();
+            if(source is not null)
+            {
+                foreach(T t in source)
+                {
+                    string imageUrl=ToImageUrl(function(t));
+                    if(!string.IsNullOrEmpty(imageUrl))
+                    {
+                        target.Add(imageUrl);
+                    }
+                }
+            }
         }
     }
 }

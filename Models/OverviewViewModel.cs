@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using FilmManager.Helpers;
 using System.Collections.ObjectModel;
 using TMDbLib.Objects.Search;
 
@@ -12,41 +13,19 @@ namespace FilmManager.Models
         [ObservableProperty]
         private string? imageUrl;
 
-        public OverviewViewModel(object? o)
+        public OverviewViewModel(object? source)
         {
-            if (o is List<SearchTv> series)
-            {
-                foreach (SearchTv serie in series)
-                {
-                    Images.Add($"{ImageBaseUrl}{serie.PosterPath}");
-                }
-            }
-            else if (o is List<SearchMovie> movies)
-            {
-                foreach (SearchMovie movie in movies)
-                {
-                    Images.Add($"{ImageBaseUrl}{movie.PosterPath}");
-                }
-            }
+            UpdateData(source);
         }
 
-        public void UpdateData(object? o)
+        public void UpdateData(object? source)
         {
-            Images.Clear();
-            if (o is IEnumerable<SearchTv> series)
+            TMDbHelper tMDbHelper = new();
+            switch(source)
             {
-                foreach (SearchTv s in series)
-                {
-                    Images.Add($"{ImageBaseUrl}{s.PosterPath}");
-                }
-
-            }
-            else if (o is IEnumerable<SearchMovie> movies)
-            {
-                foreach (SearchMovie m in movies)
-                {
-                    Images.Add($"{ImageBaseUrl}{m.PosterPath}");
-                }
+                case IEnumerable<SearchTv> series: tMDbHelper.SetImages(Images, series, serie=>serie.PosterPath); break;
+                case IEnumerable<SearchMovie> movies: tMDbHelper.SetImages(Images, movies, movie => movie.PosterPath); break;
+                default: Images.Clear(); break;
             }
         }
     }

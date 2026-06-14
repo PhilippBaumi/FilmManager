@@ -14,7 +14,6 @@ namespace FilmManager;
 
 public partial class SearchPage : ContentPage
 {
-    private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
     private SearchPageViewModel searchPageViewModel = new();
     private INavigationService navigationService;
     private TMDBService tMDBService;
@@ -44,12 +43,13 @@ public partial class SearchPage : ContentPage
 
     private async void GetSearchToImage(object sender, SelectionChangedEventArgs e)
     {
+        TMDbHelper tMDbHelper = new();
         try
         {
             string selectedItem = this.searchPageViewModel.SelectedItem;
             if (!string.IsNullOrEmpty(selectedItem))
             {
-                selectedItem = selectedItem.Replace(ImageBaseUrl, string.Empty);
+                selectedItem = selectedItem.Replace(tMDbHelper.ToImagePath(selectedItem), string.Empty);
                 List<object> list = this.searchPageViewModel.GetList(selectedItem);
                 if (rbMovie.IsChecked)
                 {
