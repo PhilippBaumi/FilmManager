@@ -76,12 +76,13 @@ public partial class CollectionPage : ContentPage, IQueryAttributable
 
     private async void GetCollectionToImage(object sender, SelectionChangedEventArgs e)
     {
+        TMDbHelper tMDbHelper = new();
         string selectedItem = this.collectionPageViewModel.SelectedItem;
         try
         {
             if (!string.IsNullOrEmpty(selectedItem))
             {
-                selectedItem = selectedItem.Replace(ImageBaseUrl, string.Empty);
+                selectedItem = tMDbHelper.ToImagePath(selectedItem);
                 SearchCollection search = this.collectionPageViewModel.GetSearchCollection(selectedItem);
                 Collection collection = await this.tMDBService.GetCollectionAsync(search.Id);
                 List<SearchMovie> movies = collection.Parts;

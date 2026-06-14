@@ -49,7 +49,7 @@ public partial class SearchPage : ContentPage
             string selectedItem = this.searchPageViewModel.SelectedItem;
             if (!string.IsNullOrEmpty(selectedItem))
             {
-                selectedItem = selectedItem.Replace(tMDbHelper.ToImagePath(selectedItem), string.Empty);
+                selectedItem = tMDbHelper.ToImagePath(selectedItem);
                 List<object> list = this.searchPageViewModel.GetList(selectedItem);
                 if (rbMovie.IsChecked)
                 {

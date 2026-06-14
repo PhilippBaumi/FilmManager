@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Maui.Extensions;
+using CommunityToolkit.Mvvm.ComponentModel;
 using FilmManager.Resources.Strings.Sprachen;
 using System.Collections.ObjectModel;
 using TMDbLib.Objects.Search;
@@ -66,39 +67,32 @@ namespace FilmManager.Models
         {
             foreach (object obj in watched)
             {
-                if (obj is SearchMovie movie)
+                if(MatchesDisplayText(obj, s))
                 {
-                    if (string.Equals(movie.OriginalTitle, s))
-                    {
-                        return movie;
-                    }
-                }
-                if (obj is SearchTv tv)
-                {
-                    if (string.Equals(tv.OriginalName, s))
-                    {
-                        return tv;
-                    }
+                    return obj;
                 }
             }
             foreach (object obj in watchlist)
             {
-                if (obj is SearchTv serie)
+                if(MatchesDisplayText(obj, s))
                 {
-                    if (string.Equals(serie.OriginalName, s))
-                    {
-                        return serie;
-                    }
-                }
-                if (obj is SearchMovie movie)
-                {
-                    if (string.Equals(movie.OriginalTitle, s))
-                    {
-                        return movie;
-                    }
+                    return obj;
                 }
             }
             return null;
+        }
+
+        private bool MatchesDisplayText(object obj, string s)
+        {
+            if(obj is SearchMovie movie)
+            {
+                return string.Equals(s, movie.OriginalTitle+$" ({AppResources.movie})", StringComparison.Ordinal);
+            }
+            if(obj is SearchTv serie)
+            {
+                return string.Equals(s, serie.OriginalName + " (Serie)", StringComparison.Ordinal);
+            }
+            return false;
         }
 
         public bool IsInWatchedList(object? obj)

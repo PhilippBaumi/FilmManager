@@ -76,10 +76,9 @@ public partial class WatchlistWatchedPage : ContentPage
         string? selectedItem = watchlistWatchedViewModel.SelectedItem;
         try
         {
-            if (selectedItem is not null)
+            if (!string.IsNullOrWhiteSpace(selectedItem))
             {
-                string[] st = selectedItem.Split("(");
-                object? obj = this.watchlistWatchedViewModel.Get(st[0].Trim());
+                object? obj = this.watchlistWatchedViewModel.Get(selectedItem);
                 bool inWatchedList = this.watchlistWatchedViewModel.IsInWatchedList(obj);
                 OnClickMenu onClickMenu = new(obj, inWatchedList, database, navigationService, this.tMDBService.client.ApiKey);
                 await onClickMenu.ShowAsync();
