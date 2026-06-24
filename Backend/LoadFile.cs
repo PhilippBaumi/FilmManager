@@ -20,24 +20,24 @@ namespace FilmManager.Backend
 
         public void LoadFromDOCX()
         {
-            ObservableCollection<object> watched = LoadDOCX(this.fileHelper.GetFilePath("FilmManager-Watched.docx"));
+            List<object> watched = LoadDOCX(this.fileHelper.GetFilePath("FilmManager-Watched.docx"));
             this.database.DeleteTable("Watched");
             this.database.CreateTable("Watched");
             Save(watched, "Watched");
-            ObservableCollection<object> watchlist = LoadDOCX(this.fileHelper.GetFilePath("FilmManager-Watchlist.docx"));
+            List<object> watchlist = LoadDOCX(this.fileHelper.GetFilePath("FilmManager-Watchlist.docx"));
             this.database.DeleteTable("Watchlist");
             this.database.CreateTable("Watchlist");
             Save(watchlist, "Watchlist");
         }
 
-        private ObservableCollection<object> LoadDOCX(string path)
+        private List<object> LoadDOCX(string path)
         {
             if (!File.Exists(path))
             {
                 throw new FileNotFoundException($"{AppResources.file} {path} {AppResources.doesNotExists}!");
             }
             List<string> lines = new();
-            ObservableCollection<object> list = new();
+            List<object> list = new();
             using (WordDocument wordDocument = WordDocument.Load(path))
             {
                 List<WordParagraph> paragraphs = wordDocument.Paragraphs;
@@ -73,23 +73,23 @@ namespace FilmManager.Backend
 
         public void LoadFromCSV()
         {
-            ObservableCollection<object> watched = LoadCSV(this.fileHelper.GetFilePath("FilmManager-Watched.csv"));
+            List<object> watched = LoadCSV(this.fileHelper.GetFilePath("FilmManager-Watched.csv"));
             this.database.DeleteTable("Watched");
             this.database.CreateTable("Watched");
             Save(watched, "Watched");
-            ObservableCollection<object> watchlist = LoadCSV(this.fileHelper.GetFilePath("FilmManager-Watchlist.csv"));
+            List<object> watchlist = LoadCSV(this.fileHelper.GetFilePath("FilmManager-Watchlist.csv"));
             this.database.DeleteTable("Watchlist");
             this.database.CreateTable("Watchlist");
             Save(watchlist, "Watchlist");
         }
 
-        private ObservableCollection<object> LoadCSV(string path)
+        private List<object> LoadCSV(string path)
         {
             if (!File.Exists(path))
             {
                 throw new FileNotFoundException($"{AppResources.file} {path} {AppResources.doesNotExists}!");
             }
-            ObservableCollection<object> results = new();
+            List<object> results = new();
             using (StreamReader sr = new StreamReader(path))
             {
                 while (true)
@@ -116,23 +116,23 @@ namespace FilmManager.Backend
 
         public void LoadFromJSON()
         {
-            ObservableCollection<object> watched = LoadJSON(this.fileHelper.GetFilePath("FilmManager-Watched.json"));
+            List<object> watched = LoadJSON(this.fileHelper.GetFilePath("FilmManager-Watched.json"));
             this.database.DeleteTable("Watched");
             this.database.CreateTable("Watched");
             Save(watched, "Watched");
-            ObservableCollection<object> watchlist = LoadJSON(this.fileHelper.GetFilePath("FilmManager-Watchlist.json"));
+            List<object> watchlist = LoadJSON(this.fileHelper.GetFilePath("FilmManager-Watchlist.json"));
             this.database.DeleteTable("Watchlist");
             this.database.CreateTable("Watchlist");
             Save(watchlist, "Watchlist");
         }
 
-        private ObservableCollection<object> LoadJSON(string path)
+        private List<object> LoadJSON(string path)
         {
             if (!File.Exists(path))
             {
                 throw new FileNotFoundException($"{AppResources.file} {path} {AppResources.doesNotExists}!");
             }
-            ObservableCollection<object> list = new();
+            List<object> list = new();
             List<string> jsonLines = fileHelper.ReadLines(path);
             foreach (string line in jsonLines)
             {
@@ -164,7 +164,7 @@ namespace FilmManager.Backend
             return list;
         }
 
-        private void Save(ObservableCollection<object> watched, string tableName)
+        private void Save(List<object> watched, string tableName)
         {
             foreach (object item in watched)
             {

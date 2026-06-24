@@ -91,6 +91,10 @@ xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views
         <Setter Property="Margin" Value="{StaticResource ControlMargin}"/>
     </Style>
 
+    <Style TargetType="Label">
+        <Setter Property="Margin" Value="{StaticResource ControlMargin}"/>
+    </Style>
+
     <Style TargetType="Entry">
         <Setter Property="Margin" Value="{StaticResource ControlMargin}"/>
     </Style>

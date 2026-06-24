@@ -5,7 +5,7 @@ namespace FilmManager.Models
 {
     public class OnClickMenuViewModel
     {
-        public bool MyContains(ObservableCollection<object> collection, object o)
+        public bool MyContains(List<object> collection, object o)
         {
             foreach (object obj in collection)
             {

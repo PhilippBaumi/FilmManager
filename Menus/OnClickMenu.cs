@@ -77,8 +77,8 @@ namespace FilmManager.Popups
 
         private async Task RemoveAsync()
         {
-            ObservableCollection<object> watched = this.database.SelectAllEntries("Watched");
-            ObservableCollection<object> watchlist = this.database.SelectAllEntries("Watchlist");
+            List<object> watched = this.database.SelectAllEntries("Watched");
+            List<object> watchlist = this.database.SelectAllEntries("Watchlist");
             if (o is SearchMovie movie)
             {
                 bool result = await ShowDialog(movie.OriginalTitle);

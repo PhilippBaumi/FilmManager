@@ -23,13 +23,13 @@ namespace FilmManager.Backend
             WriteCSV(this.fileHelper.GetFilePath("FilmManager-Watched.csv"), this.database.SelectAllEntries("Watched"));
             WriteCSV(this.fileHelper.GetFilePath("FilmManager-Watchlist.csv"), this.database.SelectAllEntries("Watchlist"));
         }
-        private void WriteCSV(string path, ObservableCollection<object> collection)
+        private void WriteCSV(string path, List<object> list)
         {
             fileHelper.DeleteIfExits(path);
             using (StreamWriter streamWriter = new(path))
             {
                 streamWriter.WriteLine($"{AppResources.type};ID;{AppResources.title};{AppResources.originalTitle};{AppResources.releaseDate};{AppResources.origionCountry};BackdropPath;PosterPath;GenreIDs;{AppResources.originalLanguage};{AppResources.overview};{AppResources.countVote};{AppResources.averageVote};{AppResources.popularity};{AppResources.forAdults};Video");
-                foreach (object o in collection)
+                foreach (object o in list)
                 {
                     if (o is SearchTv tv)
                     {
@@ -49,12 +49,12 @@ namespace FilmManager.Backend
             WriteJSON(this.fileHelper.GetFilePath("FilmManager-Watchlist.json"), this.database.SelectAllEntries("Watchlist"));
         }
 
-        private void WriteJSON(string path, ObservableCollection<object> collection)
+        private void WriteJSON(string path, List<object> list)
         {
             fileHelper.DeleteIfExits(path);
             using (StreamWriter streamWriter = new(path))
             {
-                foreach (object o in collection)
+                foreach (object o in list)
                 {
                     if (o is SearchMovie m)
                     {
@@ -84,12 +84,12 @@ namespace FilmManager.Backend
             WriteDOCX(this.fileHelper.GetFilePath("FilmManager-Watchlist.docx"), this.database.SelectAllEntries("Watchlist"));
         }
 
-        private void WriteDOCX(string path, ObservableCollection<object> collection)
+        private void WriteDOCX(string path, List<object> list)
         {
             fileHelper.DeleteIfExits(path);
             using (WordDocument wordDocument = WordDocument.Create(path))
             {
-                foreach (object obj in collection)
+                foreach (object obj in list)
                 {
                     if (obj is SearchTv tv)
                     {

@@ -40,7 +40,7 @@ public partial class WatchlistWatchedPage : ContentPage
     {
         try
         {
-            this.watchlist = this.database.SelectAllEntries("Watchlist");
+            this.watchlist = ListToObservableCollection.GetObservableCollection(this.database.SelectAllEntries("Watchlist"));
         }
         catch (Exception ex)
         {
@@ -54,7 +54,7 @@ public partial class WatchlistWatchedPage : ContentPage
     {
         try
         {
-            this.watched = this.database.SelectAllEntries("Watched");
+            this.watched = ListToObservableCollection.GetObservableCollection(this.database.SelectAllEntries("Watched"));
         }
         catch (Exception ex)
         {

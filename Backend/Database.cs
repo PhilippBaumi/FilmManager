@@ -85,9 +85,9 @@ namespace FilmManager.Backend
             }
         }
 
-        public ObservableCollection<object> SelectAllEntries(string tableName)
+        public List<object> SelectAllEntries(string tableName)
         {
-            ObservableCollection<object> collection = new();
+            List<object> list = new();
             string command = $"SELECT * FROM {tableName}";
             using SqliteCommand sqliteCommand = this.connection.CreateCommand();
             sqliteCommand.CommandText = command;
@@ -121,7 +121,7 @@ namespace FilmManager.Backend
                     {
                         movie.Video = Convert.ToBoolean(reader["Video"]);
                     }
-                    collection.Add(movie);
+                    list.Add(movie);
                 }
                 if (mediaType is "Tv")
                 {
@@ -145,10 +145,10 @@ namespace FilmManager.Backend
                     tv.Popularity = Convert.ToDouble(reader["Popularity"]);
                     tv.VoteAverage = Convert.ToDouble(reader["VoteAverage"]);
                     tv.VoteCount = Convert.ToInt32(reader["VoteCount"]);
-                    collection.Add(tv);
+                    list.Add(tv);
                 }
             }
-            return collection;
+            return list;
         }
     }
 }

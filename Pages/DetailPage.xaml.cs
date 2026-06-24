@@ -198,16 +198,16 @@ public partial class DetailPage : ContentPage, IQueryAttributable
                         }
                     }
                 });
+            }
+            catch
+            {
+                await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "list", genreHelper.movies },
                     { "apiKey", apiKey }
                 };
                 await navigationService.NavigateToAsync("//Overview", parameters);
-            }
-            catch
-            {
-                await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
             }
             finally
             {
@@ -237,16 +237,16 @@ public partial class DetailPage : ContentPage, IQueryAttributable
                         }
                     }
                 });
+            }
+            catch
+            {
+                await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "list", genreHelper.series },
                     { "apiKey", apiKey }
                 };
-                await navigationService.NavigateToAsync("//Overview", parameters);
-            }
-            catch
-            {
-                await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
+                await navigationService.NavigateToAsync("//Overview", parameters); 
             }
             finally
             {
