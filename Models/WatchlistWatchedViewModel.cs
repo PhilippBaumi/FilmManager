@@ -8,8 +8,8 @@ namespace FilmManager.Models
 {
     public partial class WatchlistWatchedViewModel : ObservableObject
     {
-        public ObservableCollection<string> Watched { get; } = new();
-        public ObservableCollection<string> Watchlist { get; } = new();
+        public List<string> Watched { get; } = new();
+        public List<string> Watchlist { get; } = new();
 
         private List<object> watchlist = new();
         private List<object> watched = new();
@@ -17,13 +17,13 @@ namespace FilmManager.Models
         [ObservableProperty]
         private string selectedItem;
 
-        public WatchlistWatchedViewModel(ObservableCollection<object>? watchlist, ObservableCollection<object>? watched)
+        public WatchlistWatchedViewModel(List<object>? watchlist, List<object>? watched)
         {
             AddToWatched(watched);
             AddToWatchlist(watchlist);
         }
 
-        private void AddToWatchlist(ObservableCollection<object>? list)
+        private void AddToWatchlist(List<object>? list)
         {
             if (list is not null)
             {
@@ -43,7 +43,7 @@ namespace FilmManager.Models
             }
         }
 
-        private void AddToWatched(ObservableCollection<object>? list)
+        private void AddToWatched(List<object>? list)
         {
             if (list is not null)
             {

@@ -16,8 +16,8 @@ public partial class WatchlistWatchedPage : ContentPage
 {
     private INavigationService navigationService;
     private WatchlistWatchedViewModel watchlistWatchedViewModel;
-    private ObservableCollection<object> watched = new();
-    private ObservableCollection<object> watchlist = new();
+    private List<object> watched = new();
+    private List<object> watchlist = new();
     private IDatabase database;
     private TMDBService tMDBService;
 
@@ -40,7 +40,7 @@ public partial class WatchlistWatchedPage : ContentPage
     {
         try
         {
-            this.watchlist = ListToObservableCollection.GetObservableCollection(this.database.SelectAllEntries("Watchlist"));
+            this.watchlist = this.database.SelectAllEntries("Watchlist");
         }
         catch (Exception ex)
         {
@@ -54,7 +54,7 @@ public partial class WatchlistWatchedPage : ContentPage
     {
         try
         {
-            this.watched = ListToObservableCollection.GetObservableCollection(this.database.SelectAllEntries("Watched"));
+            this.watched = this.database.SelectAllEntries("Watched");
         }
         catch (Exception ex)
         {
