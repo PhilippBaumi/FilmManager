@@ -21,9 +21,9 @@ namespace FilmManager.Models
         public void UpdateData(object? source)
         {
             TMDbHelper tMDbHelper = new();
-            switch(source)
+            switch (source)
             {
-                case IEnumerable<SearchTv> series: tMDbHelper.SetImages(Images, series, serie=>serie.PosterPath); break;
+                case IEnumerable<SearchTv> series: tMDbHelper.SetImages(Images, series, serie => serie.PosterPath); break;
                 case IEnumerable<SearchMovie> movies: tMDbHelper.SetImages(Images, movies, movie => movie.PosterPath); break;
                 default: Images.Clear(); break;
             }

@@ -14,11 +14,13 @@ namespace FilmManager
 {
     public partial class MainPage : ContentPage
     {
-        private INavigationService navigationService;
-        private TMDBService tMDBService;
-        private IDatabase database;
-        private MainViewModel mainViewModel;
-        private GenreHelper genreHelper;
+        private readonly INavigationService navigationService;
+        private readonly TMDBService tMDBService;
+        private readonly IDatabase database;
+        private MainViewModel? mainViewModel;
+        private readonly GenreHelper genreHelper;
+        private readonly string validateWatched = MediaTableNames.Validate("Watched");
+        private readonly string validateWatchlist = MediaTableNames.Validate("Watchlist");
         public MainPage(INavigationService navigation, TMDBService tMDBService, IDatabase database)
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace FilmManager
             base.OnAppearing();
             try
             {
-                this.mainViewModel = new(this.genreHelper.MovieGenres(), this.genreHelper.SeriesGenres());
+                this.mainViewModel = new(await this.genreHelper.MovieGenresAsync(), await this.genreHelper.SeriesGenresAsync());
             }
             catch (Exception ex)
             {
@@ -58,7 +60,7 @@ namespace FilmManager
 
         private async void OnPickerSeriesSelectionChanged(object sender, EventArgs e)
         {
-            string? selectedSeries = mainViewModel.SelectedSerie;
+            string? selectedSeries = mainViewModel?.SelectedSerie;
             if (selectedSeries is not null)
             {
                 try
@@ -85,13 +87,13 @@ namespace FilmManager
                 catch (Exception ex)
                 {
                     string errorMessage = ex.Message;
-                    if(errorMessage.Equals("TMDb returned an unexpected HTTP error: 400"))
+                    if (errorMessage.Equals("TMDb returned an unexpected HTTP error: 400"))
                     {
                         errorMessage = errorMessage.Remove(0, 28);
                     }
                     await Toast.ShowAsync(errorMessage, DialogType.Error);
                 }
-                try
+                finally
                 {
                     IDictionary<string, object> parameters = new Dictionary<string, object>
                     {
@@ -99,13 +101,6 @@ namespace FilmManager
                         { "apiKey", tMDBService.client.ApiKey }
                     };
                     await navigationService.NavigateToAsync("//Overview", parameters);
-                }
-                catch (Exception ex)
-                {
-                    await Toast.ShowAsync(ex.Message, DialogType.Error);
-                }
-                finally
-                {
                     ((Picker)sender).SelectedItem = null;
                 }
             }
@@ -113,7 +108,7 @@ namespace FilmManager
 
         private async void OnPickerMoviesSelectionChanged(object sender, EventArgs e)
         {
-            string? selectedMovie = mainViewModel.SelectedMovie;
+            string? selectedMovie = mainViewModel?.SelectedMovie;
             if (selectedMovie is not null)
             {
                 try
@@ -146,7 +141,7 @@ namespace FilmManager
                     }
                     await Toast.ShowAsync(errorMessage, DialogType.Error);
                 }
-                try
+                finally
                 {
                     IDictionary<string, object> parameters = new Dictionary<string, object>
                     {
@@ -154,13 +149,6 @@ namespace FilmManager
                         { "apiKey", tMDBService.client.ApiKey }
                     };
                     await navigationService.NavigateToAsync("//Overview", parameters);
-                }
-                catch(Exception ex) 
-                {
-                        await Toast.ShowAsync(ex.Message, DialogType.Error);
-                }
-                finally
-                {
                     ((Picker)sender).SelectedItem = null;
                 }
             }
@@ -168,8 +156,8 @@ namespace FilmManager
 
         private async void ResetDatabase(object sender, EventArgs e)
         {
-            this.database.DeleteTable("Watched");
-            this.database.DeleteTable("Watchlist");
+            this.database.DeleteTable(this.validateWatched);
+            this.database.DeleteTable(this.validateWatchlist);
             await Toast.ShowAsync(AppResources.newGeneratedDatabase, DialogType.Success);
         }
 

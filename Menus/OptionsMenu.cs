@@ -21,6 +21,8 @@ namespace FilmManager.Popups
         private IDatabase database;
         private string apiKey;
         private OptionMenuViewModel optionPopupViewModel = new();
+        private readonly string validateWatched = MediaTableNames.Validate("Watched");
+        private readonly string validateWatchlist = MediaTableNames.Validate("Watchlist");
 
         public OptionsMenu(string? selectedItem, INavigationService navigationService, object? o, IDatabase database, string apiKey)
         {
@@ -53,7 +55,7 @@ namespace FilmManager.Popups
 
         private string GetTitle()
         {
-            if(this.obj is not null)
+            if (this.obj is not null)
             {
                 if (this.obj is SearchMovie movie)
                 {
@@ -77,7 +79,7 @@ namespace FilmManager.Popups
                     {
                         await Toast.ShowAsync(AppResources.noChoosenMovieOrSerie, DialogType.Info);
                     }
-                    this.database.CreateTable("Watched");
+                    this.database.CreateTable(this.validateWatched);
                     if (this.obj is SearchTv serie)
                     {
                         DateTime? rDate = serie.FirstAirDate;
@@ -89,7 +91,7 @@ namespace FilmManager.Popups
                             }
                             else
                             {
-                                this.database.InsertEntry(serie, "Watched");
+                                this.database.InsertEntry(serie, this.validateWatched);
                                 await Toast.ShowAsync(AppResources.insertSuccess, DialogType.Info);
                             }
                         }
@@ -101,11 +103,11 @@ namespace FilmManager.Popups
                         {
                             if (rDate.Value > DateTime.Today)
                             {
-                                await Toast.ShowAsync(AppResources.dateIsFuture,DialogType.Info);
+                                await Toast.ShowAsync(AppResources.dateIsFuture, DialogType.Info);
                             }
                             else
                             {
-                                this.database.InsertEntry(movie, "Watched");
+                                this.database.InsertEntry(movie, this.validateWatched);
                                 await Toast.ShowAsync(AppResources.insertSuccess, DialogType.Info);
                             }
                         }
@@ -128,15 +130,15 @@ namespace FilmManager.Popups
                     {
                         await Toast.ShowAsync(AppResources.noChoosenMovieOrSerie, DialogType.Info);
                     }
-                    this.database.CreateTable("Watchlist");
+                    this.database.CreateTable(this.validateWatchlist);
                     if (this.obj is SearchTv serie)
                     {
-                        this.database.InsertEntry(serie, "Watchlist");
+                        this.database.InsertEntry(serie, this.validateWatchlist);
                         await Toast.ShowAsync(AppResources.insertSuccess, DialogType.Info);
                     }
                     if (this.obj is SearchMovie movie)
                     {
-                        this.database.InsertEntry(movie, "Watchlist");
+                        this.database.InsertEntry(movie, this.validateWatchlist);
                         await Toast.ShowAsync(AppResources.insertSuccess, DialogType.Info);
                     }
                 }

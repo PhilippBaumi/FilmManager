@@ -6,19 +6,17 @@ namespace FilmManager.Popups;
 
 public partial class CastPopup : Popup
 {
-    private Person p;
-    private CastPopupViewModel castPopupViewModel;
+    private readonly CastPopupViewModel castPopupViewModel;
 
     public CastPopup(Person p)
-	{
-		InitializeComponent();
-        this.p=p;
+    {
+        InitializeComponent();
         this.castPopupViewModel = new(p);
-        BindingContext=castPopupViewModel;
-	}
+        BindingContext = castPopupViewModel;
+    }
 
     private async void ClosePopup(object sender, EventArgs e)
     {
-		await CloseAsync();
+        await CloseAsync();
     }
 }

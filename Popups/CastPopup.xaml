@@ -5,26 +5,29 @@
                xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
                x:Class="FilmManager.Popups.CastPopup"
                CanBeDismissedByTappingOutsideOfPopup="False">
-    <VerticalStackLayout>
-        <Label Text="{Binding Name}" 
-               TextColor="Black" />
-        <Label Text="{Binding AlsoKnownAs}"
-               TextColor="Black"/>
-        <Label Text="{Binding Birthday}" 
-               TextColor="Black"/>
-        <Label Text="{Binding PlaceOfBirth}"
-               TextColor="Black"/>
-        <Label Text="{Binding Gender}" 
-               TextColor="Black"/>
-        <Label Text="{Binding KnownForDepartment}" 
-               TextColor="Black"/>
-        <Label Text="{Binding Popularity}"
-               TextColor="Black"/>
-        <Label Text="{Binding Biography}"
-               TextColor="Black"/>
-        <Button Text="{x:Static strings:AppResources.close}"
-                BackgroundColor="Red"
-                TextColor="Black"
-                Clicked="ClosePopup" />
-    </VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout>
+            <Label Text="{Binding Name}" 
+                   TextColor="Black" />
+            <Label Text="{Binding AlsoKnownAs}"
+                   TextColor="Black"/>
+            <Label Text="{Binding Birthday}" 
+                   TextColor="Black"/>
+            <Label Text="{Binding PlaceOfBirth}"
+                   TextColor="Black"/>
+            <Label Text="{Binding Gender}" 
+                   TextColor="Black"/>
+            <Label Text="{Binding KnownForDepartment}" 
+                   TextColor="Black"/>
+            <Label Text="{Binding Popularity}"
+                   TextColor="Black"/>
+            <Label Text="{Binding Biography}"
+                   TextColor="Black"/>
+            <Button Text="{x:Static strings:AppResources.close}"
+                    BackgroundColor="Red"
+                    TextColor="Black"
+                    Clicked="ClosePopup" />
+        </VerticalStackLayout>
+    </ScrollView>
+    
 </toolkit:Popup>

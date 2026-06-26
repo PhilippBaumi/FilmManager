@@ -2,7 +2,6 @@
 using FilmManager.Interfaces;
 using FilmManager.Resources.Strings.Sprachen;
 using OfficeIMO.Word;
-using System.Collections.ObjectModel;
 using System.Text.Json;
 using TMDbLib.Objects.Search;
 
@@ -12,6 +11,10 @@ namespace FilmManager.Backend
     {
         private FileHelper fileHelper = new();
         private IDatabase database;
+        private readonly string validateWatched = MediaTableNames.Validate("Watched");
+        private readonly string validateWatchlist = MediaTableNames.Validate("Watchlist");
+        private readonly string basePathWatchlist = "FilmManager-Watchlist";
+        private readonly string basePathWatched = "FilmManager-Watched";
 
         public WriteFile(IDatabase database)
         {
@@ -20,8 +23,8 @@ namespace FilmManager.Backend
 
         public void WriteToCSV()
         {
-            WriteCSV(this.fileHelper.GetFilePath("FilmManager-Watched.csv"), this.database.SelectAllEntries("Watched"));
-            WriteCSV(this.fileHelper.GetFilePath("FilmManager-Watchlist.csv"), this.database.SelectAllEntries("Watchlist"));
+            WriteCSV(this.fileHelper.GetFilePath($"{this.basePathWatched}.csv"), this.database.SelectAllEntries(this.validateWatched));
+            WriteCSV(this.fileHelper.GetFilePath($"{this.basePathWatchlist}.csv"), this.database.SelectAllEntries(this.validateWatchlist));
         }
         private void WriteCSV(string path, List<object> list)
         {
@@ -45,8 +48,8 @@ namespace FilmManager.Backend
 
         public void WriteToJSON()
         {
-            WriteJSON(this.fileHelper.GetFilePath("FilmManager-Watched.json"), this.database.SelectAllEntries("Watched"));
-            WriteJSON(this.fileHelper.GetFilePath("FilmManager-Watchlist.json"), this.database.SelectAllEntries("Watchlist"));
+            WriteJSON(this.fileHelper.GetFilePath($"{this.basePathWatched}.json"), this.database.SelectAllEntries(this.validateWatched));
+            WriteJSON(this.fileHelper.GetFilePath($"{this.basePathWatchlist}.json"), this.database.SelectAllEntries(this.validateWatchlist));
         }
 
         private void WriteJSON(string path, List<object> list)
@@ -80,8 +83,8 @@ namespace FilmManager.Backend
 
         public void WriteToDOCX()
         {
-            WriteDOCX(this.fileHelper.GetFilePath("FilmManager-Watched.docx"), this.database.SelectAllEntries("Watched"));
-            WriteDOCX(this.fileHelper.GetFilePath("FilmManager-Watchlist.docx"), this.database.SelectAllEntries("Watchlist"));
+            WriteDOCX(this.fileHelper.GetFilePath($"{this.basePathWatched}.docx"), this.database.SelectAllEntries(this.validateWatched));
+            WriteDOCX(this.fileHelper.GetFilePath($"{this.basePathWatchlist}.docx"), this.database.SelectAllEntries(this.validateWatchlist));
         }
 
         private void WriteDOCX(string path, List<object> list)
@@ -108,6 +111,7 @@ namespace FilmManager.Backend
                         wordDocument.AddParagraph($"VoteAverage; {tv.VoteAverage}");
                         wordDocument.AddParagraph($"VoteCount; {tv.VoteCount}");
 
+
                     }
                     if (obj is SearchMovie movie)
                     {
@@ -126,6 +130,7 @@ namespace FilmManager.Backend
                         wordDocument.AddParagraph($"Popularity; {movie.Popularity}");
                         wordDocument.AddParagraph($"VoteAverage; {movie.VoteAverage}");
                         wordDocument.AddParagraph($"VoteCount; {movie.VoteCount}");
+
                     }
                     wordDocument.AddPageBreak();
                 }

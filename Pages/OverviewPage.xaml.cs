@@ -1,4 +1,3 @@
-using CommunityToolkit.Maui.Extensions;
 using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
@@ -6,9 +5,6 @@ using FilmManager.Popups;
 using FilmManager.Resources.Strings.Sprachen;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
-using System.ComponentModel;
-using System.Net.Mime;
-using System.Runtime.CompilerServices;
 using TMDbLib.Objects.Search;
 
 namespace FilmManager;
@@ -17,7 +13,7 @@ public partial class OverviewPage : ContentPage, IQueryAttributable
 {
     private IDatabase database;
     private INavigationService navigationService;
-    private OverviewViewModel overviewViewModel=new(null);
+    private OverviewViewModel overviewViewModel = new(null);
     private object? content;
     private string? apiKey;
 
@@ -32,9 +28,9 @@ public partial class OverviewPage : ContentPage, IQueryAttributable
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         this.content = GetContentForOverview(query);
-        if(query.TryGetValue("apiKey", out object? key))
+        if (query.TryGetValue("apiKey", out object? key))
         {
-            apiKey=key as string;
+            apiKey = key as string;
         }
         query.Clear();
         MainThread.BeginInvokeOnMainThread(() => overviewViewModel.UpdateData(content));
@@ -45,11 +41,11 @@ public partial class OverviewPage : ContentPage, IQueryAttributable
         if (query.TryGetValue("list", out object? list))
         {
             return list;
-        } 
+        }
 
-        if(query.TryGetValue("objectlist", out object? objectlist)&&objectlist is List<object> { Count: 1}values)
+        if (query.TryGetValue("objectlist", out object? objectlist) && objectlist is List<object> { Count: 1 } values)
         {
-            switch(values[0])
+            switch (values[0])
             {
                 case SearchTv tv: return new List<SearchTv> { tv };
                 case SearchMovie movie: return new List<SearchMovie> { movie };
@@ -63,7 +59,7 @@ public partial class OverviewPage : ContentPage, IQueryAttributable
     {
         string? selectedItem = overviewViewModel.ImageUrl;
         TMDbHelper tMDbHelper = new TMDbHelper();
-        if (!string.IsNullOrEmpty(selectedItem)&&content is not null&&!string.IsNullOrEmpty(apiKey))
+        if (!string.IsNullOrEmpty(selectedItem) && content is not null && !string.IsNullOrEmpty(apiKey))
         {
             string selectedPath = tMDbHelper.ToImagePath(selectedItem);
             OptionsMenu optionsMenu = new(selectedPath, navigationService, content, database, apiKey);

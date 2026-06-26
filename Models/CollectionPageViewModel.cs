@@ -16,7 +16,7 @@ namespace FilmManager.Models
         public void SetList(List<SearchCollection?> collection)
         {
             this.collection = collection;
-            TMDbHelper tMDbHelper= new TMDbHelper();
+            TMDbHelper tMDbHelper = new TMDbHelper();
             tMDbHelper.SetImages(Images, collection, search => search?.PosterPath);
         }
 

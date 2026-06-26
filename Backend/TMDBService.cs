@@ -11,43 +11,89 @@ using TMDbLib.Objects.TvShows;
 
 namespace FilmManager.Backend
 {
-    public class TMDBService
+    public sealed class TMDBService
     {
         public TMDbClient client { get; }
         public List<string> MovieGenresName { get; } = new();
         public List<string> SerienGenresName { get; } = new();
-        private List<Genre> moviesGenres = new();
-        private List<Genre> serienGenres = new();
+        private readonly List<Genre> moviesGenres = new();
+        private readonly List<Genre> serienGenres = new();
+        private readonly SemaphoreSlim movieGenreLock = new(1, 1);
+        private readonly SemaphoreSlim tvGenreLock = new(1, 1);
 
         public TMDBService(TMDbClient client)
         {
             this.client = client;
         }
 
-        public void AddMoviesGenresToList()
+        public async Task AddMoviesGenresToListAsync()
         {
-            List<Genre>? taskResult = client.GetMovieGenresAsync().Result;
-            if (taskResult is not null)
+            await this.movieGenreLock.WaitAsync();
+            try
             {
-                foreach (Genre genre in taskResult)
+                if (this.moviesGenres.Count > 0)
                 {
-                    MovieGenresName.Add(genre.Name);
-                    moviesGenres.Add(genre);
+                    return;
+                }
+                List<Genre>? taskResult = await RetryLoadingAsync(() => this.client.GetMovieGenresAsync());
+                this.MovieGenresName.Clear();
+                this.moviesGenres.Clear();
+                if (taskResult is not null)
+                {
+                    foreach (Genre genre in taskResult)
+                    {
+                        if (!string.IsNullOrWhiteSpace(genre.Name))
+                        {
+                            this.MovieGenresName.Add(genre.Name);
+                        }
+                        this.moviesGenres.Add(genre);
+                    }
                 }
             }
+            finally
+            {
+                this.movieGenreLock.Release();
+            }
+        }
+
+        public async Task AddSerienGenresToListAsync()
+        {
+            await this.tvGenreLock.WaitAsync();
+            try
+            {
+                if (this.serienGenres.Count > 0)
+                {
+                    return;
+                }
+                List<Genre>? taskResult = await RetryLoadingAsync(() => this.client.GetTvGenresAsync());
+                this.SerienGenresName.Clear();
+                this.serienGenres.Clear();
+                if (taskResult is not null)
+                {
+                    foreach (Genre genre in taskResult)
+                    {
+                        if (!string.IsNullOrWhiteSpace(genre.Name))
+                        {
+                            this.SerienGenresName.Add(genre.Name);
+                        }
+                        this.serienGenres.Add(genre);
+                    }
+                }
+            }
+            finally
+            {
+                this.tvGenreLock.Release();
+            }
+        }
+
+        public void AddMoviesGenresToList()
+        {
+            AddMoviesGenresToListAsync().GetAwaiter().GetResult();
         }
 
         public void AddSerienGenresToList()
         {
-            List<Genre>? taskResult = client.GetTvGenresAsync().Result;
-            if (taskResult is not null)
-            {
-                foreach (Genre genre in taskResult)
-                {
-                    SerienGenresName.Add(genre.Name);
-                    serienGenres.Add(genre);
-                }
-            }
+            AddSerienGenresToListAsync().GetAwaiter().GetResult();
         }
 
         public async Task<SearchContainer<SearchMovie>> DiscoverMovies(int genreId, int page)
@@ -107,7 +153,7 @@ namespace FilmManager.Backend
         {
             return await RetryLoadingAsync(async () => await this.client.GetPersonAsync(id));
         }
-        
+
         public int GetIdToName(string selected, MediaType type)
         {
             int id = 0;

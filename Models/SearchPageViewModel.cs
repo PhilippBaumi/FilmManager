@@ -9,8 +9,8 @@ namespace FilmManager.Models
     {
         public ObservableCollection<string> Images { get; set; } = new();
 
-                private List<SearchMovie> m = new();
-                private List<SearchTv> t = new();
+        private List<SearchMovie> m = new();
+        private List<SearchTv> t = new();
 
         [ObservableProperty]
         private string selectedItem;

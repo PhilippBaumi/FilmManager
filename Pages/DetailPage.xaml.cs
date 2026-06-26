@@ -19,14 +19,13 @@ namespace FilmManager;
 public partial class DetailPage : ContentPage, IQueryAttributable
 {
     private const string ImageBaseUrl = "https://image.tmdb.org/t/p/w500";
-    private INavigationService navigationService;
-    private DetailViewModel detailViewModel;
-    private object o;
-    private string apiKey;
-    private IDatabase database;
-    private TMDBService tMDBService;
-    private TMDbHelper tMDbHelper;
-    private GenreHelper genreHelper;
+    private readonly INavigationService navigationService;
+    private DetailViewModel? detailViewModel;
+    private object? o;
+    private string? apiKey;
+    private readonly IDatabase database;
+    private TMDBService? tMDBService;
+    private GenreHelper? genreHelper;
 
     public DetailPage(INavigationService navigationSerive, IDatabase database)
     {
@@ -45,10 +44,9 @@ public partial class DetailPage : ContentPage, IQueryAttributable
         }
         if (query.ContainsKey("apiKey"))
         {
-            apiKey = query["apiKey"] as string;
+            apiKey = query["apiKey"] as string ?? string.Empty;
             this.tMDBService = new(new TMDbClient(apiKey));
             this.genreHelper = new(tMDBService);
-            this.tMDbHelper = new();
         }
         query.Clear();
     }
@@ -57,8 +55,11 @@ public partial class DetailPage : ContentPage, IQueryAttributable
     {
         try
         {
-            Uri uri = new(detailViewModel.Homepage);
-            await Launcher.Default.TryOpenAsync(uri);
+            if (!string.IsNullOrWhiteSpace(this.detailViewModel?.Homepage))
+            {
+                Uri uri = new(detailViewModel.Homepage);
+                await Launcher.Default.TryOpenAsync(uri);
+            }
         }
         catch (Exception ex)
         {
@@ -70,7 +71,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
     {
         try
         {
-            string? selectedLogo = detailViewModel.SelectedLogo;
+            string? selectedLogo = detailViewModel?.SelectedLogo;
             if (selectedLogo is not null)
             {
                 selectedLogo = selectedLogo.Substring(0, selectedLogo.Length - 4);
@@ -88,7 +89,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
     {
         try
         {
-            string? selectedPoster = detailViewModel.SelectedPoster;
+            string? selectedPoster = detailViewModel?.SelectedPoster;
             if (selectedPoster is not null)
             {
                 selectedPoster = selectedPoster.Substring(0, selectedPoster.Length - 4);
@@ -106,7 +107,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
     {
         try
         {
-            string? selectedBackport = detailViewModel.SelectedBackport;
+            string? selectedBackport = detailViewModel?.SelectedBackport;
             if (selectedBackport is not null)
             {
                 selectedBackport = selectedBackport.Substring(0, selectedBackport.Length - 4);
@@ -122,14 +123,14 @@ public partial class DetailPage : ContentPage, IQueryAttributable
 
     private async void HandleRecommendation(object sender, EventArgs e)
     {
-        string? selectedRecommentation = detailViewModel.SelectedRecommendation;
+        string? selectedRecommentation = detailViewModel?.SelectedRecommendation;
         if (!string.IsNullOrEmpty(selectedRecommentation))
         {
-            List<object> list = detailViewModel.GetList(selectedRecommentation);
+            List<object> list = detailViewModel!.GetList(selectedRecommentation);
             IDictionary<string, object> parameters = new Dictionary<string, object>
             {
                 { "objectlist", list },
-                { "apiKey", apiKey }
+                { "apiKey", apiKey ?? string.Empty }
             };
             await navigationService.NavigateToAsync("//Overview", parameters);
         }
@@ -137,7 +138,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
 
     private async void HandlePopupShow(object sender, EventArgs e)
     {
-        string? selectedPoster = detailViewModel.Poster;
+        string? selectedPoster = detailViewModel?.Poster;
         if (!string.IsNullOrEmpty(selectedPoster))
         {
             selectedPoster = selectedPoster.Replace(ImageBaseUrl, string.Empty);
@@ -156,16 +157,16 @@ public partial class DetailPage : ContentPage, IQueryAttributable
 
     private async void HandleCast(object sender, EventArgs e)
     {
-        string? selectedCast = this.detailViewModel.SelectedCast;
-        if(selectedCast is not null)
+        string? selectedCast = this.detailViewModel?.SelectedCast;
+        if (selectedCast is not null && this.tMDBService is not null)
         {
-            SearchContainer<SearchPerson>cast=await tMDBService.SearchPersonAsync(selectedCast);
-            if(cast.Results is not null)
+            SearchContainer<SearchPerson> cast = await tMDBService.SearchPersonAsync(selectedCast);
+            if (cast.Results is not null)
             {
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "cast", cast.Results },
-                    { "apiKey", this.apiKey }
+                    { "apiKey", this.apiKey ?? string.Empty }
                 };
                 await this.navigationService.NavigateToAsync("//Cast", parameters);
             }
@@ -174,12 +175,12 @@ public partial class DetailPage : ContentPage, IQueryAttributable
 
     private async void HandleGenreChanged(object sender, EventArgs e)
     {
-        string? selectedGenre = this.detailViewModel.SelectedGenre;
-        if (selectedGenre is not null && o is Movie movie)
+        string? selectedGenre = this.detailViewModel?.SelectedGenre;
+        if (selectedGenre is not null && this.tMDBService is not null && this.genreHelper is not null && o is Movie movie)
         {
             try
             {
-                this.tMDBService.AddMoviesGenresToList();
+                await this.tMDBService.AddMoviesGenresToListAsync();
                 int id = this.tMDBService.GetIdToName(selectedGenre, MediaType.Movie);
                 await LoadingDialog.ShowAsync(AppResources.loading, async () =>
                 {
@@ -205,7 +206,7 @@ public partial class DetailPage : ContentPage, IQueryAttributable
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "list", genreHelper.movies },
-                    { "apiKey", apiKey }
+                    { "apiKey", apiKey ?? string.Empty }
                 };
                 await navigationService.NavigateToAsync("//Overview", parameters);
             }
@@ -214,11 +215,11 @@ public partial class DetailPage : ContentPage, IQueryAttributable
                 ((Picker)sender).SelectedItem = null;
             }
         }
-        if(selectedGenre is not null && o is TvShow show)
+        if (selectedGenre is not null && o is TvShow show && this.tMDBService is not null && this.genreHelper is not null)
         {
             try
             {
-                this.tMDBService.AddSerienGenresToList();
+                await this.tMDBService.AddSerienGenresToListAsync();
                 int id = this.tMDBService.GetIdToName(selectedGenre, MediaType.Tv);
                 await LoadingDialog.ShowAsync(AppResources.loading, async () =>
                 {
@@ -244,9 +245,9 @@ public partial class DetailPage : ContentPage, IQueryAttributable
                 IDictionary<string, object> parameters = new Dictionary<string, object>
                 {
                     { "list", genreHelper.series },
-                    { "apiKey", apiKey }
+                    { "apiKey", apiKey ?? string.Empty }
                 };
-                await navigationService.NavigateToAsync("//Overview", parameters); 
+                await navigationService.NavigateToAsync("//Overview", parameters);
             }
             finally
             {

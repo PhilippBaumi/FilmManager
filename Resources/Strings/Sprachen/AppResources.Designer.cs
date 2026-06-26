@@ -196,6 +196,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Datenbank Pfad darf nicht leer sein.  ähnelt.
+        /// </summary>
+        internal static string databasePathError {
+            get {
+                return ResourceManager.GetString("databasePathError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Datum ist in der Zukunft ähnelt.
         /// </summary>
         internal static string dateIsFuture {
@@ -264,6 +273,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string file {
             get {
                 return ResourceManager.GetString("file", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Dateipfad darf nicht leer sein.  ähnelt.
+        /// </summary>
+        internal static string filePathEmpty {
+            get {
+                return ResourceManager.GetString("filePathEmpty", resourceCulture);
             }
         }
         
@@ -795,6 +813,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string undoSuccess {
             get {
                 return ResourceManager.GetString("undoSuccess", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Unbekannter Tabellenname ähnelt.
+        /// </summary>
+        internal static string unknownTable {
+            get {
+                return ResourceManager.GetString("unknownTable", resourceCulture);
             }
         }
         

@@ -11,9 +11,10 @@ namespace FilmManager
 
     public static class MauiProgram
     {
+        private const string Tmd_API_Key = "c7108e21486edb11a641d92aa539f3e2";
         public static MauiApp CreateMauiApp()
         {
-            var builder = MauiApp.CreateBuilder();
+            MauiAppBuilder builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
                 .UseMauiCommunityToolkit()
@@ -25,13 +26,16 @@ namespace FilmManager
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
             builder.Services.AddSingleton<INavigationService, MauiNavigationService>();
-            builder.Services.AddSingleton<AppShell>();
-            builder.Services.AddSingleton(new TMDbClient("c7108e21486edb11a641d92aa539f3e2"));
+            builder.Services.AddSingleton<AppPaths>();
+            builder.Services.AddSingleton<DatabaseHelper>();
+            builder.Services.AddSingleton<FileHelper>();
+            builder.Services.AddSingleton(new TMDbClient(Tmd_API_Key));
             builder.Services.AddSingleton<TMDBService>();
             builder.Services.AddSingleton<IDatabase>(serviceProvider =>
             {
-                FileHelper fileHelper = new();
-                return new Database(fileHelper.GetFilePath("FilmManager.db"));
+                AppPaths paths = serviceProvider.GetRequiredService<AppPaths>();
+                //FileHelper fileHelper = new();
+                return new Database(paths.GetFilePath("FilmManager.db"));
             });
             builder.Services.AddTransient<MainPage>();
             builder.Services.AddTransient<DetailPage>();

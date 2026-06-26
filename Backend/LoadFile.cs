@@ -2,7 +2,6 @@
 using FilmManager.Interfaces;
 using FilmManager.Resources.Strings.Sprachen;
 using OfficeIMO.Word;
-using System.Collections.ObjectModel;
 using System.Text.Json;
 using TMDbLib.Objects.Search;
 
@@ -12,6 +11,10 @@ namespace FilmManager.Backend
     {
         private FileHelper fileHelper = new();
         private IDatabase database;
+        private readonly string validateWatched = MediaTableNames.Validate("Watched");
+        private readonly string validateWatchlist = MediaTableNames.Validate("Watchlist");
+        private readonly string basePathWatchlist = "FilmManager-Watchlist";
+        private readonly string basePathWatched = "FilmManager-Watched";
 
         public LoadFile(IDatabase database)
         {
@@ -20,14 +23,14 @@ namespace FilmManager.Backend
 
         public void LoadFromDOCX()
         {
-            List<object> watched = LoadDOCX(this.fileHelper.GetFilePath("FilmManager-Watched.docx"));
-            this.database.DeleteTable("Watched");
-            this.database.CreateTable("Watched");
-            Save(watched, "Watched");
-            List<object> watchlist = LoadDOCX(this.fileHelper.GetFilePath("FilmManager-Watchlist.docx"));
-            this.database.DeleteTable("Watchlist");
-            this.database.CreateTable("Watchlist");
-            Save(watchlist, "Watchlist");
+            List<object> watched = LoadDOCX(this.fileHelper.GetFilePath($"{basePathWatched}.docx"));
+            this.database.DeleteTable(this.validateWatched);
+            this.database.CreateTable(this.validateWatched);
+            Save(watched, this.validateWatched);
+            List<object> watchlist = LoadDOCX(this.fileHelper.GetFilePath($"{basePathWatchlist}.docx"));
+            this.database.DeleteTable(this.validateWatchlist);
+            this.database.CreateTable(this.validateWatchlist);
+            Save(watchlist, this.validateWatchlist);
         }
 
         private List<object> LoadDOCX(string path)
@@ -73,14 +76,14 @@ namespace FilmManager.Backend
 
         public void LoadFromCSV()
         {
-            List<object> watched = LoadCSV(this.fileHelper.GetFilePath("FilmManager-Watched.csv"));
-            this.database.DeleteTable("Watched");
-            this.database.CreateTable("Watched");
-            Save(watched, "Watched");
-            List<object> watchlist = LoadCSV(this.fileHelper.GetFilePath("FilmManager-Watchlist.csv"));
-            this.database.DeleteTable("Watchlist");
-            this.database.CreateTable("Watchlist");
-            Save(watchlist, "Watchlist");
+            List<object> watched = LoadCSV(this.fileHelper.GetFilePath($"{basePathWatched}.csv"));
+            this.database.DeleteTable(this.validateWatched);
+            this.database.CreateTable(this.validateWatched);
+            Save(watched, this.validateWatched);
+            List<object> watchlist = LoadCSV(this.fileHelper.GetFilePath($"{basePathWatchlist}.csv"));
+            this.database.DeleteTable(this.validateWatchlist);
+            this.database.CreateTable(this.validateWatchlist);
+            Save(watchlist, this.validateWatchlist);
         }
 
         private List<object> LoadCSV(string path)
@@ -116,14 +119,14 @@ namespace FilmManager.Backend
 
         public void LoadFromJSON()
         {
-            List<object> watched = LoadJSON(this.fileHelper.GetFilePath("FilmManager-Watched.json"));
-            this.database.DeleteTable("Watched");
-            this.database.CreateTable("Watched");
-            Save(watched, "Watched");
-            List<object> watchlist = LoadJSON(this.fileHelper.GetFilePath("FilmManager-Watchlist.json"));
-            this.database.DeleteTable("Watchlist");
-            this.database.CreateTable("Watchlist");
-            Save(watchlist, "Watchlist");
+            List<object> watched = LoadJSON(this.fileHelper.GetFilePath($"{basePathWatched}.json"));
+            this.database.DeleteTable(this.validateWatched);
+            this.database.CreateTable(this.validateWatched);
+            Save(watched, this.validateWatched);
+            List<object> watchlist = LoadJSON(this.fileHelper.GetFilePath($"{basePathWatchlist}.json"));
+            this.database.DeleteTable(this.validateWatchlist);
+            this.database.CreateTable(this.validateWatchlist);
+            Save(watchlist, this.validateWatchlist);
         }
 
         private List<object> LoadJSON(string path)

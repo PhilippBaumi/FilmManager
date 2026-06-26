@@ -1,6 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
-using TMDbLib.Objects.Search;
 
 namespace FilmManager.Models
 {

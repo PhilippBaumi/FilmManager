@@ -1,25 +1,40 @@
 ﻿using Dapper;
 using FilmManager.Helpers;
 using FilmManager.Interfaces;
+using FilmManager.Resources.Strings.Sprachen;
 using Microsoft.Data.Sqlite;
-using System.Collections.ObjectModel;
 using TMDbLib.Objects.Search;
 
 namespace FilmManager.Backend
 {
-    public class Database : IDatabase
+    public sealed class Database : IDatabase, IDisposable
     {
-        private FileHelper fileHelper = new();
-        private DatabaseHelper databaseHelper = new();
+        private readonly FileHelper fileHelper = new();
+        private readonly DatabaseHelper databaseHelper = new();
         private readonly SqliteConnection connection;
         public Database(string path)
         {
+            if (string.IsNullOrEmpty(path))
+            {
+                throw new ArgumentNullException(AppResources.databasePathError, nameof(path));
+            }
+            Directory.CreateDirectory(Path.GetDirectoryName(path)!);
             this.connection = new($"Data Source={path}");
             this.connection.Open();
+        }
+
+        public void Dispose()
+        {
+            this.connection.Dispose();
         }
         public void CreateTable(string tableName)
         {
             this.connection.Execute($"""CREATE TABLE IF NOT EXISTS {tableName}(Id Integer PRIMARY KEY, MediaType Text NOT NULL, Title Text NOT NULL, OriginalTitle Text NOT NULL, Overview Text NOT NULL, GenreIds Text NOT NULL, OriginCountry Text NULL, OriginalLanguage Text NOT NULL, ReleaseDate Text NULL, BackdropPath Text NOT NULL, PosterPath Text NOT NULL, Popularity Real NOT NULL, VoteAverage Real NOT NULL, VoteCount Integer NOT NULL, Adult Integer NULL, Video Integer NULL)""");
+        }
+
+        public void DeleteTable(string tableName)
+        {
+            this.connection.Execute($"DROP TABLE IF EXISTS {tableName}");
         }
 
         public void DeleteEntry(object entry, string tableName)
@@ -31,11 +46,6 @@ namespace FilmManager.Backend
             }
         }
 
-        public void DeleteTable(string tableName)
-        {
-            this.connection.Execute($"DROP TABLE IF EXISTS {tableName}");
-        }
-
         public void InsertEntry(object entry, string tableName)
         {
             string command = $"""INSERT OR REPLACE INTO {tableName} (Id, MediaType, Title, OriginalTitle, Overview, GenreIds, OriginCountry, OriginalLanguage, ReleaseDate, BackdropPath, PosterPath, Popularity, VoteAverage, VoteCount, Adult, Video) VALUES (@Id, @MediaType, @Title, @OriginalTitle, @Overview, @GenreIds, @OriginCountry, @OriginalLanguage, @ReleaseDate, @BackdropPath, @PosterPath, @Popularity, @VoteAverage, @VoteCount, @Adult, @Video)""";
@@ -45,15 +55,15 @@ namespace FilmManager.Backend
                 {
                     Id = movie.Id,
                     MediaType = "Movie",
-                    Title = movie.Title,
-                    OriginalTitle = movie.OriginalTitle,
-                    Overview = movie.Overview,
-                    GenreIds = string.Join(",", movie.GenreIds),
+                    Title = movie.Title ?? string.Empty,
+                    OriginalTitle = movie.OriginalTitle ?? string.Empty,
+                    Overview = movie.Overview ?? string.Empty,
+                    GenreIds = string.Join(",", movie.GenreIds ?? new List<int>()),
                     OriginCountry = (string?)null,
-                    OriginalLanguage = movie.OriginalLanguage,
+                    OriginalLanguage = movie.OriginalLanguage ?? string.Empty,
                     ReleaseDate = this.fileHelper.DateTimeToString(movie.ReleaseDate),
-                    BackdropPath = movie.BackdropPath,
-                    PosterPath = movie.PosterPath,
+                    BackdropPath = movie.BackdropPath ?? string.Empty,
+                    PosterPath = movie.PosterPath ?? string.Empty,
                     Popularity = movie.Popularity,
                     VoteAverage = movie.VoteAverage,
                     VoteCount = movie.VoteCount,
@@ -67,15 +77,15 @@ namespace FilmManager.Backend
                 {
                     Id = tv.Id,
                     MediaType = "Tv",
-                    Title = tv.Name,
-                    OriginalTitle = tv.OriginalName,
-                    Overview = tv.Overview,
-                    GenreIds = string.Join(",", tv.GenreIds),
-                    OriginCountry = string.Join(",", tv.OriginCountry),
-                    OriginalLanguage = tv.OriginalLanguage,
+                    Title = tv.Name ?? string.Empty,
+                    OriginalTitle = tv.OriginalName ?? string.Empty,
+                    Overview = tv.Overview ?? string.Empty,
+                    GenreIds = string.Join(",", tv.GenreIds ?? new List<int>()),
+                    OriginCountry = string.Join(",", tv.OriginCountry ?? new List<string>()),
+                    OriginalLanguage = tv.OriginalLanguage ?? string.Empty,
                     ReleaseDate = fileHelper.DateTimeToString(tv.FirstAirDate),
-                    BackdropPath = tv.BackdropPath,
-                    PosterPath = tv.PosterPath,
+                    BackdropPath = tv.BackdropPath ?? string.Empty,
+                    PosterPath = tv.PosterPath ?? string.Empty,
                     Popularity = tv.Popularity,
                     VoteAverage = tv.VoteAverage,
                     VoteCount = tv.VoteCount,

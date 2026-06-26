@@ -1,8 +1,4 @@
-using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using FilmManager.Backend;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using TMDbLib.Objects.Search;
 
 namespace FilmManager.Helpers
@@ -18,38 +14,60 @@ namespace FilmManager.Helpers
             this.tMDBService = tMDBService;
         }
 
+        public async Task<List<string>> MovieGenresAsync()
+        {
+            await this.tMDBService.AddSerienGenresToListAsync();
+            return tMDBService.MovieGenresName;
+        }
+
+        public async Task<List<string>> SeriesGenresAsync()
+        {
+            await this.tMDBService.AddSerienGenresToListAsync();
+            return tMDBService.SerienGenresName;
+        }
+
         public List<string> MovieGenres()
         {
-            this.tMDBService.AddMoviesGenresToList();
-            return tMDBService.MovieGenresName;
+            return MovieGenresAsync().GetAwaiter().GetResult();
         }
 
         public List<string> SeriesGenres()
         {
-            this.tMDBService.AddSerienGenresToList();
-            return tMDBService.SerienGenresName;
+            return SeriesGenresAsync().GetAwaiter().GetResult();
         }
 
-        public void GetSerien(List<SearchTv> results)
+        public void GetSerien(IEnumerable<SearchTv>? results)
         {
-            foreach (SearchTv search in results)
+            if (results is not null)
             {
-                if (!series.Contains(search))
+                foreach (SearchTv search in results)
                 {
-                    series.Add(search);
+                    if (this.series.All(existing => existing.Id != search.Id))
+                    {
+                        series.Add(search);
+                    }
                 }
             }
         }
 
-        public void GetMovies(List<SearchMovie> results)
+        public void GetMovies(IEnumerable<SearchMovie>? results)
         {
-            foreach (SearchMovie search in results)
+            if (results is not null)
             {
-                if (!movies.Contains(search))
+                foreach (SearchMovie search in results)
                 {
-                    movies.Add(search);
+                    if (this.movies.All(existing => existing.Id != search.Id))
+                    {
+                        movies.Add(search);
+                    }
                 }
             }
+        }
+
+        public void ClearAll()
+        {
+            this.series.Clear();
+            this.movies.Clear();
         }
     }
 }

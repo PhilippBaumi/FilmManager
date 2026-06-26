@@ -8,7 +8,6 @@ using MarketAlly.Dialogs.Maui.Dialogs;
 using MarketAlly.Dialogs.Maui.Models;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
-using System.Collections.ObjectModel;
 
 namespace FilmManager;
 

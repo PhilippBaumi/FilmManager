@@ -2,13 +2,13 @@ using FilmManager.Backend;
 using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
+using FilmManager.Resources.Strings.Sprachen;
 using MarketAlly.Dialogs.Maui.Dialogs;
 using MarketAlly.Dialogs.Maui.Models;
-using FilmManager.Resources.Strings.Sprachen;
 using SkiaSharp;
+using SkiaSharp.Views.Maui;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Search;
-using SkiaSharp.Views.Maui;
 
 namespace FilmManager;
 

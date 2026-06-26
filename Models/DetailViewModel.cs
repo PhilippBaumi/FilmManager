@@ -68,7 +68,7 @@ namespace FilmManager.Models
                 string? poster = GetRandomImage(movie.Images.Posters?.Where(image => string.Equals(image.Iso_3166_1, "US", StringComparison.OrdinalIgnoreCase)).ToList() ?? new());
                 if (poster is not null)
                 {
-                    Poster= tMDbHelper.ToImageUrl(poster);
+                    Poster = tMDbHelper.ToImageUrl(poster);
                 }
                 else
                 {
@@ -91,7 +91,7 @@ namespace FilmManager.Models
                 CountVote = $"{AppResources.countVote}: {movie.VoteCount}";
                 AddImages(Logos, movie.Images.Logos);
                 AddImages(Posters, movie.Images.Posters);
-                AddImages(Backports,  movie.Images.Backdrops);
+                AddImages(Backports, movie.Images.Backdrops);
                 AddRecommendations(movie.Recommendations?.Results, m => m.Title);
                 AddNames(Genres, movie.Genres, genre => genre.Name);
                 SetCast(movie.Credits.Cast);
@@ -146,13 +146,13 @@ namespace FilmManager.Models
 
         private string JoinNames<T>(IEnumerable<T>? source, Func<T, string?> getName)
         {
-            if(source is null)
+            if (source is null)
             {
                 return string.Empty;
             }
             else
             {
-                return string.Join(", ", source.Select(getName).Where(name=>!string.IsNullOrWhiteSpace(name)));
+                return string.Join(", ", source.Select(getName).Where(name => !string.IsNullOrWhiteSpace(name)));
             }
         }
 
@@ -160,7 +160,7 @@ namespace FilmManager.Models
         {
             if (source is not null)
             {
-                foreach (string? name in source.Select(getGenre).Where(name=>!string.IsNullOrWhiteSpace(name)))
+                foreach (string? name in source.Select(getGenre).Where(name => !string.IsNullOrWhiteSpace(name)))
                 {
                     target.Add(name!);
                 }
@@ -173,8 +173,8 @@ namespace FilmManager.Models
             {
                 foreach (T recomment in recommentations)
                 {
-                    string? name=getName(recomment);
-                    if(!string.IsNullOrWhiteSpace(name))
+                    string? name = getName(recomment);
+                    if (!string.IsNullOrWhiteSpace(name))
                     {
                         this.Recommendations.Add(name);
                         this.recommentationList.Add(recomment);
@@ -185,12 +185,12 @@ namespace FilmManager.Models
 
         private void AddImages(ObservableCollection<string> target, IEnumerable<ImageData>? images)
         {
-            TMDbHelper tMDbHelper= new TMDbHelper();
-            if(images is not null)
+            TMDbHelper tMDbHelper = new TMDbHelper();
+            if (images is not null)
             {
-                foreach(ImageData image in images)
+                foreach (ImageData image in images)
                 {
-                    if(!string.IsNullOrEmpty(image.FilePath)&&!string.IsNullOrEmpty(image.Iso_3166_1))
+                    if (!string.IsNullOrEmpty(image.FilePath) && !string.IsNullOrEmpty(image.Iso_3166_1))
                     {
                         target.Add($"{tMDbHelper.ToImageUrl(image.FilePath)}[{image.Iso_3166_1}]");
                     }
@@ -223,29 +223,28 @@ namespace FilmManager.Models
         {
             if (images is not null && images.Count is not 0)
             {
-                Random random = new();
-                int r = random.Next(0, images.Count);
+                int r = Random.Shared.Next(0, images.Count);
                 ImageData image = images[r];
                 return image.FilePath;
             }
             return null;
         }
 
-        public List<object> GetList(string selectedRecommentation)
+        public List<object> GetList(string selectedRecom)
         {
             List<object> list = new();
             foreach (object o in this.recommentationList)
             {
                 if (o is SearchMovie movie)
                 {
-                    if (string.Equals(movie.Title, selectedRecommentation))
+                    if (string.Equals(movie.Title, selectedRecom))
                     {
                         list.Add(movie);
                     }
                 }
                 if (o is SearchTv tv)
                 {
-                    if (string.Equals(tv.Name, selectedRecommendation))
+                    if (string.Equals(tv.Name, selectedRecom))
                     {
                         list.Add(tv);
                     }

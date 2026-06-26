@@ -1,5 +1,4 @@
-﻿using FilmManager.Backend;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
@@ -60,7 +59,7 @@ namespace FilmManager.Helpers
 
         public string ToImageUrl(string? path)
         {
-            if(string.IsNullOrWhiteSpace(path))
+            if (string.IsNullOrWhiteSpace(path))
             {
                 return string.Empty;
             }
@@ -81,15 +80,15 @@ namespace FilmManager.Helpers
             }
         }
 
-        public void SetImages<T>(ObservableCollection<string>target, IEnumerable<T>? source, Func<T, string?>function)
+        public void SetImages<T>(ObservableCollection<string> target, IEnumerable<T>? source, Func<T, string?> function)
         {
             target.Clear();
-            if(source is not null)
+            if (source is not null)
             {
-                foreach(T t in source)
+                foreach (T t in source)
                 {
-                    string imageUrl=ToImageUrl(function(t));
-                    if(!string.IsNullOrEmpty(imageUrl))
+                    string imageUrl = ToImageUrl(function(t));
+                    if (!string.IsNullOrEmpty(imageUrl))
                     {
                         target.Add(imageUrl);
                     }

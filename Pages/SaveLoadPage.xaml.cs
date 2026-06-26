@@ -25,7 +25,7 @@ public partial class SaveLoadPage : ContentPage
 
     private void SaveOrLoad(object sender, CheckedChangedEventArgs e)
     {
-        bool checkedArgs=e.Value;
+        bool checkedArgs = e.Value;
         if (sender is RadioButton { Value: not null } bt && checkedArgs)
         {
             string selectedButtonText = bt.Value.ToString();

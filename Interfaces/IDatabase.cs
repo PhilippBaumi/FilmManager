@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-
-namespace FilmManager.Interfaces
+﻿namespace FilmManager.Interfaces
 {
     public interface IDatabase
     {

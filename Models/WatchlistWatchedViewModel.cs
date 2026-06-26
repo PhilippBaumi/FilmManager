@@ -1,7 +1,5 @@
-﻿using CommunityToolkit.Maui.Extensions;
-using CommunityToolkit.Mvvm.ComponentModel;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using FilmManager.Resources.Strings.Sprachen;
-using System.Collections.ObjectModel;
 using TMDbLib.Objects.Search;
 
 namespace FilmManager.Models
@@ -67,14 +65,14 @@ namespace FilmManager.Models
         {
             foreach (object obj in watched)
             {
-                if(MatchesDisplayText(obj, s))
+                if (MatchesDisplayText(obj, s))
                 {
                     return obj;
                 }
             }
             foreach (object obj in watchlist)
             {
-                if(MatchesDisplayText(obj, s))
+                if (MatchesDisplayText(obj, s))
                 {
                     return obj;
                 }
@@ -84,11 +82,11 @@ namespace FilmManager.Models
 
         private bool MatchesDisplayText(object obj, string s)
         {
-            if(obj is SearchMovie movie)
+            if (obj is SearchMovie movie)
             {
-                return string.Equals(s, movie.OriginalTitle+$" ({AppResources.movie})", StringComparison.Ordinal);
+                return string.Equals(s, movie.OriginalTitle + $" ({AppResources.movie})", StringComparison.Ordinal);
             }
-            if(obj is SearchTv serie)
+            if (obj is SearchTv serie)
             {
                 return string.Equals(s, serie.OriginalName + " (Serie)", StringComparison.Ordinal);
             }

@@ -15,7 +15,7 @@ namespace FilmManager.Models
 
         public CastViewModel(object o)
         {
-            if(o is List<SearchPerson> cast)
+            if (o is List<SearchPerson> cast)
             {
                 this.persons = cast;
                 TMDbHelper tMDbHelper = new TMDbHelper();
@@ -25,11 +25,11 @@ namespace FilmManager.Models
 
         public SearchPerson? GetPerson(string selectedCast)
         {
-            if(!string.IsNullOrEmpty(selectedCast))
+            if (!string.IsNullOrEmpty(selectedCast))
             {
                 foreach (SearchPerson p in this.persons)
                 {
-                    if(p.ProfilePath.Equals(selectedCast))
+                    if (p.ProfilePath.Equals(selectedCast))
                     {
                         return p;
                     }

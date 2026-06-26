@@ -24,11 +24,11 @@ namespace FilmManager.Models
             {
                 this.Birthday = $"{AppResources.birthday}: {p.Birthday.Value}";
             }
-            this.PlaceOfBirth=$"{AppResources.placeOfBirth}: {p.PlaceOfBirth}";
-            this.Gender=$"{AppResources.gender}: {p.Gender}";
-            this.Popularity=$"{AppResources.popularity}: {p.Popularity}";
-            this.KnownForDepartment=$"{AppResources.knownForDepartment}: {p.KnownForDepartment}";
-            this.Biography=$"{AppResources.biography}: {p.Biography}";
+            this.PlaceOfBirth = $"{AppResources.placeOfBirth}: {p.PlaceOfBirth}";
+            this.Gender = $"{AppResources.gender}: {p.Gender}";
+            this.Popularity = $"{AppResources.popularity}: {p.Popularity}";
+            this.KnownForDepartment = $"{AppResources.knownForDepartment}: {p.KnownForDepartment}";
+            this.Biography = $"{AppResources.biography}: {p.Biography}";
         }
     }
 }

@@ -11,13 +11,12 @@ namespace FilmManager.Helpers
         {
             string folderPath;
 #if WINDOWS
-        folderPath = Path.Combine(AppContext.BaseDirectory, "FilmManager");
+            folderPath = Path.Combine(AppContext.BaseDirectory, "FilmManager");
 #elif ANDROID
             folderPath = Path.Combine(Android.App.Application.Context.FilesDir.AbsolutePath, "FilmManager");
 #else
-        throw new PlatformNotSupportedException();
+            throw new PlatformNotSupportedException();
 #endif
-
             Directory.CreateDirectory(folderPath);
             return Path.Combine(folderPath, s);
         }

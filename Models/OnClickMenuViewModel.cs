@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using TMDbLib.Objects.Search;
+﻿using TMDbLib.Objects.Search;
 
 namespace FilmManager.Models
 {

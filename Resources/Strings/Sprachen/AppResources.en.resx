@@ -375,4 +375,13 @@
   <data name="knownForDepartment" xml:space="preserve">
     <value>Department</value>
   </data>
+  <data name="databasePathError" xml:space="preserve">
+    <value>Database path must not be empty.</value>
+  </data>
+  <data name="filePathEmpty" xml:space="preserve">
+    <value>File name must not be empty.</value>
+  </data>
+  <data name="unknownTable" xml:space="preserve">
+    <value>Unknown table name</value>
+  </data>
 </root>

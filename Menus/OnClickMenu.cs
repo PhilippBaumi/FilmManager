@@ -1,10 +1,10 @@
 using FilmManager.Backend;
+using FilmManager.Helpers;
 using FilmManager.Interfaces;
 using FilmManager.Models;
 using FilmManager.Resources.Strings.Sprachen;
 using MarketAlly.Dialogs.Maui.Dialogs;
 using MarketAlly.Dialogs.Maui.Models;
-using System.Collections.ObjectModel;
 using TMDbLib.Client;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;
@@ -20,6 +20,8 @@ namespace FilmManager.Popups
         private INavigationService navigationService;
         private string apiKey;
         private OnClickMenuViewModel onClickPopupViewModel = new();
+        private readonly string validateWatched = MediaTableNames.Validate("Watched");
+        private readonly string validateWatchlist = MediaTableNames.Validate("Watchlist");
 
         public OnClickMenu(object? obj, bool inWatchedList, IDatabase database, INavigationService navigationService, string apiKey)
         {
@@ -77,12 +79,12 @@ namespace FilmManager.Popups
 
         private async Task RemoveAsync()
         {
-            List<object> watched = this.database.SelectAllEntries("Watched");
-            List<object> watchlist = this.database.SelectAllEntries("Watchlist");
+            List<object> watched = this.database.SelectAllEntries(this.validateWatched);
+            List<object> watchlist = this.database.SelectAllEntries(this.validateWatchlist);
             if (o is SearchMovie movie)
             {
                 bool result = await ShowDialog(movie.OriginalTitle);
-                if(result)
+                if (result)
                 {
                     if (!this.onClickPopupViewModel.MyContains(watched, movie) && !this.onClickPopupViewModel.MyContains(watchlist, movie))
                     {
@@ -91,20 +93,20 @@ namespace FilmManager.Popups
                     }
                     if (this.onClickPopupViewModel.MyContains(watched, movie))
                     {
-                        this.database.DeleteEntry(movie, "Watched");
+                        this.database.DeleteEntry(movie, this.validateWatched);
                         await Snackbar.ShowAsync(AppResources.removed, AppResources.undo, async () =>
                         {
-                            this.database.InsertEntry(movie, "Watched");
+                            this.database.InsertEntry(movie, this.validateWatched);
                             await Toast.ShowAsync(AppResources.undoSuccess, DialogType.Success);
                         });
                         return;
                     }
                     if (this.onClickPopupViewModel.MyContains(watchlist, movie))
                     {
-                        this.database.DeleteEntry(movie, "Watchlist");
+                        this.database.DeleteEntry(movie, this.validateWatchlist);
                         await Snackbar.ShowAsync(AppResources.removed, AppResources.undo, async () =>
                         {
-                            this.database.InsertEntry(movie, "Watchlist");
+                            this.database.InsertEntry(movie, this.validateWatchlist);
                             await Toast.ShowAsync(AppResources.undoSuccess, DialogType.Success);
                         });
                         return;
@@ -128,20 +130,20 @@ namespace FilmManager.Popups
                     }
                     if (this.onClickPopupViewModel.MyContains(watched, tv))
                     {
-                        this.database.DeleteEntry(tv, "Watched");
+                        this.database.DeleteEntry(tv, this.validateWatched);
                         await Snackbar.ShowAsync(AppResources.removed, AppResources.undo, async () =>
                         {
-                            this.database.InsertEntry(tv, "Watched");
+                            this.database.InsertEntry(tv, this.validateWatched);
                             await Toast.ShowAsync(AppResources.undoSuccess, DialogType.Success);
                         });
                         return;
                     }
                     if (this.onClickPopupViewModel.MyContains(watchlist, tv))
                     {
-                        this.database.DeleteEntry(tv, "Watchlist");
+                        this.database.DeleteEntry(tv, this.validateWatchlist);
                         await Snackbar.ShowAsync(AppResources.removed, AppResources.undo, async () =>
                         {
-                            this.database.InsertEntry(tv, "Watchlist");
+                            this.database.InsertEntry(tv, this.validateWatchlist);
                             await Toast.ShowAsync(AppResources.undoSuccess, DialogType.Success);
                         });
                         return;
@@ -168,9 +170,15 @@ namespace FilmManager.Popups
                     }
                     else
                     {
-                        this.database.DeleteEntry(movie, "Watchlist");
-                        this.database.InsertEntry(movie, "Watched");
+                        this.database.DeleteEntry(movie, this.validateWatchlist);
+                        this.database.InsertEntry(movie, this.validateWatched);
                         await Toast.ShowAsync(AppResources.markedAsWatched, DialogType.Success);
+                        //await Snackbar.ShowAsync(AppResources.markAsWatched, AppResources.undo, async () =>
+                        //{
+                        //    this.database.InsertEntry(movie, "Watchlist");
+                        //    this.database.DeleteEntry(movie, "Watched");
+                        //    await Toast.ShowAsync(AppResources.undoSuccess, DialogType.Success);
+                        //});
                     }
                 }
             }
@@ -185,9 +193,15 @@ namespace FilmManager.Popups
                     }
                     else
                     {
-                        this.database.DeleteEntry(tv, "Watchlist");
-                        this.database.InsertEntry(tv, "Watched");
+                        this.database.DeleteEntry(tv, this.validateWatchlist);
+                        this.database.InsertEntry(tv, this.validateWatched);
                         await Toast.ShowAsync(AppResources.markedAsWatched, DialogType.Success);
+                        //await Snackbar.ShowAsync(AppResources.markAsWatched, AppResources.undo, async () =>
+                        //{
+                        //    this.database.InsertEntry(tv, "Watchlist");
+                        //    this.database.DeleteEntry(tv, "Watched");
+                        //    await Toast.ShowAsync(AppResources.undoSuccess, DialogType.Success);
+                        //});
                     }
                 }
             }
