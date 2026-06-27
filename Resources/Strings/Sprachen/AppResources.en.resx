@@ -384,4 +384,16 @@
   <data name="unknownTable" xml:space="preserve">
     <value>Unknown table name</value>
   </data>
+  <data name="load5HundredPages" xml:space="preserve">
+    <value>Loading 500 pages</value>
+  </data>
+  <data name="cantNavigateToOverview" xml:space="preserve">
+    <value>Can't navigate to overview! </value>
+  </data>
+  <data name="indexLessThanZero" xml:space="preserve">
+    <value>Index is less than 0</value>
+  </data>
+  <data name="objectIsEmpty" xml:space="preserve">
+    <value>Object is empty</value>
+  </data>
 </root>

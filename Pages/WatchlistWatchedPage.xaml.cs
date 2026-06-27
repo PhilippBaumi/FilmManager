@@ -31,60 +31,17 @@ public partial class WatchlistWatchedPage : ContentPage
     protected override void OnAppearing()
     {
         base.OnAppearing();
-        LoadWatched();
-        LoadWatchlist();
+        ReloadLists();
     }
 
-    private async void LoadWatchlist()
+    private async void ReloadLists()
     {
         try
         {
             this.watchlist = this.database.SelectAllEntries("Watchlist");
-        }
-        catch (Exception ex)
-        {
-            await Toast.ShowAsync(ex.Message, DialogType.Error);
-        }
-        this.watchlistWatchedViewModel = new(watchlist, watched);
-        BindingContext = this.watchlistWatchedViewModel;
-    }
-
-    private async void LoadWatched()
-    {
-        try
-        {
             this.watched = this.database.SelectAllEntries("Watched");
-        }
-        catch (Exception ex)
-        {
-            await Toast.ShowAsync(ex.Message, DialogType.Error);
-        }
-        this.watchlistWatchedViewModel = new(watchlist, watched);
-        if (this.watchlistWatchedViewModel is not null)
-        {
+            this.watchlistWatchedViewModel = new(this.watchlist, this.watched);
             BindingContext = this.watchlistWatchedViewModel;
-        }
-        else
-        {
-            BindingContext = new WatchlistWatchedViewModel(null, null);
-        }
-    }
-
-    private async void HandlePickerSelection(object sender, EventArgs e)
-    {
-        string? selectedItem = watchlistWatchedViewModel.SelectedItem;
-        try
-        {
-            if (!string.IsNullOrWhiteSpace(selectedItem))
-            {
-                object? obj = this.watchlistWatchedViewModel.Get(selectedItem);
-                bool inWatchedList = this.watchlistWatchedViewModel.IsInWatchedList(obj);
-                OnClickMenu onClickMenu = new(obj, inWatchedList, database, navigationService, this.tMDBService.client.ApiKey);
-                await onClickMenu.ShowAsync();
-                ((Picker)sender).SelectedItem = null;
-                LoadWatched();
-                LoadWatchlist();
-            }
         }
         catch (Exception ex)
         {
@@ -98,5 +55,47 @@ public partial class WatchlistWatchedPage : ContentPage
         SKImageInfo info = e.Info;
         canvas.Clear(SKColors.Transparent);
         SKiaDrawHelper.DrawHeader(canvas, info, $"  {AppResources.watchedWatchlist}");
+    }
+
+    private async void HandleWatchedPickerSelection(object sender, EventArgs e)
+    {
+        if(sender is Picker picker)
+        {
+            await HandleSelectedObjectAsync(picker, this.watchlistWatchedViewModel.GetWatchedByIndex(picker.SelectedIndex));
+        }
+    }
+
+    private async void HandleWatchlistPickerSelection(object sender, EventArgs e)
+    {
+        if (sender is Picker picker)
+        {
+            await HandleSelectedObjectAsync(picker, this.watchlistWatchedViewModel.GetWatchlistByIndex(picker.SelectedIndex));
+        }
+    }
+
+    private async Task HandleSelectedObjectAsync(Picker picker, object? obj)
+    {
+        try
+        {
+            if(picker.SelectedIndex<0) 
+            { 
+                await Toast.ShowAsync(AppResources.indexLessThanZero, DialogType.Error);
+                return;
+            }
+            if(obj is null)
+            {
+                await Toast.ShowAsync(AppResources.objectIsEmpty, DialogType.Error);
+                return;
+            }
+            bool isInWatched = this.watchlistWatchedViewModel.IsInWatchedList(obj);
+            OnClickMenu onClickMenu = new(obj, isInWatched, database, navigationService, tMDBService.client.ApiKey);
+            await onClickMenu.ShowAsync();
+            picker.SelectedItem = null;
+            ReloadLists();
+        }
+        catch (Exception ex)
+        {
+            await Toast.ShowAsync(ex.Message, DialogType.Error);
+        }
     }
 }

@@ -56,7 +56,3 @@ Build & Ausführen
 - CLI (Beispiel):
   - dotnet restore
   - dotnet build
-
-ACHTUNG:
-
-- Die Navigation auf Übersicht/Overview funktioniert im Moment nicht von Start und dem Genre-Picker in Deteails. Nutzt besser im Moment für die Suche die Sammlung und Suche, da die problemlos funktionieren. 

@@ -73,7 +73,13 @@ namespace FilmManager
                         {
                             this.genreHelper.GetSerien(discoversSeries.Results);
                         }
-                        for (int page = discoversSeries.Page + 1; page <= discoversSeries.TotalPages; page++)
+                        int maxPages = Math.Min(discoversSeries.TotalPages, 500);
+                        if (discoversSeries.TotalPages > 500)
+                        {
+                            await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
+                            await Toast.ShowAsync(AppResources.load5HundredPages, DialogType.Info);
+                        }
+                        for (int page = discoversSeries.Page + 1; page <= maxPages; page++)
                         {
                             discoversSeries.Page = page;
                             discoversSeries = await this.tMDBService.DiscoverSerien(id, page);
@@ -83,24 +89,19 @@ namespace FilmManager
                             }
                         }
                     });
-                }
-                catch (Exception ex)
-                {
-                    string errorMessage = ex.Message;
-                    if (errorMessage.Equals("TMDb returned an unexpected HTTP error: 400"))
-                    {
-                        errorMessage = errorMessage.Remove(0, 28);
-                    }
-                    await Toast.ShowAsync(errorMessage, DialogType.Error);
-                }
-                finally
-                {
                     IDictionary<string, object> parameters = new Dictionary<string, object>
                     {
                         { "list", genreHelper.series },
                         { "apiKey", tMDBService.client.ApiKey }
                     };
                     await navigationService.NavigateToAsync("//Overview", parameters);
+                }
+                catch
+                {
+                    await Toast.ShowAsync(AppResources.cantNavigateToOverview, DialogType.Error);
+                }
+                finally
+                {
                     ((Picker)sender).SelectedItem = null;
                 }
             }
@@ -121,7 +122,13 @@ namespace FilmManager
                         {
                             genreHelper.GetMovies(discoversMovies.Results);
                         }
-                        for (int page = discoversMovies.Page + 1; page <= discoversMovies.TotalPages; page++)
+                        int maxPages = Math.Min(discoversMovies.TotalPages, 500);
+                        if (discoversMovies.TotalPages > 500)
+                        {
+                            await Toast.ShowAsync(AppResources.tooMuchPages, DialogType.Error);
+                            await Toast.ShowAsync(AppResources.load5HundredPages, DialogType.Info);
+                        }
+                        for (int page = discoversMovies.Page + 1; page <= maxPages; page++)
                         {
                             discoversMovies.Page = page;
                             discoversMovies = await tMDBService.DiscoverMovies(id, page);
@@ -131,24 +138,19 @@ namespace FilmManager
                             }
                         }
                     });
-                }
-                catch (Exception ex)
-                {
-                    string errorMessage = ex.Message;
-                    if (errorMessage.Equals("TMDb returned an unexpected HTTP error: 400"))
-                    {
-                        errorMessage = errorMessage.Remove(0, 28);
-                    }
-                    await Toast.ShowAsync(errorMessage, DialogType.Error);
-                }
-                finally
-                {
                     IDictionary<string, object> parameters = new Dictionary<string, object>
                     {
                         { "list", genreHelper.movies },
                         { "apiKey", tMDBService.client.ApiKey }
                     };
                     await navigationService.NavigateToAsync("//Overview", parameters);
+                }
+                catch
+                {
+                    await Toast.ShowAsync(AppResources.cantNavigateToOverview, DialogType.Error);
+                }
+                finally
+                {
                     ((Picker)sender).SelectedItem = null;
                 }
             }

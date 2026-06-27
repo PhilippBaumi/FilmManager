@@ -4,16 +4,13 @@ using TMDbLib.Objects.Search;
 
 namespace FilmManager.Models
 {
-    public partial class WatchlistWatchedViewModel : ObservableObject
+    public partial class WatchlistWatchedViewModel
     {
         public List<string> Watched { get; } = new();
         public List<string> Watchlist { get; } = new();
 
-        private List<object> watchlist = new();
-        private List<object> watched = new();
-
-        [ObservableProperty]
-        private string selectedItem;
+        private readonly List<object> watchlist = new();
+        private readonly List<object> watched = new();
 
         public WatchlistWatchedViewModel(List<object>? watchlist, List<object>? watched)
         {
@@ -61,48 +58,35 @@ namespace FilmManager.Models
             }
         }
 
-        public object? Get(string s)
+        public object? GetWatchedByIndex(int index)
         {
-            foreach (object obj in watched)
+            if (index < 0 || index >= this.watched.Count)
             {
-                if (MatchesDisplayText(obj, s))
-                {
-                    return obj;
-                }
+                return null;
             }
-            foreach (object obj in watchlist)
-            {
-                if (MatchesDisplayText(obj, s))
-                {
-                    return obj;
-                }
-            }
-            return null;
+            return this.watched[index];
         }
 
-        private bool MatchesDisplayText(object obj, string s)
+        public object? GetWatchlistByIndex(int index)
         {
-            if (obj is SearchMovie movie)
+            if (index < 0 || index >= this.watched.Count)
             {
-                return string.Equals(s, movie.OriginalTitle + $" ({AppResources.movie})", StringComparison.Ordinal);
+                return null;
             }
-            if (obj is SearchTv serie)
-            {
-                return string.Equals(s, serie.OriginalName + " (Serie)", StringComparison.Ordinal);
-            }
-            return false;
+            return this.watchlist[index];
         }
 
         public bool IsInWatchedList(object? obj)
         {
-            if (obj is not null && this.watched.Contains(obj))
+            if (obj is not null && obj is SearchMovie movie)
             {
-                return true;
+                return this.watched.Any(x => x is SearchMovie watchedMovie && watchedMovie.Id == movie.Id);
             }
-            else
+            if (obj is not null && obj is SearchTv tv)
             {
-                return false;
+                return this.watched.Any(x => x is SearchTv watchedTv && watchedTv.Id == tv.Id);
             }
+            return false;
         }
     }
 }

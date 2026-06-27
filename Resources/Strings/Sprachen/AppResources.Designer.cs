@@ -142,6 +142,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Kann nicht zu Übersicht navigieren! ähnelt.
+        /// </summary>
+        internal static string cantNavigateToOverview {
+            get {
+                return ResourceManager.GetString("cantNavigateToOverview", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Schließen ähnelt.
         /// </summary>
         internal static string close {
@@ -331,6 +340,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Index kleiner als 0 ähnelt.
+        /// </summary>
+        internal static string indexLessThanZero {
+            get {
+                return ResourceManager.GetString("indexLessThanZero", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Erfolgreich hinzugefügt! ähnelt.
         /// </summary>
         internal static string insertSuccess {
@@ -390,6 +408,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string load {
             get {
                 return ResourceManager.GetString("load", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Lade 500 Seiten ähnelt.
+        /// </summary>
+        internal static string load5HundredPages {
+            get {
+                return ResourceManager.GetString("load5HundredPages", resourceCulture);
             }
         }
         
@@ -543,6 +570,15 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string numberOfSeasons {
             get {
                 return ResourceManager.GetString("numberOfSeasons", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Sucht eine lokalisierte Zeichenfolge, die Objekt hat keinen Wert ähnelt.
+        /// </summary>
+        internal static string objectIsEmpty {
+            get {
+                return ResourceManager.GetString("objectIsEmpty", resourceCulture);
             }
         }
         

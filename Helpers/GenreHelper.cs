@@ -16,7 +16,7 @@ namespace FilmManager.Helpers
 
         public async Task<List<string>> MovieGenresAsync()
         {
-            await this.tMDBService.AddSerienGenresToListAsync();
+            await this.tMDBService.AddMoviesGenresToListAsync();
             return tMDBService.MovieGenresName;
         }
 
