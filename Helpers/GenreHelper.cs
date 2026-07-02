@@ -26,16 +26,6 @@ namespace FilmManager.Helpers
             return tMDBService.SerienGenresName;
         }
 
-        public List<string> MovieGenres()
-        {
-            return MovieGenresAsync().GetAwaiter().GetResult();
-        }
-
-        public List<string> SeriesGenres()
-        {
-            return SeriesGenresAsync().GetAwaiter().GetResult();
-        }
-
         public void GetSerien(IEnumerable<SearchTv>? results)
         {
             if (results is not null)
@@ -62,12 +52,6 @@ namespace FilmManager.Helpers
                     }
                 }
             }
-        }
-
-        public void ClearAll()
-        {
-            this.series.Clear();
-            this.movies.Clear();
         }
     }
 }

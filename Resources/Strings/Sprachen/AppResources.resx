@@ -123,14 +123,8 @@
   <data name="addToWatchlist" xml:space="preserve">
     <value>Zu Merkliste hinzufügen</value>
   </data>
-  <data name="and" xml:space="preserve">
-    <value>und</value>
-  </data>
   <data name="averageVote" xml:space="preserve">
     <value>Durchschnittsbewertung</value>
-  </data>
-  <data name="cantGetValue" xml:space="preserve">
-    <value>Kann Wert nicht finden</value>
   </data>
   <data name="cantNavigateToDetails" xml:space="preserve">
     <value>Kann nicht zu Details navigieren!</value>
@@ -156,14 +150,8 @@
   <data name="tooMuchPages" xml:space="preserve">
     <value>Zu viele Seiten! </value>
   </data>
-  <data name="doYouWantToNavigateToCast" xml:space="preserve">
-    <value>Willst du zur Cast Seite wechseln?</value>
-  </data>
   <data name="english" xml:space="preserve">
     <value>Englisch</value>
-  </data>
-  <data name="error" xml:space="preserve">
-    <value>Fehler</value>
   </data>
   <data name="file" xml:space="preserve">
     <value>Die Datei </value>
@@ -279,12 +267,6 @@
   <data name="settings" xml:space="preserve">
     <value>Einstellungen</value>
   </data>
-  <data name="successfully" xml:space="preserve">
-    <value>Erfolgreich</value>
-  </data>
-  <data name="successfullyCreatedTable" xml:space="preserve">
-    <value>Tabelle erfolgreich erstellt</value>
-  </data>
   <data name="title" xml:space="preserve">
     <value>Titel</value>
   </data>
@@ -327,23 +309,11 @@
   <data name="backdrops" xml:space="preserve">
     <value>Hintergründe</value>
   </data>
-  <data name="nothingSelectedName" xml:space="preserve">
-    <value>Nichts gewählt</value>
-  </data>
-  <data name="nothingSelectedMessage" xml:space="preserve">
-    <value>Es wurde nichts gewählt!</value>
-  </data>
   <data name="showPopup" xml:space="preserve">
     <value>Zeige Popup</value>
   </data>
   <data name="dateIsFuture" xml:space="preserve">
     <value>Datum ist in der Zukunft</value>
-  </data>
-  <data name="page" xml:space="preserve">
-    <value>Seite</value>
-  </data>
-  <data name="loadingError" xml:space="preserve">
-    <value>Fehler beim Laden und öffnen</value>
   </data>
   <data name="saving" xml:space="preserve">
     <value>Wird gespeichert!</value>

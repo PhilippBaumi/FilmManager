@@ -5,7 +5,6 @@
              xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="FilmManager.MainPage">
-    <!--Padding="0,60,0,0">-->
     <VerticalStackLayout>
         <skia:SKCanvasView x:Name="HeaderCanvas"
                            PaintSurface="HandlePaintSurface" />

@@ -123,51 +123,6 @@ namespace FilmManager.Helpers
             return DateTime.ParseExact(s, "dd.MM.yyyy", CultureInfo.InvariantCulture);
         }
 
-        public string GetValue(string value, string key)
-        {
-            string? val = TryGetValue(value, key);
-            if (string.IsNullOrEmpty(val))
-            {
-                throw new Exception(AppResources.cantGetValue);
-            }
-            return val;
-        }
-
-        private string? TryGetValue(string value, string key)
-        {
-            string pattern = $@"{key}:\s*(.*?)(?=\s*(ID|MediaType|Title|OriginalTitle|OriginalLanguage|OriginCountry|Overview|GenreIds|ReleaseDate|PosterPath|BackdropPath|Popularity|VoteAverage|VoteCount|Adult|Video):|$)";
-            string s = Regex.Match(value, pattern, RegexOptions.Singleline).Groups[1].Value.Trim();
-            if (string.IsNullOrEmpty(s))
-            {
-                return null;
-            }
-            return s;
-        }
-
-        public List<int> GetIntegerList(string text, string v)
-        {
-            List<int> list = new();
-            string s = GetValue(text, v);
-            string[] st = s.Split(",");
-            foreach (string sT in st)
-            {
-                list.Add(Int32.Parse(sT));
-            }
-            return list;
-        }
-
-        public List<string>? GetStringList(string text, string v)
-        {
-            List<string> list = new();
-            string s = GetValue(text, v);
-            string[] st = s.Split(",");
-            foreach (string sT in st)
-            {
-                list.Add(sT);
-            }
-            return list;
-        }
-
         public SearchTv GetSerieFromDOCX(List<string> lines)
         {
             SearchTv tv = new();

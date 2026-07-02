@@ -123,14 +123,8 @@
   <data name="addToWatchlist" xml:space="preserve">
     <value>Add to watchlist</value>
   </data>
-  <data name="and" xml:space="preserve">
-    <value>and</value>
-  </data>
   <data name="averageVote" xml:space="preserve">
     <value>Average Vote</value>
-  </data>
-  <data name="cantGetValue" xml:space="preserve">
-    <value>Can't get value</value>
   </data>
   <data name="cantNavigateToDetails" xml:space="preserve">
     <value>Can't navigate to details!</value>
@@ -156,14 +150,8 @@
   <data name="tooMuchPages" xml:space="preserve">
     <value>Too much pages! </value>
   </data>
-  <data name="doYouWantToNavigateToCast" xml:space="preserve">
-    <value>Do you want to switch to Cast Page?</value>
-  </data>
   <data name="english" xml:space="preserve">
     <value>English</value>
-  </data>
-  <data name="error" xml:space="preserve">
-    <value>Error</value>
   </data>
   <data name="file" xml:space="preserve">
     <value>The file</value>
@@ -279,12 +267,6 @@
   <data name="settings" xml:space="preserve">
     <value>Settings</value>
   </data>
-  <data name="successfully" xml:space="preserve">
-    <value>Successfully</value>
-  </data>
-  <data name="successfullyCreatedTable" xml:space="preserve">
-    <value>Table generated successfully</value>
-  </data>
   <data name="title" xml:space="preserve">
     <value>Title</value>
   </data>
@@ -327,23 +309,11 @@
   <data name="backdrops" xml:space="preserve">
     <value>Backdrops</value>
   </data>
-  <data name="nothingSelectedName" xml:space="preserve">
-    <value>Nothing selected</value>
-  </data>
-  <data name="nothingSelectedMessage" xml:space="preserve">
-    <value>Nothing was selected! </value>
-  </data>
   <data name="showPopup" xml:space="preserve">
     <value>Show popup</value>
   </data>
   <data name="dateIsFuture" xml:space="preserve">
     <value>Date is in the future</value>
-  </data>
-  <data name="page" xml:space="preserve">
-    <value>Page</value>
-  </data>
-  <data name="loadingError" xml:space="preserve">
-    <value>Loading and opening failed</value>
   </data>
   <data name="saving" xml:space="preserve">
     <value>Is saving!</value>

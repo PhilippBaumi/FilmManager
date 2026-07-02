@@ -79,15 +79,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die und ähnelt.
-        /// </summary>
-        internal static string and {
-            get {
-                return ResourceManager.GetString("and", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Durchschnittsbewertung ähnelt.
         /// </summary>
         internal static string averageVote {
@@ -120,15 +111,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string birthday {
             get {
                 return ResourceManager.GetString("birthday", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Kann Wert nicht finden ähnelt.
-        /// </summary>
-        internal static string cantGetValue {
-            get {
-                return ResourceManager.GetString("cantGetValue", resourceCulture);
             }
         }
         
@@ -250,29 +232,11 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Willst du zur Cast Seite wechseln? ähnelt.
-        /// </summary>
-        internal static string doYouWantToNavigateToCast {
-            get {
-                return ResourceManager.GetString("doYouWantToNavigateToCast", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Englisch ähnelt.
         /// </summary>
         internal static string english {
             get {
                 return ResourceManager.GetString("english", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler ähnelt.
-        /// </summary>
-        internal static string error {
-            get {
-                return ResourceManager.GetString("error", resourceCulture);
             }
         }
         
@@ -439,15 +403,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Fehler beim Laden und öffnen ähnelt.
-        /// </summary>
-        internal static string loadingError {
-            get {
-                return ResourceManager.GetString("loadingError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Als gesehen markieren ähnelt.
         /// </summary>
         internal static string markAsWatched {
@@ -529,24 +484,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         }
         
         /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Es wurde nichts gewählt! ähnelt.
-        /// </summary>
-        internal static string nothingSelectedMessage {
-            get {
-                return ResourceManager.GetString("nothingSelectedMessage", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Nichts gewählt ähnelt.
-        /// </summary>
-        internal static string nothingSelectedName {
-            get {
-                return ResourceManager.GetString("nothingSelectedName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Sucht eine lokalisierte Zeichenfolge, die Nicht entfernt! ähnelt.
         /// </summary>
         internal static string notRemoved {
@@ -615,15 +552,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string overview {
             get {
                 return ResourceManager.GetString("overview", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Seite ähnelt.
-        /// </summary>
-        internal static string page {
-            get {
-                return ResourceManager.GetString("page", resourceCulture);
             }
         }
         
@@ -777,24 +705,6 @@ namespace FilmManager.Resources.Strings.Sprachen {
         internal static string showPopup {
             get {
                 return ResourceManager.GetString("showPopup", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Erfolgreich ähnelt.
-        /// </summary>
-        internal static string successfully {
-            get {
-                return ResourceManager.GetString("successfully", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Sucht eine lokalisierte Zeichenfolge, die Tabelle erfolgreich erstellt ähnelt.
-        /// </summary>
-        internal static string successfullyCreatedTable {
-            get {
-                return ResourceManager.GetString("successfullyCreatedTable", resourceCulture);
             }
         }
         

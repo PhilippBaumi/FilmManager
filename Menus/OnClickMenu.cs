@@ -34,7 +34,7 @@ namespace FilmManager.Popups
 
         public async Task ShowAsync()
         {
-            string title = GetTitle();
+            string title = MediaItemText.GetTitle(this.o);
             List<ActionItem> items = AddActions();
             await ActionListDialog.ShowWithActionsAsync(title, items, AppResources.close);
         }
@@ -161,7 +161,7 @@ namespace FilmManager.Popups
         {
             if (o is SearchMovie movie)
             {
-                DateTime? rDate = movie.ReleaseDate;
+                DateTime? rDate = MediaItemText.GetReleaseDate(movie);
                 if (rDate.HasValue)
                 {
                     if (rDate.Value > DateTime.Today)
@@ -173,18 +173,12 @@ namespace FilmManager.Popups
                         this.database.DeleteEntry(movie, this.validateWatchlist);
                         this.database.InsertEntry(movie, this.validateWatched);
                         await Toast.ShowAsync(AppResources.markedAsWatched, DialogType.Success);
-                        //await Snackbar.ShowAsync(AppResources.markAsWatched, AppResources.undo, async () =>
-                        //{
-                        //    this.database.InsertEntry(movie, "Watchlist");
-                        //    this.database.DeleteEntry(movie, "Watched");
-                        //    await Toast.ShowAsync(AppResources.undoSuccess, DialogType.Success);
-                        //});
                     }
                 }
             }
             if (o is SearchTv tv)
             {
-                DateTime? rDate = tv.FirstAirDate;
+                DateTime? rDate = MediaItemText.GetReleaseDate(tv);
                 if (rDate.HasValue)
                 {
                     if (rDate.Value > DateTime.Today)
@@ -196,31 +190,9 @@ namespace FilmManager.Popups
                         this.database.DeleteEntry(tv, this.validateWatchlist);
                         this.database.InsertEntry(tv, this.validateWatched);
                         await Toast.ShowAsync(AppResources.markedAsWatched, DialogType.Success);
-                        //await Snackbar.ShowAsync(AppResources.markAsWatched, AppResources.undo, async () =>
-                        //{
-                        //    this.database.InsertEntry(tv, "Watchlist");
-                        //    this.database.DeleteEntry(tv, "Watched");
-                        //    await Toast.ShowAsync(AppResources.undoSuccess, DialogType.Success);
-                        //});
                     }
                 }
             }
-        }
-
-        private string GetTitle()
-        {
-            if (this.o is not null)
-            {
-                if (this.o is SearchMovie movie)
-                {
-                    return movie.OriginalTitle;
-                }
-                if (this.o is SearchTv tv)
-                {
-                    return tv.OriginalName;
-                }
-            }
-            return string.Empty;
         }
 
         private async Task<bool> ShowDialog(string name)

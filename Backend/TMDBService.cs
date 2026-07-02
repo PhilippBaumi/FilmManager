@@ -86,16 +86,6 @@ namespace FilmManager.Backend
             }
         }
 
-        public void AddMoviesGenresToList()
-        {
-            AddMoviesGenresToListAsync().GetAwaiter().GetResult();
-        }
-
-        public void AddSerienGenresToList()
-        {
-            AddSerienGenresToListAsync().GetAwaiter().GetResult();
-        }
-
         public async Task<SearchContainer<SearchMovie>> DiscoverMovies(int genreId, int page)
         {
             DiscoverMovie discover = client.DiscoverMoviesAsync();

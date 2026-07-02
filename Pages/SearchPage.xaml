@@ -6,7 +6,6 @@
              x:Class="FilmManager.SearchPage">
     <Grid RowDefinitions="Auto, Auto, Auto, Auto, *">
         <skia:SKCanvasView Grid.Row="0"
-                           x:Name="HeaderCanvas"
                            PaintSurface="HandlePaintSurface" />
         <Entry x:Name="entrySearch" 
                Grid.Row="1" 

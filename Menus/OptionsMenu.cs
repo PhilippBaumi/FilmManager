@@ -36,7 +36,7 @@ namespace FilmManager.Popups
 
         public async Task ShowAsync(string action)
         {
-            string title = GetTitle();
+            string title = MediaItemText.GetTitle(this.obj);
             List<ActionItem> items = AddActions(action);
             await ActionListDialog.ShowWithActionsAsync(title, items, AppResources.close);
         }
@@ -53,22 +53,6 @@ namespace FilmManager.Popups
             return items;
         }
 
-        private string GetTitle()
-        {
-            if (this.obj is not null)
-            {
-                if (this.obj is SearchMovie movie)
-                {
-                    return movie.OriginalTitle;
-                }
-                if (this.obj is SearchTv tv)
-                {
-                    return tv.OriginalName;
-                }
-            }
-            return string.Empty;
-        }
-
         private async Task AddToWatchedAsync()
         {
             try
@@ -82,7 +66,7 @@ namespace FilmManager.Popups
                     this.database.CreateTable(this.validateWatched);
                     if (this.obj is SearchTv serie)
                     {
-                        DateTime? rDate = serie.FirstAirDate;
+                        DateTime? rDate = MediaItemText.GetReleaseDate(serie);
                         if (rDate.HasValue)
                         {
                             if (rDate.Value > DateTime.Today)
@@ -98,7 +82,7 @@ namespace FilmManager.Popups
                     }
                     if (this.obj is SearchMovie movie)
                     {
-                        DateTime? rDate = movie.ReleaseDate;
+                        DateTime? rDate = MediaItemText.GetReleaseDate(movie);
                         if (rDate.HasValue)
                         {
                             if (rDate.Value > DateTime.Today)

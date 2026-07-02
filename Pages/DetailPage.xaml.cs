@@ -9,7 +9,6 @@ using MarketAlly.Dialogs.Maui.Models;
 using SkiaSharp;
 using SkiaSharp.Views.Maui;
 using TMDbLib.Client;
-using TMDbLib.Objects.Discover;
 using TMDbLib.Objects.General;
 using TMDbLib.Objects.Movies;
 using TMDbLib.Objects.Search;

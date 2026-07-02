@@ -5,8 +5,6 @@
              x:Class="FilmManager.OverviewPage">
     <Grid RowDefinitions="Auto, *">
         <skia:SKCanvasView Grid.Row="0"
-                           x:Name="HeaderCanvas"
-                           HeightRequest="80"
                            PaintSurface="HandlePaintSurface" />
         <CollectionView Grid.Row="1"
                         ItemsSource="{Binding Images}" 
