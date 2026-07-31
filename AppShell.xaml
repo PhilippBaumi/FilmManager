@@ -6,44 +6,99 @@
     xmlns:local="clr-namespace:FilmManager"
     Title="FilmManager"
     BackgroundColor="{StaticResource Primary}"
-    xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen">
+    xmlns:strings="clr-namespace:FilmManager.Resources.Strings.Sprachen"
+    FlyoutBehavior="Flyout">
 
-    <TabBar>
-        <ShellContent x:Name="startNav" 
-                      Title="{x:Static strings:AppResources.home}" 
-                      Route="Home" 
+    <Shell.ItemTemplate>
+        <DataTemplate>
+            <Grid
+                HeightRequest="44"
+                Padding="16,0"
+                Margin="0"
+                RowSpacing="0"
+                ColumnSpacing="0">
+
+                <Label
+                    Text="{Binding Title}"
+                    Margin="0"
+                    Padding="0"
+                    FontSize="14"
+                    TextColor="{AppThemeBinding Light=Black, Dark=White}"
+                    HorizontalOptions="Start"
+                    VerticalOptions="Center"
+                    VerticalTextAlignment="Center" />
+
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+    <FlyoutItem Title="{x:Static strings:AppResources.home}">
+        <ShellContent x:Name="startNav"
+                      Route="Home"
                       ContentTemplate="{DataTemplate local:MainPage}"/>
-        <ShellContent x:Name="overviewNAV" 
-                      Title="{x:Static strings:AppResources.overview}" 
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static strings:AppResources.overview}">
+        <ShellContent x:Name="overviewNav"  
                       Route="Overview" 
                       ContentTemplate="{DataTemplate local:OverviewPage}"/>
-        <ShellContent x:Name="detailNav" 
-                      Title="Details" 
+    </FlyoutItem>
+
+    <FlyoutItem Title="Details">
+        <ShellContent x:Name="detailNav"  
                       Route="Detail" 
                       ContentTemplate="{DataTemplate local:DetailPage}"/>
-        <ShellContent x:Name="saveLoadNav" 
-                      Title="{x:Static strings:AppResources.saveLoad}" 
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static strings:AppResources.saveLoad}">
+        <ShellContent x:Name="saveLoadNav"  
                       Route="SaveLoad" 
                       ContentTemplate="{DataTemplate local:SaveLoadPage}"/>
-        <ShellContent x:Name="watchlistWatchedNav"  
-                      Title="{x:Static strings:AppResources.watchedWatchlist}" 
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static strings:AppResources.watchedWatchlist}">
+        <ShellContent x:Name="watchlistWatchedNav"   
                       Route="Watchlist" 
                       ContentTemplate="{DataTemplate local:WatchlistWatchedPage}"/>
-        <ShellContent x:Name="collectionNav" 
-                      Title="{x:Static strings:AppResources.collection}" 
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static strings:AppResources.collection}">
+        <ShellContent x:Name="collectionNav"  
                       Route="Collection" 
                       ContentTemplate="{DataTemplate local:CollectionPage}"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static strings:AppResources.search}" >
         <ShellContent x:Name="searchNav" 
-                      Title="{x:Static strings:AppResources.search}" 
                       Route="Search" 
                       ContentTemplate="{DataTemplate local:SearchPage}"/>
-        <ShellContent x:Name="castNav" 
-                      Title="Cast" 
+    </FlyoutItem>
+
+    <FlyoutItem Title="Cast">
+        <ShellContent x:Name="castNav"  
                       Route="Cast" 
                       ContentTemplate="{DataTemplate local:CastPage}"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="{x:Static strings:AppResources.settings}"
+                Shell.FlyoutItemIsVisible="False">
         <ShellContent x:Name="settingsNav" 
-                      Title="{x:Static strings:AppResources.settings}" 
-                      Route="Settings" 
+                      Route="Settings"
                       ContentTemplate="{DataTemplate local:SettingPage}"/>
-    </TabBar>
+    </FlyoutItem>
+
+    <Shell.FlyoutFooter>
+        <Grid HeightRequest="56" 
+              Margin="8,0,8,8" 
+              Padding="16,0" 
+              BackgroundColor="Transparent">
+            <Grid.GestureRecognizers>
+                <TapGestureRecognizer Tapped="OnSettingsTapped"/>
+            </Grid.GestureRecognizers>
+            <Label Text="{x:Static strings:AppResources.settings}" 
+                   VerticalOptions="Center" 
+                   HorizontalOptions="Start" 
+                   FontSize="14"/>
+        </Grid>
+    </Shell.FlyoutFooter>
 </Shell>

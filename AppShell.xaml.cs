@@ -12,5 +12,11 @@ namespace FilmManager
 
             Loaded += async (s, e) => await this.navigationService.InitializeAsync();
         }
+
+        private async void OnSettingsTapped(object sender, TappedEventArgs e)
+        {
+            FlyoutIsPresented = false;
+            await navigationService.NavigateToAsync("//Settings");
+        }
     }
 }
